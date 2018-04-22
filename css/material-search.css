@@ -1,0 +1,71 @@
+/*MATERIAL INPUT*/
+h2{
+    color: black;
+    text-align:center;
+}
+.mat-input{
+    margin: 2% auto;
+    width: 50%;    
+}
+.mat-input-outer{
+    display: table;
+    width: 100%;
+    position: relative;
+}
+.mat-input-outer input{
+    height: 50px;
+    border-radius: 0;
+    border: none;
+    width: 100%;    
+    padding: 0 15px;
+    font-size: 20px;
+}
+.mat-input-outer label{
+    font-size: 20px;
+    left: 15px;
+    position: absolute;
+    top: 18px;
+    transition: .2s;
+    color: black;
+    cursor: text;
+    font-weight: normal;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+.mat-input-outer .border{
+    height: 1px;
+    background: black;
+    transition: .3s;
+    -webkit-transition: .3s;
+    -ms-transition: .3s;
+}
+.mat-input-outer .border::before{
+    content: " ";
+    display: table;
+    height: 3px;
+    width: 0%;
+    background: transparent;
+    transition: .3s;
+    -webkit-transition: .3s;
+    -ms-transition: .3s;
+    margin: 0 auto;
+}
+.mat-input-outer input:focus ~ .border{
+    background: transparent;
+}
+.mat-input-outer input:focus ~ .border::before{
+    width: 100%;
+    background: black;
+}
+.mat-input-outer input + label.active{
+    left: 5px;
+    top: -25px;
+    color: black;
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+.table{
+    background-color:#fff;
+    box-shadow:0px 2px 2px #aaa;
+    margin-top:50px;
+}
