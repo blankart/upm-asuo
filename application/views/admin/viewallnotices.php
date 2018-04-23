@@ -4,6 +4,7 @@
            type:"post",
            url:"<?php echo base_url(); ?>admin/viewAllNotices",
            cache: false,
+           data: {source: 'admin'},
            dataType: 'json',
            async: false,
            success:function(result){

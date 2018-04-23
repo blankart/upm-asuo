@@ -5,7 +5,7 @@ var search = $(this).val();
         type:"post",
         url:"<?php echo base_url(); ?>admin/searchAccredApp",
         cache: false,
-        data:{query: search},
+        data:{query: search, source: 'admin'},
         dataType: 'json',
         async: false,
         success:function(result){
@@ -49,7 +49,7 @@ var search = $(this).val();
         type:"post",
         url:"<?php echo base_url(); ?>admin/searchAccredApp",
         cache: false,
-        data:{query: search},
+        data:{query: search, source: 'admin'},
         dataType: 'json',
         async: false,
         success:function(result){

@@ -13,46 +13,36 @@
 			}
 			else if ($action == 'searchStudents')
 				$this->searchStudents();
-			else if ($action == 'validateStudentAccount')
-				$this->validateStudentAccount();
-			else if ($action == 'activateOrgAccount')
-				$this->activateOrgAccount();
-			else if ($action == 'searchOrganizations')
-				$this->searchOrganizations();
 			else if ($action == 'viewStudentInfo')
 				$this->viewStudentInfo();
+			else if ($action == 'validateStudentAccount')
+				$this->validateStudentAccount();
+
+			else if ($action == 'searchOrganizations')
+				$this->searchOrganizations();
 			else if ($action == 'viewOrgInfo')
 				$this->viewOrgInfo();
+			else if ($action == 'activateOrgAccount')
+				$this->activateOrgAccount();
+
 			else if ($action == 'searchAllStudents')
 				$this->searchAllStudents();
-			else if ($action == 'searchAllOrganizations')
-				$this->searchAllOrganizations();
 			else if ($action == 'changeStudPassword')
 				$this->changeStudPassword();
 			else if ($action == 'blockStudentAccount')
 				$this->blockStudentAccount();
-			else if ($action == 'blockOrgAccount')
-				$this->blockOrgAccount();
 			else if ($action == 'unblockStudentAccount')
 				$this->unblockStudentAccount();
-			else if ($action == 'unblockOrgAccount')
-				$this->unblockOrgAccount();
+
+			else if ($action == 'searchAllOrganizations')
+				$this->searchAllOrganizations();
 			else if ($action == 'changeOrgPassword')
 				$this->changeOrgPassword();
-			else if ($action == 'changeAdminPassword')
-				$this->changeAdminPassword();
-			else if ($action == 'checkAdminPassword')
-				$this->checkAdminPassword();
-			else if ($action == 'sendNoticeSearch')
-				$this->sendNoticeSearch();
-			else if ($action == 'sendNotice')
-				$this->sendNotice();
-			else if ($action == 'sendNoticeToAll')
-				$this->sendNoticeToAll();
-			else if ($action == 'viewAllNotices')
-				$this->viewAllNotices();
-			else if ($action == 'viewMessageDetails')
-				$this->viewMessageDetails();
+			else if ($action == 'blockOrgAccount')
+				$this->blockOrgAccount();
+			else if ($action == 'unblockOrgAccount')
+				$this->unblockOrgAccount();
+
 			//
 			else if($action == 'searchAccredApp')
 				$this->searchAccredApp();
@@ -61,6 +51,23 @@
 			else if($action == 'rejectOrg')
 				$this->rejectOrg();
 			//
+			
+			else if ($action == 'sendNoticeSearch')
+				$this->sendNoticeSearch();
+			else if ($action == 'sendNotice')
+				$this->sendNotice();
+			else if ($action == 'sendNoticeToAll')
+				$this->sendNoticeToAll();
+
+			else if ($action == 'viewAllNotices')
+				$this->viewAllNotices();
+			else if ($action == 'viewMessageDetails')
+				$this->viewMessageDetails();
+			
+			else if ($action == 'checkAdminPassword')
+				$this->checkAdminPassword();
+			else if ($action == 'changeAdminPassword')
+				$this->changeAdminPassword();
 
 			else
 				if($this->session->userdata['account_type'] == 'admin')
@@ -97,9 +104,225 @@
             $this->load->view("admin/changepassword.php");
 		}
 
+		private function searchStudents(){
+			$query = $this->input->post('query');
+			$source = $this->input->post('source');
+
+			if($source == "admin"){
+				$this->load->model('AdminModel');
+				$result = array();
+				$profiles = $this->AdminModel->searchStudents($query);
+
+				foreach ($profiles as $profile)
+					array_push($result, $profile);
+
+				header('Content-type: application/json');
+				echo json_encode($result);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function validateStudentAccount(){
+			$id = $this->input->post('id');
+
+			if($id != NULL){
+				$this->load->model('AdminModel');
+				$this->AdminModel->validateStudentAccount($id);
+				echo json_encode('true');
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function searchOrganizations(){
+			$query = $this->input->post('query');
+			$source = $this->input->post('source');
+
+			if($source == "admin"){
+				$this->load->model('AdminModel');
+				$result = array();
+				$profiles = $this->AdminModel->searchOrganizations($query);
+				foreach ($profiles as $profile)
+					array_push($result, $profile);
+
+					header('Content-type: application/json');
+					echo json_encode($result);
+					exit();
+			}
+			else 
+				show_404();
+		}
+
+		private function activateOrgAccount(){
+			$id = $this->input->post('id');
+
+			if($id != NULL){
+				$this->load->model('AdminModel');
+				$this->AdminModel->activateOrgAccount($id);
+				echo json_encode('true');
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function searchAllStudents(){
+			$query = $this->input->post('query');
+			$source = $this->input->post('source');
+
+			if($source == "admin"){
+				$this->load->model('AdminModel');
+				$result = array();
+				$profiles = $this->AdminModel->searchAllStudents($query);
+
+				foreach ($profiles as $profile)
+					array_push($result, $profile);
+
+				header('Content-type: application/json');
+				echo json_encode($result);
+				exit();
+			}
+			else
+				show_404();
+		}	
+
+		private function viewStudentInfo(){
+			$id = $this->input->post('id');
+
+			if($id != NULL){
+				$this->load->model('AdminModel');
+				$result = $this->AdminModel->viewStudentInfo($id);
+				echo json_encode($result[0]);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function changeStudPassword(){
+			$id = $this->input->post('id');
+			$password = $this->input->post('newstudpassword');
+		
+			if($id != NULL && $password != NULL){
+				$newstudpassword = md5($password);
+				$this->load->model('AdminModel');
+				$this->AdminModel->changeStudPassword($id, $newstudpassword);
+				echo json_encode('true');
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function blockStudentAccount(){
+			$id = $this->input->post('id');
+
+			if($id != NULL){
+				$this->load->model('AdminModel');
+				$this->AdminModel->blockStudentAccount($id);
+				echo json_encode('true');
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function unblockStudentAccount(){
+			$id = $this->input->post('id');
+
+			if($id != NULL){
+				$this->load->model('AdminModel');
+				$this->AdminModel->unblockStudentAccount($id);
+				echo json_encode('true');
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function searchAllOrganizations(){
+			$query = $this->input->post('query');
+			$source = $this->input->post('source');
+
+			if($source == "admin"){
+				$this->load->model('AdminModel');
+				$result = array();
+				$profiles = $this->AdminModel->searchAllOrganizations($query);
+
+				foreach ($profiles as $profile)
+					array_push($result, $profile);
+
+				header('Content-type: application/json');
+				echo json_encode($result);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function changeOrgPassword(){
+			$id = $this->input->post('id');
+			$password = $this->input->post('neworgpassword');
+
+			if($id != NULL && $password != NULL){
+				$neworgpassword = md5($password);
+				$this->load->model('AdminModel');
+				$this->AdminModel->changeOrgPassword($id, $neworgpassword);
+				echo json_encode('true');
+				exit();
+			}
+			else
+				show_404();
+		}
+		
+		private function viewOrgInfo(){
+			$id = $this->input->post('id');
+
+			if($id != NULL){
+				$this->load->model('AdminModel');
+				$result = $this->AdminModel->viewOrgInfo($id);
+				echo json_encode($result[0]);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function blockOrgAccount(){
+			$id = $this->input->post('id');
+
+			if($id != NULL){
+				$this->load->model('AdminModel');
+				$this->AdminModel->blockOrgAccount($id);
+				echo json_encode('true');
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function unblockOrgAccount(){
+			$id = $this->input->post('id');
+
+			if($id != NULL){
+				$this->load->model('AdminModel');
+				$this->AdminModel->unblockOrgAccount($id);
+				echo json_encode('true');
+				exit();
+			}
+			else
+				show_404();
+		}
+
 		//
 		private function searchAccredApp(){
-			$query = $this->input->post('query');
+			$query =  $this->input->post('query');
+			$source = $this->input->post('source');
+
+			if($source == 'admin'){
 				$this->load->model('AdminModel');
 				$result = array();
 				$profiles = $this->AdminModel->searchAccredApp($query);	
@@ -109,7 +332,10 @@
 
 				header('Content-type: application/json');
 				echo json_encode($result);
-				exit();				
+				exit();	
+			}
+			else 
+				show_404();			
 		}
 
 		private function accreditOrg(){
@@ -139,53 +365,11 @@
 		}
 		//
 
-		private function searchStudents(){
-			$query = $this->input->post('query');
-				$this->load->model('AdminModel');
-				$result = array();
-				$profiles = $this->AdminModel->searchStudents($query);
-
-				foreach ($profiles as $profile)
-					array_push($result, $profile);
-
-				header('Content-type: application/json');
-				echo json_encode($result);
-				exit();
-			
-		}
-
-		private function searchAllStudents(){
-			$query = $this->input->post('query');
-				$this->load->model('AdminModel');
-				$result = array();
-				$profiles = $this->AdminModel->searchAllStudents($query);
-
-				foreach ($profiles as $profile)
-					array_push($result, $profile);
-
-				header('Content-type: application/json');
-				echo json_encode($result);
-				exit();
-			
-		}
-
-		private function searchAllOrganizations(){
-			$query = $this->input->post('query');
-				$this->load->model('AdminModel');
-				$result = array();
-				$profiles = $this->AdminModel->searchAllOrganizations($query);
-
-				foreach ($profiles as $profile)
-					array_push($result, $profile);
-
-				header('Content-type: application/json');
-				echo json_encode($result);
-				exit();
-			
-		}
-
 		private function sendNoticeSearch(){
 			$query = $this->input->post('query');
+			$source = $this->input->post('source');
+
+			if($source == 'admin'){
 				$this->load->model('AdminModel');
 				$result = array();
 				$profiles = $this->AdminModel->sendNoticeSearch($query);
@@ -196,204 +380,12 @@
 				header('Content-type: application/json');
 				echo json_encode($result);
 				exit();
-			
-		}
-
-		private function viewAllNotices(){
-				$this->load->model('AdminModel');
-				$result = array();
-				$profiles = $this->AdminModel->viewAllNotices();
-
-				foreach ($profiles as $profile)
-					array_push($result, $profile);
-
-				header('Content-type: application/json');
-				echo json_encode($result);
-				exit();
-			
-		}
-
-
-		private function searchOrganizations(){
-			$query = $this->input->post('query');
-				$this->load->model('AdminModel');
-				$result = array();
-				$profiles = $this->AdminModel->searchOrganizations($query);
-				foreach ($profiles as $profile)
-					array_push($result, $profile);
-
-				header('Content-type: application/json');
-				echo json_encode($result);
-				exit();
-			
-		}
-
-
-		private function validateStudentAccount(){
-			$id = $this->input->post('id');
-
-			if($id != NULL){
-				$this->load->model('AdminModel');
-				$this->AdminModel->validateStudentAccount($id);
-				echo json_encode('true');
-				exit();
 			}
 			else
 				show_404();
 		}
 
-		private function activateOrgAccount(){
-			$id = $this->input->post('id');
-
-			if($id != NULL){
-				$this->load->model('AdminModel');
-				$this->AdminModel->activateOrgAccount($id);
-				echo json_encode('true');
-				exit();
-			}
-			else
-				show_404();
-		}
-
-		private function viewStudentInfo(){
-			$id = $this->input->post('id');
-
-			if($id != NULL){
-				$this->load->model('AdminModel');
-				$result = $this->AdminModel->viewStudentInfo($id);
-				echo json_encode($result[0]);
-				exit();
-			}
-			else
-				show_404();
-		}
-
-		private function viewMessageDetails(){
-			$id = $this->input->post('id');
-
-			if($id != NULL){
-				$this->load->model('AdminModel');
-				$result = $this->AdminModel->viewMessageDetails($id);
-				echo json_encode($result[0]);
-				exit();
-			}
-			else
-				show_404();
-		}
-
-		private function viewOrgInfo(){
-			$id = $this->input->post('id');
-
-			if($id != NULL){
-				$this->load->model('AdminModel');
-				$result = $this->AdminModel->viewOrgInfo($id);
-				echo json_encode($result[0]);
-				exit();
-			}
-			else
-				show_404();
-		}
-
-		private function changeStudPassword()
-		{
-			$id = $this->input->post('id');
-			$newstudpassword = $this->input->post('newstudpassword');
-
-
-			if($id != NULL){
-				$this->load->model('AdminModel');
-				$this->AdminModel->changeStudPassword($id, $newstudpassword);
-				echo json_encode('true');
-				exit();
-			}
-			else
-				show_404();
-		}
-
-		private function changeOrgPassword()
-		{
-			$id = $this->input->post('id');
-			$neworgpassword = $this->input->post('neworgpassword');
-
-
-			if($id != NULL){
-				$this->load->model('AdminModel');
-				$this->AdminModel->changeOrgPassword($id, $neworgpassword);
-				echo json_encode('true');
-				exit();
-			}
-			else
-				show_404();
-		}
-
-		private function changeAdminPassword()
-		{
-			$id = $this->input->post('id');
-			$newadminpassword = $this->input->post('newadminpassword');
-
-
-			if($id != NULL){
-				$this->load->model('AdminModel');
-				$this->AdminModel->changeAdminPassword($id, $newadminpassword);
-				echo json_encode('true');
-				exit();
-			}
-			else
-				show_404();
-		}
-
-		private function blockStudentAccount(){
-			$id = $this->input->post('id');
-
-			if($id != NULL){
-				$this->load->model('AdminModel');
-				$this->AdminModel->blockStudentAccount($id);
-				echo json_encode('true');
-				exit();
-			}
-			else
-				show_404();
-		}
-
-		private function blockOrgAccount(){
-			$id = $this->input->post('id');
-
-			if($id != NULL){
-				$this->load->model('AdminModel');
-				$this->AdminModel->blockOrgAccount($id);
-				echo json_encode('true');
-				exit();
-			}
-			else
-				show_404();
-		}
-
-		private function unblockStudentAccount(){
-			$id = $this->input->post('id');
-
-			if($id != NULL){
-				$this->load->model('AdminModel');
-				$this->AdminModel->unblockStudentAccount($id);
-				echo json_encode('true');
-				exit();
-			}
-			else
-				show_404();
-		}
-
-		private function unblockOrgAccount(){
-			$id = $this->input->post('id');
-
-			if($id != NULL){
-				$this->load->model('AdminModel');
-				$this->AdminModel->unblockOrgAccount($id);
-				echo json_encode('true');
-				exit();
-			}
-			else
-				show_404();
-		}
-
+		//talk with Nico
 		private function sendNotice(){
 			$id = $this->input->post('id');
 			$noticeTitle = $this->input->post('noticeTitle');
@@ -415,25 +407,76 @@
 			$noticeMessage = $this->input->post('noticeMessage');
 			$noticeDate = $this->input->post('noticeDate');
 
-			
+			if($noticeTitle != NULL && $noticeMessage != NULL && $noticeDate != NULL){
 				$this->load->model('AdminModel');
 				$this->AdminModel->sendNoticeToAll($noticeTitle, $noticeMessage, $noticeDate);
 				echo json_encode('true');
 				exit();
-		}
-
-		private function checkAdminPassword(){
-			$adminpassword = $this->input->post('adminpassword');
-			$id = $this->input->post('id');
-			if($id != NULL){
-				$this->load->model('AdminModel');
-				$result = $this->AdminModel->checkAdminPassword($id, $adminpassword);
 			}
 			else
 				show_404();
-			if ($result) echo json_encode('true');
-			else echo json_encode('false');
+		}
 
+		private function viewAllNotices(){
+			$source = $this->input->post('source');
+
+			if($source == 'admin'){
+				$this->load->model('AdminModel');
+				$result = array();
+				$profiles = $this->AdminModel->viewAllNotices();
+
+				foreach ($profiles as $profile)
+					array_push($result, $profile);
+
+				header('Content-type: application/json');
+				echo json_encode($result);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function viewMessageDetails(){
+			$id = $this->input->post('id');
+
+			if($id != NULL){
+				$this->load->model('AdminModel');
+				$result = $this->AdminModel->viewMessageDetails($id);
+				echo json_encode($result[0]);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function checkAdminPassword(){
+			$id = $this->input->post('id');
+			$password = $this->input->post('adminpassword');
+		
+			if($id != NULL && $password != NULL){
+				$adminpassword = md5($password);
+				$this->load->model('AdminModel');
+				$result = $this->AdminModel->checkAdminPassword($id, $adminpassword);
+				echo json_encode($result);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function changeAdminPassword(){
+			$id = $this->input->post('id');
+			$password = $this->input->post('newadminpassword');
+		
+			if($id != NULL && $password != NULL){
+				$newadminpassword = md5 ($password);
+				$this->load->model('AdminModel');
+				$this->AdminModel->changeAdminPassword($id, $newadminpassword);
+				echo json_encode('true');
+				exit();
+			}
+			else
+				show_404();
 		}
 	}
 ?>

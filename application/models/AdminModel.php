@@ -1,50 +1,9 @@
 <?php
 	class AdminModel extends CI_Model{
-		//
-		public function searchAccredApp($string){
-			$condition = "aa.org_name LIKE '%".$string."%'";
-
-			$this->db->select('aa.org_id, aa.org_name,');
-			$this->db->from('accreditationapps aa');
-			$this->db->order_by('aa.org_id');
-			$this->db->where ($condition);
-
-			$query = $this->db->get();
-			return  $query->result_array();
-			
-		}
-
-		public function accreditOrg($id){
-			$condition = "org_id = " .$id;
-
-			$changes = array(
-				'org_status' => 'Accredited'
-			);
-
-			$this->db->where($condition);
-			$this->db->update('accreditationapps', $changes);
-		}
-
-		public function rejectOrg($id){
-			$condition = "org_id = " .$id;
-
-			$changes = array(
-				'org_status' => 'Unaccredited'
-			);
-
-			$this->db->where($condition);
-			$this->db->update('accreditationapps', $changes);
-		}
-		//
-		
+				
 		public function searchStudents($string){
-			if ($string == "")
-			{
-				$condition = "isActivated = 0 AND isVerified = 1";
-			}
-			else{
-				$condition = "isActivated = 0 AND isVerified = 1 AND up_mail LIKE '%".$string."%'";
-			}
+			$condition = "isActivated = 0 AND isVerified = 1 AND up_mail LIKE '%".$string."%'";
+			
 			$this->db->select('student_id, up_mail, up_id');
 			$this->db->from('studentaccount');
 			$this->db->order_by('student_id');
@@ -52,140 +11,6 @@
 
 			$query = $this->db->get();
 			return  $query->result_array();
-		}
-
-		public function searchAllStudents($string){
-			if ($string == "")
-			{
-				$condition = "isVerified = 1";
-			}
-			else{
-				$condition = "up_mail LIKE '%".$string."%'";
-			}
-			$this->db->select('archived, student_id, up_mail, up_id');
-			$this->db->from('studentaccount');
-			$this->db->order_by('student_id');
-			$this->db->where ($condition);
-
-			$query = $this->db->get();
-			return  $query->result_array();
-		}
-
-		public function searchAllOrganizations($string){
-			if ($string == "")
-			{
-				$condition = "oa.org_id = op.org_id AND oa.isVerified = 1";
-			}
-			else{
-				$condition = "oa.org_id = op.org_id AND oa.isVerified = 1 AND oa.org_email LIKE '%".$string."%'";
-			}
-			$this->db->select('oa.org_id, oa.org_status, oa.archived, oa.org_email, op.org_name');
-			$this->db->from('organizationaccount oa,organizationprofile op');
-			$this->db->order_by('oa.org_id');
-			$this->db->where ($condition);
-
-			$query = $this->db->get();
-			return  $query->result_array();
-		}
-
-		public function sendNoticeSearch($string){
-			if ($string == "")
-			{
-				$condition = "oa.org_id = op.org_id AND oa.isVerified = 1 AND oa.isActivated = 1 AND oa.archived = 0";
-			}
-			else{
-				$condition = "oa.org_id = op.org_id AND oa.isVerified = 1 AND oa.isActivated = 1 AND oa.archived = 0 AND oa.org_email LIKE '%".$string."%'";
-			}
-			$this->db->select('oa.org_id, oa.org_status, oa.org_email, op.org_name');
-			$this->db->from('organizationaccount oa,organizationprofile op');
-			$this->db->order_by('oa.org_id');
-			$this->db->where ($condition);
-
-			$query = $this->db->get();
-			return  $query->result_array();
-		}
-
-		public function viewAllNotices(){
-			$condition = "op.org_id = a.recipients";
-			$this->db->select('a.notice_id, a.title, a.recipients, a.date_posted, op.org_name');
-			$this->db->from('announcements a, organizationprofile op');
-			$this->db->order_by('a.date_posted','desc');
-			$this->db->where ($condition);
-
-			$query = $this->db->get();
-			return  $query->result_array();
-		}
-
-
-		public function searchOrganizations($string){
-			if ($string == "")
-			{
-				$condition = "oa.org_id = op.org_id AND oa.isActivated = 0 AND oa.isVerified = 1";
-			}
-			else{
-				$condition = "oa.org_id = op.org_id AND oa.isActivated = 0 AND oa.isVerified = 1 AND oa.org_email LIKE '%".$string."%'";
-			}
-			$this->db->select('oa.org_id, oa.org_email, op.org_name');
-			$this->db->from('organizationaccount oa,organizationprofile op');
-			$this->db->order_by('oa.org_id');
-			$this->db->where ($condition);
-
-			$query = $this->db->get();
-			return  $query->result_array();
-		}
-
-		public function validateStudentAccount($id){
-
-			$condition = "student_id = " .$id;
-
-			$changes = array(
-				'isActivated' => 1
-			);
-
-			$this->db->where($condition);
-			$this->db->update('studentaccount', $changes);
-		}
-
-		public function sendNotice($id, $noticeTitle, $noticeMessage, $noticeDate){
-			$add = array(
-				'title' => $noticeTitle,
-				'content' => $noticeMessage,
-				'date_posted' => $noticeDate,
-				'recipients' => $id
-			);
-
-			$this->db->insert('announcements', $add);
-		}
-
-		public function sendNoticeToAll($noticeTitle, $noticeMessage, $noticeDate){
-			$condition = "isVerified = 1 AND isActivated = 1 AND archived = 0";
-			$this->db->select('org_id');
-			$this->db->from('organizationaccount');
-			$this->db->where($condition);
-			$query = $this->db->get();
-			foreach ($query->result_array() as $data)
-			{
-				$add = array(
-				'title' => $noticeTitle,
-				'content' => $noticeMessage,
-				'date_posted' => $noticeDate,
-				'recipients' => $data['org_id']
-				);
-
-				$this->db->insert('announcements', $add);
-			}	
-		}
-
-		public function activateOrgAccount($id){
-
-			$condition = "org_id = " .$id;
-
-			$changes = array(
-				'isActivated' => 1
-			);
-
-			$this->db->where($condition);
-			$this->db->update('organizationaccount', $changes);
 		}
 
 		public function viewStudentInfo($id){
@@ -200,13 +25,25 @@
 			return  $query->result_array();
 		}
 
-		public function viewMessageDetails($id){
-			$condition = "notice_id = " .$id;
+		public function validateStudentAccount($id){
+			$condition = "student_id = " .$id. " AND student_id = " .$id;
 
-			$this->db->select('title, content, date_posted');
-			$this->db->from('announcements');
-			$this->db->order_by('notice_id');
+			$changes = array(
+				'isActivated' => 1
+			);
+
+			$this->db->where($condition);
+			$this->db->update('studentaccount', $changes);
+		}
+
+		public function searchOrganizations($string){
+			$condition = "oa.org_id = op.org_id AND oa.isActivated = 0 AND oa.isVerified = 1 AND oa.org_email LIKE '%".$string."%'";
+			
+			$this->db->select('oa.org_id, oa.org_email, op.org_name');
+			$this->db->from('organizationaccount oa,organizationprofile op');
+			$this->db->order_by('oa.org_id');
 			$this->db->where ($condition);
+
 			$query = $this->db->get();
 			return  $query->result_array();
 		}
@@ -223,43 +60,42 @@
 			return  $query->result_array();
 		}
 
-		public function changeStudPassword($id, $newstudpassword){
-			$condition = "student_id = " .$id;
+		public function activateOrgAccount($id){
+			$condition = "org_id = " .$id. " AND org_id = " .$id;
 
 			$changes = array(
-				'password' => md5($newstudpassword)
-			);
-
-			$this->db->where($condition);
-			$this->db->update('studentaccount', $changes);
-		}
-
-		public function changeAdminPassword($id, $newadminpassword){
-			$condition = "admin_id = " .$id;
-
-			$changes = array(
-				'password' => md5($newadminpassword)
-			);
-
-			$this->db->where($condition);
-			$this->db->update('admin', $changes);
-		}
-
-
-		public function changeOrgPassword($id, $neworgpassword){
-			$condition = "org_id = " .$id;
-
-			$changes = array(
-				'password' => md5($neworgpassword)
+				'isActivated' => 1
 			);
 
 			$this->db->where($condition);
 			$this->db->update('organizationaccount', $changes);
+		}
+
+		public function searchAllStudents($string){
+			$condition = "isActivated = 1 AND up_mail LIKE '%".$string."%'";
+	
+			$this->db->select('archived, student_id, up_mail, up_id');
+			$this->db->from('studentaccount');
+			$this->db->order_by('student_id');
+			$this->db->where ($condition);
+
+			$query = $this->db->get();
+			return  $query->result_array();
+		}
+
+		public function changeStudPassword($id, $newstudpassword){
+			$condition = "student_id = " .$id. " AND student_id = " .$id;
+
+			$changes = array(
+				'password' => $newstudpassword
+			);
+
+			$this->db->where($condition);
+			$this->db->update('studentaccount', $changes);
 		}
 
 		public function blockStudentAccount($id){
-
-			$condition = "student_id = " .$id;
+			$condition = "student_id = " .$id. " AND student_id = " .$id;
 
 			$changes = array(
 				'archived' => 1
@@ -267,23 +103,10 @@
 
 			$this->db->where($condition);
 			$this->db->update('studentaccount', $changes);
-		}
-
-		public function blockOrgAccount($id){
-
-			$condition = "org_id = " .$id;
-
-			$changes = array(
-				'archived' => 1
-			);
-
-			$this->db->where($condition);
-			$this->db->update('organizationaccount', $changes);
 		}
 
 		public function unblockStudentAccount($id){
-
-			$condition = "student_id = " .$id;
+			$condition = "student_id = " .$id. " AND student_id = " .$id;
 
 			$changes = array(
 				'archived' => 0
@@ -293,9 +116,42 @@
 			$this->db->update('studentaccount', $changes);
 		}
 
-		public function unblockOrgAccount($id){
+		public function searchAllOrganizations($string){
+			$condition = "oa.org_id = op.org_id AND oa.isActivated = 1 AND oa.org_email LIKE '%".$string."%'";
+			
+			$this->db->select('oa.org_id, oa.org_status, oa.archived, oa.org_email, op.org_name');
+			$this->db->from('organizationaccount oa,organizationprofile op');
+			$this->db->order_by('oa.org_id');
+			$this->db->where ($condition);
 
-			$condition = "org_id = " .$id;
+			$query = $this->db->get();
+			return  $query->result_array();
+		}
+
+		public function changeOrgPassword($id, $neworgpassword){
+			$condition = "org_id = " .$id. " AND org_id = " .$id;
+
+			$changes = array(
+				'password' => $neworgpassword
+			);
+
+			$this->db->where($condition);
+			$this->db->update('organizationaccount', $changes);
+		}
+
+		public function blockOrgAccount($id){
+			$condition = "org_id = " .$id. " AND org_id = " .$id;
+
+			$changes = array(
+				'archived' => 1
+			);
+
+			$this->db->where($condition);
+			$this->db->update('organizationaccount', $changes);
+		}
+
+		public function unblockOrgAccount($id){
+			$condition = "org_id = " .$id. " AND org_id = " .$id;
 
 			$changes = array(
 				'archived' => 0
@@ -305,22 +161,140 @@
 			$this->db->update('organizationaccount', $changes);
 		}
 
+		public function searchAccredApp($string){
+			$condition = "aa.org_id = op.org_id AND aa.org_id = oa.org_id AND oa.org_status = 'Unaccredited' AND op.org_name LIKE '%".$string."%'";
+
+			$this->db->select('aa.org_id, op.org_name,');
+			$this->db->from('accreditationapplication aa, organizationprofile op, organizationaccount oa');
+			$this->db->order_by('op.org_id');
+			$this->db->where ($condition);
+
+			$query = $this->db->get();
+			return  $query->result_array(); 
+		}
+
+		public function accreditOrg($id){
+			$condition = "org_id = " .$id. " AND org_id = " .$id;
+
+			$changes = array(
+				'org_status' => 'Accredited'
+			);
+
+			$this->db->where($condition);
+			$this->db->update('organizationaccount', $changes);
+		}
+
+		public function rejectOrg($id){
+			$condition = "org_id = " .$id. " AND org_id = " .$id;
+
+			$changes = array(
+				'org_status' => 'Unaccredited'
+			);
+
+			$this->db->where($condition);
+			$this->db->update('organizationaccount', $changes);
+		}
+		//
+
+		public function sendNoticeSearch($string){
+			$condition = "oa.org_id = op.org_id AND oa.isActivated = 1 AND oa.archived = 0 AND oa.org_email LIKE '%".$string."%'";
+			
+			$this->db->select('oa.org_id, oa.org_status, oa.org_email, op.org_name');
+			$this->db->from('organizationaccount oa,organizationprofile op');
+			$this->db->order_by('oa.org_id');
+			$this->db->where ($condition);
+
+			$query = $this->db->get();
+			return  $query->result_array();
+		}
+
+		public function sendNotice($org_id, $noticeTitle, $noticeMessage, $noticeDate){
+			$add = array(
+				'title' => $noticeTitle,
+				'content' => $noticeMessage,
+				'date_posted' => $noticeDate,
+				'recipient' => $org_id
+			);
+
+			$this->db->insert('announcement', $add);
+		}
+
+		public function sendNoticeToAll($noticeTitle, $noticeMessage, $noticeDate){
+			$add = array(
+				'title' => $noticeTitle,
+				'content' => $noticeMessage,
+				'date_posted' => $noticeDate,
+				'recipient' => 0
+				);
+
+			$this->db->insert('announcement', $add);
+		}
+
+		public function viewAllNotices(){
+			$condition = "op.org_id = a.recipient AND op.org_id = a.recipient";
+
+			$this->db->select('a.notice_id, a.title, a.date_posted, op.org_name');
+			$this->db->from('announcement a, organizationprofile op');
+			$this->db->order_by('a.notice_ID');
+			$this->db->where ($condition);
+			$query = $this->db->get();
+			$specificAnnouncements = $query->result_array();
+
+			$condition2 = "a.recipient = 0 AND a.recipient = 0";
+
+			$this->db->select('a.notice_id, a.title, a.date_posted');
+			$this->db->from('announcement a');
+			$this->db->order_by('a.notice_id');
+			$this->db->where ($condition2);
+			$query2 = $this->db->get();
+			$result2 = $query2->result_array();
+
+			$announcementsToAll = array();
+			foreach($result2 as $res){
+				$res['org_name'] = 'All Organizations';
+				array_push($announcementsToAll, $res);
+			}
+
+			$finalresult = array_merge($announcementsToAll, $specificAnnouncements);
+			array_multisort($finalresult);
+			return $finalresult;
+		}
+
+		public function viewMessageDetails($id){
+			$condition = "notice_id = " .$id. " AND notice_id = " .$id;
+
+			$this->db->select('title, content, date_posted');
+			$this->db->from('announcement');
+			$this->db->order_by('notice_id');
+			$this->db->where ($condition);
+			$query = $this->db->get();
+			return  $query->result_array();
+		}
+
 		public function checkAdminPassword($id, $adminpassword){
+			$condition = "admin_id = " .$id. " AND password = '" .$adminpassword. "'";
 
-			$condition = "admin_id = " .$id;
-
-			$this->db->select('password');
+			$this->db->select('*');
 			$this->db->from('admin');
 			$this->db->where ($condition);
 
 			$query = $this->db->get();
 
-			if ($query->result_array()[0]['password'] == md5($adminpassword))
-			{
+			if ($query->num_rows() == 1)
 				return true;
-			} 
-			else return false;
+			else 
+				return false;
 		}
 
+		public function changeAdminPassword($id, $newadminpassword){
+			$condition = "admin_id = " .$id. " AND admin_id = " .$id;
+
+			$changes = array(
+				'password' => $newadminpassword
+			);
+
+			$this->db->where($condition);
+			$this->db->update('admin', $changes);
+		}
 	}
 ?>

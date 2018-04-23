@@ -44,7 +44,7 @@
 			    $result = $this->SystemModel->login($credentials);
 
 			    if(!$result)
-			    	echo "Login Unsuccessful!\n ".$result;
+			    	redirect(base_url().'login');
 			    else
 			    	$this->setSessions($result);
 			}

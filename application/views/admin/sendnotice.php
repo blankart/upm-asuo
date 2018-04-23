@@ -28,7 +28,7 @@
            type:"post",
            url:"<?php echo base_url(); ?>admin/sendNoticeSearch",
            cache: false,
-           data:{query: search},
+           data:{query: search, source: 'admin'},
            dataType: 'json',
            async: false,
            success:function(result){
@@ -98,7 +98,7 @@
            type:"post",
            url:"<?php echo base_url(); ?>admin/sendNoticeSearch",
            cache: false,
-           data:{query: search},
+           data:{query: search, source: 'admin'},
            dataType: 'json',
            async: false,
            success:function(result){

@@ -62,7 +62,7 @@
             dataType: 'json',
             async: false,
             success:function(result){
-            if (result == 'true')
+            if (result == true)
             {
               $("#adminAlert").fadeOut();
               swal({
