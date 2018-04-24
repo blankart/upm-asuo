@@ -9,16 +9,16 @@ INSERT INTO `studentaccount` (`student_id`, `up_id`, `up_mail`, `username`, `pas
 (8, '201499764', 'dgperez@up.edu.ph', 'dgperez', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
 (9, '201480756', 'avsangeuenza@up.edu.ph', 'avsanguenza', '32250170a0dca92d53ec9624f336ca24', 1, 0, 0);
 
-INSERT INTO `studentprofile` (`student_id`, `first_name`, `middle_name`, `last_name`, `sex`, `birthday`, `course`, `contact_num`, `profile_pic`, `year_level`) VALUES
-(1, 'Angelica', 'A', 'Ayos', 'Female', '1997-01-01', 'BS Computer Science', '09XXXXXXXXX', 'angelica.jpg', 0),
-(2, 'Medy Rae', 'Jordan', 'Fernando', 'Male', '1997-04-11', 'BS Computer Science', '09453291650', 'medy.jpg', 0),
-(3, 'Ma Christina', 'J', 'Galvez', 'Female', '1997-01-01', 'BS Computer Science', '09XXXXXXXXX', 'christina.jpg', 0),
-(4, 'Aldrin', 'C', 'Racusa', 'Male', '1997-01-01', 'BS Computer Science', '09XXXXXXXXX', 'aldrin.jpg', 0),
-(5, 'Kylle Audrey', 'A', 'Columna', 'Female', '1997-04-11', 'BS Computer Science', '09XXXXXXXXX', 'kylle.jpg', 0),
-(6, 'Paula Nicole', 'S', 'Lasmarias', 'Female', '1997-01-01', 'BS Computer Science', '09XXXXXXXXX', 'paula.jpg', 0),
-(7, 'Nico', 'Cruelala', 'Mendoza', 'Male', '1997-01-01', 'BS Computer Science', '09XXXXXXXXX', 'nico.jpg', 0),
-(8, 'Darlene Grace', 'A', 'Perez', 'Female', '1997-01-01', 'BS Computer Science', '09XXXXXXXXX', 'darlene.jpg', 0),
-(9, 'Alyssa Fatima', 'V', 'Sanguenza', 'Female', '1997-01-01', 'BS Computer Science', '09XXXXXXXXX', 'alyssa.jpg', 0);
+INSERT INTO `studentprofile` (`student_id`, `first_name`, `middle_name`, `last_name`, `sex`, `birthday`, `course`, `year_level`, `contact_num`, `profile_pic`, `form5`) VALUES
+(1, 'Angelica', 'A', 'Ayos', 'Female', '1997-01-01', 'BS Computer Science', 3, '09XXXXXXXXX', 'angelica.jpg', 'angelica_form5.jpg'),
+(2, 'Medy Rae', 'Jordan', 'Fernando', 'Male', '1997-04-11', 'BS Computer Science', 4, '09453291650', 'medy.jpg', 'medy_form5.jpg'),
+(3, 'Ma Christina', 'J', 'Galvez', 'Female', '1997-01-01', 'BS Computer Science', 4, '09XXXXXXXXX', 'christina.jpg', 'christina_form5.jpg'),
+(4, 'Aldrin', 'C', 'Racusa', 'Male', '1997-01-01', 'BS Computer Science', 4, '09XXXXXXXXX', 'aldrin.jpg', 'aldrin_form5.jpg'),
+(5, 'Kylle Audrey', 'A', 'Columna', 'Female', '1997-04-11', 'BS Computer Science', 4, '09XXXXXXXXX', 'kylle.jpg', 'kylle_form5.jpg'),
+(6, 'Paula Nicole', 'S', 'Lasmarias', 'Female', '1997-01-01', 'BS Computer Science', 4, '09XXXXXXXXX', 'paula.jpg', 'paula_form5.jpg'),
+(7, 'Nico', 'Cruelala', 'Mendoza', 'Male', '1997-01-01', 'BS Computer Science', 4, '09XXXXXXXXX', 'nico.jpg', 'nico_form5.jpg'),
+(8, 'Darlene Grace', 'A', 'Perez', 'Female', '1997-01-01', 'BS Computer Science', 4, '09XXXXXXXXX', 'darlene.jpg', 'darlene_form5.jpg'),
+(9, 'Alyssa Fatima', 'V', 'Sanguenza', 'Female', '1997-01-01', 'BS Computer Science', 4, '09XXXXXXXXX', 'alyssa.jpg', 'alyssa_form5.jpg');
 
 INSERT INTO `admin` (`username`, `password`, `admin_id`, `admin_email`) VALUES
 ('admin@up.edu.ph', '32250170a0dca92d53ec9624f336ca24', 1, 'admin@up.edu.ph');
@@ -84,11 +84,11 @@ INSERT INTO `accreditationapplication` (`app_id`, `org_id`, `form_A`) VALUES
 
 -- -------------------------------------------------------------------------
 
-INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`) VALUES
-(1, 6, 1, 'President'),
-(2, 6, 2, 'Member'),
-(3, 6, 3, 'Member'),
-(4, 6, 4, 'Member');
+INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`, `isRemoved`) VALUES
+(1, 6, 1, 'President', 0),
+(2, 6, 2, 'Member', 0),
+(3, 6, 3, 'Member', 0),
+(4, 6, 4, 'Member', 1);
 
 
 -- -------------------------------------------------------------------------

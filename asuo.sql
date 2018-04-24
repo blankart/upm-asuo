@@ -18,9 +18,10 @@ CREATE TABLE `studentprofile` (
   `sex` varchar(6) NOT NULL,
   `birthday` date NOT NULL,
   `course` varchar(50) NOT NULL,
+  `year_level` tinyint(1) NOT NULL,
   `contact_num` varchar(11) NOT NULL,
   `profile_pic` varchar(150) NOT NULL DEFAULT 'img_default.jpg',
-  `year_level` tinyint(1) NOT NULL
+  `form5` varchar(150) NOT NULL DEFAULT 'form5_default.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `studentaccount`
@@ -144,7 +145,8 @@ CREATE TABLE `orgmember` (
    `membership_id` int(11) UNSIGNED NOT NULL,
    `org_id` int(11) UNSIGNED NOT NULL,
    `student_id` int(11) UNSIGNED NOT NULL,
-   `position` varchar(50) NOT NULL
+   `position` varchar(50) NOT NULL,
+   `isRemoved` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `orgmember`

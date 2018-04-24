@@ -35,7 +35,7 @@
 		}
 
 		private function getMembers($org_id){
-			$condition = "om.org_id = " .$org_id. " AND om.student_id = sa.student_id AND sa.student_id = sp.student_id";
+			$condition = "om.org_id = " .$org_id. " AND om.student_id = sa.student_id AND sa.student_id = sp.student_id AND om.isRemoved = 0";
 
 			$this->db->select("sp.*, sa.up_mail, om.position");
 			$this->db->from("orgmember om, studentaccount sa, studentprofile sp");
