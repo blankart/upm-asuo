@@ -56,7 +56,13 @@
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
 /*  HELLO
+<<<<<<< HEAD
 /* SOMETHING HERE SOMETHING HERE
+=======
+
+
+/WORld is here
+>>>>>>> 91ffa444c21adb54faab065e16bbe0d1405250c1
  *---------------------------------------------------------------
  * ERROR REPORTING
  *---------------------------------------------------------------
