@@ -93,11 +93,11 @@ INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`, `i
 
 -- -------------------------------------------------------------------------
 
-INSERT INTO `orgpost` (`post_id`, `org_id`, `content`, `date_posted`) VALUES
-(1, 6, "This is content 1", '2018-11-11 13:23:44'),
-(2, 6, "This is content 2", '2018-11-11 13:23:45'),
-(3, 6, "This is content 3", '2018-11-11 13:23:46'),
-(4, 6, "This is content 4", '2018-11-11 13:23:47');
+INSERT INTO `orgpost` (`post_id`, `org_id`, `content`, `date_posted`, `privacy`) VALUES
+(1, 6, "This is content 1", '2018-11-11 13:23:44', 'None'),
+(2, 6, "This is content 2", '2018-11-11 13:23:45', 'Members'),
+(3, 6, "This is content 3", '2018-11-11 13:23:46', 'Officers'),
+(4, 6, "This is content 4", '2018-11-11 13:23:47', 'None');
 
 -- -------------------------------------------------------------------------
 
