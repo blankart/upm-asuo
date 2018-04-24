@@ -72,7 +72,7 @@
 		}
 
 		public function searchAllStudents($string){
-			$condition = "isActivated = 1 AND up_mail LIKE '%".$string."%'";
+			$condition = "up_mail LIKE '%".$string."%'";
 	
 			$this->db->select('archived, student_id, up_mail, up_id');
 			$this->db->from('studentaccount');

@@ -44,7 +44,7 @@
                 $("#conPassAlert").html('<strong>Error: </strong>Password do not match.');
                 $("#conPassAlert").slideDown(400);
               }
-              else
+              else if ($("#newPass").val() == $("#conPass").val())
               {
                 $("#newPass").removeClass("is-invalid");
                 $("#newPass").addClass("is-valid animated fadeIn");
@@ -74,7 +74,8 @@
            confirmButtonClass: "btn-danger",
            confirmButtonText: "Change Password",
            closeOnConfirm: false
-             }, function (inputValue) {
+             }, function () {
+              swal("Password Changed!", "Your password has been changed.", "success");
                var newadminpassword = $("#newPass").val();
               $.ajax({
             type:"post",
@@ -84,7 +85,7 @@
             dataType: 'json',
             async: false,
             success:function(result){
-              swal("Password Changed!", "Your password has been changed.", "success");
+              resetAdminChangePasswordFields();
            }
            });
         
@@ -115,6 +116,14 @@
             else { 
               
             }    
+           }
+
+           function resetAdminChangePasswordFields(){
+            document.getElementById("currentPass").value = "";
+            document.getElementById("newPass").value = "";
+            document.getElementById("conPass").value = "";
+            //$("#newPass").val() = "";
+            //$("#conPass").val() = "";
            }
     </script>
     <div class="modal animated bounceInUp" id="changeadminpassword" data-backdrop="static" data-keyboard="false">
@@ -154,8 +163,8 @@
                         </div>
                     <!-- Modal footer -->
                     <div class="modal-footer ">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" id="changeadminpwbutton" class="btn btn-danger">Save</button>
+                        <button type="button" class="btn btn-default" onclick="resetAdminChangePasswordFields()" data-dismiss="modal">Close</button>
+                        <button type="button" id="changeadminpwbutton" class="btn btn-danger">Save</button>
                     </div>
                 </div>
             </div>
