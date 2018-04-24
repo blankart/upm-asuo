@@ -6,7 +6,7 @@
      }
      if($this->session->userdata['account_type'] == 'admin'){
        $username = ($this->session->userdata['username']);
-       $id = ($this->session->userdata['admin_id']);
+       $id = ($this->session->userdata['user_id']);
      }
    }
    ?>

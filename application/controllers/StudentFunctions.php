@@ -28,7 +28,7 @@
 			 	redirect(base_url()."student/".$this->session->userdata['username']);
 			
 			if($this->session->userdata['account_type'] == 'org')
-				redirect(base_url()."org/".$this->session->userdata['acronym']);
+				redirect(base_url()."org/".$this->session->userdata['nsacronym']);
 	 		
 	 		if($this->session->userdata['account_type'] == 'admin')
 	 			redirect(base_url()."admin/".$this->session->userdata['username']);	

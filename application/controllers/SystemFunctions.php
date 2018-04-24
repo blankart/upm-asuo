@@ -19,8 +19,6 @@
 				$this->checkLogin();
 			else
 				show_404();
-
-			
 		}
 
 		private function redirectToProfile(){
@@ -28,7 +26,7 @@
 			 	redirect(base_url()."student/".$this->session->userdata['username']);
 			
 			if($this->session->userdata['account_type'] == 'org')
-				redirect(base_url()."org/".$this->session->userdata['acronym']);
+				redirect(base_url()."org/".$this->session->userdata['nsacronym']);
 	 		
 	 		if($this->session->userdata['account_type'] == 'admin')
 	 			redirect(base_url()."admin/".$this->session->userdata['username']);
@@ -44,7 +42,7 @@
 			    $result = $this->SystemModel->login($credentials);
 
 			    if(!$result)
-			    	redirect(base_url().'login');
+			    	redirect(base_url().'login'); //login Unsuccessful
 			    else
 			    	$this->setSessions($result);
 			}
@@ -53,22 +51,38 @@
 		}
 
 		//Session variables
-		// all: account type, logged_in
-		// student: account_id, first_name, username, email
-		// org: account id, acronym, email
+		// all: account type, logged_in, user_id
+		// student: first_name, username, email
+		// org: name, acronym, email
 		// admin:
 		private function setSessions($data){
 
 			if($data['account_type'] == 'admin'){
 				$details = array(
 					'account_type' => 'admin',
+					'user_id' => $data['admin_id'],
 	       			'username'  => 'OSA',
-	    			'logged_in' => TRUE,
-	    			'admin_id' => $data['admin_id']
+	    			'logged_in' => TRUE	    			
 				);
 
 				$this->session->set_userdata($details);
 				redirect(base_url().'admin/'.$details['username']);
+			}
+
+			if($data['account_type'] == 'org'){
+
+				$nsacronym = str_replace(' ', '', $data['acronym']);
+			   	$details = array(
+			   		'account_type' => 'org',
+			   		'user_id' => $data['org_id'],
+		    		'acronym' => $data['acronym'],
+		    		'nsacronym' => $nsacronym,
+		    		'email'     => $data['org_mail'],
+		    		'logged_in' => TRUE
+				);
+
+				$this->session->set_userdata($details);
+				redirect(base_url().'org/'.$nsacronym);
 			}
 
 			if($data['account_type'] == 'student'){

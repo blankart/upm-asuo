@@ -8,6 +8,10 @@
 			$username = ($this->session->userdata['username']);
             
 		}
+		if($this->session->userdata['account_type'] == 'org'){
+			$nsacronym = ($this->session->userdata['nsacronym']);
+            
+		}
 	}
 ?>
     <!DOCTYPE html>
@@ -58,7 +62,7 @@
 		  	}
 		  	if($this->session->userdata['account_type'] == 'org'){
 				echo "<li class='nav-item'>
-				<a class='nav-link' href='".base_url()."org/".$acronym."'>".$acronym."</a>
+				<a class='nav-link' href='".base_url()."org/".$nsacronym."'>".$nsacronym."</a>
 		  		</li>
 		  		<li class='nav-item'>
 		  		<a class='nav-link' href='".base_url()."org/change_password'>Change Password</a>

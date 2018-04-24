@@ -16,7 +16,7 @@
 				$this->load->view('changepassword');
 			else
 				if($this->session->userdata['account_type'] == 'org')
-					if($action  == $this->session->userdata['acronym'])					
+					if($action  == $this->session->userdata['nsacronym'])					
 						$this->loadOrgProfile();
 					else
 			 			show_404();
@@ -29,14 +29,21 @@
 			 	redirect(base_url()."student/".$this->session->userdata['username']);
 			
 			if($this->session->userdata['account_type'] == 'org')
-				redirect(base_url()."org/".$this->session->userdata['acronym']);
+				redirect(base_url()."org/".$this->session->userdata['nsacronym']);
 	 		
 	 		if($this->session->userdata['account_type'] == 'admin')
 	 			redirect(base_url()."admin/".$this->session->userdata['username']);	
 		}
 
 		private function loadOrgProfile(){
-
+			$org_id = $this->session->userdata['user_id'];
+	
+			$this->load->model('OrgModel');
+			$result = $this->OrgModel->getOrgProfileDetails($org_id);
+			//$this->load->view('org/org', $result);
+			echo "<pre>";
+			print_r($result);
+			echo "</pre>";
 		}
 	}
 ?>
