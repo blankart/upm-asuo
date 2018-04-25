@@ -40,10 +40,9 @@
 	
 			$this->load->model('OrgModel');
 			$result = $this->OrgModel->getOrgProfileDetails($org_id);
-			//$this->load->view('org/org', $result);
-			echo "<pre>";
-			print_r($result);
-			echo "</pre>";
+			$this->load->view('header');
+			$this->load->view('org/org', $result);
+			$this->load->view('footer');
 		}
 	}
 ?>
