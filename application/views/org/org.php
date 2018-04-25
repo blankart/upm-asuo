@@ -69,7 +69,7 @@
                 }
     </script>
     <div class="header" style="padding-top: 80px; text-align: center; color: white;">
-        <h1 style="font-size: 40px; font-family: Lato;">Hi UP <?php echo $profile['acronym']; ?></h1>
+        <h1 style="font-size: 40px; font-family: Lato;">Hi <?php echo $profile['acronym']; ?>!</h1>
     </div>
     <div class="animated fadeIn" style="background-color: rgb(255,255,255); margin-top: 40px; padding-top: 50px; box-shadow: 0 0 40px rgba(0,0,0,.50); padding-bottom: 50px;">
         <div class="container">
