@@ -449,6 +449,19 @@
 				show_404();
 		}
 
+		private function deleteNotice(){
+			$id = $this->input->post('id');
+
+			if($id != NULL){
+				$this->load->model('AdminModel');
+				$result = $this->AdminModel->deleteNotice($id);
+				echo json_encode($result[0]);
+				exit();
+			}
+			else
+				show_404();	
+		}
+
 		private function checkAdminPassword(){
 			$id = $this->input->post('id');
 			$password = $this->input->post('adminpassword');

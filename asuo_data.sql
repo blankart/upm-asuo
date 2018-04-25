@@ -49,30 +49,30 @@ INSERT INTO `organizationprofile` (`org_id`, `org_name`, `acronym`, `org_categor
 
 -- -------------------------------------------------------------------
 
-INSERT INTO `announcement` (`notice_ID`, `sender`, `recipient`, `title`, `content`,  `date_posted`) VALUES
-(1, 1, 10,'Test Announcement', 'Hello. This is a test announcement. :D',  '2017-09-04'),
-(2, 1, 4, 'wala akong title :<', 'wala na akong maisip na ilalagay :((', '2018-03-28'),
-(3, 1, 3,'HAPPY BIRTHDAY ALDRIN!!!', 'BIRTHDAY NI ALDRIN XD',  '2018-04-15'),
-(4, 1, 9, 'Accredited ORganization', 'Listed below are the accredited orgs:\r\n.\r\n.\r\n.\r\n..\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n.\r\n', '2018-04-12'),
-(5, 1, 2, 'Welcome Message', 'Welcome to the Accreditation for University-wide Orgs',  '2018-03-02'),
-(6, 1, 5, 'Exam sa stat121', 'friday this week:<', '2018-04-13'),
-(7, 1, 8,'Accreditation Period', 'Accreditation period will start on ...',  '2018-04-04'),
-(8, 1, 1, 'General Assembly for Univ-wide Orgs', 'A general assembly will be conducted on ...',  '2017-12-12'),
-(9, 1, 6,'Orgs with pending accreditation app\r\n', 'Listed below are the orgs with pending application:\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n...\r\n.\r\n.\r\n\r\n\r\n.',  '2018-04-14'),
-(10, 1, 7,'Requirements for Accreditaitoin', 'Listed below are the requirements for accreditation:\r\n.\r\n.\r\n.', '2018-04-02'),
-(11, 1, 3, 'hey', 'hey',  '2018-04-15'),
-(12, 1, 1, 'This is Zero', 'sample message', '2018-04-15'),
-(13, 1, 3, 'Hey', 'Musta niggas',  '2018-04-15'),
-(14, 1, 3, 'something', 'something',  '2018-04-15'),
-(15, 1, 4, 'something', 'something',  '2018-04-15'),
-(16, 1, 5, 'something', 'something',  '2018-04-15'),
-(17, 1, 6, 'something', 'something', '2018-04-15'),
-(18, 1, 8, 'something', 'something',  '2018-04-15'),
-(19, 1, 9, 'something', 'something',  '2018-04-15'),
-(20, 1, 4, 'The quick brown fox jumps over the lazy dog', 'The quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps o',  '2018-04-16'),
-(21, 1, 4, 'jello', 'jello', '2018-04-16'),
-(22, 1, 4, 'sdasdasd', 'asdasdasd',  '2018-04-16'),
-(23, 1, 4, 'final something', 'final something',  '2018-04-16');
+INSERT INTO `announcement` (`notice_ID`, `sender`, `recipient`, `title`, `content`,  `date_posted`, `archived`) VALUES
+(1, 1, 10,'Test Announcement', 'Hello. This is a test announcement. :D',  '2017-09-04', 0),
+(2, 1, 4, 'wala akong title :<', 'wala na akong maisip na ilalagay :((', '2018-03-28', 0),
+(3, 1, 3,'HAPPY BIRTHDAY ALDRIN!!!', 'BIRTHDAY NI ALDRIN XD',  '2018-04-15', 0),
+(4, 1, 9, 'Accredited ORganization', 'Listed below are the accredited orgs:\r\n.\r\n.\r\n.\r\n..\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n.\r\n', '2018-04-12', 0),
+(5, 1, 2, 'Welcome Message', 'Welcome to the Accreditation for University-wide Orgs',  '2018-03-02', 0),
+(6, 1, 5, 'Exam sa stat121', 'friday this week:<', '2018-04-13', 0),
+(7, 1, 8,'Accreditation Period', 'Accreditation period will start on ...',  '2018-04-04', 0),
+(8, 1, 1, 'General Assembly for Univ-wide Orgs', 'A general assembly will be conducted on ...',  '2017-12-12', 0),
+(9, 1, 6,'Orgs with pending accreditation app\r\n', 'Listed below are the orgs with pending application:\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n...\r\n.\r\n.\r\n\r\n\r\n.',  '2018-04-14', 0),
+(10, 1, 7,'Requirements for Accreditaitoin', 'Listed below are the requirements for accreditation:\r\n.\r\n.\r\n.', '2018-04-02', 0),
+(11, 1, 3, 'hey', 'hey',  '2018-04-15' , 0),
+(12, 1, 1, 'This is Zero', 'sample message', '2018-04-15', 0),
+(13, 1, 3, 'Hey', 'Musta niggas',  '2018-04-15', 0),
+(14, 1, 3, 'something', 'something',  '2018-04-15', 0),
+(15, 1, 4, 'something', 'something',  '2018-04-15', 0),
+(16, 1, 5, 'something', 'something',  '2018-04-15', 0),
+(17, 1, 6, 'something', 'something', '2018-04-15', 0),
+(18, 1, 8, 'something', 'something',  '2018-04-15', 0),
+(19, 1, 9, 'something', 'something',  '2018-04-15', 0),
+(20, 1, 4, 'The quick brown fox jumps over the lazy dog', 'The quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps o',  '2018-04-16', 0),
+(21, 1, 4, 'jello', 'jello', '2018-04-16', 0),
+(22, 1, 4, 'sdasdasd', 'asdasdasd',  '2018-04-16', 0),
+(23, 1, 4, 'final something', 'final something',  '2018-04-16', 0);
 
 -- -------------------------------------------------------------------
 
@@ -93,11 +93,11 @@ INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`, `i
 
 -- -------------------------------------------------------------------------
 
-INSERT INTO `orgpost` (`post_id`, `org_id`, `content`, `date_posted`, `privacy`) VALUES
-(1, 6, "This is content 1", '2018-11-11 13:23:44', 'None'),
-(2, 6, "This is content 2", '2018-11-11 13:23:45', 'Members'),
-(3, 6, "This is content 3", '2018-11-11 13:23:46', 'Officers'),
-(4, 6, "This is content 4", '2018-11-11 13:23:47', 'None');
+INSERT INTO `orgpost` (`post_id`, `org_id`, `content`, `date_posted`, `privacy`, `archived`) VALUES
+(1, 6, "This is content 1", '2018-11-11 13:23:44', 'None', 0),
+(2, 6, "This is content 2", '2018-11-11 13:23:45', 'Members', 0),
+(3, 6, "This is content 3", '2018-11-11 13:23:46', 'Officers', 0),
+(4, 6, "This is content 4", '2018-11-11 13:23:47', 'None', 0);
 
 -- -------------------------------------------------------------------------
 

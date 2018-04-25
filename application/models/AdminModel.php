@@ -271,6 +271,17 @@
 			return  $query->result_array();
 		}
 
+		public function deleteNotice($id){
+			$condition = "notice_id = " .$id. " AND notice_id = " .$id;
+
+			$changes = array(
+				'archived' => 1
+			);
+
+			$this->db->where($condition);
+			$this->db->update('announcement', $changes);
+		}
+
 		public function checkAdminPassword($id, $adminpassword){
 			$condition = "admin_id = " .$id. " AND password = '" .$adminpassword. "'";
 

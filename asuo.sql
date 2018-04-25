@@ -118,7 +118,8 @@ ALTER TABLE `accreditationapplication`
   `recipient` int(11) UNSIGNED NOT NULL,
   `title` varchar(150) NOT NULL,
   `content` varchar(500) NOT NULL,
-  `date_posted` date NOT NULL
+  `date_posted` date NOT NULL,
+  `archived` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `announcement`
@@ -170,7 +171,8 @@ CREATE TABLE `orgpost` (
    `org_id` int(11) UNSIGNED NOT NULL,
    `content` varchar(500) NOT NULL DEFAULT "No details",
    `privacy` varchar(20) NOT NULL DEFAULT "None",
-   `date_posted` DATETIME NOT NULL
+   `date_posted` DATETIME NOT NULL,
+   `archived` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `orgpost`
