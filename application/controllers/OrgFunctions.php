@@ -40,8 +40,16 @@
 	
 			$this->load->model('OrgModel');
 			$result = $this->OrgModel->getOrgProfileDetails($org_id);
+			$data = array();
+
+			$data['profile'] = $result ['profile'];
+			$data['announcements'] = $result ['announcements'];
+			$data['members'] = $result ['members'];
+			$data['posts'] = $result ['posts'];
+			$data['orgapps'] = $result ['orgapps'];
+
 			$this->load->view('header');
-			$this->load->view('org/org', $result);
+			$this->load->view('org/org', $data);
 			$this->load->view('org/applyforaccreditation');
 			$this->load->view('org/createposts');
 			$this->load->view('org/editprofile');

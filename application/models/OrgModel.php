@@ -45,7 +45,6 @@
 			return $members->result_array();
 		}
 
-
 		private function getOrgPosts($org_id){
 			$condition = "opt.org_id = " .$org_id. " AND op.org_id = ".$org_id;
 

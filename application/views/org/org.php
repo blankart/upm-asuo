@@ -94,54 +94,20 @@
                             <button class="btn btn-light btn-lg active" id="orgPostsBut" type="button">Posts</button> <button class="btn btn-light btn-lg" id="orgMembersBut" style="margin-left: 15px;" type="button">Members</button> <button class="btn btn-light btn-lg" id="orgApplicationsBut" style="margin-left: 15px;" type="button">Applications</button> <button class="btn btn-light btn-lg" id="orgAdminAnnouncementsBut" style="margin-left: 15px;" type="button">Admin Announcements</button>
                             <hr>
                             <div id="orgPosts">
+                              <?php foreach($announcements as $announcement){ ?>
                                 <div class="stream-post">
                                     <div class="sp-author">
                                         <a class="sp-author-avatar" href="#"><img alt="" src="<?php echo base_url();?>img/UP%20logo.png"></a>
-                                        <h6 class="sp-author-name"><a href="#">UP Sample Org</a></h6>
+                                        <h6 class="sp-author-name"><a href="#">  <?php echo $announcement['org_name']; ?></a></h6>
                                     </div>
                                     <div class="sp-content">
                                         <div class="sp-info">
-                                            April 16, 2018 11:36pm
+                                              <?php echo $announcement['date_posted']; ?>
                                         </div>
-                                        <p class="sp-paragraph mb-0">Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non.</p>
+                                        <p class="sp-paragraph mb-0">  <?php echo $announcement['content']; ?></p>
                                     </div>
                                 </div>
-                                <div class="stream-post">
-                                    <div class="sp-author">
-                                        <a class="sp-author-avatar" href="#"><img alt="" src="<?php echo base_url();?>img/UP%20logo.png"></a>
-                                        <h6 class="sp-author-name"><a href="#">UP Sample Org</a></h6>
-                                    </div>
-                                    <div class="sp-content">
-                                        <div class="sp-info">
-                                            April 16, 2018 11:36pm
-                                        </div>
-                                        <p class="sp-paragraph mb-0">Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non.</p>
-                                    </div>
-                                </div>
-                                <div class="stream-post">
-                                    <div class="sp-author">
-                                        <a class="sp-author-avatar" href="#"><img alt="" src="<?php echo base_url();?>img/UP%20logo.png"></a>
-                                        <h6 class="sp-author-name"><a href="#">UP Sample Org</a></h6>
-                                    </div>
-                                    <div class="sp-content">
-                                        <div class="sp-info">
-                                            April 16, 2018 11:36pm
-                                        </div>
-                                        <p class="sp-paragraph mb-0">Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non.</p>
-                                    </div>
-                                </div>
-                                <div class="stream-post">
-                                    <div class="sp-author">
-                                        <a class="sp-author-avatar" href="#"><img alt="" src="<?php echo base_url();?>img/UP%20logo.png"></a>
-                                        <h6 class="sp-author-name"><a href="#">UP Sample Org</a></h6>
-                                    </div>
-                                    <div class="sp-content">
-                                        <div class="sp-info">
-                                            April 16, 2018 11:36pm
-                                        </div>
-                                        <p class="sp-paragraph mb-0">Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non.</p>
-                                    </div>
-                                </div>
+                                <?php } ?>
                             </div>
                             <div id="orgMembers" style="display: none;">
                                 <div class="main-box clearfix">
