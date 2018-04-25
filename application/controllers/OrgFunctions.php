@@ -42,6 +42,9 @@
 			$result = $this->OrgModel->getOrgProfileDetails($org_id);
 			$this->load->view('header');
 			$this->load->view('org/org', $result);
+			$this->load->view('org/applyforaccreditation');
+			$this->load->view('org/createposts');
+			$this->load->view('org/editprofile');
 			$this->load->view('footer');
 		}
 	}
