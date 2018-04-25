@@ -27,7 +27,6 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/sweetalert.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/stylesheet.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/animate.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/popper.min.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/org.css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <style type="text/css">
@@ -94,15 +93,16 @@
 		 ?>
                 </ul>
         </nav>
-        <script src="<?php echo base_url();?>js/jquery.min.js"></script>
-        <script src="<?php echo base_url();?>bootstrap/js/bootstrap.min.js"></script>
+         <script src="<?php echo base_url();?>js/jquery.min.js"></script>
         <script src="<?php echo base_url();?>js/my-login.js"></script>
         <script src="<?php echo base_url();?>js/jquery-3.3.1.js"></script>
         <script src="<?php echo base_url();?>js/multi-step-modal.js"></script>
         <script src="<?php echo base_url();?>js/real-time-search.js"></script>
         <script src="<?php echo base_url();?>js/sweetalert.js"></script>
         <script src="<?php echo base_url();?>js/sweetalert.min.js"></script>
-        <script src="<?php echo base_url();?>js/registerOrg.js"></script>
+	        <script src="<?php echo base_url();?>js/registerOrg.js"></script>
+	        <script src="<?php echo base_url();?>js/popper.min.js"></script>
+	        <script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
     </body>
 
     </html>
