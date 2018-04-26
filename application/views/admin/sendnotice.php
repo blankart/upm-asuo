@@ -153,7 +153,6 @@
       $("#sendNoticeSearch").slideUp(400);
       $("#sendNoticeToOrg").delay(400).slideDown(400);
       //alert($("#recipientEmail").val());
-      
       //$("#recipientEmail").placeholder = orgEmail;
     }
 
