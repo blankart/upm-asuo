@@ -1,4 +1,10 @@
 <script>
+   function validateForm(){
+      if((document.profileForm.orgname.value == "") || (document.profileForm.acronym.value == "") || (document.profileForm.email.value == "") || (document.profileForm.est.value == "") || (document.profileForm.page.value == "") || (document.profileForm.members.value == "") || (document.profileForm.consti.value == "")){
+      }else{
+         swalSucc();
+      }
+   }
    function swalSucc(){
       swal("Saved!", "You have updated your profile!", "success");
    }
@@ -128,7 +134,7 @@
          <!-- Modal footer -->
          <div class="modal-footer">
          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-         <button type="submit" onclick="swalSucc()" class="btn btn-danger">Save</button>
+         <button type="submit" onclick="validateForm()" class="btn btn-danger">Save</button>
          </div>
          </form>
       </div>
