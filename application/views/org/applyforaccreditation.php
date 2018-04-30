@@ -11,28 +11,46 @@
       <div class="modal-body">
         <table>
           <tr>
-            <td>Accreditation Application</td>
-            <td width="500" align="right"><button type="button" value="formA" class="btn btn-info" data-toggle="modal" data-target="#formA">Edit</button></td>          
+            <!-- Form A: Accreditation Application-->
+            <form method="post" action="viewFormA" target="_blank">
+              <td>Accreditation Application</td>
+              <td width="500" align="right"><button type="submit" value="formA" class="btn btn-info" data-toggle="modal" data-target="#formA">Edit</button></td>
+            </form> 
           </tr>
           <tr>
-            <td>Consent of Adviser</td>
-            <td align="right"><button type="button" value="formB" class="btn btn-info" data-toggle="modal" data-target="#formB">Edit</button></td>
+            <!-- Form B: Consent of Adviser-->
+            <form method="post" action="viewFormB" target="_blank">
+              <td>Consent of Adviser</td>
+              <td align="right"><button type="submit" value="formB" class="btn btn-info" data-toggle="modal" data-target="#formB">Edit</button></td>
+            </form> 
           </tr>
           <tr>
-            <td>Organization Profile</td>
-            <td align="right"><button type="button" value="formC" class="btn btn-info" data-toggle="modal" data-target="#formC">Edit</button></td>
+            <!-- Form C: Organization Profile-->
+            <form method="post" action="viewFormC" target="_blank">
+              <td>Organization Profile</td>
+              <td align="right"><button type="submit" value="formC" class="btn btn-info" data-toggle="modal" data-target="#formC">Edit</button></td>
+            </form>
           </tr>
           <tr>
-            <td>Officers' Profile</td>
-            <td align="right"><button type="button" value="formD" class="btn btn-info" data-toggle="modal" data-target="#formD">Edit</button></td>
+            <!-- Form D: Officer's Profile-->
+            <form method="post" action="viewFormD" target="_blank">
+              <td>Officers' Profile</td>
+              <td align="right"><button type="submit" value="formD" class="btn btn-info" data-toggle="modal" data-target="#formD">Edit</button></td>
+            </form>
           </tr>
           <tr>
-            <td>Members' Profile</td>
-            <td align="right"><button type="button" value="formE" class="btn btn-info" data-toggle="modal" data-target="#formE">Edit</button></td>
+            <!-- Form E: Member's Profile-->
+            <form method="post" action="viewFormE" target="_blank">
+              <td>Members' Profile</td>
+              <td align="right"><button type="submit" value="formE" class="btn btn-info" data-toggle="modal" data-target="#formE">Edit</button></td>
+            </form>
           </tr>
           <tr>
-            <td>Financial Report</td>
-            <td align="right"><button type="button" value="formF" class="btn btn-info" data-toggle="modal" data-target="#formF">Edit</button></td>
+            <!-- Form F: Financial Profile-->
+            <form method="post" action="viewFormF" target="_blank">
+              <td>Financial Report</td>
+              <td align="right"><button type="submit" value="formF" class="btn btn-info" data-toggle="modal" data-target="#formF">Edit</button></td>
+            </form>
           </tr>
         </table>
 

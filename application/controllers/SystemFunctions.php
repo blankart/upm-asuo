@@ -75,6 +75,7 @@
 			   	$details = array(
 			   		'account_type' => 'org',
 			   		'user_id' => $data['org_id'],
+			   		'org_name' => $data['org_name'],
 		    		'acronym' => $data['acronym'],
 		    		'nsacronym' => $nsacronym,
 		    		'email'     => $data['org_mail'],

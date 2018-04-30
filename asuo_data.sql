@@ -20,8 +20,8 @@ INSERT INTO `studentprofile` (`student_id`, `first_name`, `middle_name`, `last_n
 (8, 'Darlene Grace', 'A', 'Perez', 'Female', '1997-01-01', 'BS Computer Science', 4, '09XXXXXXXXX', 'darlene.jpg', 'darlene_form5.jpg'),
 (9, 'Alyssa Fatima', 'V', 'Sanguenza', 'Female', '1997-01-01', 'BS Computer Science', 4, '09XXXXXXXXX', 'alyssa.jpg', 'alyssa_form5.jpg');
 
-INSERT INTO `admin` (`username`, `password`, `admin_id`, `admin_email`) VALUES
-('admin@up.edu.ph', '32250170a0dca92d53ec9624f336ca24', 1, 'admin@up.edu.ph');
+INSERT INTO `admin` (`admin_id`, `username`, `password`, `admin_email`) VALUES
+(1, 'admin@up.edu.ph', '32250170a0dca92d53ec9624f336ca24', 'admin@up.edu.ph');
 
 INSERT INTO `organizationaccount` (`org_id`, `org_email`, `password`, `org_status`, `isVerified`, `isActivated`, `archived`) VALUES
 (1, 'aisec@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 0, 0,  0),

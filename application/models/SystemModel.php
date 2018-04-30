@@ -101,7 +101,7 @@
 		public function getOrgSessionDetails($org_id){
 			$condition = "op.org_id = " . $org_id ." AND oa.org_id = " . $org_id;
 
-			$this->db->select('op.org_id, op.acronym, oa.org_email');
+			$this->db->select('op.org_id, op.org_name, op.acronym, oa.org_email');
 			$this->db->from('OrganizationProfile op, OrganizationAccount oa');
 			$this->db->where($condition);
 			$org_profile = $this->db->get();

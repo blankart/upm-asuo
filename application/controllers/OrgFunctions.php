@@ -14,6 +14,8 @@
 			}
 			else if ($action == 'change_password')
 				$this->load->view('changepassword');
+			else if($action == 'viewFormA')
+				$this->viewFormA();
 			else
 				if($this->session->userdata['account_type'] == 'org')
 					if($action  == $this->session->userdata['nsacronym'])					
@@ -54,6 +56,22 @@
 			$this->load->view('org/createposts');
 			$this->load->view('org/editprofile');
 			$this->load->view('footer');
+		}
+
+		private function viewFormA(){
+			$pdf = new tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, 'STATEMENT', true, 'UTF-8', false);
+			$pdf->SetTitle($this->session->userdata['org_name']. ' | Form A: Accreditation Application');
+			$pdf->SetHeaderMargin(30);
+			$pdf->SetTopMargin(20);
+			$pdf->setFooterMargin(20);
+			$pdf->SetAutoPageBreak(true);
+			$pdf->SetAuthor('Author');
+			$pdf->SetDisplayMode('real', 'default');
+
+			$pdf->AddPage();
+
+			$pdf->Write(5, 'Some sample text');
+			$pdf->Output('My-File-Name.pdf', 'I'); 
 		}
 	}
 ?>
