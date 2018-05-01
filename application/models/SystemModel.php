@@ -194,7 +194,6 @@
 			$acronymReturned = $this->db->get();
 			//var_dump($acronymReturned);
 			$acronyms = $acronymReturned->result_array();
-
 			
 			foreach ($acronyms as $acronym) {
 				# code...

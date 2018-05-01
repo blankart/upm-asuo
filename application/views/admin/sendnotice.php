@@ -44,6 +44,7 @@
          allValsTemp.push($(this).val());
        });
        allVals = allValsTemp;
+       searchSendNotice();
      }
 
       function searchSendNotice(){
