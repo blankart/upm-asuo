@@ -110,5 +110,24 @@
 			$result['account_type'] = 'org'; 
 			return  $result;
 		}
+		public function validateOrgEmail($org_email)
+		{
+			$condition = "org_email = '" . $org_email."'";
+			$this->db->select('*');
+			$this->db->from('OrganizationAccount');
+			$this->db->where($condition);
+			$emailReturned = $this->db->get();
+
+			$result = $emailReturned->num_rows();
+			if($result == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+
+		}
 	}
 ?>

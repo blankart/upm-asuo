@@ -17,6 +17,8 @@
 				$this->logOut();
 			else if($action == 'checkLogin')
 				$this->checkLogin();
+			else if($action == 'validate_org_email')
+				$this->validate_org_email();
 			else
 				show_404();
 		}
@@ -32,6 +34,27 @@
 	 			redirect(base_url()."admin/".$this->session->userdata['username']);
 		}
 
+		private function validate_org_email()
+		{
+			$org_email = $this->input->post('org_email');
+			
+			if($org_email != NULL)
+			{
+				$this->load->model('SystemModel');
+				$result = $this->SystemModel->validateOrgEmail($org_email);
+
+				if($result)
+				{
+					echo json_encode(true);
+				}
+				else
+				{
+					echo json_encode(false);
+				}
+				exit();
+			}
+
+		}
 		private function checkLogin(){
 			$credentials = $this->input->post('credentials');
 

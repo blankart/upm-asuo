@@ -1,19 +1,44 @@
 <script>
     function OrgRegEmailChecker(){
-    if ($("#OrgRegEmailAdd").val().length>0)
+        var org_email = $("#OrgRegEmailAdd").val();
+        //alert(org_email);
+    if (org_email.length>0)
     {
         //AJAX IF EXISTING YUNG EMAIL
+        //alert(org_email);
+        $.ajax({
+       type:"post",
+       url:"<?php echo base_url(); ?>validate_org_email",
+       cache: false,
+       data:{org_email: org_email},
+       dataType: 'json',
+       async: false,
+       success:function(result)
+       {
+            //alert(JSON.stringify (result));
+            if(result == true)
+            {
+                $("#orgEmailTaken").removeClass();
+                $("#orgEmailTaken").html('');
+                $("#orgEmailTaken").addClass('notice notice-sm notice-danger');
+                $("#orgEmailTaken").html('<strong>Error:</strong> This email address is already linked to another account. For more info, visit OSA.');
+                $("#orgEmailTaken").slideDown(400);   
+                return false;
+            }
+            else
+            {
+                $("#orgEmailTaken").fadeOut(400);
+                return true;
+            }
+            
+       }
 
     //CODE BELOW IF EXISTING
-    $("#orgEmailTaken").removeClass();
-    $("#orgEmailTaken").html('');
-    $("#orgEmailTaken").addClass('notice notice-sm notice-danger');
-    $("#orgEmailTaken").html('<strong>Error:</strong> This email address is already linked to another account. For more info, visit OSA.');
-    $("#orgEmailTaken").slideDown(400);
-    return false;
+    
     //CODE BELOW IF AVAILABLE
-    //$("#orgEmailTaken").fadeOut(400);
-    //return true;
+
+    });
+
     }
     
 }
@@ -38,6 +63,8 @@ function conPassValidate()
 }
 
 function validateForm(){
+    //var emailCheck = OrgRegEmailChecker();
+    //alert(emailCheck);
     if (conPassValidate() && OrgRegEmailChecker())
     {
         return true;
