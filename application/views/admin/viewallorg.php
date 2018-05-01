@@ -253,13 +253,13 @@
                                             <tbody>
                                                 <div class="mat-input" style="margin-top: 30px;">
                                                     <div class="mat-input-outer">
-                                                        <input type="username" id="idInputAllOrg" onkeyup="livesearchallorg()" class="form-control" autocomplete="off" required/>
-                                                        <label class="">Enter Organization Mail Address</label>
+                                                        <input type="username" id="idInputAllOrg" class="form-control" autocomplete="off"/>
+                                                        <label class="">Enter Org Email/Org Name</label>
                                                         <div class="border"></div>
+                                                        <button style="margin-top: 10px;" onClick="livesearchallorg()" class="btn btn-danger btn-block">Search</button>
                                                     </div>
                                                 </div>
                                                 <div style="text-align: center">
-                                                    <h4 style="margin-top: 30px; font-size: 15px; text-align: center;">Search Format: XXXX@samplemail.com</h4>
                                                 </div>
                                             </tbody>
                                         </table>

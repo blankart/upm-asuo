@@ -159,13 +159,13 @@
                                             <tbody>
                                                 <div class="mat-input" style="margin-top: 30px;">
                                                     <div class="mat-input-outer">
-                                                        <input type="username" id="idInputOrg" onkeyup="activateorgactSearch()" class="form-control" autocomplete="off" required/>
+                                                        <input type="username" id="idInputOrg" class="form-control" autocomplete="off"/>
                                                         <label class="">Enter Org Email/Org Name</label>
                                                         <div class="border"></div>
+                                                        <button style="margin-top: 10px;" onClick="activateorgactSearch()" class="btn btn-danger btn-block">Search</button>
                                                     </div>
                                                 </div>
                                                 <div style="text-align: center">
-                                                    <h4 style="margin-top: 30px; font-size: 15px; text-align: center;">Search Format: XXXX@samplemail.com</h4>
                                                 </div>
                                             </tbody>
                                         </table>
@@ -183,7 +183,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" onclick="resetOrgModal()" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

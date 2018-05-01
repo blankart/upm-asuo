@@ -36,8 +36,6 @@
        function _(x){
         return document.getElementById(x);
        }
-       function resetStudModal(){
-       }
        function viewStudInfo(studentID){
           $.ajax({
         type:"post",
@@ -152,9 +150,10 @@
                                             <tbody>
                                                 <div class="mat-input" style="margin-top: 30px;">
                                                     <div class="mat-input-outer">
-                                                        <input type="username" id="idInputStud" onkeyup="validatestudactSearch()" class="form-control" autocomplete="off" required/>
-                                                        <label class="">Enter Student ID/UP Mail</label>
+                                                        <input type="username" id="idInputStud" class="form-control" autocomplete="off"/>
+                                                        <label class="">Enter Student ID/Name</label>
                                                         <div class="border"></div>
+                                                        <button style="margin-top: 10px;" onclick="validatestudactSearch()" class="btn btn-danger btn-block">Search</button>
                                                     </div>
                                                 </div>
                                                 </div>
@@ -174,7 +173,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" onclick="resetStudModal()" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

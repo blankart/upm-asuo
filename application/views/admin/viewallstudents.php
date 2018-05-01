@@ -15,7 +15,7 @@
             "<thead>"+
                "<tr>"+
                   "<th>UP ID</th>"+
-                  "<th>UP Mail</th>"+
+                  "<th>Name</th>"+
                   "<th>Account Status</th>"+
                   "<th class='text-center'>Action</th>"+
                "</tr>"+
@@ -33,7 +33,7 @@
             if (result.hasOwnProperty(key)) {
                output+="<tr>"+
                         "<td>"+result[key]['up_id']+"</td>"+
-                        "<td>"+result[key]['up_mail']+"</td>"+
+                        "<td>"+result[key]['first_name']+" "+result[key]['last_name']+"</td>"+
                         "<td>"+archived+"</td>"+
                         "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Details</button>";
               if (result[key]['archived'] == 0)
@@ -139,7 +139,7 @@
             if (result.hasOwnProperty(key)) {
                output+="<tr>"+
                         "<td>"+result[key]['up_id']+"</td>"+
-                        "<td>"+result[key]['up_mail']+"</td>"+
+                        "<td>"+result[key]['first_name']+" "+result[key]['last_name']+"</td>"+
                         "<td>"+archived+"</td>"+
                         "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Details</button>";
               if (result[key]['archived'] == 0)
@@ -214,10 +214,9 @@
             if (result.hasOwnProperty(key)) {
                output+="<tr>"+
                         "<td>"+result[key]['up_id']+"</td>"+
-                        "<td>"+result[key]['up_mail']+"</td>"+
+                        "<td>"+result[key]['first_name']+" "+result[key]['last_name']+"</td>"+
                         "<td>"+archived+"</td>"+
-                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Details</button>"+
-                        "<button class='btn btn-info btn-xs' onclick='changeStudpw("+result[key]['student_id']+")' style='margin-left: 10px;'> Change Password</button>";
+                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Details</button>";
               if (result[key]['archived'] == 0)
               {
                 output+="<button onclick='blockStudAct("+result[key]['student_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Block Account</button></td></tr>";
@@ -257,13 +256,11 @@
                                             <tbody>
                                                 <div class="mat-input" style="margin-top: 30px;">
                                                     <div class="mat-input-outer">
-                                                        <input type="username" id="idInputAllStud" onkeyup="livesearchallstud()" class="form-control" autocomplete="off" required/>
-                                                        <label class="">Enter UP Mail</label>
+                                                        <input type="username" id="idInputAllStud" class="form-control" autocomplete="off"/>
+                                                        <label class="">Enter Student ID/Name</label>
                                                         <div class="border"></div>
+                                                        <button style="margin-top: 10px;" onClick="livesearchallstud()" class="btn btn-danger btn-block">Search</button>
                                                     </div>
-                                                </div>
-                                                <div style="text-align: center">
-                                                    <h4 style="margin-top: 30px; font-size: 15px; text-align: center;">Search Format: XXXX@samplemail.com</h4>
                                                 </div>
                                             </tbody>
                                         </table>
