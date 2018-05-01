@@ -202,7 +202,7 @@
 				show_404();
 		}
 
-		private function changeStudPassword(){
+		/*private function changeStudPassword(){
 			$id = $this->input->post('id');
 			$password = $this->input->post('newstudpassword');
 		
@@ -215,7 +215,7 @@
 			}
 			else
 				show_404();
-		}
+		}*/
 
 		private function blockStudentAccount(){
 			$id = $this->input->post('id');
@@ -262,7 +262,7 @@
 			else
 				show_404();
 		}
-
+		/*
 		private function changeOrgPassword(){
 			$id = $this->input->post('id');
 			$password = $this->input->post('neworgpassword');
@@ -276,7 +276,7 @@
 			}
 			else
 				show_404();
-		}
+		}*/
 		
 		private function viewOrgInfo(){
 			$id = $this->input->post('id');

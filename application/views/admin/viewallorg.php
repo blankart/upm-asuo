@@ -51,7 +51,7 @@
         });
         
         }
-       
+       /*
         function changeOrgpw(orgID)
        {
          swal({
@@ -83,7 +83,7 @@
         });
     
        });
-       }
+       }*/
     
        function blockOrgAct(orgID)
        {

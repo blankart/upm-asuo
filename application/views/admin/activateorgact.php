@@ -39,43 +39,6 @@
        function viewOrg(orgID){
           swal("Sample info");
        }
-       function livesearchOrg()
-       {
-       $('#idInputOrg').keyup(function(){
-       var search = $(this).val();
-       $.ajax({
-       type:"post",
-       url:"<?php echo base_url(); ?>admin/searchOrganizations",
-       cache: false,
-       data:{query: search, source: "admin"},
-       dataType: 'json',
-       async: false,
-       success:function(result){
-       var output = "<div class='container' id='searchValidate'>" +
-       "<table class='table table-striped custab'>"+
-       "<thead>"+
-       "<tr>"+
-        "<th>Organization Name</th>"+
-        "<th>Organization Email</th>"+
-        "<th class='text-center'>Action</th>"+
-       "</tr>"+
-       "</thead>";
-       for (var key in result) {
-       if (result.hasOwnProperty(key)) {
-       output+="<tr>"+
-              "<td>"+result[key]['org_name']+"</td>"+
-              "<td>"+result[key]['org_email']+"</td>"+
-              "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'> View Organization</button><button onclick='approveOrg("+result[key]['org_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Validate</button></td>"+
-           "</tr>";
-       }
-       }
-       $("#orgResult").html(output);
-       }
-       });
-       
-       });
-       
-       }
        function approveOrg(orgID){
           swal({
        html: true,
@@ -196,8 +159,8 @@
                                             <tbody>
                                                 <div class="mat-input" style="margin-top: 30px;">
                                                     <div class="mat-input-outer">
-                                                        <input type="username" id="idInputOrg" onkeyup="livesearchOrg()" class="form-control" autocomplete="off" required/>
-                                                        <label class="">Enter Organization Mail Address</label>
+                                                        <input type="username" id="idInputOrg" onkeyup="activateorgactSearch()" class="form-control" autocomplete="off" required/>
+                                                        <label class="">Enter Org Email/Org Name</label>
                                                         <div class="border"></div>
                                                     </div>
                                                 </div>

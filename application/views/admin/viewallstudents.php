@@ -53,7 +53,7 @@
         
         
         }
-       
+       /*
         function changeStudpw(studentID)
        {
          swal({
@@ -85,7 +85,7 @@
         });
     
        });
-       }
+       }*/
     
        function blockStudAct(studentID)
        {
