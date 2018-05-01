@@ -43,6 +43,52 @@
     
 }
 
+function OrgRegAcronymChecker()
+{
+    var org_acronym = $("#OrgRegAcronym").val();
+       // alert(org_acronym);
+    if (org_acronym.length>0)
+    {
+        //AJAX IF EXISTING YUNG EMAIL
+        //alert(org_acronym);
+        $.ajax({
+       type:"post",
+       url:"<?php echo base_url(); ?>validate_org_acroynm",
+       cache: false,
+       data:{org_acronym: org_acronym},
+       dataType: 'json',
+       async: false,
+       success:function(result)
+       {
+            //alert(JSON.stringify (result));
+            if(result == true)
+            {
+                $("#orgAcronymRestricted").removeClass();
+                $("#orgAcronymRestricted").html('');
+                $("#orgAcronymRestricted").addClass('notice notice-sm notice-danger');
+                $("#orgAcronymRestricted").html('<strong>Error:</strong> This acronym is restricted. For more info, visit OSA.');
+                $("#orgAcronymRestricted").slideDown(400);   
+                return false;
+            }
+            else
+            {
+                $("#orgAcronymRestricted").fadeOut(400);
+                return true;
+            }
+            
+       }
+
+    //CODE BELOW IF EXISTING
+    
+    //CODE BELOW IF AVAILABLE
+
+    });
+
+    }
+    
+    
+}
+
 function conPassValidate()
 {
     var conPass = $("#conPass").val();
@@ -65,7 +111,7 @@ function conPassValidate()
 function validateForm(){
     //var emailCheck = OrgRegEmailChecker();
     //alert(emailCheck);
-    if (conPassValidate() && OrgRegEmailChecker())
+    if (conPassValidate() && OrgRegEmailChecker() && OrgRegAcronymChecker())
     {
         return true;
     }
@@ -103,10 +149,13 @@ function validateForm(){
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
                                             <div class="col-4">
-                                                <input type="text" class="form-control" placeholder="Acronym" required>
+                                                <input type="text" class="form-control" id="OrgRegAcronym" onblur="OrgRegAcronymChecker()" placeholder="Acronym" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div id="orgAcronymRestricted" class="notice notice-sm notice-danger" style="display: none;">
+
                                     </div>
                                     <div class="form-group">
                                         <div class="row">

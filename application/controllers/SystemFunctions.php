@@ -19,6 +19,8 @@
 				$this->checkLogin();
 			else if($action == 'validate_org_email')
 				$this->validate_org_email();
+			else if($action == 'validate_org_acroynm')
+				$this->validate_org_acroynm();
 			else
 				show_404();
 		}
@@ -53,7 +55,35 @@
 				}
 				exit();
 			}
+			else
+			{
+				show_404();
+			}
 
+		}
+		private function validate_org_acroynm()
+		{
+			$org_acronym = $this->input->post('org_acronym');
+			//$org_acronym = "admin";
+			if($org_acronym != NULL)
+			{
+				$this->load->model('SystemModel');
+				$result = $this->SystemModel->validateOrgAcronym($org_acronym);
+				//var_dump($result);
+				if($result)
+				{
+					echo json_encode(true);
+				}
+				else
+				{
+					echo json_encode(false);
+				}
+				exit();
+			}
+			else
+			{
+				show_404();
+			}			
 		}
 		private function checkLogin(){
 			$credentials = $this->input->post('credentials');

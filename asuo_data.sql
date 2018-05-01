@@ -106,3 +106,13 @@ INSERT INTO `orgapplication` (`orgapp_id`, `org_id`, `student_id`, `status`) VAL
 (2, 6, 5, 'Disapproved'),
 (3, 6, 6, 'Pending'),
 (4, 6, 7, 'Pending');
+
+-- ------------------------------------------------------------------------
+
+INSERT INTO `restrictedacronym` (`res_id`, `acronym`) VALUES
+(1, 'login'),
+(2, 'regstud'),
+(3,'regorg'),
+(4,'change_password'),
+(5,'admin'),
+(6,'OSA');
