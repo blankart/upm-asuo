@@ -60,7 +60,10 @@
 			$this->load->view('footer');
 		}
 
-		private function viewFormA(){
+		private function viewFormA()
+		{
+
+
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 			// set document information
@@ -137,6 +140,7 @@
 			';
 			$pdf->writeHTML($html, true, false, true, false, '');
 			$pdf->Output('example_003.pdf', 'I');
+
 
 		}
 
