@@ -110,5 +110,105 @@
 			$result['account_type'] = 'org'; 
 			return  $result;
 		}
+		public function validateOrgEmail($org_email)
+		{
+			$condition = "org_email = '" . $org_email."'";
+			$this->db->select('*');
+			$this->db->from('OrganizationAccount');
+			$this->db->where($condition);
+			$emailReturned = $this->db->get();
+
+			$result = $emailReturned->num_rows();
+			if($result == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public function validateOrgAcronym($org_acronym)
+		{
+			if(!$this->checkRestrictedDB($org_acronym))
+			{
+				if(!$this->checkOrgDB($org_acronym))
+				{
+					if(!$this->checkStudDB($org_acronym))
+					{
+						return false;
+					}
+					else
+					{
+						return true;
+					}
+				}
+				else
+				{
+					return true;
+				}
+			}
+			else
+			{
+				return true;
+			}
+
+		}
+		public function checkRestrictedDB($org_acronym)
+		{
+			$condition = "acronym = '" . $org_acronym."'" ;
+			$this->db->select('*');
+			$this->db->from('restrictedacronym');
+			$this->db->where($condition);
+			$acronymReturned = $this->db->get();
+			$result = $acronymReturned->num_rows();
+
+			if($result == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		public function checkOrgDB($org_acronym)
+		{
+			$condition = "acronym = '". $org_acronym."'";
+			$this->db->select('*');
+			$this->db->from('OrganizationProfile');
+			$this->db->where($condition);
+			$acronymReturned = $this->db->get();
+			//var_dump($acronymReturned);
+			$result = $acronymReturned->num_rows();
+
+			if($result == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		public function checkStudDB($org_acronym)
+		{
+			$condition = "username = '".$org_acronym."'";
+			$this->db->select('*');
+			$this->db->from('StudentAccount');
+			$this->db->where($condition);
+			$acronymReturned = $this->db->get();
+			$result = $acronymReturned->num_rows();
+
+			if($result == 1)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
 	}
 ?>

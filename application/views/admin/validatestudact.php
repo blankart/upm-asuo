@@ -14,7 +14,7 @@
            "<thead>"+
               "<tr>"+
                  "<th>UP ID</th>"+
-                 "<th>UP Mail</th>"+
+                 "<th>Name</th>"+
                  "<th class='text-center'>Action</th>"+
               "</tr>"+
            "</thead>";
@@ -22,7 +22,7 @@
            if (result.hasOwnProperty(key)) {
               output+="<tr>"+
                        "<td>"+result[key]['up_id']+"</td>"+
-                       "<td>"+result[key]['up_mail']+"</td>"+
+                       "<td>"+result[key]['first_name']+" "+result[key]['last_name']+"</td>"+
                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Account</button><button onclick='approveStud("+result[key]['student_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Validate</button></td>"+
                     "</tr>";
            }
@@ -32,49 +32,9 @@
        });
 
     }
-    function livesearchstud()
-       {
-        $('#idInputStud').keyup(function(){
-       var search = $(this).val();
-         $.ajax({
-        type:"post",
-        url:"<?php echo base_url(); ?>admin/searchStudents",
-        cache: false,
-        data:{query: search, source: "admin"},
-        dataType: 'json',
-        async: false,
-        success:function(result){
-        var output = "<div class='container' id='searchValidate'>" +
-       "<table class='table table-striped custab'>"+
-           "<thead>"+
-              "<tr>"+
-                 "<th>UP ID</th>"+
-                 "<th>UP Mail</th>"+
-                 "<th class='text-center'>Action</th>"+
-              "</tr>"+
-           "</thead>";
-        for (var key in result) {
-           if (result.hasOwnProperty(key)) {
-              output+="<tr>"+
-                       "<td>"+result[key]['up_id']+"</td>"+
-                       "<td>"+result[key]['up_mail']+"</td>"+
-                       "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Account</button><button onclick='approveStud("+result[key]['student_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Validate</button></td>"+
-                    "</tr>";
-           }
-        }
-        $("#studResult").html(output);
-       }
-       });
-       
-       });
-       
-       }
-       
-       
+    
        function _(x){
         return document.getElementById(x);
-       }
-       function resetStudModal(){
        }
        function viewStudInfo(studentID){
           $.ajax({
@@ -190,13 +150,12 @@
                                             <tbody>
                                                 <div class="mat-input" style="margin-top: 30px;">
                                                     <div class="mat-input-outer">
-                                                        <input type="username" id="idInputStud" onkeyup="livesearchstud()" class="form-control" autocomplete="off" required/>
-                                                        <label class="">Enter UP Mail</label>
+                                                        <input type="username" id="idInputStud" class="form-control" autocomplete="off"/>
+                                                        <label class="">Enter Student ID/Name</label>
                                                         <div class="border"></div>
+                                                        <button style="margin-top: 10px;" onclick="validatestudactSearch()" class="btn btn-danger btn-block">Search</button>
                                                     </div>
                                                 </div>
-                                                <div style="text-align: center">
-                                                    <h4 style="margin-top: 30px; font-size: 15px; text-align: center;">Search Format: XXXX@samplemail.com</h4>
                                                 </div>
                                             </tbody>
                                         </table>
@@ -214,7 +173,7 @@
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" onclick="resetStudModal()" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

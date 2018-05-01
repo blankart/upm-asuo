@@ -34,8 +34,7 @@
                         "<td>"+result[key]['org_email']+"</td>"+
                         "<td>"+result[key]['org_status']+"</td>"+
                         "<td>"+archived+"</td>"+
-                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'>Details</button>"+
-                        "<button class='btn btn-info btn-xs' onclick='changeOrgpw("+result[key]['org_id']+")' style='margin-left: 10px;'> Password</button>";
+                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'>Details</button>";
               if (result[key]['archived'] == 0)
               {
                 output+="<button onclick='blockOrgAct("+result[key]['org_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Block</button></td></tr>";
@@ -51,7 +50,7 @@
         });
         
         }
-       
+       /*
         function changeOrgpw(orgID)
        {
          swal({
@@ -83,7 +82,7 @@
         });
     
        });
-       }
+       }*/
     
        function blockOrgAct(orgID)
        {
@@ -140,8 +139,7 @@
                         "<td>"+result[key]['org_email']+"</td>"+
                         "<td>"+result[key]['org_status']+"</td>"+
                         "<td>"+archived+"</td>"+
-                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'>Details</button>"+
-                        "<button class='btn btn-info btn-xs' onclick='changeOrgpw("+result[key]['org_id']+")' style='margin-left: 10px;'> Password</button>";
+                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'>Details</button>";
               if (result[key]['archived'] == 0)
               {
                 output+="<button onclick='blockOrgAct("+result[key]['org_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Block</button></td></tr>";
@@ -216,8 +214,7 @@
                         "<td>"+result[key]['org_email']+"</td>"+
                         "<td>"+result[key]['org_status']+"</td>"+
                         "<td>"+archived+"</td>"+
-                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'>Details</button>"+
-                        "<button class='btn btn-info btn-xs' onclick='changeOrgpw("+result[key]['org_id']+")' style='margin-left: 10px;'> Password</button>";
+                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'>Details</button>";
               if (result[key]['archived'] == 0)
               {
                 output+="<button onclick='blockOrgAct("+result[key]['org_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Block</button></td></tr>";
@@ -256,13 +253,13 @@
                                             <tbody>
                                                 <div class="mat-input" style="margin-top: 30px;">
                                                     <div class="mat-input-outer">
-                                                        <input type="username" id="idInputAllOrg" onkeyup="livesearchallorg()" class="form-control" autocomplete="off" required/>
-                                                        <label class="">Enter Organization Mail Address</label>
+                                                        <input type="username" id="idInputAllOrg" class="form-control" autocomplete="off"/>
+                                                        <label class="">Enter Org Email/Org Name</label>
                                                         <div class="border"></div>
+                                                        <button style="margin-top: 10px;" onClick="livesearchallorg()" class="btn btn-danger btn-block">Search</button>
                                                     </div>
                                                 </div>
                                                 <div style="text-align: center">
-                                                    <h4 style="margin-top: 30px; font-size: 15px; text-align: center;">Search Format: XXXX@samplemail.com</h4>
                                                 </div>
                                             </tbody>
                                         </table>

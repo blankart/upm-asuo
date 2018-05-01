@@ -2,11 +2,11 @@
 	class AdminModel extends CI_Model{
 				
 		public function searchStudents($string){
-			$condition = "isActivated = 0 AND isVerified = 1 AND up_mail LIKE '%".$string."%'";
+			$condition = "sa.student_id = sp.student_id AND sa.isActivated = 0 AND sa.isVerified = 1 AND (sp.last_name LIKE '%".$string."%' OR sp.first_name LIKE '%".$string."%' OR sa.up_id LIKE '%".$string."%') "; 
 			
-			$this->db->select('student_id, up_mail, up_id');
-			$this->db->from('studentaccount');
-			$this->db->order_by('student_id');
+			$this->db->select('sa.student_id, sa.up_mail, sa.up_id, sp.first_name, sp.last_name');
+			$this->db->from('studentaccount sa, studentprofile sp');
+			$this->db->order_by('sp.last_name');
 			$this->db->where ($condition);
 
 			$query = $this->db->get();
@@ -37,7 +37,7 @@
 		}
 
 		public function searchOrganizations($string){
-			$condition = "oa.org_id = op.org_id AND oa.isActivated = 0 AND oa.isVerified = 1 AND oa.org_email LIKE '%".$string."%'";
+			$condition = "oa.org_id = op.org_id AND oa.isActivated = 0 AND oa.isVerified = 1 AND (oa.org_email LIKE '%".$string."%' or op.org_name LIKE '%".$string."%')";
 			
 			$this->db->select('oa.org_id, oa.org_email, op.org_name');
 			$this->db->from('organizationaccount oa,organizationprofile op');
@@ -72,17 +72,17 @@
 		}
 
 		public function searchAllStudents($string){
-			$condition = "up_mail LIKE '%".$string."%'";
-	
-			$this->db->select('archived, student_id, up_mail, up_id');
-			$this->db->from('studentaccount');
-			$this->db->order_by('student_id');
+			$condition = "sa.student_id = sp.student_id AND (sp.last_name LIKE '%".$string."%' OR sp.first_name LIKE '%".$string."%' OR sa.up_id LIKE '%".$string."%')"; 
+			
+			$this->db->select('sa.student_id, sa.up_mail, sa.up_id, sp.first_name, sp.last_name');
+			$this->db->from('studentaccount sa, studentprofile sp');
+			$this->db->order_by('sp.last_name');
 			$this->db->where ($condition);
 
 			$query = $this->db->get();
 			return  $query->result_array();
 		}
-
+/*
 		public function changeStudPassword($id, $newstudpassword){
 			$condition = "student_id = " .$id. " AND student_id = " .$id;
 
@@ -92,7 +92,7 @@
 
 			$this->db->where($condition);
 			$this->db->update('studentaccount', $changes);
-		}
+		}*/
 
 		public function blockStudentAccount($id){
 			$condition = "student_id = " .$id. " AND student_id = " .$id;
@@ -117,7 +117,7 @@
 		}
 
 		public function searchAllOrganizations($string){
-			$condition = "oa.org_id = op.org_id AND oa.isActivated = 1 AND oa.org_email LIKE '%".$string."%'";
+			$condition = "oa.org_id = op.org_id AND oa.isActivated = 1 AND (oa.org_email LIKE '%".$string."%' OR op.org_name LIKE '%".$string."%')";
 			
 			$this->db->select('oa.org_id, oa.org_status, oa.archived, oa.org_email, op.org_name');
 			$this->db->from('organizationaccount oa,organizationprofile op');
@@ -127,7 +127,7 @@
 			$query = $this->db->get();
 			return  $query->result_array();
 		}
-
+		/*
 		public function changeOrgPassword($id, $neworgpassword){
 			$condition = "org_id = " .$id. " AND org_id = " .$id;
 
@@ -137,7 +137,7 @@
 
 			$this->db->where($condition);
 			$this->db->update('organizationaccount', $changes);
-		}
+		}*/
 
 		public function blockOrgAccount($id){
 			$condition = "org_id = " .$id. " AND org_id = " .$id;
@@ -162,10 +162,10 @@
 		}
 
 		public function searchAccredApp($string){
-			$condition = "aa.org_id = op.org_id AND aa.org_id = oa.org_id AND oa.org_status = 'Unaccredited' AND op.org_name LIKE '%".$string."%'";
+			$condition = "oa.org_id = op.org_id AND op.org_name LIKE '%".$string."%'";
 
-			$this->db->select('aa.org_id, op.org_name,');
-			$this->db->from('accreditationapplication aa, organizationprofile op, organizationaccount oa');
+			$this->db->select('oa.org_id, op.org_name, oa.org_status');
+			$this->db->from('organizationprofile op, organizationaccount oa');
 			$this->db->order_by('op.org_id');
 			$this->db->where ($condition);
 
