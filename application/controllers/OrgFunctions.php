@@ -16,6 +16,18 @@
 				$this->load->view('changepassword');
 			else if($action == 'viewFormA')
 				$this->viewFormA();
+			else if($action == 'viewFormC'){
+				$this->viewFormC();
+			}
+			else if($action == 'viewFormD'){
+				$this->viewFormD();
+			}
+			else if($action == 'viewFormE'){
+				$this->viewFormE();
+			}
+			else if($action == 'viewFormF'){
+				$this->viewFormF();
+			}
 			else
 				if($this->session->userdata['account_type'] == 'org')
 					if($action  == $this->session->userdata['nsacronym'])					
@@ -145,20 +157,176 @@
 		}
 
 		private function viewFormC(){
+			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
-			
+			// set document information
+			$pdf->SetCreator(PDF_CREATOR);
+			$pdf->SetAuthor('');
+			$pdf->SetTitle('Form C');
+			$pdf->SetSubject('');
+			$pdf->SetKeywords('');
+
+			// set default header data
+			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form C: Organization Profile", PDF_HEADER_STRING);
+			// set header and footer fonts
+			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+			$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+			// set default monospaced fonts
+			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+			// set margins
+			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+			$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+			$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);	
+
+			// set auto page breaks
+			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+			// set image scale factor
+			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+			// set font
+			$pdf->SetFont('Helvetica', '', 12);
+
+
+
+			// add a page
+			$pdf->AddPage();
+
+			$pdf->Output('example_003.pdf', 'I');
+
 		}
 
 		private function viewFormD(){
-			
+			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+			// set document information
+			$pdf->SetCreator(PDF_CREATOR);
+			$pdf->SetAuthor('');
+			$pdf->SetTitle('Form D');
+			$pdf->SetSubject('');
+			$pdf->SetKeywords('');
+
+			// set default header data
+			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form D: Officers' Profile", PDF_HEADER_STRING);
+
+			// set header and footer fonts
+			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+			$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+			// set default monospaced fonts
+			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+			// set margins
+			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+			$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+			$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);	
+
+			// set auto page breaks
+			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+			// set image scale factor
+			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+			// set font
+			$pdf->SetFont('Helvetica', '', 12);
+
+
+
+			// add a page
+			$pdf->AddPage();
+
+			$pdf->Output('example_003.pdf', 'I');
+
+
 		}
 
 		private function viewFormE(){
+			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+			// set document information
+			$pdf->SetCreator(PDF_CREATOR);
+			$pdf->SetAuthor('');
+			$pdf->SetTitle('Form E');
+			$pdf->SetSubject('');
+			$pdf->SetKeywords('');
+
+			// set default header data
+			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form E: Members' Profile", PDF_HEADER_STRING);
+
+			// set header and footer fonts
+			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+			$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+			// set default monospaced fonts
+			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+			// set margins
+			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+			$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+			$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);	
+
+			// set auto page breaks
+			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+			// set image scale factor
+			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+			// set font
+			$pdf->SetFont('Helvetica', '', 12);
+
+
+
+			// add a page
+			$pdf->AddPage();
+
+			$pdf->Output('example_003.pdf', 'I');
+
 			
 		}
 
 		private function viewFormF(){
-			
+				$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+			// set document information
+			$pdf->SetCreator(PDF_CREATOR);
+			$pdf->SetAuthor('');
+			$pdf->SetTitle('Form F');
+			$pdf->SetSubject('');
+			$pdf->SetKeywords('');
+
+			// set default header data
+			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form F: Financial Report", PDF_HEADER_STRING);
+
+			// set header and footer fonts
+			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+			$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+			// set default monospaced fonts
+			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+			// set margins
+			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+			$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+			$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);	
+
+			// set auto page breaks
+			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+			// set image scale factor
+			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+			// set font
+			$pdf->SetFont('Helvetica', '', 12);
+
+
+
+			// add a page
+			$pdf->AddPage();
+
+			$pdf->Output('example_003.pdf', 'I');
+
 		}
 
 
