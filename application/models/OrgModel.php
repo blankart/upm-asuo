@@ -8,6 +8,7 @@
 			$result['members']= $this->getMembers($org_id);
 			$result['posts']= $this->getOrgPosts($org_id);
 			$result['orgapps'] = $this->getOrgApplications($org_id);
+			$result['tally'] = $this->getOrgTally($org_id);
 
 			return $result;
 		}
@@ -63,6 +64,38 @@
 			$this->db->where($condition);
 			$orgapps = $this->db->get();
 			return $orgapps->result_array();
+		}
+
+		private function getOrgTally($org_id){
+			$tally['male_first'] = $this->getTally($org_id, 'Male', 1);
+			$tally['female_first'] = $this->getTally($org_id, 'Female', 1);
+
+			$tally['male_second'] = $this->getTally($org_id, 'Male', 2);
+			$tally['female_second'] = $this->getTally($org_id, 'Female', 2);
+
+			$tally['male_third'] = $this->getTally($org_id, 'Male', 3);
+			$tally['female_third'] = $this->getTally($org_id, 'Female', 3);
+
+			$tally['male_fourth'] = $this->getTally($org_id, 'Male', 4);
+			$tally['female_fourth'] = $this->getTally($org_id, 'Female', 4);
+
+			$tally['male_masteral'] = 0;
+			$tally['female_masteral'] = 0;
+
+			$tally['male_doctoral'] = 0;
+			$tally['female_doctoral'] = 0;
+			
+			return $tally;
+		}
+
+		private function getTally($org_id, $sex, $year){
+				$condition = "om.org_id  = " .$org_id. " AND om.student_id = sp.student_id AND om.isRemoved = 0 AND sp.sex = '".$sex."' AND sp.year_level = ". $year. "";
+
+				$this->db->select('sp.student_id');
+				$this->db->from('orgmember om, studentprofile sp');
+				$this->db->where($condition);
+				$result = $this->db->get();
+				return $result->num_rows();
 		}
 	}
 ?>
