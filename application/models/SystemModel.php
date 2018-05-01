@@ -9,6 +9,16 @@
 	    public function createStudentProfile($profile_details){
 	    	$this->db->insert('StudentProfile', $profile_details);
 	    }
+	    public function createOrgAccount($account_data)
+	    {
+	    	$this->db->insert('OrganizationAccount', $account_data);
+	    	return $this->db->insert_id();	
+	    }
+	    public function createOrgProfile($profile_details)
+	    {
+	    	$this->db->insert('OrganizationProfile', $profile_details);
+	    	return $this->getOrgSessionDetails($profile_details['org_id']);
+	    }
 
 		public function login($credentials){
 			
@@ -147,6 +157,7 @@
 				else
 				{
 					return true;
+					//return $this->checkOrgDB($org_acronym);
 				}
 			}
 			else
@@ -157,6 +168,7 @@
 		}
 		public function checkRestrictedDB($org_acronym)
 		{
+
 			$condition = "acronym = '" . $org_acronym."'" ;
 			$this->db->select('*');
 			$this->db->from('restrictedacronym');
@@ -175,22 +187,26 @@
 		}
 		public function checkOrgDB($org_acronym)
 		{
-			$condition = "acronym = '". $org_acronym."'";
-			$this->db->select('*');
+			//$condition = "acronym = '". $org_acronym."'";
+			$this->db->select('acronym');
 			$this->db->from('OrganizationProfile');
-			$this->db->where($condition);
+			//$this->db->where($condition);
 			$acronymReturned = $this->db->get();
 			//var_dump($acronymReturned);
-			$result = $acronymReturned->num_rows();
+			$acronyms = $acronymReturned->result_array();
 
-			if($result == 1)
-			{
-				return true;
+			
+			foreach ($acronyms as $acronym) {
+				# code...
+				$nsacronym = str_replace(' ', '', $acronym['acronym']);
+				$nsorg_acronym  = str_replace(' ', '', $org_acronym);
+				if(strtolower($nsorg_acronym) == strtolower($nsacronym))
+				{
+					return true;
+				}
 			}
-			else
-			{
-				return false;
-			}
+
+			return false;
 		}
 		public function checkStudDB($org_acronym)
 		{
