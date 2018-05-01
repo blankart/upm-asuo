@@ -197,7 +197,7 @@
 		//
 
 		public function sendNoticeSearch($string){
-			$condition = "oa.org_id = op.org_id AND oa.isActivated = 1 AND oa.archived = 0 AND oa.org_email LIKE '%".$string."%'";
+			$condition = "oa.org_id = op.org_id AND oa.isActivated = 1 AND oa.archived = 0 AND (oa.org_email LIKE '%".$string."%' OR op.org_name LIKE '%".$string."%')";
 			
 			$this->db->select('oa.org_id, oa.org_status, oa.org_email, op.org_name');
 			$this->db->from('organizationaccount oa,organizationprofile op');

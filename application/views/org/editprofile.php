@@ -35,7 +35,7 @@
          <!-- Modal body -->
          <div class="modal-body" style="height: 450px; overflow-y: auto;">
             <div class="text-center">
-               <img src="" class="avatar img-thumbnail" alt="avatar" height="200px" >
+               <img src="<?php echo base_url().'assets/logo/'.$profile['org_logo']; ?>" class="avatar img-thumbnail" alt="avatar" height="500px"  width="500px">
                <h6>Upload organization logo.</h6>
                <input type="file" style="text-align: center;" onchange="showPreview()" class="form-control text-center" style="width: 250px" >
             </div>
@@ -148,13 +148,13 @@
                <div class="form-group">
                   <label class="col-lg control-label">Objectives of Organization</label>
                   <div class="col-lg">
-                     <textarea class="form-control" rows="3" id="objectives" required></textarea>
+                     <textarea class="form-control" rows="3" id="objectives" required><?php echo $profile['objectives']; ?></textarea>
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">Brief Description of Organization</label>
                   <div class="col-lg">
-                     <textarea class="form-control" rows="3" id="descrip" required></textarea>
+                     <textarea class="form-control" rows="3" id="descrip" required><?php echo $profile['description']; ?></textarea>
                   </div>
                </div>
          </div>
