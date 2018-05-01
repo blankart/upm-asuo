@@ -115,7 +115,6 @@ ALTER TABLE `accreditationapplication`
  CREATE TABLE `announcement` (
   `notice_ID` int(11) UNSIGNED NOT NULL,
   `sender` int(11) UNSIGNED NOT NULL, 
-  `recipient` int(11) UNSIGNED NOT NULL,
   `title` varchar(150) NOT NULL,
   `content` varchar(500) NOT NULL,
   `date_posted` date NOT NULL,
@@ -129,16 +128,33 @@ ALTER TABLE `announcement`
   MODIFY `notice_ID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 ALTER TABLE `announcement`
-  ADD KEY `recipient` (`recipient`);
-
-ALTER TABLE `announcement`
-  ADD CONSTRAINT `announcement_ibfk_1` FOREIGN KEY (`recipient`) REFERENCES `organizationaccount` (`org_id`);
-
-ALTER TABLE `announcement`
   ADD KEY `sender` (`sender`);
 
 ALTER TABLE `announcement`
   ADD CONSTRAINT `announcement_ibfk_2` FOREIGN KEY (`sender`) REFERENCES `admin` (`admin_id`);
+
+
+-- ----------------------------------------------------------------------------------------------------------------------------
+-- RECIPIENTS
+CREATE TABLE `recipient` (
+  `recipient_id` int(11) UNSIGNED NOT NULL,
+  `notice_ID` int(11) UNSIGNED NOT NULL,
+  `org_id` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `recipient`
+  ADD PRIMARY KEY (`recipient_id`);
+
+ALTER TABLE `recipient`
+  MODIFY `recipient_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+ALTER TABLE `recipient`
+  ADD KEY `notice_ID` (`notice_ID`),
+  ADD KEY `org_id` (`org_id`);
+
+ALTER TABLE `recipient`
+  ADD CONSTRAINT `recipient_ibfk_1` FOREIGN KEY (`notice_ID`) REFERENCES `announcement` (`notice_ID`),
+  ADD CONSTRAINT `recipient_ibfk_2` FOREIGN KEY (`org_id`) REFERENCES `organizationaccount` (`org_id`);
 
   -- ----------------------------------------------------------------------------------------------------------------------------
   -- ORG MEMBERS
