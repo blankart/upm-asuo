@@ -34,8 +34,7 @@
                         "<td>"+result[key]['org_email']+"</td>"+
                         "<td>"+result[key]['org_status']+"</td>"+
                         "<td>"+archived+"</td>"+
-                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'>Details</button>"+
-                        "<button class='btn btn-info btn-xs' onclick='changeOrgpw("+result[key]['org_id']+")' style='margin-left: 10px;'> Password</button>";
+                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'>Details</button>";
               if (result[key]['archived'] == 0)
               {
                 output+="<button onclick='blockOrgAct("+result[key]['org_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Block</button></td></tr>";
@@ -140,8 +139,7 @@
                         "<td>"+result[key]['org_email']+"</td>"+
                         "<td>"+result[key]['org_status']+"</td>"+
                         "<td>"+archived+"</td>"+
-                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'>Details</button>"+
-                        "<button class='btn btn-info btn-xs' onclick='changeOrgpw("+result[key]['org_id']+")' style='margin-left: 10px;'> Password</button>";
+                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'>Details</button>";
               if (result[key]['archived'] == 0)
               {
                 output+="<button onclick='blockOrgAct("+result[key]['org_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Block</button></td></tr>";
@@ -216,8 +214,7 @@
                         "<td>"+result[key]['org_email']+"</td>"+
                         "<td>"+result[key]['org_status']+"</td>"+
                         "<td>"+archived+"</td>"+
-                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'>Details</button>"+
-                        "<button class='btn btn-info btn-xs' onclick='changeOrgpw("+result[key]['org_id']+")' style='margin-left: 10px;'> Password</button>";
+                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'>Details</button>";
               if (result[key]['archived'] == 0)
               {
                 output+="<button onclick='blockOrgAct("+result[key]['org_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Block</button></td></tr>";

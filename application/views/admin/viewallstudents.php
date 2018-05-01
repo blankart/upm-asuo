@@ -35,8 +35,7 @@
                         "<td>"+result[key]['up_id']+"</td>"+
                         "<td>"+result[key]['up_mail']+"</td>"+
                         "<td>"+archived+"</td>"+
-                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Details</button>"+
-                        "<button class='btn btn-info btn-xs' onclick='changeStudpw("+result[key]['student_id']+")' style='margin-left: 10px;'> Change Password</button>";
+                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Details</button>";
               if (result[key]['archived'] == 0)
               {
                 output+="<button onclick='blockStudAct("+result[key]['student_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Block Account</button></td></tr>";
@@ -142,8 +141,7 @@
                         "<td>"+result[key]['up_id']+"</td>"+
                         "<td>"+result[key]['up_mail']+"</td>"+
                         "<td>"+archived+"</td>"+
-                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Details</button>"+
-                        "<button class='btn btn-info btn-xs' onclick='changeStudpw("+result[key]['student_id']+")' style='margin-left: 10px;'> Change Password</button>";
+                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Details</button>";
               if (result[key]['archived'] == 0)
               {
                 output+="<button onclick='blockStudAct("+result[key]['student_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Block Account</button></td></tr>";
