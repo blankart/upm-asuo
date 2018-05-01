@@ -19,13 +19,16 @@
 				$this->checkLogin();
 			else if($action == 'validate_org_email')
 				$this->validate_org_email();
-			else if($action == 'validate_org_acroynm')
-				$this->validate_org_acroynm();
+			else if($action == 'validate_org_acronym')
+				$this->validate_org_acronym();
+			else if($action == 'registerOrg')
+				$this->registerOrg();
 			else
 				show_404();
 		}
 
-		private function redirectToProfile(){
+		private function redirectToProfile()
+		{
 			if($this->session->userdata['account_type'] == 'student')
 			 	redirect(base_url()."student/".$this->session->userdata['username']);
 			
@@ -39,12 +42,12 @@
 		private function validate_org_email()
 		{
 			$org_email = $this->input->post('org_email');
-			
+			//$org_email = "thp@yahoo.com";
 			if($org_email != NULL)
 			{
 				$this->load->model('SystemModel');
 				$result = $this->SystemModel->validateOrgEmail($org_email);
-
+				//var_dump($result);
 				if($result)
 				{
 					echo json_encode(true);
@@ -53,7 +56,7 @@
 				{
 					echo json_encode(false);
 				}
-				exit();
+				//exit();
 			}
 			else
 			{
@@ -61,10 +64,10 @@
 			}
 
 		}
-		private function validate_org_acroynm()
+		private function validate_org_acronym()
 		{
 			$org_acronym = $this->input->post('org_acronym');
-			//$org_acronym = "admin";
+			//$org_acronym = "upsocomsci";
 			if($org_acronym != NULL)
 			{
 				$this->load->model('SystemModel');
@@ -85,10 +88,48 @@
 				show_404();
 			}			
 		}
-		private function checkLogin(){
+
+		private function registerOrg()
+		{
+			$result = $this->input->post('data');
+		
+			$account_data = array(
+				'org_email' => $result['org_email'],
+				'password' => md5($result['password']),
+				'org_status' => 'Unaccredited',
+				'isVerified' => 0,
+				'isActivated'=> 0,
+				'archived' => 0
+			);
+
+			$this->load->model('SystemModel');
+			$org_id = $this->SystemModel->createOrgAccount($account_data);
+			//insert profile details to db
+			//var_dump($org_id);
+			$profile_details = array(
+				'org_id'=>$org_id,
+				'org_name'=>$result['org_name'], 
+				'acronym'=>$result['acronym'], 
+				'org_category'=>$result['org_category'], 
+				'org_college'=>$result['org_college'],
+				'description'=>'N/A', 
+				'objectives'=>'N/A', 
+				'org_website'=>$result['org_website'], 
+				'mailing_address'=>$result['mailing_address'], 
+				'date_established'=>'N/A', 
+				'org_logo'=>'logo_default.jpg'
+			);
+			$org_session = $this->SystemModel->createOrgProfile($profile_details);
+			//redirect(base_url().'login');
+			$this->setSessions($org_session);
+		}
+
+		private function checkLogin()
+		{
 			$credentials = $this->input->post('credentials');
 
-			if($credentials != NULL){
+			if($credentials != NULL)
+			{
 				$credentials['password'] = md5($credentials['password']);
 
 				$this->load->model('SystemModel');
@@ -108,9 +149,11 @@
 		// student: first_name, username, email
 		// org: name, acronym, email
 		// admin:
-		private function setSessions($data){
+		private function setSessions($data)
+		{
 
-			if($data['account_type'] == 'admin'){
+			if($data['account_type'] == 'admin')
+			{
 				$details = array(
 					'account_type' => 'admin',
 					'user_id' => $data['admin_id'],
@@ -153,7 +196,7 @@
 			}
 		}
 
-		public function logOut(){
+		private function logOut(){
 			$this->session->unset_userdata('logged_in');
 			$this->session->sess_destroy();
 			$this->load->view('header');
