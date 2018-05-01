@@ -1,6 +1,7 @@
 <script>
     function OrgRegEmailChecker(){
         var org_email = $("#OrgRegEmailAdd").val();
+        var checker = false;
         //alert(org_email);
     if (org_email.length>0)
     {
@@ -25,27 +26,27 @@
                 $("#orgEmailTaken").slideDown(400);   
                 return false;
             }
-            else
+            else if(result == false)
             {
+               // alert("Abc");
                 $("#orgEmailTaken").fadeOut(400);
+                checker = true;
                 return true;
             }
             
        }
 
-    //CODE BELOW IF EXISTING
-    
-    //CODE BELOW IF AVAILABLE
-
     });
 
     }
+    return checker;
     
 }
 
 function OrgRegAcronymChecker()
 {
     var org_acronym = $("#OrgRegAcronym").val();
+    var checker = false;
        // alert(org_acronym);
     if (org_acronym.length>0)
     {
@@ -53,7 +54,7 @@ function OrgRegAcronymChecker()
         //alert(org_acronym);
         $.ajax({
        type:"post",
-       url:"<?php echo base_url(); ?>validate_org_acroynm",
+       url:"<?php echo base_url(); ?>validate_org_acronym",
        cache: false,
        data:{org_acronym: org_acronym},
        dataType: 'json',
@@ -70,23 +71,20 @@ function OrgRegAcronymChecker()
                 $("#orgAcronymRestricted").slideDown(400);   
                 return false;
             }
-            else
+            else if(result == false)
             {
+                //alert(result);
                 $("#orgAcronymRestricted").fadeOut(400);
+                checker = true;
                 return true;
             }
             
        }
 
-    //CODE BELOW IF EXISTING
-    
-    //CODE BELOW IF AVAILABLE
-
     });
 
-    }
-    
-    
+    }    
+    return checker;
 }
 
 function conPassValidate()
@@ -95,13 +93,14 @@ function conPassValidate()
     var Pass = $("#Pass").val();
     if (conPass!=Pass && $("#conPass").val().length > 0 && $("#Pass").val().length > 0){
         $("#orgRegPwChecker").removeClass();
-    $("#orgRegPwChecker").html('');
-    $("#orgRegPwChecker").addClass('notice notice-sm notice-danger');
-    $("#orgRegPwChecker").html('<strong>Error:</strong> Password does not match.');
-    $("#orgRegPwChecker").slideDown(400);
-    return false;
+        $("#orgRegPwChecker").html('');
+        $("#orgRegPwChecker").addClass('notice notice-sm notice-danger');
+        $("#orgRegPwChecker").html('<strong>Error:</strong> Password does not match.');
+        $("#orgRegPwChecker").slideDown(400);
+        return false;
     }
-    else{
+    else if(conPass==Pass && $("#conPass").val().length > 0 && $("#Pass").val().length > 0){
+        //alert("tasdasd");
         $("#orgRegPwChecker").fadeOut(400);
         return true;
     }
@@ -109,13 +108,15 @@ function conPassValidate()
 }
 
 function validateForm(){
-    //var emailCheck = OrgRegEmailChecker();
-    //alert(emailCheck);
+
     if (conPassValidate() && OrgRegEmailChecker() && OrgRegAcronymChecker())
     {
+       // alert("true");
         return true;
     }
-    else return false;
+    else {
+        return false;
+    };
 }
 </script>
 <!DOCTYPE html>
@@ -140,16 +141,16 @@ function validateForm(){
                             </div>
                             <div class="card-body">
                                 <small class="form-text text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</small>
-                                <form class="form" onsubmit="return validateForm()" role="form" autocomplete="off" style="margin-top: 10px;">
+                                <form class="form" method="POST" onsubmit="return validateForm()" action="registerOrg" role="form" autocomplete="off" style="margin-top: 10px;">
 
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-8">
-                                                <input type="text" class="form-control" placeholder="Organization Full Name" required>
+                                                <input type="text" class="form-control" placeholder="Organization Full Name" name="data[org_name]" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
                                             <div class="col-4">
-                                                <input type="text" class="form-control" id="OrgRegAcronym" onblur="OrgRegAcronymChecker()" placeholder="Acronym" required>
+                                                <input type="text" class="form-control" id="OrgRegAcronym" onblur="OrgRegAcronymChecker()" placeholder="Acronym" name="data[acronym]" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
                                         </div>
@@ -160,7 +161,7 @@ function validateForm(){
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-6">
-                                                <select class="form-control" required>
+                                                <select class="form-control" name="data[org_category]" required>
                                                     <option>Category 1</option>
                                                     <option>Category 2</option>
                                                     <option>Category 3</option>
@@ -170,7 +171,7 @@ function validateForm(){
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
                                             <div class="col-6">
-                                                <select class="form-control" required>
+                                                <select class="form-control" name="data[org_college]" required>
                                                     <option>College 1</option>
                                                     <option>College 2</option>
                                                     <option>College 3</option>
@@ -186,11 +187,11 @@ function validateForm(){
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-7">
-                                                <input type="email" id="OrgRegEmailAdd" onblur="OrgRegEmailChecker()" class="form-control" placeholder="Email Address" required>
+                                                <input type="email" id="OrgRegEmailAdd" onblur="OrgRegEmailChecker()" class="form-control" name="data[org_email]" placeholder="Email Address" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
-                                            <div class="col-5   ">
-                                                <input type="text" class="form-control" placeholder="Website" required>
+                                            <div class="col-5">
+                                                <input type="text" class="form-control" name="data[org_website]" placeholder="Website" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
 
@@ -202,7 +203,7 @@ function validateForm(){
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12">
-                                                <input type="email" class="form-control" placeholder="Mailing Address" required>
+                                                <input type="text" class="form-control" name="data[mailing_address]" placeholder="Mailing Address" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
                                         </div>
@@ -211,7 +212,7 @@ function validateForm(){
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input type="password" onblur="conPassValidate()" id="Pass" class="form-control" placeholder="Password" required>
+                                                <input type="password" onblur="conPassValidate()" id="Pass" class="form-control" placeholder="Password" name="data[password]" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
                                             <div class="col-6   ">
