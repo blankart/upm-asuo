@@ -38,7 +38,7 @@
             
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="submit" class="btn btn-default" style="margin-left: 10px;">Submit Post</button>
+                <button type="submit" class="btn btn-success" style="margin-left: 10px;">Submit Post</button>
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>                
             </div>
         </div>

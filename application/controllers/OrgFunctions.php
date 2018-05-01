@@ -73,7 +73,8 @@
 			$data['orgapps'] = $result ['orgapps'];
 
 			$org_data['profile'] = $result ['profile'];
-
+			$org_data['tally'] = $result ['tally'];
+		
 			$this->load->view('header');
 			$this->load->view('org/org', $data);
 			$this->load->view('org/applyforaccreditation');
