@@ -61,123 +61,60 @@
 		}
 
 		private function viewFormA(){
-			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+			$pdf = new tcpdf(PDF_PAGE_ORIENTATION, PDF_UNIT, 'STATEMENT', true, 'UTF-8', false);
+			$pdf->SetTitle($this->session->userdata['org_name']. ' | Form A: Accreditation Application');
+			$pdf->SetHeaderMargin(30);
+			$pdf->SetTopMargin(20);
+			$pdf->setFooterMargin(20);
+			$pdf->SetAutoPageBreak(true);
+			$pdf->SetAuthor('Author');
+			$pdf->SetDisplayMode('real', 'default');
 
-			// set document information
-			$pdf->SetCreator(PDF_CREATOR);	
-			$pdf->SetAuthor('OSA');
-			$pdf->SetTitle('Form A');
-			$pdf->SetSubject('');
-			$pdf->SetKeywords('');
-
-			// set default header data
-			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form A: Accreditation Application", PDF_HEADER_STRING);
-
-			// set header and footer fonts
-			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-			$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
-
-			// set default monospaced font
-			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-
-			// set margins
-			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-			$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-			$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-
-			// set auto page breaks
-			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
-			// set image scale factor
-			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-
-			// set font
-			$pdf->SetFont('Helvetica', '', 12);
-
-
-
-			// add a page
 			$pdf->AddPage();
 
-
-			// set some text to print
-			$html= '<p align="right"><b>Date filed:</b></p><br>
-			<b>Organization Name:</b><br>
-			<b>Number of members:</b><br>	
-			<b>Category:</b><br>
-			<b>Position/Designation:   </b>&nbsp;&nbsp;&nbsp;&nbsp;<b>College/Unit</b><br>
-			<b>Contact Person:</b>
-			<b>Position in the Organization</b>
-			<br>
-			<b>Address</b>
-			<br>
-			<b>Telephone no.:</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>Mobile no.:</b>
-			<br>
-			<b>Email:</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>Other contact details:</b>
-			<br>
-			<b>Objectives of Organization:</b>
-			<br>
-			<b>Brief description of Organization:</b>
-			<br>
-			<br>
-			<br>
-				<p align="right">___________________________________<br>
-				<b>Name of Person Filing the Application</b>
-				<br>
-				___________________________________<br>
-				<b>Position in the Organization</b>
-				<br>
-				___________________________________<br>
-				<b>Signature</b>
-				<br>
-
-
-
-				</p>
-				';
-			$pdf->writeHTML($html, true, false, true, false, '');
-
-
+			$pdf->Write(5, 'Some sample text');
+			$pdf->Output('My-File-Name.pdf', 'I'); 
 		}
-	}
-	private function viewFormC(){
+
+		private function viewFormC(){
 			$pdf->resetHeaderTemplate();
 			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form C: Organization Profile", PDF_HEADER_STRING);
 			$pdf->AddPage();
 
 			$orgProfile ='
-				<p align="Center"><b>Organization Profile</b></p>
-				<b>Name of Organization:</b><br>
-				<b>Acronym:</b><br>
-				<b>Mailing Address:</b><br>
-				<b>E-mail Address:</b><br>
-				<b>Website:</b><br>
-				<b>Date Established:</b><br>
-				<b>Total Number of Members:</b><br>
-				<br>
+			<p align="Center"><b>Organization Profile</b></p>
+			<b>Name of Organization:</b><br>
+			<b>Acronym:</b><br>
+			<b>Mailing Address:</b><br>
+			<b>E-mail Address:</b><br>
+			<b>Website:</b><br>
+			<b>Date Established:</b><br>
+			<b>Total Number of Members:</b><br>
+			<br>
 
 			';
 
-			$pdf->writeHTML($orgProfile, true, false, true, false, '');		
-	}	
+			$pdf->writeHTML($orgProfile, true, false, true, false, '');
+		}
 
-	private function viewFormD(){
-		$pdf->resetHeaderTemplate();
-		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form D: Officer's Profile", PDF_HEADER_STRING);
-		$pdf->AddPage();
+		private function viewFormD(){
+			$pdf->resetHeaderTemplate();
+			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form D: Officer's Profile", PDF_HEADER_STRING);
+			$pdf->AddPage();
+		}
+
+		private function viewFormE(){
+			$pdf->resetHeaderTemplate();
+			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form E: Members' Profile", PDF_HEADER_STRING);
+			$pdf->AddPage();
+		}
+
+		private function viewFormF(){
+			$pdf->resetHeaderTemplate();
+			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form F: Financial Report", PDF_HEADER_STRING);
+			$pdf->AddPage();
+		}
+
+
 	}
-
-	private function viewFormE(){
-		$pdf->resetHeaderTemplate();
-		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form E: Members' Profile", PDF_HEADER_STRING);
-		$pdf->AddPage();
-	}
-
-	private function viewFormF(){
-		$pdf->resetHeaderTemplate();
-		$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form F: Financial Report", PDF_HEADER_STRING);
-		$pdf->AddPage();
-	}
-
-
 ?>
