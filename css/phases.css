@@ -1,0 +1,62 @@
+/** progress bar **/
+progress::-moz-progress-bar {
+	border-radius: 20px;
+    background: #860204; 
+}
+progress::-webkit-progress-value { background: #860204; border-radius: 20px; }
+progress { color: #860204; border-radius: 20px; }
+
+.progressBar{
+    margin-left: 10%;
+    margin-right: 10%;
+	width: 80%;
+	border: none;
+}
+
+/**FORM**/
+form#multiphase{
+	margin-left: 10%;
+    margin-right: 10%;
+	width: 76%;
+    background-color: #eee;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+form#multiphase > #phase2, #phase3, #phase4, #phase5, #phase6, #show_all_data{
+    display: none;
+}
+
+form#multiphase2{
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 76%;
+    background-color: #eee;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+form#multiphase2 > #cphase2, #cphase3{
+    display: none;
+}
+
+
+input[type=date]{
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+input[type=text]{
+	width: 98%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+/**TABLE**/
+th, td {
+    padding: 5px;
+}

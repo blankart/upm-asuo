@@ -14,6 +14,16 @@
 			}
 			else if ($action == 'change_password')
 				$this->load->view('changepassword');
+			else if ($action == 'applyforaccreditation'){
+				$this->load->view('header');
+				$this->load->view('org/applyforaccreditation/applyforaccreditation');
+				$this->load->view('footer');
+			}
+			else if ($action == 'formA'){
+				$this->load->view('header');
+				$this->load->view('org/applyforaccreditation/formA');
+				$this->load->view('footer');
+			}
 			else if($action == 'viewFormA')
 				$this->viewFormA();
 			else if($action == 'viewFormC'){

@@ -23,6 +23,16 @@
        searchSendNotice();
      }
 
+     function addVal(id){
+        allVals.push(id);
+        searchSendNotice();
+     }
+
+     function delVal(id){
+        removeA(allVals, id);
+        searchSendNotice();
+     }
+
      function deselectAll(){
       var allValsTemp = [];
        allVals = allValsTemp;

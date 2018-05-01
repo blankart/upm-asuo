@@ -85,7 +85,7 @@
                             <h6 style="text-align: center; margin-bottom: 30px;"><strong><?php echo $profile['acronym']; ?></strong></h6>
                             <p style="text-align: center;"><?php echo $profile['org_category']; ?></p>
                             <hr>
-                            <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#editprofile">Edit profile</button> <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#applyforaccreditation">Apply for Accrediation</button><button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#createposts">Create Post</button>
+                            <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#editprofile">Edit profile</button> <a class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" href="<?php echo base_url(); ?>org/applyforaccreditation">Apply for Accrediation</a><button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#createposts">Create Post</button>
                         </div>
                     </div>
                 </div>

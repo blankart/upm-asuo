@@ -1,0 +1,80 @@
+body {
+    font-family: "Lato", sans-serif;
+}
+
+h1{
+    color: white;
+    background-color: #860204;
+    padding-left: 15px;
+    padding-bottom: 20px;
+    padding-top: 5px;
+}
+
+h2{
+    font-size: 20px;
+}
+
+
+.main {
+    margin-left: 21%; /* Same width as the sidebar + left position in px */
+    font-size: 15px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+/**SIDE NAV**/
+.sidenav {
+    width: 20%;
+    position: fixed;
+    z-index: 1;
+    top: 100px;
+    left: 10px;
+    background: #eee;
+    overflow-x: hidden;
+    padding: 8px 0;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #000;
+    display: block;
+}
+
+.sidenav a:hover {
+    border-left: 6px solid #860204;
+    background-color: lightgrey;
+    color: #860204;
+
+}
+
+.active a{
+    background-color: #860204;
+    color: white;
+}
+
+.active a:hover{
+    background-color: #860204;
+    color: white;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
+
+/**BUTTON**/
+.button {
+    float: right;
+    background-color: #860204;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
