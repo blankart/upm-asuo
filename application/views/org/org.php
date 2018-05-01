@@ -80,7 +80,7 @@
                             <h4 style="color: white;">Profile Details</h4>
                         </div>
                         <div class="card-body">
-                            <img src="<?php echo base_url();?>img/UP%20logo.png" style="position: relative; margin-left: 80px; border-radius: 50%; border-style: solid; border-width: medium; border-color: white; box-shadow: 0 0 40px rgba(0,0,0,.2); align-items: center;" width="150">
+                            <img src="<?php echo base_url().'assets/logo/'.$profile['org_logo']; ?>" style="position: relative; margin-left: 80px; border-radius: 50%; border-style: solid; border-width: medium; border-color: white; box-shadow: 0 0 40px rgba(0,0,0,.2); align-items: center;" width="150">
                             <h3 style="text-align: center; margin-bottom: 5   px; margin-top: 30px;"><strong><?php echo $profile['org_name']; ?></strong></h3>
                             <h6 style="text-align: center; margin-bottom: 30px;"><strong><?php echo $profile['acronym']; ?></strong></h6>
                             <p style="text-align: center;"><?php echo $profile['org_category']; ?></p>

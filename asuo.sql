@@ -71,6 +71,7 @@ ALTER TABLE `admin`
   `org_name` varchar(100) NOT NULL,
   `acronym` varchar(30) NOT NULL,
   `org_category` varchar(30) NOT NULL,
+  `org_college` varchar(30) NOT NULL,
   `description` varchar(200) NOT NULL DEFAULT 'N/A',
   `objectives` varchar(200) NOT NULL DEFAULT 'N/A',
   `org_website` varchar(50) NOT NULL DEFAULT 'N/A/',
@@ -225,9 +226,12 @@ ALTER TABLE `orgapplication`
 ALTER TABLE `orgapplication`
   ADD CONSTRAINT `orgapplication_ibfk_1` FOREIGN KEY (`org_id`) REFERENCES `organizationaccount` (`org_id`),
   ADD CONSTRAINT `orgapplication_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `studentaccount` (`student_id`);
- -- -------------------------------------------------------------------------------------------------------------------------------
- -- RESTRICTED ACRONYMS
-CREATE TABLE `restrictedacronym` (
+
+
+ -- ----------------------------------------------------------------------------------------------------------------------------
+  -- RESTRICTED ACRONYMS
+
+  CREATE TABLE `restrictedacronym` (
    `res_id` int(11) UNSIGNED NOT NULL,
    `acronym` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

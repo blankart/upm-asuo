@@ -28,37 +28,37 @@
                <div class="form-group">
                   <label class="col-lg control-label">Organization Name</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" name="orgname" readonly required>
+                     <input class="form-control" type="text" name="orgname" value ="<?php echo $profile['org_name']; ?>" readonly required>
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">Acronym</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" name="acronym">
+                     <input class="form-control" type="text" value ="<?php echo $profile['acronym']; ?>" name="acronym">
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">Mailing Address</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" name="mAdd">
+                     <input class="form-control" type="text" value ="<?php echo $profile['mailing_address']; ?>" name="mAdd">
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">E-mail</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" name="email" readonly required>
+                     <input class="form-control" type="text" value ="<?php echo $profile['org_email']; ?>" name="email" readonly required>
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">Website/Page</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" name="page" required>
+                     <input class="form-control" type="text" value ="<?php echo $profile['org_website']; ?>" name="page" required>
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">Date Established</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" name="est" required>
+                     <input class="form-control" type="text" value ="<?php echo $profile['date_established']; ?>" name="est" required>
                   </div>
                </div>
                <div class="form-group">

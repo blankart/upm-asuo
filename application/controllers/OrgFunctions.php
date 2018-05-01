@@ -50,11 +50,13 @@
 			$data['posts'] = $result ['posts'];
 			$data['orgapps'] = $result ['orgapps'];
 
+			$org_data['profile'] = $result ['profile'];
+
 			$this->load->view('header');
 			$this->load->view('org/org', $data);
 			$this->load->view('org/applyforaccreditation');
 			$this->load->view('org/createposts');
-			$this->load->view('org/editprofile');
+			$this->load->view('org/editprofile', $org_data);
 			$this->load->view('footer');
 		}
 
