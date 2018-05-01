@@ -1,4 +1,19 @@
 <script>
+   function showPreview() {
+  var preview = document.querySelector('img[alt=avatar]');
+  var file    = document.querySelector('input[type=file]').files[0];
+  var reader  = new FileReader();
+
+  reader.onloadend = function () {
+    preview.src = reader.result;
+  }
+
+  if (file) {
+    reader.readAsDataURL(file);
+  } else {
+    preview.src = "";
+  }
+}
    function validateForm(){
       if((document.profileForm.orgname.value == "") || (document.profileForm.acronym.value == "") || (document.profileForm.email.value == "") || (document.profileForm.est.value == "") || (document.profileForm.page.value == "") || (document.profileForm.members.value == "") || (document.profileForm.consti.value == "") || (document.getElementById("objectives").value == "") || (document.getElementById("descrip").value == "")) {
       }else{
@@ -20,9 +35,9 @@
          <!-- Modal body -->
          <div class="modal-body" style="height: 450px; overflow-y: auto;">
             <div class="text-center">
-               <img src="//placehold.it/100" class="avatar img-thumbnail" alt="avatar" style="border-radius: 50%">
+               <img src="" class="avatar img-thumbnail" alt="avatar" height="200px" >
                <h6>Upload organization logo.</h6>
-               <input type="file" style="text-align: center;" class="form-control text-center" style="width: 250px">
+               <input type="file" style="text-align: center;" onchange="showPreview()" class="form-control text-center" style="width: 250px" >
             </div>
             <form class="form-horizontal" role="form" name="profileForm">
                <div class="form-group">
