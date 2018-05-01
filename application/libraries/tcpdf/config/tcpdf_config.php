@@ -63,18 +63,18 @@
  * Default images directory.
  * By default it is automatically set but you can also set it as a fixed string to improve performances.
  */
-//define ('K_PATH_IMAGES', '');
+define ('K_PATH_IMAGES', 'application\libraries\tcpdf\images');
 
 /**
  * Deafult image logo used be the default Header() method.
  * Please set here your own logo or an empty string to disable it.
  */
-//define ('PDF_HEADER_LOGO', '');
+define ('PDF_HEADER_LOGO', '\logo.png');
 
 /**
  * Header logo image width in user units.
  */
-//define ('PDF_HEADER_LOGO_WIDTH', 0);
+define ('PDF_HEADER_LOGO_WIDTH', 20);
 
 /**
  * Cache directory for temporary files (full path).
@@ -109,12 +109,12 @@ define ('PDF_AUTHOR', 'TCPDF');
 /**
  * Header title.
  */
-define ('PDF_HEADER_TITLE', 'TCPDF Example');
+define ('PDF_HEADER_TITLE', 'UNIVERSITY OF THE PHILIPPINES MANILA');
 
 /**
  * Header description string.
  */
-define ('PDF_HEADER_STRING', "by Nicola Asuni - Tecnick.com\nwww.tcpdf.org");
+define ('PDF_HEADER_STRING', 'College of Arts and Sciences'."\r\n".'Office of the Student Services'."\r\n".'Ermita, Manila');
 
 /**
  * Document unit of measure [pt=point, mm=millimeter, cm=centimeter, in=inch].
@@ -129,7 +129,7 @@ define ('PDF_MARGIN_HEADER', 5);
 /**
  * Footer margin.
  */
-define ('PDF_MARGIN_FOOTER', 10);
+define ('PDF_MARGIN_FOOTER', 15);
 
 /**
  * Top margin.
@@ -164,7 +164,7 @@ define ('PDF_FONT_SIZE_MAIN', 10);
 /**
  * Default data font name.
  */
-define ('PDF_FONT_NAME_DATA', 'helvetica');
+define ('PDF_FONT_NAME_DATA', '');
 
 /**
  * Default data font size.
@@ -174,12 +174,12 @@ define ('PDF_FONT_SIZE_DATA', 8);
 /**
  * Default monospaced font name.
  */
-define ('PDF_FONT_MONOSPACED', 'courier');
+define ('PDF_FONT_MONOSPACED', 'helvetica');
 
 /**
  * Ratio used to adjust the conversion of pixels to user units.
  */
-define ('PDF_IMAGE_SCALE_RATIO', 1.25);
+define ('PDF_IMAGE_SCALE_RATIO', 1);
 
 /**
  * Magnification factor for titles.
