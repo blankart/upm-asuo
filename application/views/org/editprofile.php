@@ -1,6 +1,6 @@
 <script>
    function validateForm(){
-      if((document.profileForm.orgname.value == "") || (document.profileForm.acronym.value == "") || (document.profileForm.email.value == "") || (document.profileForm.est.value == "") || (document.profileForm.page.value == "") || (document.profileForm.members.value == "") || (document.profileForm.consti.value == "")){
+      if((document.profileForm.orgname.value == "") || (document.profileForm.acronym.value == "") || (document.profileForm.email.value == "") || (document.profileForm.est.value == "") || (document.profileForm.page.value == "") || (document.profileForm.members.value == "") || (document.profileForm.consti.value == "") || (document.getElementById("objectives").value == "") || (document.getElementById("descrip").value == "")) {
       }else{
          swalSucc();
       }
@@ -128,6 +128,18 @@
                   <label class="col-lg control-label">Upload constitution</label>
                   <div class="col-lg">
                      <input type="file" class="form-control" name="consti" style="width: 250px" required>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg control-label">Objectives of Organization</label>
+                  <div class="col-lg">
+                     <textarea class="form-control" rows="3" id="objectives" required></textarea>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg control-label">Brief Description of Organization</label>
+                  <div class="col-lg">
+                     <textarea class="form-control" rows="3" id="descrip" required></textarea>
                   </div>
                </div>
          </div>
