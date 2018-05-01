@@ -162,10 +162,10 @@
 		}
 
 		public function searchAccredApp($string){
-			$condition = "oa.org_id = op.org_id AND op.org_name LIKE '%".$string."%'";
+			$condition = "aa.org_id = oa.org_id AND aa.org_id = op.org_id AND op.org_name LIKE '%".$string."%'";
 
 			$this->db->select('oa.org_id, op.org_name, oa.org_status');
-			$this->db->from('organizationprofile op, organizationaccount oa');
+			$this->db->from('organizationprofile op, organizationaccount oa, accreditationapplication aa');
 			$this->db->order_by('op.org_id');
 			$this->db->where ($condition);
 
