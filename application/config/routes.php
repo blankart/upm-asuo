@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['default_controller'] = 'SystemFunctions/perform';
 $route['(:any)'] = 'SystemFunctions/perform/$1';
+$route['(:any)/(:any)/(:any)'] = 'SystemFunctions/perform/$1/$2/$3';
 $route['student/(:any)'] = 'StudentFunctions/perform/$1';
 $route['org/(:any)'] = 'OrgFunctions/perform/$1';
 $route['admin/(:any)'] = 'AdminFunctions/perform/$1';

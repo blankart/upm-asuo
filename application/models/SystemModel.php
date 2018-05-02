@@ -98,7 +98,7 @@
 		public function getStudentSessionDetails($student_id){
 			$condition = "sp.student_id = " . $student_id ." AND sa.student_id = " . $student_id;
 
-			$this->db->select('sp.student_id, sa.first_name, sa.username, sa.up_mail');
+			$this->db->select('sp.student_id, sp.first_name, sa.username, sa.up_mail');
 			$this->db->from('StudentProfile sp, StudentAccount sa');
 			$this->db->where($condition);
 			$student_profile = $this->db->get();

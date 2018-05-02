@@ -36,7 +36,7 @@
 
 		private function loadStudentProfile(){
 			$this->load->view('header');
-			//$this->load->view('profile');
+			$this->load->view('student/student.php');
 			$this->load->view('footer');
 		}
 	}			
