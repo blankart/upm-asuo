@@ -1,7 +1,7 @@
 <?php
 	class SystemFunctions extends CI_Controller{
 
-		public function perform( $action = 'login'){
+		public function perform( $action = 'login', $type = '', $code = ''){
 			
 
 			 if($action == 'login' || $action == 'regstud' || $action == 'regorg'){
@@ -23,6 +23,8 @@
 				$this->validate_org_acronym();
 			else if($action == 'registerOrg')
 				$this->registerOrg();
+			else if($action == 'verify')
+				$this->verify($type, $code);
 			else
 				show_404();
 		}
@@ -122,6 +124,10 @@
 			$org_session = $this->SystemModel->createOrgProfile($profile_details);
 			//redirect(base_url().'login');
 			$this->setSessions($org_session);
+		}
+
+		private function verify($type, $code){
+			echo $type . " " .$code;
 		}
 
 		private function checkLogin()
