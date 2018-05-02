@@ -24,6 +24,39 @@
 				$this->load->view('org/applyforaccreditation/formA');
 				$this->load->view('footer');
 			}
+			else if ($action == 'formB'){
+				$this->load->view('header');
+				$this->load->view('org/applyforaccreditation/formB');
+				$this->load->view('footer');
+			}
+			else if ($action == 'formC'){
+				$this->load->view('header');
+				$this->load->view('org/applyforaccreditation/formC');
+				$this->load->view('footer');
+			}
+			else if ($action == 'formD'){
+				$this->load->view('header');
+				$this->load->view('org/applyforaccreditation/formD');
+				$this->load->view('footer');
+			}
+			else if ($action == 'formE'){
+				$this->load->view('header');
+				$this->load->view('org/applyforaccreditation/formE');
+				$this->load->view('footer');
+			}
+			else if ($action == 'formF'){
+				$this->load->view('header');
+				$this->load->view('org/applyforaccreditation/formF');
+				$this->load->view('footer');
+			}
+			else if ($action == 'formG'){
+				$this->load->view('header');
+				$this->load->view('org/applyforaccreditation/formG');
+				$this->load->view('footer');
+			}
+
+
+
 			else if($action == 'viewFormA')
 				$this->viewFormA();
 			else if($action == 'viewFormC'){

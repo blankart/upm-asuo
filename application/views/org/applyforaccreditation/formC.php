@@ -17,20 +17,24 @@
 		<script src="<?php echo base_url();?>js/script.js"></script>
 	</head>
 
-	<body>
-		<!-- Sidebar -->
-		<div class="sidenav">
-            <li><a href="applyforaccreditation.php">Home</a></li>
-          	<li><a href="formA.php">Accreditation Application</a></li>
-           	<li><a href="formB.php">Consent of Adviser</a></li>
-           	<li class="active"><a href="formC.php">Organization Profile</a></li>
-           	<li><a href="formD.php">Officers' Profile</a></li>
-            <li><a href="formE.php">Members' Profile</a></li>
-            <li><a href="formF.php">Projects</a></li>
-            <li><a href="formG.php">Financial Report</a></li>
-		</div>
-
-		<!-- Page Content -->
+<body>
+   <div class="animated fadeIn" style="background-color: rgb(255,255,255); margin-top: 60px; padding-top: 50px; box-shadow: 0 0 40px rgba(0,0,0,.50); padding-bottom: 500px;">
+        <!-- div class="container" -->
+            <!-- div class="row" -->
+                <div class="col-4">
+                    <!-- insert sidenav -->
+                    <div class="sidenav">
+                        <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
+                        <li class="active"><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formG">Financial Report</a></li>
+                    </div>
+                </div>
+                    <!-- Page Content -->
 		<div class="main">
 			<h1>Form C: Organization Profile</h1>
 			<!-- progress bar -->
@@ -106,5 +110,6 @@
 				</div>
 			</form>
 		</div>
+	</div>
 	</body>
 </html>
