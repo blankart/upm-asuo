@@ -1,15 +1,8 @@
 <?php
    if (isset($this->session->userdata['logged_in'])) {
-     if($this->session->userdata['account_type'] == 'student'){
-       $first_name = ($this->session->userdata['first_name']);
-       $username = ($this->session->userdata['username']);
-     }
-     if($this->session->userdata['account_type'] == 'admin'){
-       $username = ($this->session->userdata['username']);
-       $id = ($this->session->userdata['user_id']);
-     }
+    $id = ($this->session->userdata['user_id']);
    }
-   ?>
+?>
     <script>
       $(document).ready(function(){
         $("#changeadminpwbutton").click(function(){

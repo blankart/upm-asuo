@@ -118,7 +118,6 @@ INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`, `i
 (3, 6, 3, 'Member', 0),
 (4, 6, 4, 'Member', 1);
 
-
 -- -------------------------------------------------------------------------
 
 INSERT INTO `orgpost` (`post_id`, `org_id`, `content`, `date_posted`, `privacy`, `archived`) VALUES

@@ -1,3 +1,10 @@
+<?php
+
+   if($this->session->userdata['account_type'] == 'org'){
+      $org_id = $this->session->userdata['user_id'];
+   }
+
+?>
 <script>
    function showPreview() {
   var preview = document.querySelector('img[alt=avatar]');
@@ -14,15 +21,60 @@
     preview.src = "";
   }
 }
-   function validateForm(){
-      if((document.profileForm.orgname.value == "") || (document.profileForm.acronym.value == "") || (document.profileForm.email.value == "") || (document.profileForm.est.value == "") || (document.profileForm.page.value == "") || (document.profileForm.members.value == "") || (document.profileForm.consti.value == "") || (document.getElementById("objectives").value == "") || (document.getElementById("descrip").value == "")) {
-      }else{
-         swalSucc();
-      }
-   }
+   $(document).ready(function(){
+        $("#saveChangesButton").click(function(){
+              editProfile();
+        });
+      });
+
    function swalSucc(){
       swal("Saved!", "You have updated your profile!", "success");
    }
+
+   function swalFail(){
+      swal("Failed!", "You cannot updated your profile now!", "error");
+   }
+
+   function editProfile(){
+      var org_id = '<?php echo $org_id; ?>';
+      var acronym = document.getElementsByName("acronym")[0].value;
+      var mailing_address = document.getElementsByName("mailing_address")[0].value;
+      var org_website = document.getElementsByName("org_website")[0].value;
+      var date_established = document.getElementsByName("date_established")[0].value;
+      var objectives = document.getElementsByName("objectives")[0].value;
+      var description = document.getElementsByName("description")[0].value;
+
+      if(org_id == "" || acronym == "" || mailing_address == "" || org_website == "" || date_established == "" || objectives == "" || description == ""){
+            //error, empty field found
+      }
+      else{
+         var orgdata = {
+            acronym: acronym, 
+            org_website: org_website,
+            date_established: date_established,
+            mailing_address: mailing_address,
+            description: description, 
+            objectives: objectives     
+         };
+        // alert(JSON.stringify(orgdata));
+
+         $.ajax({
+            type:"post",
+            url:"<?php echo base_url(); ?>org/editOrgProfile",
+            cache: false,
+            data:{org_id: org_id, data: orgdata},
+            dataType: 'json',
+            async: false,
+            success:function(result){
+               swalSucc();
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) { 
+               alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+            }   
+         });
+      }
+   }
+
 </script>
 <div class="modal animated bounceInUp" id="editprofile" data-backdrop="static" data-keyboard="false">
    <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -39,11 +91,12 @@
                <h6>Upload organization logo.</h6>
                <input type="file" style="text-align: center;" onchange="showPreview()" class="form-control text-center" style="width: 250px" >
             </div>
-            <form class="form-horizontal" role="form" name="profileForm">
+
+            <form class="form-horizontal" role="form" name="profileForm" id ="orgprofile">
                <div class="form-group">
                   <label class="col-lg control-label">Organization Name</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" name="orgname" value ="<?php echo $profile['org_name']; ?>" readonly required>
+                     <input class="form-control" type="text" value ="<?php echo $profile['org_name']; ?>" readonly required>
                   </div>
                </div>
                <div class="form-group">
@@ -55,25 +108,25 @@
                <div class="form-group">
                   <label class="col-lg control-label">Mailing Address</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" value ="<?php echo $profile['mailing_address']; ?>" name="mAdd">
+                     <input class="form-control" type="text" value ="<?php echo $profile['mailing_address']; ?>" name="mailing_address">
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">E-mail</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" value ="<?php echo $profile['org_email']; ?>" name="email" readonly required>
+                     <input class="form-control" type="text" value ="<?php echo $profile['org_email']; ?>" readonly required>
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">Website/Page</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" value ="<?php echo $profile['org_website']; ?>" name="page" required>
+                     <input class="form-control" type="text" value ="<?php echo $profile['org_website']; ?>" name="org_website" required>
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">Date Established</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" value ="<?php echo $profile['date_established']; ?>" name="est" required>
+                     <input class="form-control" type="text" value ="<?php echo $profile['date_established']; ?>" name="date_established" required>
                   </div>
                </div>
                <div class="form-group">
@@ -148,20 +201,20 @@
                <div class="form-group">
                   <label class="col-lg control-label">Objectives of Organization</label>
                   <div class="col-lg">
-                     <textarea class="form-control" rows="3" id="objectives" required><?php echo $profile['objectives']; ?></textarea>
+                     <textarea class="form-control" rows="3" id="objectives" name='objectives' required><?php echo $profile['objectives']; ?></textarea>
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">Brief Description of Organization</label>
                   <div class="col-lg">
-                     <textarea class="form-control" rows="3" id="descrip" required><?php echo $profile['description']; ?></textarea>
+                     <textarea class="form-control" rows="3" id="descrip" name='description' required><?php echo $profile['description']; ?></textarea>
                   </div>
                </div>
          </div>
          <!-- Modal footer -->
          <div class="modal-footer">
          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-         <button type="submit" onclick="validateForm()" class="btn btn-danger">Save</button>
+         <button type="button" id="saveChangesButton" class="btn btn-danger">Save</button>
          </div>
          </form>
       </div>

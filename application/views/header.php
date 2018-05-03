@@ -10,7 +10,7 @@
 		}
 		if($this->session->userdata['account_type'] == 'org'){
 			$nsacronym = ($this->session->userdata['nsacronym']);
-            
+			$acronym = ($this->session->userdata['acronym']);
 		}
 	}
 ?>
@@ -62,10 +62,10 @@
 		  	}
 		  	if($this->session->userdata['account_type'] == 'org'){
 				echo "<li class='nav-item'>
-				<a class='nav-link' href='".base_url()."org/".$nsacronym."'>".$nsacronym."</a>
+				<a class='nav-link' href='".base_url()."org/".$nsacronym."'>".$acronym."</a>
 		  		</li>
 		  		<li class='nav-item'>
-		  		<a class='nav-link' href='".base_url()."org/change_password'>Change Password</a>
+		  		<a class='nav-link' href='#' data-toggle='modal' data-target='#changeorgpassword'>Change Password</a>
 		  		</li>
 		  		<li class='nav-item'>
 		  		<a class='nav-link' href='".base_url()."logout'>Log Out</a>

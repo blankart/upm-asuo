@@ -97,5 +97,38 @@
 				$result = $this->db->get();
 				return $result->num_rows();
 		}
+
+		public function editOrgProfile($id, $changes){
+			$condition = 'org_id = ' .$id. ' AND org_id = '.$id;
+
+			$this->db->where($condition);
+			$this->db->update('organizationprofile', $changes);
+		}
+
+		public function checkOrgPassword($id, $orgpassword){
+			$condition = "org_id = " .$id. " AND password = '" .$orgpassword. "'";
+
+			$this->db->select('*');
+			$this->db->from('organizationaccount');
+			$this->db->where ($condition);
+
+			$query = $this->db->get();
+
+			if ($query->num_rows() == 1)
+				return true;
+			else 
+				return false;
+		}
+
+		public function changeOrgPassword($id, $neworgpassword){
+			$condition = "org_id = " .$id. " AND org_id = " .$id;
+
+			$changes = array(
+				'password' => $neworgpassword
+			);
+
+			$this->db->where($condition);
+			$this->db->update('organizationaccount', $changes);		
+		}
 	}
 ?>
