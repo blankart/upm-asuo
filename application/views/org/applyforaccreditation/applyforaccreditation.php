@@ -150,7 +150,7 @@
 
                     <!-- need to format button -->
                     <!-- format to go to formA -->
-                    <button id="continue" class="button" onclick="location.href = 'formA.php';">Continue</button><br><br><br>
+                    <button id="continue" class="button" onclick="location.href = 'formA';">Continue</button><br><br><br>
                 </div> 
             </div>  
         </div>

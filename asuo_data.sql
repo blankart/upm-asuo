@@ -49,7 +49,7 @@ INSERT INTO `organizationprofile` (`org_id`, `org_name`, `acronym`, `org_categor
 
 -- -------------------------------------------------------------------
 
-INSERT INTO `announcement` (`notice_ID`, `sender`, `title`, `content`,  `date_posted`, `archived`) VALUES
+INSERT INTO `announcement` (`notice_id`, `sender`, `title`, `content`,  `date_posted`, `archived`) VALUES
 (1, 1,'Test Announcement', 'Hello. This is a test announcement. :D',  '2017-09-04', 0),
 (2, 1, 'wala akong title :<', 'wala na akong maisip na ilalagay :((', '2018-03-28', 0),
 (3, 1, 'HAPPY BIRTHDAY ALDRIN!!!', 'BIRTHDAY NI ALDRIN XD',  '2018-04-15', 0),
@@ -64,20 +64,15 @@ INSERT INTO `announcement` (`notice_ID`, `sender`, `title`, `content`,  `date_po
 (12, 1, 'This is Zero', 'sample message', '2018-04-15', 0),
 (13, 1, 'Hey', 'Musta niggas',  '2018-04-15', 0),
 (14, 1, 'something', 'something',  '2018-04-15', 0),
-(15, 1, 'something', 'something',  '2018-04-15', 0),
-(16, 1, 'something', 'something',  '2018-04-15', 0),
-(17, 1, 'something', 'something', '2018-04-15', 0),
-(18, 1, 'something', 'something',  '2018-04-15', 0),
-(19, 1, 'something', 'something',  '2018-04-15', 0),
-(20, 1, 'The quick brown fox jumps over the lazy dog', 'The quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps o',  '2018-04-16', 0),
-(21, 1, 'jello', 'jello', '2018-04-16', 0),
-(22, 1, 'sdasdasd', 'asdasdasd',  '2018-04-16', 0),
-(23, 1, 'final something', 'final something',  '2018-04-16', 0);
+(15, 1, 'The quick brown fox jumps over the lazy dog', 'The quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps o',  '2018-04-16', 0),
+(16, 1, 'jello', 'jello', '2018-04-16', 0),
+(17, 1, 'sdasdasd', 'asdasdasd',  '2018-04-16', 0),
+(18, 1, 'final something', 'final something',  '2018-04-16', 0);
 
 
 -- -------------------------------------------------------------------
 
-INSERT INTO `recipient` (`recipient_id`, `notice_ID`, `org_id`) VALUES
+INSERT INTO `recipient` (`recipient_id`, `notice_id`, `org_id`) VALUES
 (1, 1, 10),
 (2, 2, 4),
 (3, 3, 3),
@@ -92,15 +87,19 @@ INSERT INTO `recipient` (`recipient_id`, `notice_ID`, `org_id`) VALUES
 (12, 12, 1),
 (13, 13, 3),
 (14, 14, 3),
-(15, 15, 4),
-(16, 16, 5),
-(17, 17, 6),
-(18, 18, 8),
-(19, 19, 9),
-(20, 20, 4),
-(21, 21, 4),
-(22, 22, 4),
-(23, 23, 4);
+(15, 14, 4),
+(16, 14, 5),
+(17, 14, 6),
+(18, 14, 8),
+(19, 14, 9),
+(20, 15, 4),
+(21, 16, 4),
+(22, 17, 4),
+(23, 18, 4),
+(24, 18, 5),
+(25, 18, 6),
+(26, 18, 7),
+(27, 18, 8);
 
 -- -------------------------------------------------------------------
 
@@ -120,11 +119,11 @@ INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`, `i
 
 -- -------------------------------------------------------------------------
 
-INSERT INTO `orgpost` (`post_id`, `org_id`, `content`, `date_posted`, `privacy`, `archived`) VALUES
-(1, 6, "This is content 1", '2018-11-11 13:23:44', 'None', 0),
-(2, 6, "This is content 2", '2018-11-11 13:23:45', 'Members', 0),
-(3, 6, "This is content 3", '2018-11-11 13:23:46', 'Officers', 0),
-(4, 6, "This is content 4", '2018-11-11 13:23:47', 'None', 0);
+INSERT INTO `orgpost` (`post_id`, `org_id`, `title`, `content`, `date_posted`, `privacy`, `archived`) VALUES
+(1, 6, "Untitled", "This is content 1", '2018-11-11 13:23:44', 'None', 0),
+(2, 6, "Title of 2", "This is content 2", '2018-11-11 13:23:45', 'Members', 0),
+(3, 6, "Title 3", "This is content 3", '2018-11-11 13:23:46', 'Officers', 0),
+(4, 6, "4th Title", "This is content 4", '2018-11-11 13:23:47', 'None', 0);
 
 -- -------------------------------------------------------------------------
 

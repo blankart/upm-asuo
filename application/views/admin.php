@@ -42,7 +42,7 @@
                </div>
                   <div class="card-body" style="padding-top: 0px;">
                  <br><button type="button" onclick="searchSendNotice()" class="btn btn-danger admin-button" data-toggle="modal" data-target="#sendnotice">Send Announcement</button></br>
-                    <br><button type="button" onclick="viewAllNotices()" class="btn btn-danger admin-button" data-toggle="modal" data-target="#viewallnotices">View All Announcement</button></br>
+                    <br><button type="button" onclick="viewAllNotices()" class="btn btn-danger admin-button" data-toggle="modal" data-target="#viewallnotices">View All Announcements</button></br>
                   </div>
                </div>
             </div>

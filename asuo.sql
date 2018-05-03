@@ -186,6 +186,7 @@ ALTER TABLE `orgmember`
 CREATE TABLE `orgpost` (
    `post_id` int(11) UNSIGNED NOT NULL,
    `org_id` int(11) UNSIGNED NOT NULL,
+   `title` varchar(50) NOT NULL DEFAULT "Untitled",
    `content` varchar(500) NOT NULL DEFAULT "No details",
    `privacy` varchar(20) NOT NULL DEFAULT "None",
    `date_posted` DATETIME NOT NULL,

@@ -230,34 +230,40 @@
 			$this->db->insert('announcement', $add);
 		}
 
-		public function viewAllNotices(){
-			$condition = "op.org_id = a.recipient AND op.org_id = a.recipient";
-
-			$this->db->select('a.notice_id, a.title, a.date_posted, op.org_name');
-			$this->db->from('announcement a, organizationprofile op');
-			$this->db->order_by('a.notice_ID');
-			$this->db->where ($condition);
-			$query = $this->db->get();
-			$specificAnnouncements = $query->result_array();
-
-			$condition2 = "a.recipient = 0 AND a.recipient = 0";
+		public function viewAllNotices($id){
+			$condition = "a.sender = ". $id. " AND a.archived = 0";
 
 			$this->db->select('a.notice_id, a.title, a.date_posted');
 			$this->db->from('announcement a');
 			$this->db->order_by('a.notice_id');
-			$this->db->where ($condition2);
-			$query2 = $this->db->get();
-			$result2 = $query2->result_array();
+			$this->db->where ($condition);
+			$query = $this->db->get();
+			$announcements = $query->result_array();
 
-			$announcementsToAll = array();
-			foreach($result2 as $res){
-				$res['org_name'] = 'All Organizations';
-				array_push($announcementsToAll, $res);
+			$result = array();
+			foreach($announcements as $announcement){
+				$announcement['org_name'] = $this->getRecipients($announcement['notice_id']);
+				array_push($result, $announcement);
 			}
+			return $result;
+		}
 
-			$finalresult = array_merge($announcementsToAll, $specificAnnouncements);
-			array_multisort($finalresult);
-			return $finalresult;
+		private function getRecipients($id){
+			$condition = "r.notice_id = " .$id. " AND r.org_id = op.org_id";
+
+			$this->db->select('op.org_name');
+			$this->db->from('recipient r, organizationprofile op');
+			$this->db->order_by('op.org_name');
+			$this->db->where ($condition);
+			$query = $this->db->get();
+			$orgnames = $query->result_array();
+
+			$recipients = array();
+			foreach ($orgnames as $orgname) 
+				array_push($recipients, $orgname['org_name']);
+	
+			$recipients = implode('<br>', $recipients);
+			return $recipients;
 		}
 
 		public function viewMessageDetails($id){

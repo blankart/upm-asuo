@@ -1,7 +1,7 @@
 <?php
 
    if($this->session->userdata['account_type'] == 'org'){
-      $org_id = $this->session->userdata['user_id'];
+      $id = $this->session->userdata['user_id'];
    }
 
 ?>
@@ -36,7 +36,7 @@
    }
 
    function editProfile(){
-      var org_id = '<?php echo $org_id; ?>';
+      var org_id = '<?php echo $id; ?>';
       var acronym = document.getElementsByName("acronym")[0].value;
       var mailing_address = document.getElementsByName("mailing_address")[0].value;
       var org_website = document.getElementsByName("org_website")[0].value;
