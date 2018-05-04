@@ -341,7 +341,6 @@
 				}
 
 				$html= $temp.'
-					<img src="/img/logo.jpg"  width="50" height="50">
 					<br>
 					<b>Name:</b>'.$result[$i]['first_name'].' '.$result[$i]['middle_name'].' '.$result[$i]['last_name'].'<br>
 					<b>Position:</b>'.$result[$i]['position'].'
