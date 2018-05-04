@@ -12,6 +12,16 @@
 
 			return $result;
 		}
+		public function getOrgOfficer()
+		{
+			$condition = "om.org_id = op.org_id AND om.student_id = sp.student_id AND om.student_id = sa.student_id";
+			$this->db->select("op.*, sp.*, om.*,sa.*");
+			$this->db->from("organizationprofile op, studentprofile sp, orgmember om, studentaccount sa");
+			$this->db->where($condition);
+			$org_details = $this->db->get();
+			
+			return $org_details->result_array();			
+		}
 
 		private function getOrgDetails($org_id){
 			$condition = "oa.org_id = op.org_id AND op.org_id = " .$org_id;
