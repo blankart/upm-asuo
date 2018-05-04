@@ -35,9 +35,9 @@
 		}
 
 		private function getAnnouncements($org_id){
-			$condition = "r.org_id = " .$org_id. " AND a.notice_ID = r.notice_ID AND op.org_id = r.org_id AND a.sender = ad.admin_id";
+			$condition = "r.org_id = " .$org_id. " AND a.notice_ID = r.notice_ID AND op.org_id = r.org_id AND a.sender = ad.admin_id AND a.archived = 0";
 
-			$this->db->select("a.*, ad.username, op.org_name");
+			$this->db->select("a.*, ad.username, ad.admin_name, op.org_name");
 			$this->db->from("announcement a, organizationprofile op, recipient r, admin ad");
 			$this->db->where($condition);
 			$announcements = $this->db->get();
@@ -57,7 +57,7 @@
 		}
 
 		private function getOrgPosts($org_id){
-			$condition = "opt.org_id = " .$org_id. " AND op.org_id = ".$org_id;
+			$condition = "opt.org_id = " .$org_id. " AND op.org_id = ".$org_id. " AND opt.archived = 0";
 
 			$this->db->select("opt.*, op.org_name");
 			$this->db->from("orgpost opt, organizationprofile op");
@@ -106,6 +106,39 @@
 				$this->db->where($condition);
 				$result = $this->db->get();
 				return $result->num_rows();
+		}
+
+		public function editOrgProfile($id, $changes){
+			$condition = 'org_id = ' .$id. ' AND org_id = '.$id;
+
+			$this->db->where($condition);
+			$this->db->update('organizationprofile', $changes);
+		}
+
+		public function checkOrgPassword($id, $orgpassword){
+			$condition = "org_id = " .$id. " AND password = '" .$orgpassword. "'";
+
+			$this->db->select('*');
+			$this->db->from('organizationaccount');
+			$this->db->where ($condition);
+
+			$query = $this->db->get();
+
+			if ($query->num_rows() == 1)
+				return true;
+			else 
+				return false;
+		}
+
+		public function changeOrgPassword($id, $neworgpassword){
+			$condition = "org_id = " .$id. " AND org_id = " .$id;
+
+			$changes = array(
+				'password' => $neworgpassword
+			);
+
+			$this->db->where($condition);
+			$this->db->update('organizationaccount', $changes);		
 		}
 	}
 ?>

@@ -419,15 +419,16 @@
 
 		private function viewAllNotices(){
 			$source = $this->input->post('source');
+			$id = $this->input->post('id');
 
-			if($source == 'admin'){
+			if($id != NULL && $source == 'admin'){
 				$this->load->model('AdminModel');
-				$result = array();
-				$profiles = $this->AdminModel->viewAllNotices();
+				$profiles = $this->AdminModel->viewAllNotices($id);
 
+				$result = array();
 				foreach ($profiles as $profile)
 					array_push($result, $profile);
-
+			
 				header('Content-type: application/json');
 				echo json_encode($result);
 				exit();

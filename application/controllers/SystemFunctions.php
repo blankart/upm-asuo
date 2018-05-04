@@ -109,20 +109,22 @@
 			//insert profile details to db
 			//var_dump($org_id);
 			$profile_details = array(
-				'org_id'=>$org_id,
-				'org_name'=>$result['org_name'], 
-				'acronym'=>$result['acronym'], 
-				'org_category'=>$result['org_category'], 
-				'org_college'=>$result['org_college'],
-				'description'=>'N/A', 
-				'objectives'=>'N/A', 
-				'org_website'=>$result['org_website'], 
-				'mailing_address'=>$result['mailing_address'], 
-				'date_established'=>'N/A', 
-				'org_logo'=>'logo_default.jpg'
+				'org_id' => $org_id,
+				'org_name' => $result['org_name'], 
+				'acronym' => $result['acronym'], 
+				'org_category' => $result['org_category'], 
+				'org_college' => $result['org_college'],
+				'description' => 'N/A', 
+				'objectives' => 'N/A', 
+				'org_website' => $result['org_website'], 
+				'mailing_address' => $result['mailing_address'], 
+				'date_established' => 'N/A', 
+				'org_logo' => 'logo_default.jpg',
+				'constitution' => 'No uploads yet',
+				`incSEC` => 0
 			);
+
 			$org_session = $this->SystemModel->createOrgProfile($profile_details);
-			//redirect(base_url().'login');
 			$this->setSessions($org_session);
 		}
 
@@ -163,7 +165,8 @@
 				$details = array(
 					'account_type' => 'admin',
 					'user_id' => $data['admin_id'],
-	       			'username'  => 'OSA',
+	       			'username'  => $data['username'],
+	       			'admin_name'  => $data['admin_name'],
 	    			'logged_in' => TRUE	    			
 				);
 

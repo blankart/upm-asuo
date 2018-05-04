@@ -139,7 +139,7 @@
                                 <div class="stream-post">
                                     <div class="sp-author">
                                         <a class="sp-author-avatar" href="#"><img alt="" src="<?php echo base_url();?>img/UP%20logo.png"></a>
-                                        <h6 class="sp-author-name"><a href="#">OSA</a></h6>
+                                        <h6 class="sp-author-name"><a href="#"><?php echo $announcement['admin_name']; ?></a></h6>
                                     </div>
                                     <div class="sp-content">
                                         <div class="sp-info">

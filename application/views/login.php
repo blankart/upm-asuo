@@ -39,9 +39,9 @@
 							<form method="POST" action ="checkLogin" role="form">
 							 	<h4 class="card-title">Student/Organization Login</h4>
 								<div class="form-group">
-									<label for="email">E-mail Address</label>
+									<label for="email">Username / Email Address</label>
 
-									<input id="email" type="email" class="form-control" name="credentials[username]" value="" required autofocus>
+									<input id="email" type="text" class="form-control" name="credentials[username]" value="" required autofocus>
 								</div>
 
 								<div class="form-group">

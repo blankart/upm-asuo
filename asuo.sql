@@ -46,6 +46,7 @@ ALTER TABLE `studentprofile`
   `admin_id` int(11) UNSIGNED NOT NULL,
   `username` varchar(32) NOT NULL,
   `password` varchar(32) NOT NULL,
+  `admin_name` varchar(50) NOT NULL,
   `admin_email` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -77,7 +78,9 @@ ALTER TABLE `admin`
   `org_website` varchar(50) NOT NULL DEFAULT 'N/A/',
   `mailing_address` varchar(100) NOT NULL DEFAULT 'N/A/',
   `date_established` varchar(50) NOT NULL,
-  `org_logo` varchar(150) NOT NULL DEFAULT 'logo_default.jpg'
+  `org_logo` varchar(150) NOT NULL DEFAULT 'logo_default.jpg',
+  `constitution` varchar(150) NOT NULL DEFAULT 'No uploads yet',
+  `incSEC` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `organizationaccount`
@@ -186,6 +189,7 @@ ALTER TABLE `orgmember`
 CREATE TABLE `orgpost` (
    `post_id` int(11) UNSIGNED NOT NULL,
    `org_id` int(11) UNSIGNED NOT NULL,
+   `title` varchar(50) NOT NULL DEFAULT "Untitled",
    `content` varchar(500) NOT NULL DEFAULT "No details",
    `privacy` varchar(20) NOT NULL DEFAULT "None",
    `date_posted` DATETIME NOT NULL,

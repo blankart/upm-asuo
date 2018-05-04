@@ -162,21 +162,29 @@ function validateForm(){
                                         <div class="row">
                                             <div class="col-6">
                                                 <select class="form-control" name="data[org_category]" required>
-                                                    <option>Category 1</option>
-                                                    <option>Category 2</option>
-                                                    <option>Category 3</option>
-                                                    <option>Category 4</option>
-                                                    <option>Category 5</option>
+                                                    <option>Academic</option>
+                                                    <option>Cause-oriented</option>
+                                                    <option>Cultural</option>
+                                                    <option>Fraternity</option>
+                                                    <option>Regional/Provincial</option>
+                                                    <option>Religious/Spiritual</option>
+                                                    <option>Service</option>
+                                                    <option>Socio-Civic</option>
+                                                    <option>Sorority</option>
+                                                    <option>Special Interest</option>
+                                                    <option>Sports/Recreation</option>
+                                          
                                                 </select>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
                                             <div class="col-6">
                                                 <select class="form-control" name="data[org_college]" required>
-                                                    <option>College 1</option>
-                                                    <option>College 2</option>
-                                                    <option>College 3</option>
-                                                    <option>College 4</option>
-                                                    <option>College 5</option>
+                                                    <option>College of Applied Medicine and Professions</option>
+                                                    <option>College of Arts and Sciences</option>
+                                                    <option>College of Dentistry</option>
+                                                    <option>College of Medicine</option>
+                                                    <option>College of Nursing</option>
+                                                    <option>College of Pharmacy</option>
                                                 </select>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>

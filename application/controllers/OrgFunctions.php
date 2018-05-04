@@ -12,8 +12,14 @@
 					$this->load->view('footer');
 				}
 			}
-			else if ($action == 'change_password')
-				$this->load->view('changepassword');
+			else if ($action == 'checkOrgPassword')
+				$this->checkOrgPassword();
+			else if ($action == 'changeOrgPassword')
+				$this->changeOrgPassword();
+
+			else if ($action == 'editOrgProfile')
+				$this->editOrgProfile();
+			
 			else if ($action == 'applyforaccreditation'){
 				$this->load->view('header');
 				$this->load->view('org/applyforaccreditation/applyforaccreditation');
@@ -107,10 +113,55 @@
 		
 			$this->load->view('header');
 			$this->load->view('org/org', $data);
+			$this->load->view('footer');
 			$this->load->view('org/applyforaccreditation');
 			$this->load->view('org/createposts');
 			$this->load->view('org/editprofile', $org_data);
-			$this->load->view('footer');
+			$this->load->view('org/changepassword');
+		}
+
+		private function checkOrgPassword(){
+			$id = $this->input->post('id');
+			$password = $this->input->post('orgpassword');
+		
+			if($id != NULL && $password != NULL){
+				$orgpassword = md5($password);
+				$this->load->model('OrgModel');
+				$result = $this->OrgModel->checkOrgPassword($id, $orgpassword);
+				echo json_encode($result);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function changeOrgPassword(){
+			$id = $this->input->post('id');
+			$password = $this->input->post('neworgpassword');
+		
+			if($id != NULL && $password != NULL){
+				$neworgpassword = md5 ($password);
+				$this->load->model('OrgModel');
+				$this->OrgModel->changeOrgPassword($id, $neworgpassword);
+				echo json_encode('true');
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function editOrgProfile(){
+			$data = $this->input->post('data');
+			$org_id = $this->input->post('org_id');
+		
+			if($org_id != NULL && $data != NULL){
+				$this->load->model('OrgModel');
+				$this->OrgModel->editOrgProfile($org_id, $data);
+				echo json_encode(true);
+				exit();
+			}
+			else
+				show_404();
 		}
 
 		private function viewFormA()

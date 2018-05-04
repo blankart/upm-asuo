@@ -1,10 +1,15 @@
-<script>
+<?php
+  if($this->session->userdata['account_type'] == 'admin'){
+    $id = $this->session->userdata['user_id'];
+  }
+?><script>
   function viewAllNotices(){  
+    var id = '<?php echo $id; ?>';
     $.ajax({
            type:"post",
            url:"<?php echo base_url(); ?>admin/viewAllNotices",
            cache: false,
-           data: {source: 'admin'},
+           data: {id: id, source: 'admin'},
            dataType: 'json',
            async: false,
            success:function(result){
@@ -13,7 +18,7 @@
               "<thead>"+
                  "<tr>"+
                     "<th>Date Posted</th>"+
-                    "<th>Annoucement Title</th>"+
+                    "<th>Announcement Title</th>"+
                     "<th>Recipient</th>"+
                     "<th class='text-center'>Action</th>"+
                  "</tr>"+
@@ -24,11 +29,14 @@
                           "<td>"+result[key]['date_posted']+"</td>"+
                           "<td>"+result[key]['title']+"</td>"+
                           "<td>"+result[key]['org_name']+"</td>"+
-                          "<td><button class='btn btn-info btn-xs' onclick='viewMessage("+result[key]['notice_id']+")'> View Annoucement</button></td></tr>  ";
+                          "<td><button class='btn btn-info btn-xs' onclick='viewMessage("+result[key]['notice_id']+")'> View Announcement</button></td></tr>  ";
               }
            }
            $("#allMessageResult").html(output);
-          }
+          },
+           error: function(XMLHttpRequest, textStatus, errorThrown) { 
+               alert("Status: " + textStatus + " | Error: " + errorThrown); 
+            }   
           });
   }     
 
@@ -75,7 +83,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">View All Annoucements</h4>
+                <h4 class="modal-title">View All Announcements</h4>
             </div>
             <!-- Modal body -->
             <div class="modal-body">

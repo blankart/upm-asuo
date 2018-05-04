@@ -5,7 +5,7 @@ INSERT INTO `studentaccount` (`student_id`, `up_id`, `up_mail`, `username`, `pas
 (4, '201481207', 'acracusa@up.edu.ph', 'acracusa', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
 (5, '201411235', 'kacolumna@up.edu.ph', 'kacolumna', '32250170a0dca92d53ec9624f336ca24', 1, 0, 1),
 (6, '201408109', 'pslasmarias@up.edu.ph', 'pslasmarias', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
-(7, '201479241', 'ncmendoza1@up.edu.ph', 'nmendoza', '32250170a0dca92d53ec9624f336ca24', 1, 0, 0),
+(7, '201479241', 'ncmendoza1@up.edu.ph', 'nmendoza1', '32250170a0dca92d53ec9624f336ca24', 1, 0, 0),
 (8, '201499764', 'dgperez@up.edu.ph', 'dgperez', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
 (9, '201480756', 'avsangeuenza@up.edu.ph', 'avsanguenza', '32250170a0dca92d53ec9624f336ca24', 1, 0, 0);
 
@@ -20,8 +20,9 @@ INSERT INTO `studentprofile` (`student_id`, `first_name`, `middle_name`, `last_n
 (8, 'Darlene Grace', 'A', 'Perez', 'Female', '1997-01-01', 'BS Computer Science', 4, '09XXXXXXXXX', 'darlene.jpg', 'darlene_form5.jpg'),
 (9, 'Alyssa Fatima', 'V', 'Sanguenza', 'Female', '1997-01-01', 'BS Computer Science', 4, '09XXXXXXXXX', 'alyssa.jpg', 'alyssa_form5.jpg');
 
-INSERT INTO `admin` (`admin_id`, `username`, `password`, `admin_email`) VALUES
-(1, 'admin@up.edu.ph', '32250170a0dca92d53ec9624f336ca24', 'admin@up.edu.ph');
+INSERT INTO `admin` (`admin_id`, `username`, `password`, `admin_name`, `admin_email`) VALUES
+(1, 'OSA', '32250170a0dca92d53ec9624f336ca24', 'Office of Student Affairs', 'admin@up.edu.ph'),
+(2, 'USC', '32250170a0dca92d53ec9624f336ca24', 'University Student Council', 'usc@up.edu.ph');
 
 INSERT INTO `organizationaccount` (`org_id`, `org_email`, `password`, `org_status`, `isVerified`, `isActivated`, `archived`) VALUES
 (1, 'aisec@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 0, 0,  0),
@@ -35,49 +36,44 @@ INSERT INTO `organizationaccount` (`org_id`, `org_email`, `password`, `org_statu
 (9, 'orgasm@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 0,  1),
 (10, 'upmkule@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1,  0);
 
-INSERT INTO `organizationprofile` (`org_id`, `org_name`, `acronym`, `org_category`, `org_college`, `description`, `objectives`, `org_website`, `mailing_address`, `date_established`, `org_logo`) VALUES
-(1, 'AISEC', 'AISEC', 'Socio-Civic', 'Arts and Sciences', 'international involvement org', 'to something', 'aisec.com', 'here', '1988', 'aisec.jpg'),
-(2, 'UP Manila Chorale', 'UPM Chorale', 'Special Interest', 'Arts and Sciences', 'music org', 'to something', 'upmchorale.com', 'there', '1989', 'upmc.jpg'),
-(3, 'Garbriela Youth', 'UPM Gabriela', 'Cause-Oriented', 'Arts and Sciences', 'Women empowerment org', 'to something', 'gabriela.com', 'where', '1990', 'gabriela.jpg'),
-(4, 'UP Manila Musical Organization', 'UPMorg', 'Special Interest', 'Arts and Sciences', 'org of music', 'to something', 'upmorg.com', 'herewhere', '1991', 'upmorg.jpg'),
-(5, 'UP Beau', 'UPB', 'Sorority', 'Arts and Sciences', 'org of females', 'to something', 'upbeau.com', 'wherewhere', '1992', 'upbeau.jpg'),
-(6, 'UP Society of Computer Scientists', 'UP SoComSci', 'Academic', 'Arts and Sciences', 'org of computer enthusiasts', 'to something', 'upsocomsci.com', 'hello world', '1993', 'upsocomsci.jpg'),
-(7, 'Organizational Communication Society', 'OrComSoc', 'Academic', 'Arts and Sciences', 'org of orcom students', 'to something', 'uporcomsoc.com', 'therethere', '1993', 'uporcomsoc.jpg'),
-(8, 'UP Vector', 'UP Vector', 'Academic', 'Arts and Sciences', 'org of vectors', 'to something', 'upvector.com', 'somewhere', '1994', 'upvector.jpg'),
-(9, 'Organization of Area Studies Majors', 'OrgASM', 'Academic', 'Arts and Sciences', 'org of asm', 'to something', 'orgasm.com', 'over', '1995', 'orgasm.jpg'),
-(10, 'UP Manila Collegian', 'MKule', 'Service', 'Arts and Sciences', 'org of collegians XD', 'to something', 'mkule.com', 'my head', '1996', 'mkule.jpg');
+INSERT INTO `organizationprofile` (`org_id`, `org_name`, `acronym`, `org_category`, `org_college`, `description`, `objectives`, `org_website`, `mailing_address`, `date_established`, `org_logo`, `constitution`, `incSEC`) VALUES
+(1, 'AISEC', 'AISEC', 'Socio-Civic', 'Arts and Sciences', 'international involvement org', 'to something', 'aisec.com', 'here', '1988', 'aisec.jpg', 'No uploads yet', 0),
+(2, 'UP Manila Chorale', 'UPM Chorale', 'Special Interest', 'Arts and Sciences', 'music org', 'to something', 'upmchorale.com', 'there', '1989', 'upmc.jpg', 'No uploads yet', 0),
+(3, 'Garbriela Youth', 'UPM Gabriela', 'Cause-Oriented', 'Arts and Sciences', 'Women empowerment org', 'to something', 'gabriela.com', 'where', '1990', 'gabriela.jpg', 'No uploads yet', 1),
+(4, 'UP Manila Musical Organization', 'UPMorg', 'Special Interest', 'Arts and Sciences', 'org of music', 'to something', 'upmorg.com', 'herewhere', '1991', 'upmorg.jpg', 'No uploads yet', 1),
+(5, 'UP Beau', 'UPB', 'Sorority', 'Arts and Sciences', 'org of females', 'to something', 'upbeau.com', 'wherewhere', '1992', 'upbeau.jpg', 'No uploads yet', 0),
+(6, 'UP Society of Computer Scientists', 'UP SoComSci', 'Academic', 'Arts and Sciences', 'org of computer enthusiasts', 'to something', 'upsocomsci.com', 'hello world', '1993', 'upsocomsci.jpg', 'No uploads yet', 1),
+(7, 'Organizational Communications Society', 'OrComSoc', 'Academic', 'Arts and Sciences', 'org of orcom students', 'to something', 'uporcomsoc.com', 'therethere', '1993', 'uporcomsoc.jpg', 'No uploads yet', 0),
+(8, 'UP Vector', 'UP Vector', 'Academic', 'Arts and Sciences', 'org of vectors', 'to something', 'upvector.com', 'somewhere', '1994', 'upvector.jpg', 'No uploads yet', 0),
+(9, 'Organization of Area Studies Majors', 'OrgASM', 'Academic', 'Arts and Sciences', 'org of asm', 'to something', 'orgasm.com', 'over', '1995', 'orgasm.jpg', 'No uploads yet', 1),
+(10, 'UP Manila Collegian', 'MKule', 'Service', 'Arts and Sciences', 'org of collegians XD', 'to something', 'mkule.com', 'my head', '1996', 'mkule.jpg', 'No uploads yet', 0);
 
 -- -------------------------------------------------------------------
 
-INSERT INTO `announcement` (`notice_ID`, `sender`, `title`, `content`,  `date_posted`, `archived`) VALUES
+INSERT INTO `announcement` (`notice_id`, `sender`, `title`, `content`,  `date_posted`, `archived`) VALUES
 (1, 1,'Test Announcement', 'Hello. This is a test announcement. :D',  '2017-09-04', 0),
 (2, 1, 'wala akong title :<', 'wala na akong maisip na ilalagay :((', '2018-03-28', 0),
 (3, 1, 'HAPPY BIRTHDAY ALDRIN!!!', 'BIRTHDAY NI ALDRIN XD',  '2018-04-15', 0),
-(4, 1, 'Accredited ORganization', 'Listed below are the accredited orgs:\r\n.\r\n.\r\n.\r\n..\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n.\r\n', '2018-04-12', 0),
+(4, 2, 'Accredited ORganization', 'Listed below are the accredited orgs:\r\n.\r\n.\r\n.\r\n..\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n.\r\n', '2018-04-12', 0),
 (5, 1, 'Welcome Message', 'Welcome to the Accreditation for University-wide Orgs',  '2018-03-02', 0),
 (6, 1, 'Exam sa stat121', 'friday this week:<', '2018-04-13', 0),
-(7, 1, 'Accreditation Period', 'Accreditation period will start on ...',  '2018-04-04', 0),
+(7, 2, 'Accreditation Period', 'Accreditation period will start on ...',  '2018-04-04', 0),
 (8, 1, 'General Assembly for Univ-wide Orgs', 'A general assembly will be conducted on ...',  '2017-12-12', 0),
 (9, 1, 'Orgs with pending accreditation app\r\n', 'Listed below are the orgs with pending application:\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n...\r\n.\r\n.\r\n\r\n\r\n.',  '2018-04-14', 0),
 (10, 1, 'Requirements for Accreditaitoin', 'Listed below are the requirements for accreditation:\r\n.\r\n.\r\n.', '2018-04-02', 0),
 (11, 1, 'hey', 'hey',  '2018-04-15' , 0),
-(12, 1, 'This is Zero', 'sample message', '2018-04-15', 0),
+(12, 2, 'This is Zero', 'sample message', '2018-04-15', 0),
 (13, 1, 'Hey', 'Musta niggas',  '2018-04-15', 0),
 (14, 1, 'something', 'something',  '2018-04-15', 0),
-(15, 1, 'something', 'something',  '2018-04-15', 0),
-(16, 1, 'something', 'something',  '2018-04-15', 0),
-(17, 1, 'something', 'something', '2018-04-15', 0),
-(18, 1, 'something', 'something',  '2018-04-15', 0),
-(19, 1, 'something', 'something',  '2018-04-15', 0),
-(20, 1, 'The quick brown fox jumps over the lazy dog', 'The quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps o',  '2018-04-16', 0),
-(21, 1, 'jello', 'jello', '2018-04-16', 0),
-(22, 1, 'sdasdasd', 'asdasdasd',  '2018-04-16', 0),
-(23, 1, 'final something', 'final something',  '2018-04-16', 0);
+(15, 1, 'The quick brown fox jumps over the lazy dog', 'The quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps o',  '2018-04-16', 0),
+(16, 2, 'jello', 'jello', '2018-04-16', 0),
+(17, 1, 'sdasdasd', 'asdasdasd',  '2018-04-16', 0),
+(18, 2, 'final something', 'final something',  '2018-04-16', 0);
 
 
 -- -------------------------------------------------------------------
 
-INSERT INTO `recipient` (`recipient_id`, `notice_ID`, `org_id`) VALUES
+INSERT INTO `recipient` (`recipient_id`, `notice_id`, `org_id`) VALUES
 (1, 1, 10),
 (2, 2, 4),
 (3, 3, 3),
@@ -92,15 +88,19 @@ INSERT INTO `recipient` (`recipient_id`, `notice_ID`, `org_id`) VALUES
 (12, 12, 1),
 (13, 13, 3),
 (14, 14, 3),
-(15, 15, 4),
-(16, 16, 5),
-(17, 17, 6),
-(18, 18, 8),
-(19, 19, 9),
-(20, 20, 4),
-(21, 21, 4),
-(22, 22, 4),
-(23, 23, 4);
+(15, 14, 4),
+(16, 14, 5),
+(17, 14, 6),
+(18, 14, 8),
+(19, 14, 9),
+(20, 15, 4),
+(21, 16, 4),
+(22, 17, 4),
+(23, 18, 4),
+(24, 18, 5),
+(25, 18, 6),
+(26, 18, 7),
+(27, 18, 8);
 
 -- -------------------------------------------------------------------
 
@@ -118,14 +118,13 @@ INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`, `i
 (3, 6, 3, 'Member', 0),
 (4, 6, 4, 'Member', 1);
 
-
 -- -------------------------------------------------------------------------
 
-INSERT INTO `orgpost` (`post_id`, `org_id`, `content`, `date_posted`, `privacy`, `archived`) VALUES
-(1, 6, "This is content 1", '2018-11-11 13:23:44', 'None', 0),
-(2, 6, "This is content 2", '2018-11-11 13:23:45', 'Members', 0),
-(3, 6, "This is content 3", '2018-11-11 13:23:46', 'Officers', 0),
-(4, 6, "This is content 4", '2018-11-11 13:23:47', 'None', 0);
+INSERT INTO `orgpost` (`post_id`, `org_id`, `title`, `content`, `date_posted`, `privacy`, `archived`) VALUES
+(1, 6, "Untitled", "This is content 1", '2018-11-11 13:23:44', 'None', 0),
+(2, 6, "Title of 2", "This is content 2", '2018-11-11 13:23:45', 'Members', 0),
+(3, 6, "Title 3", "This is content 3", '2018-11-11 13:23:46', 'Officers', 0),
+(4, 6, "4th Title", "This is content 4", '2018-11-11 13:23:47', 'None', 0);
 
 -- -------------------------------------------------------------------------
 
