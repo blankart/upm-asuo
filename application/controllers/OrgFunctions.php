@@ -64,9 +64,6 @@
 				$this->load->view('org/applyforaccreditation/formG');
 				$this->load->view('footer');
 			}
-
-
-
 			else if($action == 'viewFormA')
 				$this->viewFormA();
 			else if($action == 'viewFormC'){
@@ -343,7 +340,7 @@
 
 			// add a page
 			$pdf->AddPage();
-
+			//$pdf->AddPage();
 			$pdf->Output('example_003.pdf', 'I');
 
 		}
@@ -381,13 +378,46 @@
 
 			// set font
 			$pdf->SetFont('Helvetica', '', 12);
+			//$pdf->AddPage();
+			$this->load->model('OrgModel');
+			$result = $this->OrgModel->getOrgOfficer();	
+			//var_dump($result);
+			$temp = "";
+			
+			for($i=0;$i<sizeof($result);$i++)
+			{
+				if(($i+1 % 4) == 0 || $i == 0)
+				{
+					$pdf->AddPage();
+					$temp = '<br><p align="right"><b><u>'.$result[$i]['org_name'].'</u></b><br>
+					<b>Name of Organization</b></p><br>
+					<h2 align="center">LIST OF OFFICERS</h2>
+					<h4 align="center">AY 2017-2018</h4>';
+				}
 
+				$html= $temp.'
+					<br>
+					<b>Name:</b>'.$result[$i]['first_name'].' '.$result[$i]['middle_name'].' '.$result[$i]['last_name'].'<br>
+					<b>Position:</b>'.$result[$i]['position'].'
+					<b>Year/Course:</b>'.$result[$i]['year_level']. '     '.$result[$i]['course'].'<br>
+					<b>Address:</b>'.$result[$i]['mailing_address'].'<br>
+					<b>Phone:</b>'.$result[$i]['contact_num'].'
+					<b>Email:</b>'.$result[$i]['up_mail'].'<br>
+					<b>Other Contact Details:</b> Empty pa ito.
+					<br>
 
-
+				';
+				$temp = "";
+				$pdf->writeHTML($html, true, false, true, false, '');
+			}
 			// add a page
-			$pdf->AddPage();
-
+			
+			//$name = 'UP Society of Computer Scientists';
+			// set some text to print
+			
+			
 			$pdf->Output('example_003.pdf', 'I');
+			//$pdf->Output('example_003.pdf', 'I');
 
 
 		}
