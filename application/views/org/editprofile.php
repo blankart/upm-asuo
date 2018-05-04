@@ -30,16 +30,12 @@
       });
 
    function incSEC(){
-
       var incSEC = "<?php echo $profile['incSEC']; ?>"
-      if(incSEC == 1){
+
+      if(incSEC == 1)
          document.getElementById("yes").checked = true;
-         document.getElementById("no").checked = false;
-      }
-      else{
-         document.getElementById("yes").checked = false;
-         document.getElementById("no").checked = true;
-      }
+      else
+         document.getElementById("no").checked = true;  
    }
 
    function swalSucc(){
@@ -49,6 +45,7 @@
    function swalFail(){
       swal("Failed!", "You cannot updated your profile now!", "error");
    }
+
 
    function editProfile(){
       var org_id = '<?php echo $id; ?>';
@@ -95,6 +92,27 @@
          });
       }
    }
+
+   function changeLogo(){
+
+      $.ajax({
+         type: "post",
+         url :"<?php echo base_url(); ?>org/changeLogo", 
+         async: false,
+         cache: false,
+         contentType: false,
+         processData: false,
+         data: {source: 'org', data: formData},
+         success : function (data, status){
+            alert(data.msg);
+         },
+         error: function(XMLHttpRequest, textStatus, errorThrown) { 
+            alert("Status: " + textStatus + " | Error: " + errorThrown); 
+         }   
+      });
+   }
+
+
    window.onload = incSEC;
 </script>
 <div class="modal animated bounceInUp" id="editprofile" data-backdrop="static" data-keyboard="false">
@@ -108,9 +126,11 @@
          <!-- Modal body -->
          <div class="modal-body" style="height: 450px; overflow-y: auto;">
             <div class="text-center">
-               <img src="<?php echo base_url().'assets/logo/'.$profile['org_logo']; ?>" class="avatar img-thumbnail" alt="avatar" height="500px"  width="500px">
-               <h6>Upload organization logo.</h6>
-               <input type="file" style="text-align: center;" onchange="showPreview()" class="form-control text-center" style="width: 250px" >
+               <form enctype="multipart/form-data"  method="POST" action="">
+                  <img src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo']; ?>" class="avatar img-thumbnail" alt="avatar" height="500px"  width="500px">
+                  <h6>Upload organization logo.</h6>
+                  <input type="file" style="text-align: center;" onchange="showPreview()" class="form-control text-center" style="width: 250px" id = 'logo' name = 'logo'>
+              </form>
             </div>
 
             <form class="form-horizontal" role="form" name="profileForm" id ="orgprofile">
@@ -205,20 +225,7 @@
                   </table>
                </div>
                <br>
-               <div class="form-group">
-                  <label class="col-lg control-label"><b>Is your organization incorporated with the Securities and Exchange Commission(SEC)?</b></label>
-                  <div class="col-lg" value ='yes'>
-                     <input type="radio" id="yes" name ="incSEC">Yes
-                     <br>
-                     <input type="radio" id="no" name ="incSEC">No
-                  </div>
-               </div>
-               <div class="form-group">
-                  <label class="col-lg control-label">Upload constitution</label>
-                  <div class="col-lg">
-                     <input type="file" class="form-control" name="consti" style="width: 250px" required>
-                  </div>
-               </div>
+           
                <div class="form-group">
                   <label class="col-lg control-label">Objectives of Organization</label>
                   <div class="col-lg">
@@ -231,6 +238,20 @@
                      <textarea class="form-control" rows="3" id="descrip" name='description' required><?php echo $profile['description']; ?></textarea>
                   </div>
                </div>
+               <div class="form-group">
+                  <label class="col-lg control-label"><b>Is your organization incorporated with the Securities and Exchange Commission(SEC)?</b></label>
+                  <div class="col-lg" value ='yes'>
+                     <input type="radio" id="yes" name ="incSEC">Yes
+                     <br>
+                     <input type="radio" id="no" name ="incSEC">No
+                  </div>
+               </div>
+                <div class="form-group">
+                  <label class="col-lg control-label">Upload constitution</label>
+                  <div class="col-lg">
+                     <input type="file" class="form-control" name="consti" style="width: 250px" required>
+                  </div>
+               </div>
          </div>
          <!-- Modal footer -->
          <div class="modal-footer">
@@ -238,6 +259,8 @@
          <button type="button" id="saveChangesButton" class="btn btn-danger">Save</button>
          </div>
          </form>
+
+         
       </div>
    </div>
 </div>

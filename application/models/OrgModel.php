@@ -105,6 +105,19 @@
 			$this->db->update('organizationprofile', $changes);
 		}
 
+		public function changeLogo($id, $filename){
+			$condition = 'org_id = ' .$id. ' AND org_id = '.$id;
+
+			$changes = array(
+            	'logo'=> $filename
+       		);
+
+       		$this->db->where($condition);
+       		$this->db->update('organizationprofile', $changes);
+        
+        	return $id;
+		}
+
 		public function checkOrgPassword($id, $orgpassword){
 			$condition = "org_id = " .$id. " AND password = '" .$orgpassword. "'";
 
