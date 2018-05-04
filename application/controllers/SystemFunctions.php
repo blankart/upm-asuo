@@ -119,7 +119,9 @@
 				'org_website' => $result['org_website'], 
 				'mailing_address' => $result['mailing_address'], 
 				'date_established' => 'N/A', 
-				'org_logo' => 'logo_default.jpg'
+				'org_logo' => 'logo_default.jpg',
+				'constitution' => 'No uploads yet',
+				`incSEC` => 0
 			);
 
 			$org_session = $this->SystemModel->createOrgProfile($profile_details);
@@ -163,7 +165,8 @@
 				$details = array(
 					'account_type' => 'admin',
 					'user_id' => $data['admin_id'],
-	       			'username'  => 'OSA',
+	       			'username'  => $data['username'],
+	       			'admin_name'  => $data['admin_name'],
 	    			'logged_in' => TRUE	    			
 				);
 

@@ -6,7 +6,7 @@
 		}
 		if($this->session->userdata['account_type'] == 'admin'){
 			$username = ($this->session->userdata['username']);
-            
+            $admin_name = ($this->session->userdata['admin_name']);
 		}
 		if($this->session->userdata['account_type'] == 'org'){
 			$nsacronym = ($this->session->userdata['nsacronym']);
@@ -75,7 +75,7 @@
 				echo "<li class='nav-item'>
                 
                 </li>
-				<a class='nav-link' href='".base_url()."admin/".$username."'>".$username."</a>
+				<a class='nav-link' href='".base_url()."admin/".$username."'>".$admin_name."</a>
 		  		</li>
 		  		<li class='nav-item'>
 		  		<a class='nav-link' href='#' data-toggle='modal' data-target='#changeadminpassword'>Change Password</a>

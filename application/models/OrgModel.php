@@ -27,7 +27,7 @@
 		private function getAnnouncements($org_id){
 			$condition = "r.org_id = " .$org_id. " AND a.notice_ID = r.notice_ID AND op.org_id = r.org_id AND a.sender = ad.admin_id AND a.archived = 0";
 
-			$this->db->select("a.*, ad.username, op.org_name");
+			$this->db->select("a.*, ad.username, ad.admin_name, op.org_name");
 			$this->db->from("announcement a, organizationprofile op, recipient r, admin ad");
 			$this->db->where($condition);
 			$announcements = $this->db->get();

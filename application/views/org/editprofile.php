@@ -6,6 +6,8 @@
 
 ?>
 <script>
+
+
    function showPreview() {
   var preview = document.querySelector('img[alt=avatar]');
   var file    = document.querySelector('input[type=file]').files[0];
@@ -27,6 +29,19 @@
         });
       });
 
+   function incSEC(){
+
+      var incSEC = "<?php echo $profile['incSEC']; ?>"
+      if(incSEC == 1){
+         document.getElementById("yes").checked = true;
+         document.getElementById("no").checked = false;
+      }
+      else{
+         document.getElementById("yes").checked = false;
+         document.getElementById("no").checked = true;
+      }
+   }
+
    function swalSucc(){
       swal("Saved!", "You have updated your profile!", "success");
    }
@@ -44,6 +59,11 @@
       var objectives = document.getElementsByName("objectives")[0].value;
       var description = document.getElementsByName("description")[0].value;
 
+      if(document.getElementsByName("incSEC")[0].checked)
+         var incSEC = 1
+      else
+         var incSEC = 0;
+
       if(org_id == "" || acronym == "" || mailing_address == "" || org_website == "" || date_established == "" || objectives == "" || description == ""){
             //error, empty field found
       }
@@ -54,7 +74,8 @@
             date_established: date_established,
             mailing_address: mailing_address,
             description: description, 
-            objectives: objectives     
+            objectives: objectives,
+            incSEC: incSEC     
          };
         // alert(JSON.stringify(orgdata));
 
@@ -74,7 +95,7 @@
          });
       }
    }
-
+   window.onload = incSEC;
 </script>
 <div class="modal animated bounceInUp" id="editprofile" data-backdrop="static" data-keyboard="false">
    <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -186,10 +207,10 @@
                <br>
                <div class="form-group">
                   <label class="col-lg control-label"><b>Is your organization incorporated with the Securities and Exchange Commission(SEC)?</b></label>
-                  <div class="col-lg">
-                     <input type="radio" id="yes">Yes
+                  <div class="col-lg" value ='yes'>
+                     <input type="radio" id="yes" name ="incSEC">Yes
                      <br>
-                     <input type="radio" id="no">No
+                     <input type="radio" id="no" name ="incSEC">No
                   </div>
                </div>
                <div class="form-group">

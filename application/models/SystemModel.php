@@ -75,7 +75,7 @@
 		}
 
 		private function loginAdmin($credentials){
-			$condition = "username = '" . $credentials['username']. "' AND password = '" . $credentials['password']. "'";
+			$condition = "admin_email = '" . $credentials['username']. "' AND password = '" . $credentials['password']. "'";
 
 			$this->db->select('*');
 			$this->db->from('admin');
