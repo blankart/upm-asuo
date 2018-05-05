@@ -19,6 +19,10 @@
 
 			else if ($action == 'editOrgProfile')
 				$this->editOrgProfile();
+			else if ($action == 'changeLogo')
+				$this->changeLogo();
+			else if ($action == 'uploadConstitution')
+				$this->uploadConstitution();
 			
 			else if ($action == 'applyforaccreditation'){
 				$this->load->view('header');
@@ -164,8 +168,59 @@
 				show_404();
 		}
 
-		private function viewFormA()
-		{
+		private function changeLogo(){
+
+			  	$config['upload_path'] = './assets/';
+				$config['allowed_types'] = 'jpg|JPG';
+				$config['max_size']     = '500';
+				$config['max_width'] = '1024';
+				$config['max_height'] = '768';
+
+                $this->upload->initialize($config);
+
+
+			 if ( ! $this->upload->do_upload('logo')){
+
+			 	  echo "<pre>";
+                print_r($this->upload->data());
+                echo "</pre>";
+                        $error = array('error' => $this->upload->display_errors());
+                        print_r($error);
+
+                }
+                else
+                {
+                        $data = array('upload_data' => $this->upload->data());
+
+                       
+                }
+ 
+		}
+
+		private function uploadConstitution(){
+			$config['upload_path'] = './assets/org/constitution/';
+			$config['allowed_types'] = 'pdf';
+			$config['max_size']     = '100';
+
+			$this->upload->initialize($config);
+
+			if ( ! $this->upload->do_upload('constitution')){
+
+			 	echo "<pre>";
+                print_r($this->upload->data());
+                echo "</pre>";
+                        $error = array('error' => $this->upload->display_errors());
+                        print_r($error);
+            }
+            else {
+            	echo "<pre>";
+                print_r($this->upload->data());
+                echo "</pre>";
+                $data = array('upload_data' => $this->upload->data());          
+            }
+		}
+
+		private function viewFormA(){
 
 
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
