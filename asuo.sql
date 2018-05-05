@@ -31,7 +31,7 @@ ALTER TABLE `studentaccount`
   ADD UNIQUE KEY `username` (`username`);
 
 ALTER TABLE `studentaccount`
-  MODIFY `student_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `student_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `studentprofile`
   ADD KEY `student_id` (`student_id`);
@@ -88,7 +88,7 @@ ALTER TABLE `organizationaccount`
   ADD UNIQUE KEY `org_email` (`org_email`);
 
 ALTER TABLE `organizationaccount`
-  MODIFY `org_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `org_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `organizationprofile`
   ADD KEY `org_id` (`org_id`);
@@ -121,7 +121,7 @@ ALTER TABLE `accreditationapplication`
   `sender` int(11) UNSIGNED NOT NULL, 
   `title` varchar(150) NOT NULL,
   `content` varchar(500) NOT NULL,
-  `date_posted` date NOT NULL,
+  `date_posted` DATETIME NOT NULL,
   `archived` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -129,7 +129,7 @@ ALTER TABLE `announcement`
   ADD PRIMARY KEY (`notice_ID`);
 
 ALTER TABLE `announcement`
-  MODIFY `notice_ID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `notice_ID` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `announcement`
   ADD KEY `sender` (`sender`);
@@ -150,7 +150,7 @@ ALTER TABLE `recipient`
   ADD PRIMARY KEY (`recipient_id`);
 
 ALTER TABLE `recipient`
-  MODIFY `recipient_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `recipient_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `recipient`
   ADD KEY `notice_ID` (`notice_ID`),
@@ -174,7 +174,7 @@ ALTER TABLE `orgmember`
   ADD PRIMARY KEY (`membership_id`);
 
 ALTER TABLE `orgmember`
-  MODIFY `membership_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `membership_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `orgmember`
   ADD KEY `org_id` (`org_id`),
@@ -191,7 +191,7 @@ CREATE TABLE `orgpost` (
    `org_id` int(11) UNSIGNED NOT NULL,
    `title` varchar(50) NOT NULL DEFAULT "Untitled",
    `content` varchar(500) NOT NULL DEFAULT "No details",
-   `privacy` varchar(20) NOT NULL DEFAULT "None",
+   `privacy` varchar(20) NOT NULL DEFAULT "Public",
    `date_posted` DATETIME NOT NULL,
    `archived` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -200,7 +200,7 @@ ALTER TABLE `orgpost`
   ADD PRIMARY KEY (`post_id`);
 
 ALTER TABLE `orgpost`
-  MODIFY `post_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `post_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
  ALTER TABLE `orgpost`
   ADD KEY `org_id` (`org_id`);
@@ -221,7 +221,7 @@ ALTER TABLE `orgapplication`
   ADD PRIMARY KEY (`orgapp_id`);
 
 ALTER TABLE `orgapplication`
-  MODIFY `orgapp_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `orgapp_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `orgapplication`
   ADD KEY `org_id` (`org_id`),

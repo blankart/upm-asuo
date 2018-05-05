@@ -108,6 +108,11 @@
 				return $result->num_rows();
 		}
 
+		public function createPost($post){
+			$this->db->insert('orgpost', $post);
+			return $this->db->insert_id();
+		}
+
 		public function editOrgProfile($id, $changes){
 			$condition = 'org_id = ' .$id. ' AND org_id = '.$id;
 
