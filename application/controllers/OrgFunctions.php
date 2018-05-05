@@ -393,7 +393,7 @@
 			// Image example with resizing
 			for($i=0;$i<sizeof($result);$i++)
 			{
-				if($result[$i]['isRemoved'] == 0)
+				if($result[$i]['isRemoved'] == 0 && $result[$i]['position'] != 'Member')
 				{
 					if(($i+1 % 4) == 0 || $i == 0)
 				{
@@ -413,9 +413,7 @@
 					<b style="padding: 20px">Email:</b>&nbsp;&nbsp;'.$result[$i]['up_mail'].'<br>
 					<b style="padding: 20px">Other Contact Details:</b>&nbsp;&nbsp; Empty pa ito.
 					<br>
-
-				';
-				
+					';
 				$temp = "";
 				$pdf->writeHTML($html, true, 0, true, 0);
 				}
