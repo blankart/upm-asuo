@@ -426,8 +426,33 @@
 					<h2 align="center">LIST OF OFFICERS</h2>
 					<h4 align="center">AY 2017-2018</h4>';
 				}
-
+				$samplehtml = $temp.' 
+			<table>
+  			<tr>
+   	 			<td colspan = "2"><b>Name:</b> '.$result[$i]['first_name'].' '.$result[$i]['middle_name'].' '.$result[$i]['last_name'].'</td>
+   	 			<td> </td>
+   	 			<td> </td>
+    			<td rowspan="5"><img src="'.K_PATH_PROFILE_PIC.'/assets/student/profile_pic/'.$result[$i]['profile_pic'].'" width="80" height="100" align="right"></td>
+  			</tr>
+  			<tr>
+    			<td colspan = "2"><b>Position:</b> '.$result[$i]['position'].'</td>
+    			<td colspan="2.5"><b>Year/Course:</b> '.$result[$i]['year_level'].' '.$result[$i]['course'].'</td>
+  			</tr>
+  			<tr>
+    			<td colspan="3"><b>Address:</b> '.$result[$i]['up_mail'].'</td>
+  			</tr>
+  			<tr>
+    			<td colspan="2"><b>Phone:</b> '.$result[$i]['contact_num'].'</td>
+    			<td colspan="3"><b>Email:</b> '.$result[$i]['up_mail'].'</td>
+  			</tr>
+  			<tr>
+    			<td colspan = "4"><b>Other Contact Details:</b> </td>
+  			</tr>
+		</table> 
+				';
+				/*
 				$html= $temp.'
+
 					<b style="padding: 20px">Name:</b>&nbsp;&nbsp;'.$result[$i]['first_name'].'  '.$result[$i]['middle_name'].'  '.$result[$i]['last_name'].'<br>
 					<b style="padding: 20px">Position:</b>&nbsp;&nbsp;'.$result[$i]['position'].'&nbsp;&nbsp;&nbsp;&nbsp;
 					<b style="padding: 20px">Year/Course:</b>&nbsp;&nbsp;'.$result[$i]['year_level']. '/&nbsp;'.$result[$i]['course'].'<br>
@@ -436,10 +461,14 @@
 					<b style="padding: 20px">Email:</b>&nbsp;&nbsp;'.$result[$i]['up_mail'].'<br>
 					<b style="padding: 20px">Other Contact Details:</b>&nbsp;&nbsp; Empty pa ito.
 					<br>
+					<img src="http://localhost/ASUO/assets/student/profile_pic/aldrin.jpg" width="50" height="50" align="right">
 					';
+				*/
 				$temp = "";
-				$pdf->writeHTML($html, true, 0, true, 0);
+				$pdf->writeHTML($samplehtml, true, 0, true, 0);
 				}
+
+				
 				
 			}
 			
