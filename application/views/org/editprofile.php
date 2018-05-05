@@ -272,6 +272,7 @@
                </div>
                 <div class="form-group">
                   <label id="upLogo" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Constitution<input type="file" style="display: none;" class="form-control" id = 'consti' name = 'consti'></label>
+                  <button type="button" class="btn btn-primary" style="margin-left: 1em" onclick="window.open('uploaded pdf')">Preview File</button>
                </div>
          </div>
          <!-- Modal footer -->
