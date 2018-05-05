@@ -328,10 +328,19 @@
 			$result = $this->OrgModel->getOrgOfficer();	
 			//var_dump($result);
 			$temp = "";
-			
+			$pdf->setJPEGQuality(75);
+			//var_dump(K_PATH_IMAGES."\logo.png");
+			//$pdf->Image(K_PATH_IMAGES."\sample.jpg");
+			//$pdf->writeHTML($html, true, false, true, false, '');
+			//$image = file_get_contents('../logo.png');
+			//var_dump($image);
+			//$pdf->Image('@'.$image);
+			// Image example with resizing
 			for($i=0;$i<sizeof($result);$i++)
 			{
-				if(($i+1 % 4) == 0 || $i == 0)
+				if($result[$i]['isRemoved'] == 0)
+				{
+					if(($i+1 % 4) == 0 || $i == 0)
 				{
 					$pdf->AddPage();
 					$temp = '<br><p align="right"><b><u>'.$result[$i]['org_name'].'</u></b><br>
@@ -341,25 +350,22 @@
 				}
 
 				$html= $temp.'
-					<br>
-					<b>Name:</b>'.$result[$i]['first_name'].' '.$result[$i]['middle_name'].' '.$result[$i]['last_name'].'<br>
-					<b>Position:</b>'.$result[$i]['position'].'
-					<b>Year/Course:</b>'.$result[$i]['year_level']. '     '.$result[$i]['course'].'<br>
-					<b>Address:</b>'.$result[$i]['mailing_address'].'<br>
-					<b>Phone:</b>'.$result[$i]['contact_num'].'
-					<b>Email:</b>'.$result[$i]['up_mail'].'<br>
-					<b>Other Contact Details:</b> Empty pa ito.
+					<b style="padding: 20px">Name:</b>&nbsp;&nbsp;'.$result[$i]['first_name'].'  '.$result[$i]['middle_name'].'  '.$result[$i]['last_name'].'<br>
+					<b style="padding: 20px">Position:</b>&nbsp;&nbsp;'.$result[$i]['position'].'&nbsp;&nbsp;&nbsp;&nbsp;
+					<b style="padding: 20px">Year/Course:</b>&nbsp;&nbsp;'.$result[$i]['year_level']. '/&nbsp;'.$result[$i]['course'].'<br>
+					<b style="padding: 20px">Address:</b>&nbsp;&nbsp;'.$result[$i]['up_mail'].'<br>
+					<b style="padding: 20px">Phone:</b>&nbsp;&nbsp;'.$result[$i]['contact_num'].'
+					<b style="padding: 20px">Email:</b>&nbsp;&nbsp;'.$result[$i]['up_mail'].'<br>
+					<b style="padding: 20px">Other Contact Details:</b>&nbsp;&nbsp; Empty pa ito.
 					<br>
 
 				';
+				
 				$temp = "";
-				$pdf->writeHTML($html, true, false, true, false, '');
+				$pdf->writeHTML($html, true, 0, true, 0);
+				}
+				
 			}
-			// add a page
-			
-			//$name = 'UP Society of Computer Scientists';
-			// set some text to print
-			
 			
 			$pdf->Output('example_003.pdf', 'I');
 			//$pdf->Output('example_003.pdf', 'I');
