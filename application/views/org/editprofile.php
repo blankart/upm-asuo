@@ -112,6 +112,16 @@
       });
    }
 
+   function activateText(value){
+      var textbox = document.getElementById("secYrs");
+
+      if(value == "yes"){
+         textbox.disabled = false;
+      } else {
+         textbox.disabled = true;
+      }
+   }
+
 
    window.onload = incSEC;
 </script>
@@ -128,8 +138,8 @@
             <div class="text-center">
                <form enctype="multipart/form-data"  method="POST" action="">
                   <img src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo']; ?>" class="avatar img-thumbnail" alt="avatar" height="500px"  width="500px">
-                  <h6>Upload organization logo.</h6>
-                  <input type="file" style="text-align: center;" onchange="showPreview()" class="form-control text-center" style="width: 250px" id = 'logo' name = 'logo'>
+                  <br><br>
+                  <label id="upLogo" style="margin-left: 20em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Logo<input type="file" style="display: none;"onchange="showPreview()" class="form-control" id = 'logo' name = 'logo'></label>
               </form>
             </div>
 
@@ -144,6 +154,18 @@
                   <label class="col-lg control-label">Acronym</label>
                   <div class="col-lg">
                      <input class="form-control" type="text" value ="<?php echo $profile['acronym']; ?>" name="acronym">
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg control-label">College</label>
+                  <div class="col-lg">
+                     <input class="form-control" type="text" value ="<?php echo $profile['org_college']; ?>" name="college" readonly>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <label class="col-lg control-label">Category</label>
+                  <div class="col-lg">
+                     <input class="form-control" type="text" value ="<?php echo $profile['org_category']; ?>" name="category" readonly>
                   </div>
                </div>
                <div class="form-group">
@@ -241,16 +263,15 @@
                <div class="form-group">
                   <label class="col-lg control-label"><b>Is your organization incorporated with the Securities and Exchange Commission(SEC)?</b></label>
                   <div class="col-lg" value ='yes'>
-                     <input type="radio" id="yes" name ="incSEC">Yes
+                     <input type="radio" id="yes" value="yes" name ="incSEC" onclick="activateText(this.value)">Yes  
+                     <label class="col-lg control-label">Input number of years</label>
+                     <input class="form-control" type="text" value ="" id="secYrs" name="sec_yrs">
                      <br>
-                     <input type="radio" id="no" name ="incSEC">No
+                     <input type="radio" id="no" value="no" name ="incSEC" onclick="activateText(this.value)">No
                   </div>
                </div>
                 <div class="form-group">
-                  <label class="col-lg control-label">Upload constitution</label>
-                  <div class="col-lg">
-                     <input type="file" class="form-control" name="consti" style="width: 250px" required>
-                  </div>
+                  <label id="upLogo" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Constitution<input type="file" style="display: none;" class="form-control" id = 'consti' name = 'consti'></label>
                </div>
          </div>
          <!-- Modal footer -->
