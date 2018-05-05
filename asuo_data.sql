@@ -10,15 +10,15 @@ INSERT INTO `studentaccount` (`student_id`, `up_id`, `up_mail`, `username`, `pas
 (9, '201480756', 'avsangeuenza@up.edu.ph', 'avsanguenza', '32250170a0dca92d53ec9624f336ca24', 1, 0, 0);
 
 INSERT INTO `studentprofile` (`student_id`, `first_name`, `middle_name`, `last_name`, `sex`, `birthday`, `course`, `year_level`, `contact_num`, `profile_pic`, `form5`) VALUES
-(1, 'Angelica', 'A', 'Ayos', 'Female', '1997-01-01', 'BS Computer Science', 3, '09XXXXXXXXX', 'angelica.jpg', 'angelica_form5.jpg'),
-(2, 'Medy Rae', 'Jordan', 'Fernando', 'Male', '1997-04-11', 'BS Computer Science', 4, '09453291650', 'medy.jpg', 'medy_form5.jpg'),
-(3, 'Ma Christina', 'J', 'Galvez', 'Female', '1997-01-01', 'BS Computer Science', 4, '09XXXXXXXXX', 'christina.jpg', 'christina_form5.jpg'),
-(4, 'Aldrin', 'C', 'Racusa', 'Male', '1997-01-01', 'BS Computer Science', 4, '09XXXXXXXXX', 'aldrin.jpg', 'aldrin_form5.jpg'),
-(5, 'Kylle Audrey', 'A', 'Columna', 'Female', '1997-04-11', 'BS Computer Science', 4, '09XXXXXXXXX', 'kylle.jpg', 'kylle_form5.jpg'),
-(6, 'Paula Nicole', 'S', 'Lasmarias', 'Female', '1997-01-01', 'BS Computer Science', 4, '09XXXXXXXXX', 'paula.jpg', 'paula_form5.jpg'),
-(7, 'Nico', 'Cruelala', 'Mendoza', 'Male', '1997-01-01', 'BS Computer Science', 4, '09XXXXXXXXX', 'nico.jpg', 'nico_form5.jpg'),
-(8, 'Darlene Grace', 'A', 'Perez', 'Female', '1997-01-01', 'BS Computer Science', 4, '09XXXXXXXXX', 'darlene.jpg', 'darlene_form5.jpg'),
-(9, 'Alyssa Fatima', 'V', 'Sanguenza', 'Female', '1997-01-01', 'BS Computer Science', 4, '09XXXXXXXXX', 'alyssa.jpg', 'alyssa_form5.jpg');
+(1, 'Angelica', 'A', 'Ayos', 'Female', '1997-01-01', 'BS Computer Science', '3', '09XXXXXXXXX', 'angelica.jpg', 'angelica_form5.jpg'),
+(2, 'Medy Rae', 'Jordan', 'Fernando', 'Male', '1997-04-11', 'BS Computer Science', '4', '09453291650', 'medy.jpg', 'medy_form5.jpg'),
+(3, 'Ma Christina', 'J', 'Galvez', 'Female', '1997-01-01', 'BS Computer Science', '1', '09XXXXXXXXX', 'christina.jpg', 'christina_form5.jpg'),
+(4, 'Aldrin', 'C', 'Racusa', 'Male', '1997-01-01', 'BS Computer Science', '2', '09XXXXXXXXX', 'aldrin.jpg', 'aldrin_form5.jpg'),
+(5, 'Kylle Audrey', 'A', 'Columna', 'Female', '1997-04-11', 'BS Computer Science', 'Doctoral', '09XXXXXXXXX', 'kylle.jpg', 'kylle_form5.jpg'),
+(6, 'Paula Nicole', 'S', 'Lasmarias', 'Female', '1997-01-01', 'BS Computer Science', '2', '09XXXXXXXXX', 'paula.jpg', 'paula_form5.jpg'),
+(7, 'Nico', 'Cruelala', 'Mendoza', 'Male', '1997-01-01', 'BS Computer Science', 'Masteral', '09XXXXXXXXX', 'nico.jpg', 'nico_form5.jpg'),
+(8, 'Darlene Grace', 'A', 'Perez', 'Female', '1997-01-01', 'BS Computer Science', 'Doctoral', '09XXXXXXXXX', 'darlene.jpg', 'darlene_form5.jpg'),
+(9, 'Alyssa Fatima', 'V', 'Sanguenza', 'Female', '1997-01-01', 'BS Computer Science', 'Masteral', '09XXXXXXXXX', 'alyssa.jpg', 'alyssa_form5.jpg');
 
 INSERT INTO `admin` (`admin_id`, `username`, `password`, `admin_name`, `admin_email`) VALUES
 (1, 'OSA', '32250170a0dca92d53ec9624f336ca24', 'Office of Student Affairs', 'admin@up.edu.ph'),
@@ -51,24 +51,24 @@ INSERT INTO `organizationprofile` (`org_id`, `org_name`, `acronym`, `org_categor
 -- -------------------------------------------------------------------
 
 INSERT INTO `announcement` (`notice_id`, `sender`, `title`, `content`,  `date_posted`, `archived`) VALUES
-(1, 1,'Test Announcement', 'Hello. This is a test announcement. :D',  '2017-09-04', 0),
-(2, 1, 'wala akong title :<', 'wala na akong maisip na ilalagay :((', '2018-03-28', 0),
-(3, 1, 'HAPPY BIRTHDAY ALDRIN!!!', 'BIRTHDAY NI ALDRIN XD',  '2018-04-15', 0),
-(4, 2, 'Accredited ORganization', 'Listed below are the accredited orgs:\r\n.\r\n.\r\n.\r\n..\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n.\r\n', '2018-04-12', 0),
-(5, 1, 'Welcome Message', 'Welcome to the Accreditation for University-wide Orgs',  '2018-03-02', 0),
-(6, 1, 'Exam sa stat121', 'friday this week:<', '2018-04-13', 0),
-(7, 2, 'Accreditation Period', 'Accreditation period will start on ...',  '2018-04-04', 0),
-(8, 1, 'General Assembly for Univ-wide Orgs', 'A general assembly will be conducted on ...',  '2017-12-12', 0),
-(9, 1, 'Orgs with pending accreditation app\r\n', 'Listed below are the orgs with pending application:\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n...\r\n.\r\n.\r\n\r\n\r\n.',  '2018-04-14', 0),
-(10, 1, 'Requirements for Accreditaitoin', 'Listed below are the requirements for accreditation:\r\n.\r\n.\r\n.', '2018-04-02', 0),
-(11, 1, 'hey', 'hey',  '2018-04-15' , 0),
-(12, 2, 'This is Zero', 'sample message', '2018-04-15', 0),
-(13, 1, 'Hey', 'Musta niggas',  '2018-04-15', 0),
-(14, 1, 'something', 'something',  '2018-04-15', 0),
-(15, 1, 'The quick brown fox jumps over the lazy dog', 'The quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps o',  '2018-04-16', 0),
-(16, 2, 'jello', 'jello', '2018-04-16', 0),
-(17, 1, 'sdasdasd', 'asdasdasd',  '2018-04-16', 0),
-(18, 2, 'final something', 'final something',  '2018-04-16', 0);
+(1, 1,'Test Announcement', 'Hello. This is a test announcement. :D', '2018-09-04 13:23:48', 0),
+(2, 1, 'wala akong title :<', 'wala na akong maisip na ilalagay :((', '2018-09-04 13:23:49', 0),
+(3, 1, 'HAPPY BIRTHDAY ALDRIN!!!', 'BIRTHDAY NI ALDRIN XD', '2018-09-04 13:23:50', 0),
+(4, 2, 'Accredited ORganization', 'Listed below are the accredited orgs:\r\n.\r\n.\r\n.\r\n..\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n.\r\n', '2018-09-04 13:23:51', 0),
+(5, 1, 'Welcome Message', 'Welcome to the Accreditation for University-wide Orgs',  '2018-09-04 13:23:52', 0),
+(6, 1, 'Exam sa stat121', 'friday this week:<', '2018-09-04 13:23:53', 0),
+(7, 2, 'Accreditation Period', 'Accreditation period will start on ...',  '2018-09-04 13:23:54', 0),
+(8, 1, 'General Assembly for Univ-wide Orgs', 'A general assembly will be conducted on ...',  '2018-09-04 13:23:55', 0),
+(9, 1, 'Orgs with pending accreditation app\r\n', 'Listed below are the orgs with pending application:\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n...\r\n.\r\n.\r\n\r\n\r\n.', '2018-09-04 13:23:56', 0),
+(10, 1, 'Requirements for Accreditaitoin', 'Listed below are the requirements for accreditation:\r\n.\r\n.\r\n.', '2018-09-04 13:23:57', 0),
+(11, 1, 'hey', 'hey', '2018-09-04 13:23:58', 0),
+(12, 2, 'This is Zero', 'sample message', '2018-09-04 13:23:59', 0),
+(13, 1, 'Hey', 'Musta niggas',  '2018-09-04 13:24:48', 0),
+(14, 1, 'something', 'something',  '2018-09-04 13:24:49', 0),
+(15, 1, 'The quick brown fox jumps over the lazy dog', 'The quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps o', '2018-09-04 13:24:50', 0),
+(16, 2, 'jello', 'jello', '2018-09-04 13:24:51', 0),
+(17, 1, 'sdasdasd', 'asdasdasd', '2018-09-04 13:24:52', 0),
+(18, 2, 'final something', 'final something', '2018-09-04 13:24:53', 0);
 
 
 -- -------------------------------------------------------------------
@@ -104,10 +104,10 @@ INSERT INTO `recipient` (`recipient_id`, `notice_id`, `org_id`) VALUES
 
 -- -------------------------------------------------------------------
 
-INSERT INTO `accreditationapplication` (`app_id`, `org_id`, `form_A`) VALUES
-(1, 6, 'This is form A'),
-(2, 7, 'This is form A'),
-(3, 8, 'This is form A');
+INSERT INTO `accreditationapplication` (`app_id`, `org_id`, `app_status` ,`form_A`) VALUES
+(1, 6, 'Pending', 'This is form A'),
+(2, 7, 'Accredited','This is form A'),
+(3, 8, 'Unaccredited', 'This is form A');
 
 
 -- -------------------------------------------------------------------------
@@ -116,23 +116,35 @@ INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`, `i
 (1, 6, 1, 'President', 0),
 (2, 6, 2, 'Member', 0),
 (3, 6, 3, 'Member', 0),
-(4, 6, 4, 'Member', 1);
+(4, 6, 4, 'Member', 1),
+(5, 6, 5, 'Secretary', 0),
+(6, 6, 6, 'Finance Officer', 0),
+(7, 6, 7, 'Treasurer', 0),
+(8, 6, 8, 'Member', 1),
+(9, 6, 9, 'Auditor', 0);
 
 -- -------------------------------------------------------------------------
 
 INSERT INTO `orgpost` (`post_id`, `org_id`, `title`, `content`, `date_posted`, `privacy`, `archived`) VALUES
-(1, 6, "Untitled", "This is content 1", '2018-11-11 13:23:44', 'None', 0),
+(1, 6, "Untitled", "This is content 1", '2018-11-11 13:23:44', 'Public', 1),
 (2, 6, "Title of 2", "This is content 2", '2018-11-11 13:23:45', 'Members', 0),
-(3, 6, "Title 3", "This is content 3", '2018-11-11 13:23:46', 'Officers', 0),
-(4, 6, "4th Title", "This is content 4", '2018-11-11 13:23:47', 'None', 0);
+(3, 6, "Title 3", "This is content 3", '2018-11-11 13:23:46', 'Officers', 1),
+(4, 6, "4th Title", "This is content 4", '2018-11-11 13:23:47', 'Members', 1),
+(5, 6, "Title of 5th Post", "This is content 5", '2018-11-11 13:23:48', 'Officers', 0),
+(6, 6, "6 our of 6 Title", "This is content 6", '2018-11-11 13:23:49', 'Public', 0);
 
 -- -------------------------------------------------------------------------
 
 INSERT INTO `orgapplication` (`orgapp_id`, `org_id`, `student_id`, `status`) VALUES
-(1, 6, 4, 'Approved'),
-(2, 6, 5, 'Disapproved'),
-(3, 6, 6, 'Pending'),
-(4, 6, 7, 'Pending');
+(1, 6, 1, 'Approved'),
+(2, 6, 2, 'Approved'),
+(3, 6, 3, 'Approved'),
+(4, 6, 4, 'Disapproved'),
+(5, 6, 5, 'Approved'),
+(6, 6, 6, 'Approved'),
+(7, 6, 7, 'Approved'),
+(8, 6, 8, 'Pending'),
+(9, 6, 9, 'Approved');
 
 -- ------------------------------------------------------------------------
 

@@ -179,12 +179,13 @@ function validateForm(){
                                             </div>
                                             <div class="col-6">
                                                 <select class="form-control" name="data[org_college]" required>
-                                                    <option>College of Applied Medicine and Professions</option>
+                                                    <option>College of Allied Medical Professions</option>
                                                     <option>College of Arts and Sciences</option>
                                                     <option>College of Dentistry</option>
                                                     <option>College of Medicine</option>
                                                     <option>College of Nursing</option>
                                                     <option>College of Pharmacy</option>
+                                                    <option>College of Public Health</option>
                                                 </select>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>

@@ -183,16 +183,16 @@
                      <tbody>
                         <tr>
                            <td></td>
-                           <td>First Year</td>
-                           <td>Second Year</td>
-                           <td>Third Year</td>
-                           <td>Fourth Year</td>
-                           <td>Masteral</td>
-                           <td>Doctoral</td>
-                           <td>Total</td>
+                           <td><b>First Year</b></td>
+                           <td><b>Second Year</b></td>
+                           <td><b>Third Year</b></td>
+                           <td><b>Fourth Year</b></td>
+                           <td><b>Masteral</b></td>
+                           <td><b>Doctoral</b></td>
+                           <td><b>Total</b></td>
                         </tr>
                         <tr>
-                           <td>Male</td>
+                           <td><b>Male</b></td>
                            <td><?php echo $tally['male_first']; ?></td>
                            <td><?php echo $tally['male_second']; ?></td>
                            <td><?php echo $tally['male_third']; ?></td>
@@ -202,7 +202,7 @@
                            <td><?php echo $tally['male_first'] + $tally['male_second'] + $tally['male_third'] + $tally['male_fourth'] + $tally['male_masteral'] + $tally['male_doctoral']; ?></td>
                         </tr>
                         <tr>
-                           <td>Female</td>
+                           <td><b>Female</b></B></td>
                            <td><?php echo $tally['female_first']; ?></td>
                            <td><?php echo $tally['female_second']; ?></td>
                            <td><?php echo $tally['female_third']; ?></td>
@@ -212,7 +212,7 @@
                            <td><?php echo $tally['female_first'] + $tally['female_second'] + $tally['female_third'] + $tally['female_fourth'] + $tally['female_masteral'] + $tally['female_doctoral']; ?></td>
                         </tr>
                         <tr>
-                           <td>Total</td>
+                           <td><b>Total</b></td>
                            <td><?php echo $tally['male_first'] + $tally['female_first']; ?></td>
                            <td><?php echo $tally['male_second'] + $tally['female_second']; ?></td>
                            <td><?php echo $tally['male_third'] + $tally['female_third']; ?></td>

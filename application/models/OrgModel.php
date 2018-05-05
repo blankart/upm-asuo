@@ -1,6 +1,7 @@
 <?php
 	class OrgModel extends CI_Model{
 
+		//VIEW PROFILE FUNCTIONS
 		public function getOrgProfileDetails($org_id){
 
 			$result['profile']= $this->getOrgDetails($org_id);
@@ -11,16 +12,6 @@
 			$result['tally'] = $this->getOrgTally($org_id);
 
 			return $result;
-		}
-		public function getOrgOfficer()
-		{
-			$condition = "om.org_id = op.org_id AND om.student_id = sp.student_id AND om.student_id = sa.student_id";
-			$this->db->select("op.org_name, sp.*, om.*,sa.up_mail,");
-			$this->db->from("organizationprofile op, studentprofile sp, orgmember om, studentaccount sa");
-			$this->db->where($condition);
-			$org_details = $this->db->get();
-			
-			return $org_details->result_array();			
 		}
 
 		private function getOrgDetails($org_id){
@@ -77,29 +68,29 @@
 		}
 
 		private function getOrgTally($org_id){
-			$tally['male_first'] = $this->getTally($org_id, 'Male', 1);
-			$tally['female_first'] = $this->getTally($org_id, 'Female', 1);
+			$tally['male_first'] = $this->getTally($org_id, 'Male', '1');
+			$tally['female_first'] = $this->getTally($org_id, 'Female', '1');
 
-			$tally['male_second'] = $this->getTally($org_id, 'Male', 2);
-			$tally['female_second'] = $this->getTally($org_id, 'Female', 2);
+			$tally['male_second'] = $this->getTally($org_id, 'Male', '2');
+			$tally['female_second'] = $this->getTally($org_id, 'Female', '2');
 
-			$tally['male_third'] = $this->getTally($org_id, 'Male', 3);
-			$tally['female_third'] = $this->getTally($org_id, 'Female', 3);
+			$tally['male_third'] = $this->getTally($org_id, 'Male', '3');
+			$tally['female_third'] = $this->getTally($org_id, 'Female', '3');
 
-			$tally['male_fourth'] = $this->getTally($org_id, 'Male', 4);
-			$tally['female_fourth'] = $this->getTally($org_id, 'Female', 4);
+			$tally['male_fourth'] = $this->getTally($org_id, 'Male', '4');
+			$tally['female_fourth'] = $this->getTally($org_id, 'Female', '4');
 
-			$tally['male_masteral'] = 0;
-			$tally['female_masteral'] = 0;
+			$tally['male_masteral'] = $this->getTally($org_id, 'Male', 'Masteral');
+			$tally['female_masteral'] = $this->getTally($org_id, 'Female', 'Masteral');
 
-			$tally['male_doctoral'] = 0;
-			$tally['female_doctoral'] = 0;
+			$tally['male_doctoral'] = $this->getTally($org_id, 'Male', 'Doctoral');
+			$tally['female_doctoral'] = $this->getTally($org_id, 'Female', 'Doctoral');
 			
 			return $tally;
 		}
 
 		private function getTally($org_id, $sex, $year){
-				$condition = "om.org_id  = " .$org_id. " AND om.student_id = sp.student_id AND om.isRemoved = 0 AND sp.sex = '".$sex."' AND sp.year_level = ". $year. "";
+				$condition = "om.org_id  = " .$org_id. " AND om.student_id = sp.student_id AND om.isRemoved = 0 AND sp.sex = '".$sex."' AND sp.year_level = '". $year. "'";
 
 				$this->db->select('sp.student_id');
 				$this->db->from('orgmember om, studentprofile sp');
@@ -107,12 +98,40 @@
 				$result = $this->db->get();
 				return $result->num_rows();
 		}
+		//end of VIEW PROFILE FUNCTIONS
 
+		//MEMBERSHIP FUNCTIONS
+		public function approveMembership($org_id, $student_id){
+			//tables: orgmember, orgapplication
+		}
+
+		public function disapproveMembership($org_id, $student_id){
+			//tables: orgmember, orgapplicaton
+		}
+
+		public function editMembership($org_id, $student_id, $positon){
+			//tables: orgmember
+		}
+
+		public function removeMembership($org_id, $student_id){
+			//tables: org member
+			//note: change position to 'Member' too
+		}
+
+		public function getApplicationStatus($org_id, $student_id){
+			//tables: orgapplication
+			//return: status
+		}
+		//end of MEMBERSHIP FUNCTIONS
+
+		//CREATE POST FUNCTION
 		public function createPost($post){
 			$this->db->insert('orgpost', $post);
 			return $this->db->insert_id();
 		}
+		//end of CREATE POST FUNCTION
 
+		//EDIT PROFILE FUNCTIONS
 		public function editOrgProfile($id, $changes){
 			$condition = 'org_id = ' .$id. ' AND org_id = '.$id;
 
@@ -120,19 +139,36 @@
 			$this->db->update('organizationprofile', $changes);
 		}
 
-		public function changeLogo($id, $filename){
+		public function changeLogo($id, $logo_name){
 			$condition = 'org_id = ' .$id. ' AND org_id = '.$id;
 
 			$changes = array(
-            	'logo'=> $filename
+            	'logo'=> $logo_name
        		);
 
        		$this->db->where($condition);
        		$this->db->update('organizationprofile', $changes);
-        
-        	return $id;
 		}
 
+		public function uploadConstitution(){
+
+		}
+		//end of EDIT PROFILE FUNCTIONS
+
+		//ORG ACCREDITATION FUNCTIONS
+		public function getOrgOfficer()
+		{
+			$condition = "om.org_id = op.org_id AND om.student_id = sp.student_id AND om.student_id = sa.student_id";
+			$this->db->select("op.org_name, sp.*, om.*,sa.up_mail,");
+			$this->db->from("organizationprofile op, studentprofile sp, orgmember om, studentaccount sa");
+			$this->db->where($condition);
+			$org_details = $this->db->get();
+			
+			return $org_details->result_array();			
+		}
+		//end of ORG ACCREDITATION FUNCTIONS
+
+		//CHANGE PASSWORD FUNCTIONS
 		public function checkOrgPassword($id, $orgpassword){
 			$condition = "org_id = " .$id. " AND password = '" .$orgpassword. "'";
 
@@ -158,5 +194,6 @@
 			$this->db->where($condition);
 			$this->db->update('organizationaccount', $changes);		
 		}
+		//end of CHANGE PASSWORD FUNCTIONS
 	}
 ?>

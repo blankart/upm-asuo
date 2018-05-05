@@ -26,6 +26,7 @@
 
     function swalSuccPost(){
       swal("Success!", "You have successfully created a post!", "success");
+      resetCreatePostFields();
     }
 
     function swalFailPost(){
@@ -33,8 +34,8 @@
    }
 
     function resetCreatePostFields(){
-      document.getElementById("title").value = '';
-      document.getElementById("content").value = '';
+      document.getElementById("title").value = ' ';
+      document.getElementById("content").value = ' ';
       document.getElementById("privacy").value = 'Public';
     }
 
@@ -62,10 +63,8 @@
           dataType: "JSON",
           data: {post, post},
           success: function(result){
-            if(result){
+            if(result)
               swalSuccPost();
-              resetCreatePostFields();
-            }
             else
               swalFailPost();
           },
@@ -96,7 +95,7 @@
                             <select id='privacy'>
                                 <option value="Public">Public</option>
                                 <option value="Members">Members</option>
-                                <option value="ExeComm">ExeComm</option>
+                                <option value="Officers">Officers</option>
                             </select>
                         </div>
                         <div class="form-group">

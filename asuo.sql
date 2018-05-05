@@ -18,7 +18,7 @@ CREATE TABLE `studentprofile` (
   `sex` varchar(6) NOT NULL,
   `birthday` date NOT NULL,
   `course` varchar(50) NOT NULL,
-  `year_level` tinyint(1) NOT NULL,
+  `year_level` varchar(10) NOT NULL,
   `contact_num` varchar(11) NOT NULL,
   `profile_pic` varchar(150) NOT NULL DEFAULT 'img_default.jpg',
   `form5` varchar(150) NOT NULL DEFAULT 'form5_default.jpg'
@@ -61,7 +61,7 @@ ALTER TABLE `admin`
   `org_id` int(11) UNSIGNED NOT NULL,
   `org_email` varchar(50) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `org_status` varchar(50) NOT NULL,
+  `org_status` varchar(50) NOT NULL DEFAULT 'Unaccredited',
   `isVerified` tinyint(1)NOT NULL DEFAULT 0,
   `isActivated` tinyint(1) NOT NULL DEFAULT 0,
   `archived` tinyint(1) NOT NULL DEFAULT 0
@@ -102,6 +102,7 @@ ALTER TABLE `organizationprofile`
 CREATE TABLE `accreditationapplication` (
   `app_id` int(11) UNSIGNED NOT NULL,
   `org_id` int(11) UNSIGNED NOT NULL,
+  `app_status` varchar (10) NOT NULL DEFAULT 'Rejected',
   `form_A` varchar(50) NOT NULL DEFAULT 'None'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
