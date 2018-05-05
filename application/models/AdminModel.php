@@ -231,7 +231,7 @@
 		}
 
 		public function viewAllNotices($id){
-			$condition = "a.sender = ". $id. " AND a.archived = 0";
+			$condition = "a.archived = 0 AND a.archived = 0";
 
 			$this->db->select('a.notice_id, a.title, a.date_posted');
 			$this->db->from('announcement a');

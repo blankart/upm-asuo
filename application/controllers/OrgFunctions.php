@@ -16,7 +16,8 @@
 				$this->checkOrgPassword();
 			else if ($action == 'changeOrgPassword')
 				$this->changeOrgPassword();
-
+			else if ($action=='createPost')
+				$this->createPost();
 			else if ($action == 'editOrgProfile')
 				$this->editOrgProfile();
 			else if ($action == 'changeLogo')
@@ -148,6 +149,28 @@
 				$this->load->model('OrgModel');
 				$this->OrgModel->changeOrgPassword($id, $neworgpassword);
 				echo json_encode('true');
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function createPost(){
+
+			$post = $this->input->post('post');
+
+			if($post != NULL){
+				$format = 'Y-m-d H:i:s';
+				$post['date_posted'] = date($format);
+
+				$this->load->model('OrgModel');
+				$result = $this->OrgModel->createPost($post);
+
+				if($result )
+					echo json_encode(true);
+				else
+					echo json_encode(false);
+
 				exit();
 			}
 			else

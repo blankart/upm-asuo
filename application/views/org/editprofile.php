@@ -49,12 +49,12 @@
 
    function editProfile(){
       var org_id = '<?php echo $id; ?>';
-      var acronym = document.getElementsByName("acronym")[0].value;
-      var mailing_address = document.getElementsByName("mailing_address")[0].value;
-      var org_website = document.getElementsByName("org_website")[0].value;
-      var date_established = document.getElementsByName("date_established")[0].value;
-      var objectives = document.getElementsByName("objectives")[0].value;
-      var description = document.getElementsByName("description")[0].value;
+      var acronym = (document.getElementsByName("acronym")[0].value).trim();
+      var mailing_address = (document.getElementsByName("mailing_address")[0].value).trim();
+      var org_website = (document.getElementsByName("org_website")[0].value).trim();
+      var date_established = (document.getElementsByName("date_established")[0].value).trim();
+      var objectives = (document.getElementsByName("objectives")[0].value).trim();
+      var description = (document.getElementsByName("description")[0].value).trim();
 
       if(document.getElementsByName("incSEC")[0].checked)
          var incSEC = 1
@@ -80,9 +80,9 @@
             type:"post",
             url:"<?php echo base_url(); ?>org/editOrgProfile",
             cache: false,
+            async: false,
             data:{org_id: org_id, data: orgdata},
             dataType: 'json',
-            async: false,
             success:function(result){
                swalSucc();
             },
