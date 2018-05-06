@@ -73,14 +73,15 @@ ALTER TABLE `admin`
   `acronym` varchar(30) NOT NULL,
   `org_category` varchar(30) NOT NULL,
   `org_college` varchar(30) NOT NULL,
-  `description` varchar(200) NOT NULL DEFAULT 'N/A',
-  `objectives` varchar(200) NOT NULL DEFAULT 'N/A',
+  `description` varchar(300) NOT NULL DEFAULT 'N/A',
+  `objectives` varchar(300) NOT NULL DEFAULT 'N/A',
   `org_website` varchar(50) NOT NULL DEFAULT 'N/A/',
   `mailing_address` varchar(100) NOT NULL DEFAULT 'N/A/',
-  `date_established` varchar(50) NOT NULL,
+  `date_established` varchar(20) NOT NULL,
   `org_logo` varchar(150) NOT NULL DEFAULT 'logo_default.jpg',
   `constitution` varchar(150) NOT NULL DEFAULT 'No uploads yet',
-  `incSEC` tinyint(1) NOT NULL DEFAULT 0
+  `incSEC` tinyint(1) NOT NULL DEFAULT 0,
+  `sec_years` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `organizationaccount`

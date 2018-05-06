@@ -193,53 +193,72 @@
 
 		private function changeLogo(){
 
-			  	$config['upload_path'] = './assets/';
-				$config['allowed_types'] = 'jpg|JPG';
-				$config['max_size']     = '500';
-				$config['max_width'] = '1024';
-				$config['max_height'] = '768';
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('orgLogo'.$id);
 
-                $this->upload->initialize($config);
+			$config['upload_path'] = './assets/org/logo/';
+			$config['allowed_types'] = 'jpg';
+			$config['overwrite'] = TRUE;
+			$config['max_size']     = '500';
+			$config['file_name'] = $file_name;
 
+			$this->upload->initialize($config);
 
-			 if ( ! $this->upload->do_upload('logo')){
+			if ( ! $this->upload->do_upload('logo')){
+				//	echo "<pre>";
+	            //  print_r($this->upload->data());
+	            //  echo "</pre>";
 
-			 	  echo "<pre>";
-                print_r($this->upload->data());
-                echo "</pre>";
-                        $error = array('error' => $this->upload->display_errors());
-                        print_r($error);
-
-                }
-                else
-                {
-                        $data = array('upload_data' => $this->upload->data());
-
-                       
-                }
- 
+	            show_404();
+                $error = array('msg' => $this->upload->display_errors());
+                echo json_encode($error);
+                exit();
+            }
+            else {
+            	//echo "<pre>";
+             	//print_r($this->upload->data());
+                //echo "</pre>";
+                
+                $this->load->model('OrgModel');
+				$this->OrgModel->changeLogo($id, $file_name.".jpg");  
+				$data = array('msg' => $this->upload->data());  
+				echo json_encode($data);
+				exit();     
+            }
 		}
 
 		private function uploadConstitution(){
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('orgConstitution'.$id);
+
 			$config['upload_path'] = './assets/org/constitution/';
 			$config['allowed_types'] = 'pdf';
-			$config['max_size']     = '100';
+			$config['overwrite'] = TRUE;
+			$config['max_size']     = '500';
+			$config['file_name'] = $file_name.'.pdf';
 
 			$this->upload->initialize($config);
 
 			if ( ! $this->upload->do_upload('constitution')){
+				//	echo "<pre>";
+	            //  print_r($this->upload->data());
+	            //  echo "</pre>";
 
-			 	echo "<pre>";
-                print_r($this->upload->data());
-                echo "</pre>";
-                        $error = array('error' => $this->upload->display_errors());
-                        print_r($error);
+	            show_404();
+                $error = array('msg' => $this->upload->display_errors());
+                echo json_encode($error);
+                exit();
             }
             else {
-            	echo "<pre>";
-                print_r($this->upload->data());
-                echo "</pre>";
-                $data = array('upload_data' => $this->upload->data());          
+            	//echo "<pre>";
+             	//print_r($this->upload->data());
+                //echo "</pre>";
+                
+                $this->load->model('OrgModel');
+				$this->OrgModel->uploadConstitution($id, $file_name);  
+				$data = array('msg' => $this->upload->data());  
+				echo json_encode($data);
+				exit();     
             }
 		}
 
@@ -406,19 +425,26 @@
 			$result = $this->OrgModel->getOrgOfficer();	
 			//var_dump($result);
 			$temp = "";
-
+			//$pdf->setJPEGQuality(75);
+			//var_dump(K_PATH_IMAGES."\logo.png");
+			//$pdf->Image(K_PATH_IMAGES."\sample.jpg");
+			//$pdf->writeHTML($html, true, false, true, false, '');
+			//$image = file_get_contents('../logo.png');
+			//var_dump($image);
+			//$pdf->Image('@'.$image);
+			// Image example with resizing
 			for($i=0;$i<sizeof($result);$i++)
 			{
 				if($result[$i]['isRemoved'] == 0 && $result[$i]['position'] != 'Member')
 				{
-					if(($i % 3) == 0 || $i == 0)
-					{
-						$pdf->AddPage();
+					if(($i+1 % 4) == 0 || $i == 0)
+				{
+					$pdf->AddPage();
 					$temp = '<br><p align="right"><b><u>'.$result[$i]['org_name'].'</u></b><br>
 					<b>Name of Organization</b></p><br>
-					<h3 align="center"><b>LIST OF MEMBERS</b></h3>
-					<h5 align="center">AY 2017-2018</h5>';
-					}
+					<h3 align="center"><b>LIST OF OFFICERS</b></h3>
+					<h4 align="center">AY 2017-2018</h4>';
+				}
 				$samplehtml = $temp.' 
 			<table>
   			<tr>
@@ -443,6 +469,20 @@
   			</tr>
 		</table> 
 				';
+				/*
+				$html= $temp.'
+
+					<b style="padding: 20px">Name:</b>&nbsp;&nbsp;'.$result[$i]['first_name'].'  '.$result[$i]['middle_name'].'  '.$result[$i]['last_name'].'<br>
+					<b style="padding: 20px">Position:</b>&nbsp;&nbsp;'.$result[$i]['position'].'&nbsp;&nbsp;&nbsp;&nbsp;
+					<b style="padding: 20px">Year/Course:</b>&nbsp;&nbsp;'.$result[$i]['year_level']. '/&nbsp;'.$result[$i]['course'].'<br>
+					<b style="padding: 20px">Address:</b>&nbsp;&nbsp;'.$result[$i]['up_mail'].'<br>
+					<b style="padding: 20px">Phone:</b>&nbsp;&nbsp;'.$result[$i]['contact_num'].'
+					<b style="padding: 20px">Email:</b>&nbsp;&nbsp;'.$result[$i]['up_mail'].'<br>
+					<b style="padding: 20px">Other Contact Details:</b>&nbsp;&nbsp; Empty pa ito.
+					<br>
+					<img src="http://localhost/ASUO/assets/student/profile_pic/aldrin.jpg" width="50" height="50" align="right">
+					';
+				*/
 				$temp = "";
 				$pdf->writeHTML($samplehtml, true, 0, true, 0);
 				}
@@ -493,14 +533,14 @@
 
 			$this->load->model('OrgModel');
 			$result = $this->OrgModel->getOrgMembers();	
-			//var_dump($result);
+
 			$temp = "";
 			// add a page
 			for($i=0;$i<sizeof($result);$i++)
 			{
 				if($result[$i]['isRemoved'] == 0)
 				{
-					if(($i % 4) == 0 || $i == 0)
+					if(($i+1 % 4) == 0 || $i == 0)
 				{
 					$pdf->AddPage();
 					$temp = '<br><p align="right"><b><u>'.$result[$i]['org_name'].'</u></b><br>
@@ -528,13 +568,30 @@
     			<td colspan="3"><b>Email:</b> '.$result[$i]['up_mail'].'</td>
   			</tr>
   			<tr>
-  				<td colspan="5" rowspan="5"><img src="'.K_PATH_PROFILE_PIC.'/assets/student/form_5/'.$result[$i]['form5'].'" width="350" height="200" align="center"></td>
+  				<td colspan="5" rowspan="5"> Form5</td>
   			</tr>
 		</table> 
 				';
+				/*
+				$html= $temp.'
+
+					<b style="padding: 20px">Name:</b>&nbsp;&nbsp;'.$result[$i]['first_name'].'  '.$result[$i]['middle_name'].'  '.$result[$i]['last_name'].'<br>
+					<b style="padding: 20px">Position:</b>&nbsp;&nbsp;'.$result[$i]['position'].'&nbsp;&nbsp;&nbsp;&nbsp;
+					<b style="padding: 20px">Year/Course:</b>&nbsp;&nbsp;'.$result[$i]['year_level']. '/&nbsp;'.$result[$i]['course'].'<br>
+					<b style="padding: 20px">Address:</b>&nbsp;&nbsp;'.$result[$i]['up_mail'].'<br>
+					<b style="padding: 20px">Phone:</b>&nbsp;&nbsp;'.$result[$i]['contact_num'].'
+					<b style="padding: 20px">Email:</b>&nbsp;&nbsp;'.$result[$i]['up_mail'].'<br>
+					<b style="padding: 20px">Other Contact Details:</b>&nbsp;&nbsp; Empty pa ito.
+					<br>
+					<img src="http://localhost/ASUO/assets/student/profile_pic/aldrin.jpg" width="50" height="50" align="right">
+					';
+				*/
 				$temp = "";
 				$pdf->writeHTML($samplehtml, true, 0, true, 0);
-				}	
+				}
+
+				
+				
 			}
 			
 	

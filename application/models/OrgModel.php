@@ -52,6 +52,7 @@
 
 			$this->db->select("sp.*, sa.up_mail, om.position");
 			$this->db->from("orgmember om, studentaccount sa, studentprofile sp");
+			$this->db->order_by("sp.last_name");
 			$this->db->where($condition);
 			$members = $this->db->get();
 
@@ -154,15 +155,22 @@
 			$condition = 'org_id = ' .$id. ' AND org_id = '.$id;
 
 			$changes = array(
-            	'logo'=> $logo_name
+            	'org_logo'=> $logo_name
        		);
 
        		$this->db->where($condition);
        		$this->db->update('organizationprofile', $changes);
 		}
 
-		public function uploadConstitution(){
+		public function uploadConstitution($id, $file_name){
+			$condition = 'org_id = ' .$id. ' AND org_id = ' .$id;
 
+			$changes = array(
+				'constitution' => $file_name
+			);
+
+			$this->db->where($condition);
+			$this->db->update("organizationprofile", $changes);
 		}
 		//end of EDIT PROFILE FUNCTIONS
 
