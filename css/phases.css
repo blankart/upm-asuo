@@ -1,6 +1,6 @@
 /** progress bar **/
 progress::-moz-progress-bar {
-	border-radius: 20px;
+    border-radius: 20px;
     background: #860204; 
 }
 progress::-webkit-progress-value { background: #860204; border-radius: 20px; }
@@ -9,15 +9,15 @@ progress { color: #860204; border-radius: 20px; }
 .progressBar{
     margin-left: 10%;
     margin-right: 10%;
-	width: 80%;
-	border: none;
+    width: 80%;
+    border: none;
 }
 
 /**FORM**/
 form#multiphase{
-	margin-left: 10%;
+    margin-left: 10%;
     margin-right: 10%;
-	width: 76%;
+    width: 80%;
     background-color: #eee;
     padding: 20px;
     border-radius: 20px;
@@ -30,7 +30,7 @@ form#multiphase > #phase2, #phase3, #phase4, #phase5, #phase6, #show_all_data{
 form#multiphase2{
     margin-left: 10%;
     margin-right: 10%;
-    width: 76%;
+    width: 80%;
     background-color: #eee;
     padding: 20px;
     border-radius: 20px;
@@ -49,12 +49,54 @@ input[type=date]{
 }
 
 input[type=text]{
-	width: 98%;
+    width: 98%;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;
+    margin-bottom: 5px;
 }
+
+input#years{
+    width: 20%;
+}
+
+input#orgName, #category{
+    width: 45%;
+}
+
+input#adviser, #contactPerson, #address{
+    width: 85.05%;
+}
+
+input#adviserPos, #adviserUnit{
+    width: 34.25%;
+}
+
+input#contactPos, #contactAddress{
+    width: 34.5%;
+}
+
+input#contactPhone, #contactMobile, #contactMail{
+    width: 22.585%;
+}
+
+input#contactOthers{
+    width: 79.5%;
+}
+
+input#acronym{
+    width: 25%;
+}
+
+input#email, #website{
+    width: 27.5%;
+}
+
+input#established, #numMembers, #when{
+    width: 6.15%;
+}
+
 
 /**TABLE**/
 /**th, td {
