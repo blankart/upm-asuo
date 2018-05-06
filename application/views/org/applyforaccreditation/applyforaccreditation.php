@@ -148,9 +148,7 @@
 
                         <blockquote><b>NOTE:</b> Newly established student organizations are given probationary status upon completion of the requirements (rights and privileges accorded to organizations with full accreditation are not yet granted such as voting power during General Assemblies, less prioritization in the use of facilities and tambayan assignment)</blockquote>
 
-                    <!-- need to format button -->
-                    <!-- format to go to formA -->
-                    <button id="continue" class="button" onclick="location.href = 'formA';">Continue</button><br><br><br>
+                    <button id="continue" class="button" onclick="location.href = '<?php echo base_url(); ?>org/formA';">Continue</button><br><br><br>
                 </div> 
             </div>  
         </div>

@@ -64,7 +64,7 @@
  * By default it is automatically set but you can also set it as a fixed string to improve performances.
  */
 define ('K_PATH_IMAGES', 'application\libraries\tcpdf\images');
-define ('K_PATH_PROFILE_PIC','http://localhost/ASUO');
+define ('K_PATH_PROFILE_PIC',base_url());
 /**
  * Deafult image logo used be the default Header() method.
  * Please set here your own logo or an empty string to disable it.
