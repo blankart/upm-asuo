@@ -61,44 +61,86 @@ input#years{
     width: 20%;
 }
 
-input#orgName, #category{
+input#orgName,#adviserPos, #contactPos{
     width: 45%;
 }
 
-input#adviser, #contactPerson, #address{
-    width: 85.05%;
+input#category{
+    width: 90%;
 }
 
-input#adviserPos, #adviserUnit{
-    width: 34.25%;
+input#adviser{
+    width: 84%;
 }
 
-input#contactPos, #contactAddress{
-    width: 34.5%;
+input#adviserUnit{
+    width: 22%;
 }
 
-input#contactPhone, #contactMobile, #contactMail{
-    width: 22.585%;
+input#contactPerson{
+    width: 85%;
 }
 
-input#contactOthers{
-    width: 79.5%;
+input#contactMail{
+    width: 25.75%;
+}
+
+input#contactAddress{
+    width: 91.25%;
+}
+
+input#contactPhone, #contactMobile, #contactOthers{
+    width: 17.8%;
 }
 
 input#acronym{
-    width: 25%;
+    width: 24%;
+}
+
+input#address{
+    width: 84.5%;
 }
 
 input#email, #website{
-    width: 27.5%;
+    width: 26.5%;
 }
 
-input#established, #numMembers, #when{
-    width: 6.15%;
+input#established, #when{
+    width: 7%;
 }
 
+input#numMembers{
+    width: 15%;
+}
 
-/**TABLE**/
-/**th, td {
-    padding: 5px;
-}**/
+input#name{
+    width: 73.5%;
+}
+
+input#pos{
+    width: 35%;
+}
+
+input#course{
+    width: 23.25%;
+}
+
+input#add{
+    width: 71.7%;
+}
+
+input#phone, #mail{
+    width: 33.15%;
+}
+
+input#more{
+    width: 60%;
+}
+
+input#yearLvl{
+    width: 25%;
+}
+
+input#Course{
+    width: 41.5%;
+}
