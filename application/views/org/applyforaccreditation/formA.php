@@ -18,7 +18,7 @@
 	</head>
 
 	<body>
-		<div class="animated fadeIn" style="background-color: rgb(255,255,255); margin-top: 60px; padding-top: 50px; box-shadow: 0 0 40px rgba(0,0,0,.50); padding-bottom: 200px;">
+		<div class="animated fadeIn" style="background-color: rgb(255,255,255); margin-top: 110px; margin-left: 22%; margin-right: 1%; padding-top: 10px; box-shadow: 0 0 40px rgba(0,0,0,.50); padding-bottom: 50px; border-radius: 10px;">
             <div class="col-4">
 				<!-- sidenav -->
                 <div class="sidenav">
@@ -80,10 +80,10 @@
 					<div id="phase5">
 						Contact Person:&nbsp;&nbsp;<input type="text" id="contactPerson" name="contactPerson">
 						Position in Organization:&nbsp;&nbsp;<input type="text" id="contactPos" name="contactPos" placeholder="enter position">&nbsp;&nbsp;
+						Email:&nbsp;&nbsp;<input type="text" id="contactMail" name="contactMail" placeholder="sample@up.edu.ph">
 						Address:&nbsp;&nbsp;<input type="text" id="contactAddress" name="contactAddress" placeholder="enter address">
 						Telephone No.:&nbsp;&nbsp;<input type="text" id="contactPhone" name="contactPhone" placeholder="xxx-xx-xx">&nbsp;&nbsp;
 						Mobile No.:&nbsp;&nbsp;<input type="text" id="contactMobile" name="contactMobile" placeholder="xxx-xxx-xxxx">&nbsp;&nbsp;
-						Email:&nbsp;&nbsp;<input type="text" id="contactMail" name="contactMail" placeholder="sample@up.edu.ph">
 						Other Contact Details:&nbsp;&nbsp;<input type="text" id="contactOthers" name="contactOthers">
 						<br><br>
 

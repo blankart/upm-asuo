@@ -18,7 +18,7 @@
 	</head>
 
 	<body>
-   		<div class="animated fadeIn" style="background-color: rgb(255,255,255); margin-top: 60px; padding-top: 50px; box-shadow: 0 0 40px rgba(0,0,0,.50); padding-bottom: 500px;">
+   		<div class="animated fadeIn" style="background-color: rgb(255,255,255); margin-top: 110px; margin-left: 22%; margin-right: 1%; padding-top: 10px; box-shadow: 0 0 40px rgba(0,0,0,.50); padding-bottom: 50px; border-radius: 10px;">
             <div class="col-4">
                 <!-- insert sidenav -->
                 <div class="sidenav">
@@ -105,8 +105,7 @@
 				<div id="show_all_data">
 					First Name: <span id="display_fname"></span><br>
 
-					<button class="button">Submit</button>
-					<button class="button" onclick="submitForm()">Submit Data</button>
+					<button class="button" onclick="submitForm()">Save</button>
 					<button class="button" onclick="backc3()">Back</button>
 				</div>
 			</form>
