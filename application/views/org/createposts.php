@@ -99,11 +99,11 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <input class="form-control" type="text" id="title" maxlength="50" placeholder="Title" required>
+                            <input type="text" maxlength="50" class="form-control" id="title"  placeholder="Title" required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" type="textarea" id="content" placeholder="Message" maxlength="500" rows="7" required></textarea>
+                        <textarea maxlength="500" class="form-control" id="content" placeholder="Message" rows="7" required></textarea>
                     </div>
 
                 </div>

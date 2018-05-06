@@ -104,10 +104,10 @@
                                     '<br style="clear:both">'+
                                     '<h3 style="margin-bottom: 25px; text-align: center;">Send Announcement to All<\/h3>'+
                                     '<div class="form-group">'+
-                                        '<input type="text" class="form-control" id="sendNoticeTitle" maxlength="50" name="subject" placeholder="Title" required>'+
+                                        '<input type="text" minlength="1" maxlength="50" class="form-control" id="sendNoticeTitle"name="subject" placeholder="Title" required>'+
                                     '<\/div>'+
                                     '<div class="form-group">'+
-                                        '<textarea class="form-control" onkeyup="textCounter()" type="textarea" id="sendNoticeMessage" placeholder="Message" maxlength="500" rows="7" required><\/textarea>'+
+                                        '<textarea  minlength="1" maxlength="500" class="form-control" onkeyup="textCounter()" type="textarea" id="sendNoticeMessage" placeholder="Message" rows="7" required><\/textarea>'+
                                         '<span id="textcounter">500 characters remaining<\/span>'+
                                     '<\/div>'+
                                     '<a onclick="sendNoticeReset()" class="btn btn-info pull-right" style="color: white;">Back<\/a>'+
@@ -169,10 +169,10 @@
                                         '<input type="text" value="'+orgName+'"class="form-control" id="recipientEmail" readonly>'+
                                     '<\/div>'+
                                     '<div class="form-group">'+
-                                        '<input type="text" class="form-control" id="sendNoticeTitle" maxlength="50" name="subject" placeholder="Title" required>'+
+                                        '<input type="text" minlength="1" maxlength="50" class="form-control" id="sendNoticeTitle"  name="subject" placeholder="Title" required>'+
                                     '<\/div>'+
                                     '<div class="form-group">'+
-                                        '<textarea class="form-control" onkeyup="textCounter()" type="textarea" id="sendNoticeMessage" placeholder="Message" maxlength="500" rows="7" required><\/textarea>'+
+                                        '<textarea minlength="1" maxlength="500" class="form-control" onkeyup="textCounter()" type="textarea" id="sendNoticeMessage" placeholder="Message" rows="7" required><\/textarea>'+
                                         '<span id="textcounter">500 characters remaining<\/span>'+
                                     '<\/div>'+
                                     '<a onclick="sendNoticeReset()" class="btn btn-info pull-right" style="color: white;">Back<\/a>'+

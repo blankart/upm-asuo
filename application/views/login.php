@@ -41,13 +41,13 @@
 								<div class="form-group">
 									<label for="email">Username / Email Address</label>
 
-									<input id="email" type="text" class="form-control" name="credentials[username]" value="" required autofocus>
+									<input id="email" type="text" maxlength= "50" class="form-control" name="credentials[username]" value="" required autofocus>
 								</div>
 
 								<div class="form-group">
 									<label for="password">Password
 									</label>
-									<input id="password" type="password" class="form-control" name="credentials[password]" required data-eye>
+									<input id="password" type="password" minlength="7" maxlength = "32" class="form-control" name="credentials[password]" required data-eye>
 								</div>
 								<div class="form-group no-margin">
 									<button type="submit" class="btn btn-danger btn-block">

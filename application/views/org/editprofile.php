@@ -318,7 +318,7 @@
               <form enctype="multipart/form-data" id= 'uploadConstitutionForm' method="POST">
                  <div class="form-group">
                   <label id="upLogo" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Constitution<input type="file" style="display: none;" class="form-control" id = 'consti' name = 'constitution' onchange="document.getElementById('submitCons').click();"></label>
-                  <button type="button" class="btn btn-primary" style="margin-left: 1em" onclick="window.open('<?php echo base_url()."assets/org/constitution/".$profile["constitution"].".pdf"; ?>')">Preview File</button>
+                  <button type="button" class="btn btn-primary" style="margin-left: 1em" onclick="<?php if ($profile["constitution"] != "No uploads yet"){ ?>window.open('<?php echo base_url()."assets/org/constitution/".$profile["constitution"].".pdf"; }?>')">Preview File</button>
                   <button type="submit" style="display: none;" id = 'submitCons'> </button>
                </div>
             </form>

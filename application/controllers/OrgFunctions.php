@@ -205,20 +205,12 @@
 			$this->upload->initialize($config);
 
 			if ( ! $this->upload->do_upload('logo')){
-				//	echo "<pre>";
-	            //  print_r($this->upload->data());
-	            //  echo "</pre>";
-
 	            show_404();
                 $error = array('msg' => $this->upload->display_errors());
                 echo json_encode($error);
                 exit();
             }
             else {
-            	//echo "<pre>";
-             	//print_r($this->upload->data());
-                //echo "</pre>";
-                
                 $this->load->model('OrgModel');
 				$this->OrgModel->changeLogo($id, $file_name.".jpg");  
 				$data = array('msg' => $this->upload->data());  
@@ -234,26 +226,18 @@
 			$config['upload_path'] = './assets/org/constitution/';
 			$config['allowed_types'] = 'pdf';
 			$config['overwrite'] = TRUE;
-			$config['max_size']     = '500';
+			$config['max_size']     = '1000';
 			$config['file_name'] = $file_name.'.pdf';
 
 			$this->upload->initialize($config);
 
 			if ( ! $this->upload->do_upload('constitution')){
-				//	echo "<pre>";
-	            //  print_r($this->upload->data());
-	            //  echo "</pre>";
-
-	            show_404();
+		        show_404();
                 $error = array('msg' => $this->upload->display_errors());
                 echo json_encode($error);
                 exit();
             }
-            else {
-            	//echo "<pre>";
-             	//print_r($this->upload->data());
-                //echo "</pre>";
-                
+            else {                
                 $this->load->model('OrgModel');
 				$this->OrgModel->uploadConstitution($id, $file_name);  
 				$data = array('msg' => $this->upload->data());  

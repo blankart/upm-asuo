@@ -20,8 +20,8 @@ CREATE TABLE `studentprofile` (
   `course` varchar(50) NOT NULL,
   `year_level` varchar(10) NOT NULL,
   `contact_num` varchar(11) NOT NULL,
-  `profile_pic` varchar(150) NOT NULL DEFAULT 'img_default.jpg',
-  `form5` varchar(150) NOT NULL DEFAULT 'form5_default.jpg'
+  `profile_pic` varchar(40) NOT NULL DEFAULT 'img_default.jpg',
+  `form5` varchar(40) NOT NULL DEFAULT 'form5_default.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `studentaccount`
@@ -78,8 +78,8 @@ ALTER TABLE `admin`
   `org_website` varchar(50) NOT NULL DEFAULT 'N/A/',
   `mailing_address` varchar(100) NOT NULL DEFAULT 'N/A/',
   `date_established` varchar(20) NOT NULL,
-  `org_logo` varchar(150) NOT NULL DEFAULT 'logo_default.jpg',
-  `constitution` varchar(150) NOT NULL DEFAULT 'No uploads yet',
+  `org_logo` varchar(40) NOT NULL DEFAULT 'logo_default.jpg',
+  `constitution` varchar(40) NOT NULL DEFAULT 'No uploads yet',
   `incSEC` tinyint(1) NOT NULL DEFAULT 0,
   `sec_years` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -104,7 +104,7 @@ CREATE TABLE `accreditationapplication` (
   `app_id` int(11) UNSIGNED NOT NULL,
   `org_id` int(11) UNSIGNED NOT NULL,
   `app_status` varchar (10) NOT NULL DEFAULT 'Rejected',
-  `form_A` varchar(50) NOT NULL DEFAULT 'None'
+  `form_A` varchar(40) NOT NULL DEFAULT 'None'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `accreditationapplication`
@@ -121,7 +121,7 @@ ALTER TABLE `accreditationapplication`
  CREATE TABLE `announcement` (
   `notice_ID` int(11) UNSIGNED NOT NULL,
   `sender` int(11) UNSIGNED NOT NULL, 
-  `title` varchar(150) NOT NULL,
+  `title` varchar(50) NOT NULL,
   `content` varchar(500) NOT NULL,
   `date_posted` DATETIME NOT NULL,
   `archived` tinyint(1) NOT NULL DEFAULT 1
