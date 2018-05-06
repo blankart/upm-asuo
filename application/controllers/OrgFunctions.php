@@ -24,7 +24,7 @@
 				$this->changeLogo();
 			else if ($action == 'uploadConstitution')
 				$this->uploadConstitution();
-			
+					
 			else if ($action == 'applyforaccreditation'){
 				$this->load->view('header');
 				$this->load->view('org/applyforaccreditation/applyforaccreditation');
@@ -88,7 +88,7 @@
 				else
 					redirect(base_url().'login');
 		}
-
+		
 		private function redirectToProfile(){
 			if($this->session->userdata['account_type'] == 'student')
 			 	redirect(base_url()."student/".$this->session->userdata['username']);
