@@ -42,15 +42,31 @@
 			$condition = "(username = '" . $credentials['username']. "' OR up_mail = '".$credentials['username']."') 
 					AND password = '" . $credentials['password']. "'";
 
-			$this->db->select('student_id');
+			$this->db->select('student_id, isVerified, isActivated, archived');
 			$this->db->from('StudentAccount');
 			$this->db->where($condition);
 			$query = $this->db->get();
 
 			//get student profile details for 'myprofile' view 
 			if ($query->num_rows() == 1){
+
 				$student_id = $query->result_array()[0]['student_id'];
-				return $this->getStudentSessionDetails($student_id);
+				$sessionDetails = $this->getStudentSessionDetails($student_id);
+
+
+				$isActivated = $query->result_array()[0]['isActivated'];
+				if($isActivated == 0)
+					$sessionDetails['account_type'] = 'unactivatedStudent';
+
+				$isVerified = $query->result_array()[0]['isVerified'];
+				if($isVerified == 0)
+					$sessionDetails['account_type'] = 'unverifiedStudent';
+
+				$archived = $query->result_array()[0]['archived'];
+				if($archived == 1)
+					$sessionDetails['account_type'] = 'archivedStudent';
+
+				return $sessionDetails;
 			}
 			else 
 				return false;
@@ -60,15 +76,30 @@
 			$condition = "org_email = '" . $credentials['username']. "' 
 					AND password = '" . $credentials['password']. "'";
 
-			$this->db->select('org_id');
+			$this->db->select('org_id, isVerified, isActivated, archived');
 			$this->db->from('OrganizationAccount');
 			$this->db->where($condition);
 			$query = $this->db->get();
 
 			//get org profile details for 'org' view 
 			if ($query->num_rows() == 1){
+
 				$org_id = $query->result_array()[0]['org_id'];
-				return $this->getOrgSessionDetails($org_id);
+				$sessionDetails = $this->getOrgSessionDetails($org_id);
+
+				$isActivated = $query->result_array()[0]['isActivated'];
+				if($isActivated == 0)
+					$sessionDetails['account_type'] = 'unactivatedOrg';
+
+				$isVerified = $query->result_array()[0]['isVerified'];
+				if($isVerified == 0)
+					$sessionDetails['account_type'] = 'unverifiedOrg';
+
+				$archived = $query->result_array()[0]['archived'];
+				if($archived == 1)
+					$sessionDetails['account_type'] = 'archivedOrg';
+
+				return $sessionDetails;
 			}
 			else
 				return false;

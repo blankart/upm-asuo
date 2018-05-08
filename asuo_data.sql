@@ -5,9 +5,9 @@ INSERT INTO `studentaccount` (`student_id`, `up_id`, `up_mail`, `username`, `pas
 (4, '201481207', 'acracusa@up.edu.ph', 'acracusa', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
 (5, '201411235', 'kacolumna@up.edu.ph', 'kacolumna', '32250170a0dca92d53ec9624f336ca24', 1, 0, 1),
 (6, '201408109', 'pslasmarias@up.edu.ph', 'pslasmarias', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
-(7, '201479241', 'ncmendoza1@up.edu.ph', 'nmendoza1', '32250170a0dca92d53ec9624f336ca24', 1, 0, 0),
+(7, '201479241', 'ncmendoza1@up.edu.ph', 'ncmendoza1', '32250170a0dca92d53ec9624f336ca24', 1, 0, 0),
 (8, '201499764', 'dgperez@up.edu.ph', 'dgperez', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
-(9, '201480756', 'avsangeuenza@up.edu.ph', 'avsanguenza', '32250170a0dca92d53ec9624f336ca24', 1, 0, 0);
+(9, '201480756', 'avsangeuenza@up.edu.ph', 'avsanguenza', '32250170a0dca92d53ec9624f336ca24', 0, 0, 0);
 
 INSERT INTO `studentprofile` (`student_id`, `first_name`, `middle_name`, `last_name`, `sex`, `birthday`, `course`, `year_level`, `contact_num`, `profile_pic`, `form5`) VALUES
 (1, 'Angelica', 'A', 'Ayos', 'Female', '1997-01-01', 'BS Computer Science', '3', '09XXXXXXXXX', 'angelica.jpg', 'angelica_form5.jpg'),
@@ -32,9 +32,9 @@ INSERT INTO `organizationaccount` (`org_id`, `org_email`, `password`, `org_statu
 (5, 'upbeau@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Accredited', 1, 1,  0),
 (6, 'upsocomsci@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Acredited', 1, 1, 0),
 (7, 'orcomsoc@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 0, 0,  1),
-(8, 'upvector@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1,  0),
-(9, 'orgasm@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 0,  1),
-(10, 'upmkule@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1,  0);
+(8, 'upvector@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 0,  1),
+(9, 'orgasm@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1,  1),
+(10, 'upmkule@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 0, 0,  0);
 
 INSERT INTO `organizationprofile` (`org_id`, `org_name`, `acronym`, `org_category`, `org_college`, `description`, `objectives`, `org_website`, `mailing_address`, `date_established`, `org_logo`, `constitution`, `incSEC`, `sec_years`) VALUES
 (1, 'AISEC', 'AISEC', 'Socio-Civic', 'College of Arts and Sciences', 'international involvement org', 'to something', 'aisec.com', 'here', '1988', '	
@@ -148,6 +148,11 @@ INSERT INTO `orgapplication` (`orgapp_id`, `org_id`, `student_id`, `status`) VAL
 (8, 6, 8, 'Pending'),
 (9, 6, 9, 'Approved');
 
+-- ------------------------------------------------------------------------
+INSERT INTO `verificationcode` (`code_id`, `type`, `account_id`, `code`, `status`) VALUES
+(1, 'org', 1, '32250170a0dca92d53ec9624f336ca24', 'Pending'),
+(2, 'org', 7, '32250170a0dca92d53ec9624f336ca24', 'Pending'),
+(3, 'org', 10, '32250170a0dca92d53ec9624f336ca24', 'Pending');
 -- ------------------------------------------------------------------------
 
 INSERT INTO `restrictedacronym` (`res_id`, `acronym`) VALUES

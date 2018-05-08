@@ -233,6 +233,25 @@ ALTER TABLE `orgapplication`
   ADD CONSTRAINT `orgapplication_ibfk_1` FOREIGN KEY (`org_id`) REFERENCES `organizationaccount` (`org_id`),
   ADD CONSTRAINT `orgapplication_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `studentaccount` (`student_id`);
 
+  -- ----------------------------------------------------------------------------------------------------------------------------
+  -- ORG APPLICATIONS (Pending, Validated, Removed)
+CREATE TABLE `verificationcode` (
+   `code_id` int(11) UNSIGNED NOT NULL,
+   `type` varchar(10) NOT NULL DEFAULT 'None',
+   `account_id` int(11) UNSIGNED NOT NULL,
+   `code` varchar(32) NOT NULL DEFAULT 'None',
+   `status` varchar(10) NOT NULL DEFAULT 'Removed'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `verificationcode`
+  ADD PRIMARY KEY (`code_id`);
+
+ALTER TABLE `verificationcode`
+  MODIFY `code_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+
+
+
 
  -- ----------------------------------------------------------------------------------------------------------------------------
   -- RESTRICTED ACRONYMS

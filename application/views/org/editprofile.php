@@ -84,8 +84,10 @@
 
       if(incSEC == 1)
          document.getElementById("yes").checked = true;
-      else
-         document.getElementById("no").checked = true;  
+      else{
+         document.getElementById("no").checked = true; 
+         document.getElementById("secYrs").disabled = true;
+      }
    }
 
    function swalSucc(){
@@ -96,6 +98,9 @@
       swal("Failed!", "You cannot updated your profile now!", "error");
    }
 
+   function noUploads(){
+      swal("Failed!", "You have not uploaded any constitution yet!", "error");
+   }
 
    function editProfile(){
       var org_id = '<?php echo $id; ?>';
@@ -172,7 +177,7 @@
          <div class="modal-body" style="height: 450px; overflow-y: auto;">
             <div class="text-center">
                <form enctype="multipart/form-data"  method="POST" id="changeLogoForm">
-                  <img src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo']; ?>" class="avatar img-thumbnail" alt="avatar" height="500px"  width="500px">
+                  <img src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo'].'?'.rand(1, 100); ?>" class="avatar img-thumbnail" alt="avatar" height="500px"  width="500px">
                   <br><br>
                   <label id="upLogo" style="margin-left: 20em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Logo<input type="file" style="display: none;" onchange="document.getElementById('submitLogo').click();" class="form-control" id = 'logo' name = 'logo'></label>
                   <button type="submit" style="display: none;" id = 'submitLogo'> </button>
@@ -219,7 +224,7 @@
                <div class="form-group">
                   <label class="col-lg control-label">Website/Page</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" maxlength = "50" svalue ="<?php echo $profile['org_website']; ?>" name="org_website" required>
+                     <input class="form-control" type="text" maxlength = "50" value ="<?php echo $profile['org_website']; ?>" name="org_website" required>
                   </div>
                </div>
                <div class="form-group">
@@ -318,7 +323,12 @@
               <form enctype="multipart/form-data" id= 'uploadConstitutionForm' method="POST">
                  <div class="form-group">
                   <label id="upLogo" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Constitution<input type="file" style="display: none;" class="form-control" id = 'consti' name = 'constitution' onchange="document.getElementById('submitCons').click();"></label>
-                  <button type="button" class="btn btn-primary" style="margin-left: 1em" onclick="<?php if ($profile["constitution"] != "No uploads yet"){ ?>window.open('<?php echo base_url()."assets/org/constitution/".$profile["constitution"].".pdf"; }?>')">Preview File</button>
+                  <button type="button" class="btn btn-primary" style="margin-left: 1em" onclick="
+                  <?php if ($profile["constitution"] != "No uploads yet"){ ?>
+                     window.open('<?php echo base_url()."assets/org/constitution/".$profile["constitution"].".pdf"; ?>') 
+                  <?php }else { ?> 
+                     noUploads() 
+                  <?php } ?>" > Preview File</button>
                   <button type="submit" style="display: none;" id = 'submitCons'> </button>
                </div>
             </form>

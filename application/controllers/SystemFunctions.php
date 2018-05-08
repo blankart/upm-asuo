@@ -25,6 +25,8 @@
 				$this->registerOrg();
 			else if($action == 'verify')
 				$this->verify($type, $code);
+			else if($action == 'sendVerificationMail')
+				$this->sendVerificationMail();
 			else
 				show_404();
 		}
@@ -128,10 +130,7 @@
 			$this->setSessions($org_session);
 		}
 
-		private function verify($type, $code){
-			echo $type . " " .$code;
-		}
-
+	
 		private function checkLogin()
 		{
 			$credentials = $this->input->post('credentials');
@@ -145,7 +144,7 @@
 
 			    if(!$result)
 			    	redirect(base_url().'login'); //login Unsuccessful
-			    else
+			   	else
 			    	$this->setSessions($result);
 			}
 			else 
@@ -157,8 +156,55 @@
 		// student: first_name, username, email
 		// org: name, acronym, email
 		// admin:
-		private function setSessions($data)
-		{
+		private function setSessions($data){	
+
+
+			if($data['account_type'] == 'unverifiedOrg' || $data['account_type'] == 'unactivatedOrg' || $data['account_type'] == 'archivedOrg'){
+
+				echo '<pre>';
+				print_r($data);
+				echo '</pre>';
+
+				$nsacronym = str_replace(' ', '', $data['acronym']);
+			   	$details = array(
+			   		'account_type' => $data['account_type'],
+			   		'user_id' => $data['org_id'],
+			   		'org_name' => $data['org_name'],
+		    		'acronym' => $data['acronym'],
+		    		'nsacronym' => $nsacronym,
+		    		'email'     => $data['org_email'],
+		    		'logged_in' => TRUE
+				);
+
+			   	if($data['account_type'] == 'unverifiedOrg')
+			   		echo  'verify your email using ' .$data['org_email']; //load view here note: redirect
+
+			   	if($data['account_type'] == 'unactivatedOrg')
+			    	echo 'You account is not yet activated. Procced to OSA'; //load view here note: redirect
+			
+				if($data['account_type'] == 'archivedOrg')
+			    	echo 'You account is blocked. Procced to OSA'; //load view here note: redirect
+				
+			}
+			
+
+			if($data['account_type'] == 'unverifiedStudent' || $data['account_type'] == 'unactivatedStudent' || $data['account_type'] == 'archivedStudent'){
+
+
+				echo '<pre>';
+				print_r($data);
+				echo '</pre>';
+
+				if($data['account_type'] == 'unverifiedStudent')
+			   		echo  'verify your email using ' .$data['up_mail']. "."; //load view here note: redirect
+
+			   	if($data['account_type'] == 'unactivatedStudent')
+			    	echo 'You account is not yet activated. Procced to OSA.'; //load view here note: redirect
+			
+				if($data['account_type'] == 'archivedStudent')
+			    	echo 'You account is blocked. Procced to OSA.'; //load view here note: redirect
+
+				}
 
 			if($data['account_type'] == 'admin')
 			{
@@ -183,7 +229,7 @@
 			   		'org_name' => $data['org_name'],
 		    		'acronym' => $data['acronym'],
 		    		'nsacronym' => $nsacronym,
-		    		'email'     => $data['org_mail'],
+		    		'email'     => $data['org_email'],
 		    		'logged_in' => TRUE
 				);
 
@@ -211,6 +257,60 @@
 			$this->load->view('header');
 			$this->load->view('login');
 			$this->load->view('footer');
+		}
+
+		private function verify($type, $code){
+			echo $type . " " .$code;
+		}
+
+		private function sendVerificationMail(){
+
+			//set email library configuration
+			$config = array(
+				'useragent' => "CodeIgniter",
+	        	'mailpath'  => "/usr/bin/sendmail",
+				'protocol'  => 'smtp' , 
+		        'smtp_host' => 'ssl://smtp.gmail.com' , 
+		        'smtp_port' => 465 , 
+		        'smtp_user' => 'asuodevelopers@gmail.com' ,
+		        'smtp_pass' => 'cmsc128.1',
+		        'mailtype'  => 'html', 
+		        'charset'   => 'utf-8', 
+		        'newline'   => "\r\n",  
+		        'wordwrap'  => TRUE 
+			);
+
+		    //load email library
+		  	$this->email->initialize($config);
+
+		    $email = 'mjfernando@up.edu.ph'; //
+		    $activation_code = 'This is my activation code';
+		    $link = base_url().'verify/org/this';
+
+		    $this->email->set_mailtype('html');
+		    $this->email->from($email, 'ASUO Team');
+		    $this->email->to('mjfernando@up.edu.ph');
+		    $this->email->subject('Please verify your email address');
+
+		    $message = '<html><body>';
+		    $message .= '<p> Thanks for registering on ASUO! Please click the link below ' .$link. ' to verify your email address.</p>';
+		    $message .= '<p>Thank you!</p>';
+		    $message .= '<p>ASUO Administrator</p>';
+		    $message .= '</body></html>';
+
+		    $this->email->message($message);
+		
+			if ($this->email->send()){
+			      $data['success'] = 'Yes';
+			}
+			else{
+			    $data['success'] = 'No';
+			    $data['error'] = $this->email->print_debugger(array('headers'));
+			   }
+
+			echo "<pre>";
+			print_r($data);
+			echo "</pre>";
 		}
 	}
 ?>
