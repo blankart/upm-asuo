@@ -1,7 +1,7 @@
 <?php
 	class SystemFunctions extends CI_Controller{
 
-		public function perform( $action = 'login', $type = '', $code = ''){
+		public function perform($action = 'login', $type = '', $code = ''){
 			
 
 			 if($action == 'login' || $action == 'regstud' || $action == 'regorg'){
@@ -31,15 +31,16 @@
 				show_404();
 		}
 
-		private function redirectToProfile()
-		{
-			if($this->session->userdata['account_type'] == 'student')
+		private function redirectToProfile(){
+			$account_type = $this->session->userdata['account_type'];
+
+			if($account_type == 'student' || $account_type == 'unverifiedStudent' || $account_type == 'unactivatedStudent' || $account_type == 'archivedStudent' )
 			 	redirect(base_url()."student/".$this->session->userdata['username']);
 			
-			if($this->session->userdata['account_type'] == 'org')
+			if($account_type == 'org' || $account_type == 'unverifiedOrg' || $account_type == 'unactivatedOrg' || $account_type == 'archivedOrg' )
 				redirect(base_url()."org/".$this->session->userdata['nsacronym']);
 	 		
-	 		if($this->session->userdata['account_type'] == 'admin')
+	 		if($account_type == 'admin')
 	 			redirect(base_url()."admin/".$this->session->userdata['username']);
 		}
 
@@ -96,7 +97,7 @@
 		private function registerOrg()
 		{
 			$result = $this->input->post('data');
-		
+			
 			$account_data = array(
 				'org_email' => $result['org_email'],
 				'password' => md5($result['password']),
@@ -110,6 +111,7 @@
 			$org_id = $this->SystemModel->createOrgAccount($account_data);
 			//insert profile details to db
 			//var_dump($org_id);
+
 			$profile_details = array(
 				'org_id' => $org_id,
 				'org_name' => $result['org_name'], 
@@ -123,10 +125,12 @@
 				'date_established' => 'N/A', 
 				'org_logo' => 'logo_default.jpg',
 				'constitution' => 'No uploads yet',
-				`incSEC` => 0
+				'incSEC' => 0,
+				'sec_years' => 0
 			);
 
 			$org_session = $this->SystemModel->createOrgProfile($profile_details);
+			$org_session['account_type'] = 'unverifiedOrg';
 			$this->setSessions($org_session);
 		}
 
@@ -176,15 +180,8 @@
 		    		'logged_in' => TRUE
 				);
 
-			   	if($data['account_type'] == 'unverifiedOrg')
-			   		echo  'verify your email using ' .$data['org_email']; //load view here note: redirect
-
-			   	if($data['account_type'] == 'unactivatedOrg')
-			    	echo 'You account is not yet activated. Procced to OSA'; //load view here note: redirect
-			
-				if($data['account_type'] == 'archivedOrg')
-			    	echo 'You account is blocked. Procced to OSA'; //load view here note: redirect
-				
+			    $this->session->set_userdata($details);
+			    redirect(base_url().'org/'.$nsacronym);
 			}
 			
 
@@ -195,16 +192,17 @@
 				print_r($data);
 				echo '</pre>';
 
-				if($data['account_type'] == 'unverifiedStudent')
-			   		echo  'verify your email using ' .$data['up_mail']. "."; //load view here note: redirect
+				$details = array(
+			   		'account_type' => $data['account_type'],
+		    		'first_name'  => $data['first_name'],
+		   			'username'  => $data['username'],
+		    		'email'     => $data['up_mail'],
+		    		'logged_in' => TRUE
+				);
 
-			   	if($data['account_type'] == 'unactivatedStudent')
-			    	echo 'You account is not yet activated. Procced to OSA.'; //load view here note: redirect
-			
-				if($data['account_type'] == 'archivedStudent')
-			    	echo 'You account is blocked. Procced to OSA.'; //load view here note: redirect
-
-				}
+				$this->session->set_userdata($details);
+				redirect(base_url().'student/'.$details['username']);
+			}
 
 			if($data['account_type'] == 'admin')
 			{
