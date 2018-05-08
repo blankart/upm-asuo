@@ -289,7 +289,7 @@
 
 			//$name = 'UP Society of Computer Scientists';
 			// set some text to print
-			$html= '<p align="right"><b>Date filed:</b></p><br>
+			$html= '<p align="right"><b>Date filed:</b>'.date("M d, Y").'</p><br>
 			<b>Organization Name:</b><br>
 			<b>Number of members:</b><br>	
 			<b>Category:</b><br>
@@ -368,7 +368,59 @@
 			$pdf->AddPage();
 			//$pdf->AddPage();
 			$pdf->Output('example_003.pdf', 'I');
+					$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
+			// set document information
+			$pdf->SetCreator(PDF_CREATOR);
+			$pdf->SetAuthor('');
+			$pdf->SetTitle('Form C');
+			$pdf->SetSubject('');
+			$pdf->SetKeywords('');
+
+			// set default header data
+			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form C: Organization Profile", PDF_HEADER_STRING);
+			// set header and footer fonts
+			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+			$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+			// set default monospaced fonts
+			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+			// set margins
+			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+			$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+			$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);	
+
+			// set auto page breaks
+			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+			// set image scale factor
+			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+			// set font
+			$pdf->SetFont('Helvetica', '', 12);
+
+
+
+			// add a page
+			$pdf->AddPage();
+			//$pdf->AddPage();
+			$text ='
+				<p align="center"><b><h3>Organization Profile</h3></b></p>
+				<b>Name of Organization:</b><br>
+				<b>Acronym:</b><br>
+				<b>Mailing Address:</b><br>
+				<b>E-mail Address:</b><br>
+				<b>Website: </b><br>
+				<b>Date Established:</b><br>
+				<b>Total Number of Members:</b><br>
+
+				<table>
+
+				</table>
+			';
+			$pdf->writeHTML($text, true, 0, true, 0);
+			$pdf->Output('example_003.pdf', 'I');
 		}
 
 		private function viewFormD(){
@@ -618,6 +670,42 @@
 			// set font
 			$pdf->SetFont('Helvetica', '', 12);
 
+			$pdf->addPage();
+			$year = date("Y");
+			$text='
+				<b><p align="center">Financial Statement</p></b><br>
+				<p align="center">AY '.$year.' - '.($year+1).'</p>
+				<br>
+				<b>Starting Cash Balance:</b> 
+				<br>
+				<b>Add:</b>
+				<br>
+				<br>
+				<b>Details</b> &nbsp; <b>Amount</b>
+				<br>
+
+				<b>Total Amount Available for Disbursement…………………..………. </b> &nbsp;&nbsp;
+				<br>
+
+				<b>Less:</b><br>
+				<b>Disbursement Details</b> &nbsp; <b>Amount</b>
+				<br>
+
+				<b>Cash balance as of:</b> &nbsp;&nbsp;&nbsp; <b>Php</b>
+
+				<p align="center"><B>Finance Officer:</B><br>
+
+				</p>
+
+				<br>
+				<br>
+				<b>Audited by:</b> &nbsp;&nbsp;&nbsp; <b>Attested by:</b><br><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Adviser:</b>
+
+
+			';
+
+			$pdf->writeHTML($text, true, 0, true, 0);
 			$pdf->Output('example_003.pdf', 'I');
 			//$pdf->Output('example_003.pdf', 'I');
 		}
