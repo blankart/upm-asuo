@@ -80,13 +80,13 @@
 		}
 
 		private function redirectToProfile(){
-			if($this->session->userdata['account_type'] == 'student')
+			if($account_type == 'student' || $account_type == 'unverifiedStudent' || $account_type == 'unactivatedStudent' || $account_type == 'archivedStudent' )
 			 	redirect(base_url()."student/".$this->session->userdata['username']);
-
-			if($this->session->userdata['account_type'] == 'org')
+			
+			if($account_type == 'org' || $account_type == 'unverifiedOrg' || $account_type == 'unactivatedOrg' || $account_type == 'archivedOrg' )
 				redirect(base_url()."org/".$this->session->userdata['nsacronym']);
-
-	 		if($this->session->userdata['account_type'] == 'admin')
+	 		
+	 		if($account_type == 'admin')
 	 			redirect(base_url()."admin/".$this->session->userdata['username']);
 		}
 

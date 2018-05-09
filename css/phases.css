@@ -1,6 +1,6 @@
 /** progress bar **/
 progress::-moz-progress-bar {
-	border-radius: 20px;
+    border-radius: 20px;
     background: #860204; 
 }
 progress::-webkit-progress-value { background: #860204; border-radius: 20px; }
@@ -9,15 +9,15 @@ progress { color: #860204; border-radius: 20px; }
 .progressBar{
     margin-left: 10%;
     margin-right: 10%;
-	width: 80%;
-	border: none;
+    width: 80%;
+    border: none;
 }
 
 /**FORM**/
 form#multiphase{
-	margin-left: 10%;
+    margin-left: 10%;
     margin-right: 10%;
-	width: 76%;
+    width: 80%;
     background-color: #eee;
     padding: 20px;
     border-radius: 20px;
@@ -30,7 +30,7 @@ form#multiphase > #phase2, #phase3, #phase4, #phase5, #phase6, #show_all_data{
 form#multiphase2{
     margin-left: 10%;
     margin-right: 10%;
-    width: 76%;
+    width: 80%;
     background-color: #eee;
     padding: 20px;
     border-radius: 20px;
@@ -49,14 +49,98 @@ input[type=date]{
 }
 
 input[type=text]{
-	width: 98%;
+    width: 98%;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;
+    margin-bottom: 5px;
 }
 
-/**TABLE**/
-/**th, td {
-    padding: 5px;
-}**/
+input#years{
+    width: 20%;
+}
+
+input#orgName,#adviserPos, #contactPos{
+    width: 45%;
+}
+
+input#category{
+    width: 90%;
+}
+
+input#adviser{
+    width: 84%;
+}
+
+input#adviserUnit{
+    width: 22%;
+}
+
+input#contactPerson{
+    width: 85%;
+}
+
+input#contactMail{
+    width: 25.75%;
+}
+
+input#contactAddress{
+    width: 91.25%;
+}
+
+input#contactPhone, #contactMobile, #contactOthers{
+    width: 17.8%;
+}
+
+input#acronym{
+    width: 24%;
+}
+
+input#address{
+    width: 84.5%;
+}
+
+input#email, #website{
+    width: 26.5%;
+}
+
+input#established, #when{
+    width: 7%;
+}
+
+input#numMembers{
+    width: 15%;
+}
+
+input#name{
+    width: 73.5%;
+}
+
+input#pos{
+    width: 35%;
+}
+
+input#course{
+    width: 23.25%;
+}
+
+input#add{
+    width: 71.7%;
+}
+
+input#phone, #mail{
+    width: 33.15%;
+}
+
+input#more{
+    width: 60%;
+}
+
+input#yearLvl{
+    width: 25%;
+}
+
+input#Course{
+    width: 41.5%;
+}

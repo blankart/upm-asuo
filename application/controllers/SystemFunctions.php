@@ -1,7 +1,7 @@
 <?php
 	class SystemFunctions extends CI_Controller{
 
-		public function perform( $action = 'login', $type = '', $code = ''){
+		public function perform($action = 'login', $type = '', $code = ''){
 			
 
 			 if($action == 'login' || $action == 'regstud' || $action == 'regorg'){
@@ -25,19 +25,22 @@
 				$this->registerOrg();
 			else if($action == 'verify')
 				$this->verify($type, $code);
+			else if($action == 'sendVerificationMail')
+				$this->sendVerificationMail();
 			else
 				show_404();
 		}
 
-		private function redirectToProfile()
-		{
-			if($this->session->userdata['account_type'] == 'student')
+		private function redirectToProfile(){
+			$account_type = $this->session->userdata['account_type'];
+
+			if($account_type == 'student' || $account_type == 'unverifiedStudent' || $account_type == 'unactivatedStudent' || $account_type == 'archivedStudent' )
 			 	redirect(base_url()."student/".$this->session->userdata['username']);
 			
-			if($this->session->userdata['account_type'] == 'org')
+			if($account_type == 'org' || $account_type == 'unverifiedOrg' || $account_type == 'unactivatedOrg' || $account_type == 'archivedOrg' )
 				redirect(base_url()."org/".$this->session->userdata['nsacronym']);
 	 		
-	 		if($this->session->userdata['account_type'] == 'admin')
+	 		if($account_type == 'admin')
 	 			redirect(base_url()."admin/".$this->session->userdata['username']);
 		}
 
@@ -94,7 +97,7 @@
 		private function registerOrg()
 		{
 			$result = $this->input->post('data');
-		
+			
 			$account_data = array(
 				'org_email' => $result['org_email'],
 				'password' => md5($result['password']),
@@ -108,6 +111,7 @@
 			$org_id = $this->SystemModel->createOrgAccount($account_data);
 			//insert profile details to db
 			//var_dump($org_id);
+
 			$profile_details = array(
 				'org_id' => $org_id,
 				'org_name' => $result['org_name'], 
@@ -121,17 +125,16 @@
 				'date_established' => 'N/A', 
 				'org_logo' => 'logo_default.jpg',
 				'constitution' => 'No uploads yet',
-				`incSEC` => 0
+				'incSEC' => 0,
+				'sec_years' => 0
 			);
 
 			$org_session = $this->SystemModel->createOrgProfile($profile_details);
+			$org_session['account_type'] = 'unverifiedOrg';
 			$this->setSessions($org_session);
 		}
 
-		private function verify($type, $code){
-			echo $type . " " .$code;
-		}
-
+	
 		private function checkLogin()
 		{
 			$credentials = $this->input->post('credentials');
@@ -145,7 +148,7 @@
 
 			    if(!$result)
 			    	redirect(base_url().'login'); //login Unsuccessful
-			    else
+			   	else
 			    	$this->setSessions($result);
 			}
 			else 
@@ -157,8 +160,49 @@
 		// student: first_name, username, email
 		// org: name, acronym, email
 		// admin:
-		private function setSessions($data)
-		{
+		private function setSessions($data){	
+
+
+			if($data['account_type'] == 'unverifiedOrg' || $data['account_type'] == 'unactivatedOrg' || $data['account_type'] == 'archivedOrg'){
+
+				echo '<pre>';
+				print_r($data);
+				echo '</pre>';
+
+				$nsacronym = str_replace(' ', '', $data['acronym']);
+			   	$details = array(
+			   		'account_type' => $data['account_type'],
+			   		'user_id' => $data['org_id'],
+			   		'org_name' => $data['org_name'],
+		    		'acronym' => $data['acronym'],
+		    		'nsacronym' => $nsacronym,
+		    		'email'     => $data['org_email'],
+		    		'logged_in' => TRUE
+				);
+
+			    $this->session->set_userdata($details);
+			    redirect(base_url().'org/'.$nsacronym);
+			}
+			
+
+			if($data['account_type'] == 'unverifiedStudent' || $data['account_type'] == 'unactivatedStudent' || $data['account_type'] == 'archivedStudent'){
+
+
+				echo '<pre>';
+				print_r($data);
+				echo '</pre>';
+
+				$details = array(
+			   		'account_type' => $data['account_type'],
+		    		'first_name'  => $data['first_name'],
+		   			'username'  => $data['username'],
+		    		'email'     => $data['up_mail'],
+		    		'logged_in' => TRUE
+				);
+
+				$this->session->set_userdata($details);
+				redirect(base_url().'student/'.$details['username']);
+			}
 
 			if($data['account_type'] == 'admin')
 			{
@@ -183,7 +227,7 @@
 			   		'org_name' => $data['org_name'],
 		    		'acronym' => $data['acronym'],
 		    		'nsacronym' => $nsacronym,
-		    		'email'     => $data['org_mail'],
+		    		'email'     => $data['org_email'],
 		    		'logged_in' => TRUE
 				);
 
@@ -211,6 +255,60 @@
 			$this->load->view('header');
 			$this->load->view('login');
 			$this->load->view('footer');
+		}
+
+		private function verify($type, $code){
+			echo $type . " " .$code;
+		}
+
+		private function sendVerificationMail(){
+
+			//set email library configuration
+			$config = array(
+				'useragent' => "CodeIgniter",
+	        	'mailpath'  => "/usr/bin/sendmail",
+				'protocol'  => 'smtp' , 
+		        'smtp_host' => 'ssl://smtp.gmail.com' , 
+		        'smtp_port' => 465 , 
+		        'smtp_user' => 'asuodevelopers@gmail.com' ,
+		        'smtp_pass' => 'cmsc128.1',
+		        'mailtype'  => 'html', 
+		        'charset'   => 'utf-8', 
+		        'newline'   => "\r\n",  
+		        'wordwrap'  => TRUE 
+			);
+
+		    //load email library
+		  	$this->email->initialize($config);
+
+		    $email = 'mjfernando@up.edu.ph'; //
+		    $activation_code = 'This is my activation code';
+		    $link = base_url().'verify/org/this';
+
+		    $this->email->set_mailtype('html');
+		    $this->email->from($email, 'ASUO Team');
+		    $this->email->to('mjfernando@up.edu.ph');
+		    $this->email->subject('Please verify your email address');
+
+		    $message = '<html><body>';
+		    $message .= '<p> Thanks for registering on ASUO! Please click the link below ' .$link. ' to verify your email address.</p>';
+		    $message .= '<p>Thank you!</p>';
+		    $message .= '<p>ASUO Administrator</p>';
+		    $message .= '</body></html>';
+
+		    $this->email->message($message);
+		
+			if ($this->email->send()){
+			      $data['success'] = 'Yes';
+			}
+			else{
+			    $data['success'] = 'No';
+			    $data['error'] = $this->email->print_debugger(array('headers'));
+			   }
+
+			echo "<pre>";
+			print_r($data);
+			echo "</pre>";
 		}
 	}
 ?>

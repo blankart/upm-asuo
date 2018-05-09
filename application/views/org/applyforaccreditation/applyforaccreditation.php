@@ -8,98 +8,96 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/home.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/sidenav.css">
     </head>
-<body>
-    <!-- size should be sidenav + actual --> 
-    <div class="animated fadeIn" style="background-color: rgb(255,255,255); margin-top: 60px; padding-top: 50px; box-shadow: 0 0 40px rgba(0,0,0,.50); padding-bottom: 50px;">
-        <!-- div class="container" -->
-            <!-- div class="row" -->
-                <div class="col-4">
-                    <!-- insert sidenav -->
-                    <div class="sidenav">
-                        <li class="active"><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formG">Financial Report</a></li>
-                    </div>
+
+    <body>
+        <div class="animated fadeIn" style="background-color: rgb(255,255,255); margin-top: 110px; margin-left: 22%; margin-right: 1%; padding-top: 10px; box-shadow: 0 0 40px rgba(0,0,0,.50); padding-bottom: 50px; border-radius: 10px;">
+            <div class="col-4">
+                <!-- insert sidenav -->
+                <div class="sidenav">
+                    <li class="active"><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formG">Financial Report</a></li>
                 </div>
-                    <!-- Page Content -->
-                    <div class="main">
-                    <h1>UPM STUDENT ORGANIZATIONS' PROCEDURES AND REQUIREMENTS FOR ACCREDITATION</h1>
-                        1.  Complete this document list on or before <b>*insert date*</b><br><br>
-                        <table>
-                            <tr align="center">
-                                <th></th>
-                                <th>Previously Accredited/Old Organization</th>
-                                <th></th>
-                                <th>New Organization</th>
-                            </tr>
-                            <tr align="center">
-                                <td>FORM</td>
-                                <td></td>
-                                <td>FORM</td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td align="center">A</td>
-                                <td>Application Form</td>
-                                <td align="center">A</td>
-                                <td>Application Form</td>
-                            </tr>
-                            <tr>
-                                <td align="center">B</td>
-                                <td>Adviser's Consent</td>
-                                <td align="center">B</td>
-                                <td>Adviser's Consent</td>
-                            </tr>
-                            <tr>
-                                <td align="center">C</td>
-                                <td>Organization Profile</td>
-                                <td align="center">C</td>
-                                <td>Organization Profile</td>
-                            </tr>
-                            <tr>
-                                <td align="center">D</td>
-                                <td>Officers' Profile</td>
-                                <td align="center">D</td>
-                                <td>Officers' Profile</td>
-                            </tr>   
-                            <tr>
-                                <td align="center">E</td>
-                                <td>Members' Profile</td>
-                                <td align="center">E</td>
-                                <td>Members' Profile</td>
-                            </tr>
-                            <tr>
-                                <td align="center">F</td>
-                                <td>Activity Report of Previous Academic Year</td>
-                                <td></td>
-                                <td>Plans for the Academic Year</td>
-                            </tr>
-                            <tr>
-                                <td align="center">G</td>
-                                <td>Financial Statement</td>
-                                <td></td>
-                                <td>Constitution and By-Laws</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>Tentative Plans for Current Academic Year</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>Amended Constitution and By-Laws(if applicable)</td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </table><br>
+            </div>
+            <!-- Page Content -->
+            <div class="main">
+                <h1>UPM STUDENT ORGANIZATIONS' PROCEDURES AND REQUIREMENTS FOR ACCREDITATION</h1>
+                    &nbsp;1.&nbsp;&nbsp;Complete this document list on or before <b>*insert date*</b><br><br>
+                    <table>
+                        <tr align="center">
+                            <th></th>
+                            <th>Previously Accredited/Old Organization</th>
+                            <th></th>
+                            <th>New Organization</th>
+                        </tr>
+                        <tr align="center">
+                            <td>FORM</td>
+                            <td></td>
+                            <td>FORM</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td align="center">A</td>
+                            <td>Application Form</td>
+                            <td align="center">A</td>
+                            <td>Application Form</td>
+                        </tr>
+                        <tr>
+                            <td align="center">B</td>
+                            <td>Adviser's Consent</td>
+                            <td align="center">B</td>
+                            <td>Adviser's Consent</td>
+                        </tr>
+                        <tr>
+                            <td align="center">C</td>
+                            <td>Organization Profile</td>
+                            <td align="center">C</td>
+                            <td>Organization Profile</td>
+                        </tr>
+                        <tr>
+                            <td align="center">D</td>
+                            <td>Officers' Profile</td>
+                            <td align="center">D</td>
+                            <td>Officers' Profile</td>
+                        </tr>   
+                        <tr>
+                            <td align="center">E</td>
+                            <td>Members' Profile</td>
+                            <td align="center">E</td>
+                            <td>Members' Profile</td>
+                        </tr>
+                        <tr>
+                            <td align="center">F</td>
+                            <td>Activity Report of Previous Academic Year</td>
+                            <td></td>
+                            <td>Plans for the Academic Year</td>
+                        </tr>
+                        <tr>
+                            <td align="center">G</td>
+                            <td>Financial Statement</td>
+                            <td></td>
+                            <td>Constitution and By-Laws</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Tentative Plans for Current Academic Year</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Amended Constitution and By-Laws(if applicable)</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table><br>
                     
-                    2. Once documents are confirmed to be complete, have a representative be available for interview by the College Accreditation Committee on <b>*insert date*</b>
+                    &nbsp;2.&nbsp;&nbsp;Once documents are confirmed to be complete, have a representative be available for interview by the College Accreditation Committee on <b>*insert date*</b>
 
                     <blockquote><b>Accreditation Committee consists of:</b> one(1) OSS Coordinator, one(1) Faculty Representative, one(1) blah, and one(1) blah.</blockquote>
 
@@ -140,20 +138,17 @@
                         </table><br><br>
 
                     <h2>Accreditation Points:</h2>
-                        0-50 > No accreditation can be granted<br>
+                        &nbsp;0-50&nbsp;&nbsp;&nbsp;&nbsp;>&nbsp;No accreditation can be granted<br>
 
-                        51-60 > Probation Status- Organization shall be advised to perform better (rights and privileges accorded to organizations with full accreditation are withheld such as voting power during General Assemblies, less prioritization in the use of facilities and tambayan assignment)<br>
+                        &nbsp;51-60&nbsp;&nbsp;>&nbsp;Probation Status- Organization shall be advised to perform better (rights and privileges accorded to organizations with full accreditation are withheld such as voting power during General Assemblies, less prioritization in the use of facilities and tambayan assignment)<br>
 
-                        61-100  > Full Accreditation for a year<br>
+                        &nbsp;61-100&nbsp;>&nbsp;Full Accreditation for a year<br>
 
                         <blockquote><b>NOTE:</b> Newly established student organizations are given probationary status upon completion of the requirements (rights and privileges accorded to organizations with full accreditation are not yet granted such as voting power during General Assemblies, less prioritization in the use of facilities and tambayan assignment)</blockquote>
 
-                    <!-- need to format button -->
-                    <!-- format to go to formA -->
-                    <button id="continue" class="button" onclick="location.href = 'formA';">Continue</button><br><br><br>
-                </div> 
+                    <button id="continue" class="button" onclick="location.href = '<?php echo base_url(); ?>org/formA';">Continue</button><br><br><br> 
             </div>  
         </div>
-</body>
+    </body>
 
 </html>

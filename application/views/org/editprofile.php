@@ -27,6 +27,56 @@
         $("#saveChangesButton").click(function(){
               editProfile();
         });
+
+        $('#uploadConstitutionForm').on("submit",function(e){
+            e.preventDefault();
+             $.ajax({
+               type: "post",
+               url :"<?php echo base_url(); ?>org/uploadConstitution", 
+               async: false,
+               cache: false,
+               contentType: false,
+               processData: false,
+               data: new FormData(this),
+               success : function (data){
+                   swal({title: "Success!", text: "You have successfully changed your constitution!", type: "success"},
+                     function(){ 
+                         location.reload();
+                     }
+                  );
+               },
+               error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                  //alert("Status: " + textStatus + " | Error: " + errorThrown); 
+                   swal("Error!", "Your file may be too large or not of valid type!\nPDF files only!", "error");
+               }   
+            });
+        });
+
+
+
+        $('#changeLogoForm').on("submit",function(e){
+               e.preventDefault();
+               $.ajax({
+                  type: "post",
+                  url :"<?php echo base_url(); ?>org/changeLogo", 
+                  async: false,
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  data: new FormData(this),
+                  success : function (data){
+                      swal({title: "Success!", text: "You have successfully changed your logo!", type: "success"},
+                        function(){ 
+                           location.reload();
+                        }
+                     );
+                  },
+                  error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                     //alert("Status: " + textStatus + " | Error: " + errorThrown); 
+                     swal("Error!", "Your image may be too large or not of valid type! (JPG only)", "error");
+                  }   
+            });
+          });
       });
 
    function incSEC(){
@@ -34,18 +84,27 @@
 
       if(incSEC == 1)
          document.getElementById("yes").checked = true;
-      else
-         document.getElementById("no").checked = true;  
+      else{
+         document.getElementById("no").checked = true; 
+         document.getElementById("secYrs").disabled = true;
+      }
    }
 
    function swalSucc(){
-      swal("Saved!", "You have updated your profile!", "success");
+   		swal({title: "Success!", text: "You have updated your profile!", type: "success"},
+            function(){ 
+                location.reload();
+            }
+ 		);
    }
 
    function swalFail(){
       swal("Failed!", "You cannot updated your profile now!", "error");
    }
 
+   function noUploads(){
+      swal("Failed!", "You have not uploaded any constitution yet!", "error");
+   }
 
    function editProfile(){
       var org_id = '<?php echo $id; ?>';
@@ -56,8 +115,11 @@
       var objectives = (document.getElementsByName("objectives")[0].value).trim();
       var description = (document.getElementsByName("description")[0].value).trim();
 
-      if(document.getElementsByName("incSEC")[0].checked)
+      var sec_years = 0;
+      if(document.getElementsByName("incSEC")[0].checked){
          var incSEC = 1
+         sec_years =  (document.getElementsByName("sec_years")[0].value).trim();
+      }
       else
          var incSEC = 0;
 
@@ -72,7 +134,8 @@
             mailing_address: mailing_address,
             description: description, 
             objectives: objectives,
-            incSEC: incSEC     
+            incSEC: incSEC,
+            sec_years: sec_years
          };
         // alert(JSON.stringify(orgdata));
 
@@ -84,32 +147,14 @@
             data:{org_id: org_id, data: orgdata},
             dataType: 'json',
             success:function(result){
-               swalSucc();
+            	swalSucc();
+               
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) { 
                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
             }   
          });
       }
-   }
-
-   function changeLogo(){
-
-      $.ajax({
-         type: "post",
-         url :"<?php echo base_url(); ?>org/changeLogo", 
-         async: false,
-         cache: false,
-         contentType: false,
-         processData: false,
-         data: {source: 'org', data: formData},
-         success : function (data, status){
-            alert(data.msg);
-         },
-         error: function(XMLHttpRequest, textStatus, errorThrown) { 
-            alert("Status: " + textStatus + " | Error: " + errorThrown); 
-         }   
-      });
    }
 
    function activateText(value){
@@ -136,10 +181,11 @@
          <!-- Modal body -->
          <div class="modal-body" style="height: 450px; overflow-y: auto;">
             <div class="text-center">
-               <form enctype="multipart/form-data"  method="POST" action="">
-                  <img src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo']; ?>" class="avatar img-thumbnail" alt="avatar" height="500px"  width="500px">
+               <form enctype="multipart/form-data"  method="POST" id="changeLogoForm">
+                  <img src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo'].'?'.rand(1, 100); ?>" class="avatar img-thumbnail" alt="avatar" height="500px"  width="500px">
                   <br><br>
-                  <label id="upLogo" style="margin-left: 20em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Logo<input type="file" style="display: none;"onchange="showPreview()" class="form-control" id = 'logo' name = 'logo'></label>
+                  <label id="upLogo" style="margin-left: 20em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Logo<input type="file" style="display: none;" onchange="document.getElementById('submitLogo').click();" class="form-control" id = 'logo' name = 'logo'></label>
+                  <button type="submit" style="display: none;" id = 'submitLogo'> </button>
               </form>
             </div>
 
@@ -153,7 +199,7 @@
                <div class="form-group">
                   <label class="col-lg control-label">Acronym</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" value ="<?php echo $profile['acronym']; ?>" name="acronym">
+                     <input class="form-control" type="text" maxlength = "30" value ="<?php echo $profile['acronym']; ?>" name="acronym">
                   </div>
                </div>
                <div class="form-group">
@@ -171,7 +217,7 @@
                <div class="form-group">
                   <label class="col-lg control-label">Mailing Address</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" value ="<?php echo $profile['mailing_address']; ?>" name="mailing_address">
+                     <input class="form-control" type="text" maxlength = "100" value ="<?php echo $profile['mailing_address']; ?>" name="mailing_address">
                   </div>
                </div>
                <div class="form-group">
@@ -183,13 +229,13 @@
                <div class="form-group">
                   <label class="col-lg control-label">Website/Page</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" value ="<?php echo $profile['org_website']; ?>" name="org_website" required>
+                     <input class="form-control" type="text" maxlength = "50" value ="<?php echo $profile['org_website']; ?>" name="org_website" required>
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">Date Established</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" value ="<?php echo $profile['date_established']; ?>" name="date_established" required>
+                     <input class="form-control" type="text" maxlength = "20" value ="<?php echo $profile['date_established']; ?>" name="date_established" required>
                   </div>
                </div>
                <div class="form-group">
@@ -251,13 +297,13 @@
                <div class="form-group">
                   <label class="col-lg control-label">Objectives of Organization</label>
                   <div class="col-lg">
-                     <textarea class="form-control" rows="3" id="objectives" name='objectives' required><?php echo $profile['objectives']; ?></textarea>
+                     <textarea maxlength = "300" class="form-control" rows="3" id="objectives" name='objectives' required><?php echo $profile['objectives']; ?></textarea>
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">Brief Description of Organization</label>
                   <div class="col-lg">
-                     <textarea class="form-control" rows="3" id="descrip" name='description' required><?php echo $profile['description']; ?></textarea>
+                     <textarea maxlength = "300" class="form-control" rows="3" id="descrip" name='description' required><?php echo $profile['description']; ?></textarea>
                   </div>
                </div>
                <div class="form-group">
@@ -265,23 +311,32 @@
                   <div class="col-lg" value ='yes'>
                      <input type="radio" id="yes" value="yes" name ="incSEC" onclick="activateText(this.value)">Yes  
                      <label class="col-lg control-label">Input number of years</label>
-                     <input class="form-control" type="text" value ="" id="secYrs" name="sec_yrs">
+                     <input class="form-control" type="number" min =0 max = 100 value ="<?php echo $profile['sec_years']; ?>" id="secYrs" name="sec_years">
                      <br>
                      <input type="radio" id="no" value="no" name ="incSEC" onclick="activateText(this.value)">No
                   </div>
                </div>
-                <div class="form-group">
-                  <label id="upLogo" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Constitution<input type="file" style="display: none;" class="form-control" id = 'consti' name = 'consti'></label>
-                  <button type="button" class="btn btn-primary" style="margin-left: 1em" onclick="window.open('uploaded pdf')">Preview File</button>
-               </div>
+        
          </div>
          <!-- Modal footer -->
          <div class="modal-footer">
-         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         <button type="button" class="btn btn-default" onclick = " location.reload() " data-dismiss="modal">Close</button>
          <button type="button" id="saveChangesButton" class="btn btn-danger">Save</button>
          </div>
          </form>
 
+              <form enctype="multipart/form-data" id= 'uploadConstitutionForm' method="POST">
+                 <div class="form-group">
+                  <label id="upLogo" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Constitution<input type="file" style="display: none;" class="form-control" id = 'consti' name = 'constitution' onchange="document.getElementById('submitCons').click();"></label>
+                  <button type="button" class="btn btn-primary" style="margin-left: 1em" onclick="
+                  <?php if ($profile["constitution"] != "No uploads yet"){ ?>
+                     window.open('<?php echo base_url()."assets/org/constitution/".$profile["constitution"].".pdf"; ?>') 
+                  <?php }else { ?> 
+                     noUploads() 
+                  <?php } ?>" > Preview File</button>
+                  <button type="submit" style="display: none;" id = 'submitCons'> </button>
+               </div>
+            </form>
          
       </div>
    </div>

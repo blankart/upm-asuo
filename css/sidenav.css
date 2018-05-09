@@ -15,17 +15,17 @@ h2{
 }
 
 .main {
-    margin-left: 21%; /* Same width as the sidebar + left position in px */
     font-size: 15px; /* Increased text to enable scrolling */
     padding: 0px 10px;
 }
 
 /**SIDE NAV**/
 .sidenav {
+    border-radius: 10px;
     width: 20%;
     position: fixed;
     z-index: 1;
-    top: 100px;
+    top: 110px;
     left: 10px;
     background: #eee;
     overflow-x: hidden;

@@ -20,8 +20,8 @@ CREATE TABLE `studentprofile` (
   `course` varchar(50) NOT NULL,
   `year_level` varchar(10) NOT NULL,
   `contact_num` varchar(11) NOT NULL,
-  `profile_pic` varchar(150) NOT NULL DEFAULT 'img_default.jpg',
-  `form5` varchar(150) NOT NULL DEFAULT 'form5_default.jpg'
+  `profile_pic` varchar(40) NOT NULL DEFAULT 'img_default.jpg',
+  `form5` varchar(40) NOT NULL DEFAULT 'form5_default.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `studentaccount`
@@ -73,14 +73,15 @@ ALTER TABLE `admin`
   `acronym` varchar(30) NOT NULL,
   `org_category` varchar(30) NOT NULL,
   `org_college` varchar(30) NOT NULL,
-  `description` varchar(200) NOT NULL DEFAULT 'N/A',
-  `objectives` varchar(200) NOT NULL DEFAULT 'N/A',
+  `description` varchar(300) NOT NULL DEFAULT 'N/A',
+  `objectives` varchar(300) NOT NULL DEFAULT 'N/A',
   `org_website` varchar(50) NOT NULL DEFAULT 'N/A/',
   `mailing_address` varchar(100) NOT NULL DEFAULT 'N/A/',
-  `date_established` varchar(50) NOT NULL,
-  `org_logo` varchar(150) NOT NULL DEFAULT 'logo_default.jpg',
-  `constitution` varchar(150) NOT NULL DEFAULT 'No uploads yet',
-  `incSEC` tinyint(1) NOT NULL DEFAULT 0
+  `date_established` varchar(20) NOT NULL,
+  `org_logo` varchar(40) NOT NULL DEFAULT 'logo_default.jpg',
+  `constitution` varchar(40) NOT NULL DEFAULT 'No uploads yet',
+  `incSEC` tinyint(1) NOT NULL DEFAULT 0,
+  `sec_years` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `organizationaccount`
@@ -102,8 +103,8 @@ ALTER TABLE `organizationprofile`
 CREATE TABLE `accreditationapplication` (
   `app_id` int(11) UNSIGNED NOT NULL,
   `org_id` int(11) UNSIGNED NOT NULL,
-  `app_status` varchar (10) NOT NULL DEFAULT 'Rejected',
-  `form_A` varchar(50) NOT NULL DEFAULT 'None'
+  `app_status` varchar (15) NOT NULL DEFAULT 'Rejected',
+  `form_A` varchar(40) NOT NULL DEFAULT 'None'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `accreditationapplication`
@@ -120,7 +121,7 @@ ALTER TABLE `accreditationapplication`
  CREATE TABLE `announcement` (
   `notice_ID` int(11) UNSIGNED NOT NULL,
   `sender` int(11) UNSIGNED NOT NULL, 
-  `title` varchar(150) NOT NULL,
+  `title` varchar(50) NOT NULL,
   `content` varchar(500) NOT NULL,
   `date_posted` DATETIME NOT NULL,
   `archived` tinyint(1) NOT NULL DEFAULT 1
@@ -231,6 +232,25 @@ ALTER TABLE `orgapplication`
 ALTER TABLE `orgapplication`
   ADD CONSTRAINT `orgapplication_ibfk_1` FOREIGN KEY (`org_id`) REFERENCES `organizationaccount` (`org_id`),
   ADD CONSTRAINT `orgapplication_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `studentaccount` (`student_id`);
+
+  -- ----------------------------------------------------------------------------------------------------------------------------
+  -- ORG APPLICATIONS (Pending, Validated, Removed)
+CREATE TABLE `verificationcode` (
+   `code_id` int(11) UNSIGNED NOT NULL,
+   `type` varchar(10) NOT NULL DEFAULT 'None',
+   `account_id` int(11) UNSIGNED NOT NULL,
+   `code` varchar(32) NOT NULL DEFAULT 'None',
+   `status` varchar(10) NOT NULL DEFAULT 'Removed'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `verificationcode`
+  ADD PRIMARY KEY (`code_id`);
+
+ALTER TABLE `verificationcode`
+  MODIFY `code_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+
+
 
 
  -- ----------------------------------------------------------------------------------------------------------------------------

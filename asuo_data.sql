@@ -5,9 +5,9 @@ INSERT INTO `studentaccount` (`student_id`, `up_id`, `up_mail`, `username`, `pas
 (4, '201481207', 'acracusa@up.edu.ph', 'acracusa', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
 (5, '201411235', 'kacolumna@up.edu.ph', 'kacolumna', '32250170a0dca92d53ec9624f336ca24', 1, 0, 1),
 (6, '201408109', 'pslasmarias@up.edu.ph', 'pslasmarias', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
-(7, '201479241', 'ncmendoza1@up.edu.ph', 'nmendoza1', '32250170a0dca92d53ec9624f336ca24', 1, 0, 0),
+(7, '201479241', 'ncmendoza1@up.edu.ph', 'ncmendoza1', '32250170a0dca92d53ec9624f336ca24', 1, 0, 0),
 (8, '201499764', 'dgperez@up.edu.ph', 'dgperez', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
-(9, '201480756', 'avsangeuenza@up.edu.ph', 'avsanguenza', '32250170a0dca92d53ec9624f336ca24', 1, 0, 0);
+(9, '201480756', 'avsangeuenza@up.edu.ph', 'avsanguenza', '32250170a0dca92d53ec9624f336ca24', 0, 0, 0);
 
 INSERT INTO `studentprofile` (`student_id`, `first_name`, `middle_name`, `last_name`, `sex`, `birthday`, `course`, `year_level`, `contact_num`, `profile_pic`, `form5`) VALUES
 (1, 'Angelica', 'A', 'Ayos', 'Female', '1997-01-01', 'BS Computer Science', '3', '09XXXXXXXXX', 'angelica.jpg', 'angelica_form5.jpg'),
@@ -32,21 +32,23 @@ INSERT INTO `organizationaccount` (`org_id`, `org_email`, `password`, `org_statu
 (5, 'upbeau@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Accredited', 1, 1,  0),
 (6, 'upsocomsci@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Acredited', 1, 1, 0),
 (7, 'orcomsoc@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 0, 0,  1),
-(8, 'upvector@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1,  0),
-(9, 'orgasm@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 0,  1),
-(10, 'upmkule@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1,  0);
+(8, 'upvector@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 0,  1),
+(9, 'orgasm@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1,  1),
+(10, 'upmkule@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 0, 0,  0);
 
-INSERT INTO `organizationprofile` (`org_id`, `org_name`, `acronym`, `org_category`, `org_college`, `description`, `objectives`, `org_website`, `mailing_address`, `date_established`, `org_logo`, `constitution`, `incSEC`) VALUES
-(1, 'AISEC', 'AISEC', 'Socio-Civic', 'Arts and Sciences', 'international involvement org', 'to something', 'aisec.com', 'here', '1988', 'aisec.jpg', 'No uploads yet', 0),
-(2, 'UP Manila Chorale', 'UPM Chorale', 'Special Interest', 'Arts and Sciences', 'music org', 'to something', 'upmchorale.com', 'there', '1989', 'upmc.jpg', 'No uploads yet', 0),
-(3, 'Garbriela Youth', 'UPM Gabriela', 'Cause-Oriented', 'Arts and Sciences', 'Women empowerment org', 'to something', 'gabriela.com', 'where', '1990', 'gabriela.jpg', 'No uploads yet', 1),
-(4, 'UP Manila Musical Organization', 'UPMorg', 'Special Interest', 'Arts and Sciences', 'org of music', 'to something', 'upmorg.com', 'herewhere', '1991', 'upmorg.jpg', 'No uploads yet', 1),
-(5, 'UP Beau', 'UPB', 'Sorority', 'Arts and Sciences', 'org of females', 'to something', 'upbeau.com', 'wherewhere', '1992', 'upbeau.jpg', 'No uploads yet', 0),
-(6, 'UP Society of Computer Scientists', 'UP SoComSci', 'Academic', 'Arts and Sciences', 'org of computer enthusiasts', 'to something', 'upsocomsci.com', 'hello world', '1993', 'upsocomsci.jpg', 'No uploads yet', 1),
-(7, 'Organizational Communications Society', 'OrComSoc', 'Academic', 'Arts and Sciences', 'org of orcom students', 'to something', 'uporcomsoc.com', 'therethere', '1993', 'uporcomsoc.jpg', 'No uploads yet', 0),
-(8, 'UP Vector', 'UP Vector', 'Academic', 'Arts and Sciences', 'org of vectors', 'to something', 'upvector.com', 'somewhere', '1994', 'upvector.jpg', 'No uploads yet', 0),
-(9, 'Organization of Area Studies Majors', 'OrgASM', 'Academic', 'Arts and Sciences', 'org of asm', 'to something', 'orgasm.com', 'over', '1995', 'orgasm.jpg', 'No uploads yet', 1),
-(10, 'UP Manila Collegian', 'MKule', 'Service', 'Arts and Sciences', 'org of collegians XD', 'to something', 'mkule.com', 'my head', '1996', 'mkule.jpg', 'No uploads yet', 0);
+INSERT INTO `organizationprofile` (`org_id`, `org_name`, `acronym`, `org_category`, `org_college`, `description`, `objectives`, `org_website`, `mailing_address`, `date_established`, `org_logo`, `constitution`, `incSEC`, `sec_years`) VALUES
+(1, 'AISEC', 'AISEC', 'Socio-Civic', 'College of Arts and Sciences', 'international involvement org', 'to something', 'aisec.com', 'here', '1988', '	
+fde3d4614bf1c82bc47b252875ef97b2.jpg', 'No uploads yet', 0, 0),
+(2, 'UP Manila Chorale', 'UPM Chorale', 'Special Interest', 'College of  Arts and Sciences', 'music org', 'to something', 'upmchorale.com', 'there', '1989', '6b369cd1e3e73f289186ba31c943c43c.jpg', 'No uploads yet', 0, 0),
+(3, 'Garbriela Youth', 'UPM Gabriela', 'Cause-Oriented', 'College of  Arts and Sciences', 'Women empowerment org', 'to something', 'gabriela.com', 'where', '1990', '391ea5faffe2ecee779e82cbfc58a058.jpg', 'No uploads yet', 1, 3),
+(4, 'UP Manila Musical Organization', 'UPMorg', 'Special Interest', 'College of  Arts and Sciences', 'org of music', 'to something', 'upmorg.com', 'herewhere', '1991', '	
+a765743b36d83a8681cd018ac0edb17f.jpg', 'No uploads yet', 1, 4),
+(5, 'UP Beau', 'UPB', 'Sorority', 'College of  Arts and Sciences', 'org of females', 'to something', 'upbeau.com', 'wherewhere', '1992', '087ddd17c41558a3a29ae44b5bba8016.jpg', 'No uploads yet', 0, 0),
+(6, 'UP Society of Computer Scientists', 'UP SoComSci', 'Academic', 'College of  Arts and Sciences', 'org of computer enthusiasts', 'to something', 'upsocomsci.com', 'hello world', '1993', 'c31944ef461eb828d715940a0f3b8cab.jpg', 'No uploads yet', 1, 5),
+(7, 'Organizational Communications Society', 'OrComSoc', 'Academic', 'College of  Arts and Sciences', 'org of orcom students', 'to something', 'uporcomsoc.com', 'therethere', '1993', '3fc1026fb5f2f3665e2dd2029907cbb4.jpg', 'No uploads yet', 0,0 ),
+(8, 'UP Vector', 'UP Vector', 'Academic', 'College of  Arts and Sciences', 'org of vectors', 'to something', 'upvector.com', 'somewhere', '1994', '4cb09dcfea87b60898b8f86d9d99f149.jpg', 'No uploads yet', 0, 0),
+(9, 'Organization of Area Studies Majors', 'OrgASM', 'Academic', 'College of  Arts and Sciences', 'org of asm', 'to something', 'orgasm.com', 'over', '1995', '33de90baee9dfac8afad381a9a679782.jpg', 'No uploads yet', 1, 6),
+(10, 'UP Manila Collegian', 'MKule', 'Service', 'College of  Arts and Sciences', 'org of collegians XD', 'to something', 'mkule.com', 'my head', '1996', '589926869598978a956ab447804628a1.jpg', 'No uploads yet', 0, 0);
 
 -- -------------------------------------------------------------------
 
@@ -146,6 +148,11 @@ INSERT INTO `orgapplication` (`orgapp_id`, `org_id`, `student_id`, `status`) VAL
 (8, 6, 8, 'Pending'),
 (9, 6, 9, 'Approved');
 
+-- ------------------------------------------------------------------------
+INSERT INTO `verificationcode` (`code_id`, `type`, `account_id`, `code`, `status`) VALUES
+(1, 'org', 1, '32250170a0dca92d53ec9624f336ca24', 'Pending'),
+(2, 'org', 7, '32250170a0dca92d53ec9624f336ca24', 'Pending'),
+(3, 'org', 10, '32250170a0dca92d53ec9624f336ca24', 'Pending');
 -- ------------------------------------------------------------------------
 
 INSERT INTO `restrictedacronym` (`res_id`, `acronym`) VALUES

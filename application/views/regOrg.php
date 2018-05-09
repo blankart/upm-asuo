@@ -146,11 +146,11 @@ function validateForm(){
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-8">
-                                                <input type="text" class="form-control" placeholder="Organization Full Name" name="data[org_name]" required>
+                                                <input type="text" maxlength="100" class="form-control" placeholder="Organization Full Name" name="data[org_name]" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
                                             <div class="col-4">
-                                                <input type="text" class="form-control" id="OrgRegAcronym" onblur="OrgRegAcronymChecker()" placeholder="Acronym" name="data[acronym]" required>
+                                                <input type="text" maxlength="30" class="form-control" id="OrgRegAcronym" onblur="OrgRegAcronymChecker()" placeholder="Acronym" name="data[acronym]" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
                                         </div>
@@ -196,11 +196,11 @@ function validateForm(){
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-7">
-                                                <input type="email" id="OrgRegEmailAdd" onblur="OrgRegEmailChecker()" class="form-control" name="data[org_email]" placeholder="Email Address" required>
+                                                <input type="email" maxlength="50" id="OrgRegEmailAdd" onblur="OrgRegEmailChecker()" class="form-control" name="data[org_email]" placeholder="Email Address" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
                                             <div class="col-5">
-                                                <input type="text" class="form-control" name="data[org_website]" placeholder="Website" required>
+                                                <input type="text" maxlength="50" class="form-control" name="data[org_website]" placeholder="Website" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
 
@@ -212,7 +212,7 @@ function validateForm(){
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12">
-                                                <input type="text" class="form-control" name="data[mailing_address]" placeholder="Mailing Address" required>
+                                                <input type="text" maxlength="100" class="form-control" name="data[mailing_address]" placeholder="Mailing Address" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
                                         </div>
@@ -221,11 +221,11 @@ function validateForm(){
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input type="password" onblur="conPassValidate()" id="Pass" class="form-control" placeholder="Password" name="data[password]" required>
+                                                <input type="password" minlength="7" maxlength="32" onblur="conPassValidate()" id="Pass" class="form-control" placeholder="Password" name="data[password]" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
                                             <div class="col-6   ">
-                                                <input type="password" onblur="conPassValidate()" id="conPass" class="form-control" placeholder="Confirm Password" required>
+                                                <input type="password" minlength="7" maxlength="32" onblur="conPassValidate()" id="conPass" class="form-control" placeholder="Confirm Password" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
 

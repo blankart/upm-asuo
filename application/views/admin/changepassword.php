@@ -133,7 +133,7 @@
                     <div class="form-group">
                         <label class="control-label">Current Password</label>
                         <div class="controls">
-                            <input type="password" class="form-control input-sm" id="currentPass" required>
+                            <input type="password" minlength="7" maxlength="32" class="form-control input-sm" id="currentPass" required>
                         </div>
                         <div id="curPassAlert" style="display: none;">
                         </div>
@@ -141,7 +141,7 @@
                     <div class="form-group">
                         <label class="control-label">New Password</label>
                         <div class="controls">
-                            <input type="password" onblur="passwordMatch('<?php echo $id?>')" class="form-control input-sm" id="newPass" required>
+                            <input type="password" minlength="7" maxlength="32" onblur="passwordMatch('<?php echo $id?>')" class="form-control input-sm" id="newPass" required>
                     </div>
                     </div>
                         <div id="newPassAlert" style="display: none;">
@@ -149,7 +149,7 @@
                     <div class="form-group">
                         <label class="control-label">Confirm Password</label>
                         <div class="controls">
-                            <input type="password" onblur="passwordMatch('<?php echo $id?>')" class="form-control input-sm" id="conPass" required>
+                            <input type="password" minlength="7" maxlength="32" onblur="passwordMatch('<?php echo $id?>')" class="form-control input-sm" id="conPass" required>
                     </div>
                     </div>
                         <div id="conPassAlert" style="display: none;">

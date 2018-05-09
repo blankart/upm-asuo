@@ -24,7 +24,7 @@
 				$this->changeLogo();
 			else if ($action == 'uploadConstitution')
 				$this->uploadConstitution();
-			
+					
 			else if ($action == 'applyforaccreditation'){
 				$this->load->view('header');
 				$this->load->view('org/applyforaccreditation/applyforaccreditation');
@@ -80,24 +80,34 @@
 				$this->viewFormF();
 			}
 			else
-				if($this->session->userdata['account_type'] == 'org')
+				if($this->session->userdata['account_type'] == 'org'){
 					if($action  == $this->session->userdata['nsacronym'])					
 						$this->loadOrgProfile();
 					else
 			 			show_404();
+			 	}
+				else if($this->session->userdata['account_type'] == 'unverifiedOrg'){
+					echo  'verify your email using ' .$this->session->userdata['email']. "."; //load view here note: redirect
+				}
+				else if($this->session->userdata['account_type'] == 'unactivatedOrg'){
+					echo 'You account is not yet activated. Procced to OSA.'; //load view here note: redirect
+				}
+				else if($this->session->userdata['account_type'] == 'archivedOrg'){
+					echo 'You account is blocked. Procced to OSA.'; //load view here note: redirect
+				}
 				else
 					redirect(base_url().'login');
 		}
-
+		
 		private function redirectToProfile(){
-			if($this->session->userdata['account_type'] == 'student')
+			if($account_type == 'student' || $account_type == 'unverifiedStudent' || $account_type == 'unactivatedStudent' || $account_type == 'archivedStudent' )
 			 	redirect(base_url()."student/".$this->session->userdata['username']);
 			
-			if($this->session->userdata['account_type'] == 'org')
+			if($account_type == 'org' || $account_type == 'unverifiedOrg' || $account_type == 'unactivatedOrg' || $account_type == 'archivedOrg' )
 				redirect(base_url()."org/".$this->session->userdata['nsacronym']);
 	 		
-	 		if($this->session->userdata['account_type'] == 'admin')
-	 			redirect(base_url()."admin/".$this->session->userdata['username']);	
+	 		if($account_type == 'admin')
+	 			redirect(base_url()."admin/".$this->session->userdata['username']);
 		}
 
 		private function loadOrgProfile(){
@@ -193,53 +203,56 @@
 
 		private function changeLogo(){
 
-			  	$config['upload_path'] = './assets/';
-				$config['allowed_types'] = 'jpg|JPG';
-				$config['max_size']     = '500';
-				$config['max_width'] = '1024';
-				$config['max_height'] = '768';
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('orgLogo'.$id);
 
-                $this->upload->initialize($config);
+			$config['upload_path'] = './assets/org/logo/';
+			$config['allowed_types'] = 'jpg';
+			$config['overwrite'] = TRUE;
+			$config['max_size']     = '500';
+			$config['file_name'] = $file_name;
 
+			$this->upload->initialize($config);
 
-			 if ( ! $this->upload->do_upload('logo')){
-
-			 	  echo "<pre>";
-                print_r($this->upload->data());
-                echo "</pre>";
-                        $error = array('error' => $this->upload->display_errors());
-                        print_r($error);
-
-                }
-                else
-                {
-                        $data = array('upload_data' => $this->upload->data());
-
-                       
-                }
- 
+			if ( ! $this->upload->do_upload('logo')){
+	            show_404();
+                $error = array('msg' => $this->upload->display_errors());
+                echo json_encode($error);
+                exit();
+            }
+            else {
+                $this->load->model('OrgModel');
+				$this->OrgModel->changeLogo($id, $file_name.".jpg");  
+				$data = array('msg' => $this->upload->data());  
+				echo json_encode($data);
+				exit();     
+            }
 		}
 
 		private function uploadConstitution(){
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('orgConstitution'.$id);
+
 			$config['upload_path'] = './assets/org/constitution/';
 			$config['allowed_types'] = 'pdf';
-			$config['max_size']     = '100';
+			$config['overwrite'] = TRUE;
+			$config['max_size']     = '1000';
+			$config['file_name'] = $file_name.'.pdf';
 
 			$this->upload->initialize($config);
 
 			if ( ! $this->upload->do_upload('constitution')){
-
-			 	echo "<pre>";
-                print_r($this->upload->data());
-                echo "</pre>";
-                        $error = array('error' => $this->upload->display_errors());
-                        print_r($error);
+		        show_404();
+                $error = array('msg' => $this->upload->display_errors());
+                echo json_encode($error);
+                exit();
             }
-            else {
-            	echo "<pre>";
-                print_r($this->upload->data());
-                echo "</pre>";
-                $data = array('upload_data' => $this->upload->data());          
+            else {                
+                $this->load->model('OrgModel');
+				$this->OrgModel->uploadConstitution($id, $file_name);  
+				$data = array('msg' => $this->upload->data());  
+				echo json_encode($data);
+				exit();     
             }
 		}
 
@@ -286,7 +299,7 @@
 
 			//$name = 'UP Society of Computer Scientists';
 			// set some text to print
-			$html= '<p align="right"><b>Date filed:</b></p><br>
+			$html= '<p align="right"><b>Date filed:</b>'.date("M d, Y").'</p><br>
 			<b>Organization Name:</b><br>
 			<b>Number of members:</b><br>	
 			<b>Category:</b><br>
@@ -398,7 +411,59 @@
 			$pdf->AddPage();
 			//$pdf->AddPage();
 			$pdf->Output('example_003.pdf', 'I');
+					$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
+			// set document information
+			$pdf->SetCreator(PDF_CREATOR);
+			$pdf->SetAuthor('');
+			$pdf->SetTitle('Form C');
+			$pdf->SetSubject('');
+			$pdf->SetKeywords('');
+
+			// set default header data
+			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form C: Organization Profile", PDF_HEADER_STRING);
+			// set header and footer fonts
+			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+			$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+			// set default monospaced fonts
+			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+			// set margins
+			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+			$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+			$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);	
+
+			// set auto page breaks
+			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+
+			// set image scale factor
+			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+			// set font
+			$pdf->SetFont('Helvetica', '', 12);
+
+
+
+			// add a page
+			$pdf->AddPage();
+			//$pdf->AddPage();
+			$text ='
+				<p align="center"><b><h3>Organization Profile</h3></b></p>
+				<b>Name of Organization:</b><br>
+				<b>Acronym:</b><br>
+				<b>Mailing Address:</b><br>
+				<b>E-mail Address:</b><br>
+				<b>Website: </b><br>
+				<b>Date Established:</b><br>
+				<b>Total Number of Members:</b><br>
+
+				<table>
+
+				</table>
+			';
+			$pdf->writeHTML($text, true, 0, true, 0);
+			$pdf->Output('example_003.pdf', 'I');
 		}
 
 		private function viewFormD(){
@@ -439,19 +504,31 @@
 			$result = $this->OrgModel->getOrgOfficer();	
 			//var_dump($result);
 			$temp = "";
-
+			//$pdf->setJPEGQuality(75);
+			//var_dump(K_PATH_IMAGES."\logo.png");
+			//$pdf->Image(K_PATH_IMAGES."\sample.jpg");
+			//$pdf->writeHTML($html, true, false, true, false, '');
+			//$image = file_get_contents('../logo.png');
+			//var_dump($image);
+			//$pdf->Image('@'.$image);
+			// Image example with resizing
 			for($i=0;$i<sizeof($result);$i++)
 			{
 				if($result[$i]['isRemoved'] == 0 && $result[$i]['position'] != 'Member')
 				{
-					if(($i % 3) == 0 || $i == 0)
-					{
-						$pdf->AddPage();
+					if(($i+1 % 4) == 0 || $i == 0)
+				{
+					$pdf->AddPage();
 					$temp = '<br><p align="right"><b><u>'.$result[$i]['org_name'].'</u></b><br>
 					<b>Name of Organization</b></p><br>
 					<h3 align="center"><b>LIST OF OFFICERS</b></h3>
+<<<<<<< HEAD
 					<h5 align="center">AY 2017-2018</h5>';
 					}
+=======
+					<h4 align="center">AY 2017-2018</h4>';
+				}
+>>>>>>> 2ac4571e61e80a8be28bd5bab2a60a00f83df582
 				$samplehtml = $temp.' 
 			<table>
   			<tr>
@@ -476,6 +553,20 @@
   			</tr>
 		</table> 
 				';
+				/*
+				$html= $temp.'
+
+					<b style="padding: 20px">Name:</b>&nbsp;&nbsp;'.$result[$i]['first_name'].'  '.$result[$i]['middle_name'].'  '.$result[$i]['last_name'].'<br>
+					<b style="padding: 20px">Position:</b>&nbsp;&nbsp;'.$result[$i]['position'].'&nbsp;&nbsp;&nbsp;&nbsp;
+					<b style="padding: 20px">Year/Course:</b>&nbsp;&nbsp;'.$result[$i]['year_level']. '/&nbsp;'.$result[$i]['course'].'<br>
+					<b style="padding: 20px">Address:</b>&nbsp;&nbsp;'.$result[$i]['up_mail'].'<br>
+					<b style="padding: 20px">Phone:</b>&nbsp;&nbsp;'.$result[$i]['contact_num'].'
+					<b style="padding: 20px">Email:</b>&nbsp;&nbsp;'.$result[$i]['up_mail'].'<br>
+					<b style="padding: 20px">Other Contact Details:</b>&nbsp;&nbsp; Empty pa ito.
+					<br>
+					<img src="http://localhost/ASUO/assets/student/profile_pic/aldrin.jpg" width="50" height="50" align="right">
+					';
+				*/
 				$temp = "";
 				$pdf->writeHTML($samplehtml, true, 0, true, 0);
 				}
@@ -526,14 +617,18 @@
 
 			$this->load->model('OrgModel');
 			$result = $this->OrgModel->getOrgMembers();	
-			//var_dump($result);
+
 			$temp = "";
 			// add a page
 			for($i=0;$i<sizeof($result);$i++)
 			{
 				if($result[$i]['isRemoved'] == 0)
 				{
+<<<<<<< HEAD
 					if(($i+1 % 2) == 0 || $i == 0)
+=======
+					if(($i+1 % 4) == 0 || $i == 0)
+>>>>>>> 2ac4571e61e80a8be28bd5bab2a60a00f83df582
 				{
 					$pdf->AddPage();
 					$temp = '<br><p align="right"><b><u>'.$result[$i]['org_name'].'</u></b><br>
@@ -561,14 +656,35 @@
     			<td colspan="2"><b>Email:</b> '.$result[$i]['up_mail'].'</td>
   			</tr>
   			<tr>
+<<<<<<< HEAD
   			<br> 
   				<td colspan="5" rowspan="5"><img src="'.K_PATH_PROFILE_PIC.'/assets/student/form_5/'.$result[$i]['form5'].'" width="350" height="200" align="center"></td>
+=======
+  				<td colspan="5" rowspan="5"> Form5</td>
+>>>>>>> 2ac4571e61e80a8be28bd5bab2a60a00f83df582
   			</tr>
 		</table> 
 				';
+				/*
+				$html= $temp.'
+
+					<b style="padding: 20px">Name:</b>&nbsp;&nbsp;'.$result[$i]['first_name'].'  '.$result[$i]['middle_name'].'  '.$result[$i]['last_name'].'<br>
+					<b style="padding: 20px">Position:</b>&nbsp;&nbsp;'.$result[$i]['position'].'&nbsp;&nbsp;&nbsp;&nbsp;
+					<b style="padding: 20px">Year/Course:</b>&nbsp;&nbsp;'.$result[$i]['year_level']. '/&nbsp;'.$result[$i]['course'].'<br>
+					<b style="padding: 20px">Address:</b>&nbsp;&nbsp;'.$result[$i]['up_mail'].'<br>
+					<b style="padding: 20px">Phone:</b>&nbsp;&nbsp;'.$result[$i]['contact_num'].'
+					<b style="padding: 20px">Email:</b>&nbsp;&nbsp;'.$result[$i]['up_mail'].'<br>
+					<b style="padding: 20px">Other Contact Details:</b>&nbsp;&nbsp; Empty pa ito.
+					<br>
+					<img src="http://localhost/ASUO/assets/student/profile_pic/aldrin.jpg" width="50" height="50" align="right">
+					';
+				*/
 				$temp = "";
 				$pdf->writeHTML($samplehtml, true, 0, true, 0);
-				}	
+				}
+
+				
+				
 			}
 			
 	
@@ -611,6 +727,42 @@
 			// set font
 			$pdf->SetFont('Helvetica', '', 12);
 
+			$pdf->addPage();
+			$year = date("Y");
+			$text='
+				<b><p align="center">Financial Statement</p></b><br>
+				<p align="center">AY '.$year.' - '.($year+1).'</p>
+				<br>
+				<b>Starting Cash Balance:</b> 
+				<br>
+				<b>Add:</b>
+				<br>
+				<br>
+				<b>Details</b> &nbsp; <b>Amount</b>
+				<br>
+
+				<b>Total Amount Available for Disbursement…………………..………. </b> &nbsp;&nbsp;
+				<br>
+
+				<b>Less:</b><br>
+				<b>Disbursement Details</b> &nbsp; <b>Amount</b>
+				<br>
+
+				<b>Cash balance as of:</b> &nbsp;&nbsp;&nbsp; <b>Php</b>
+
+				<p align="center"><B>Finance Officer:</B><br>
+
+				</p>
+
+				<br>
+				<br>
+				<b>Audited by:</b> &nbsp;&nbsp;&nbsp; <b>Attested by:</b><br><br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Adviser:</b>
+
+
+			';
+
+			$pdf->writeHTML($text, true, 0, true, 0);
 			$pdf->Output('example_003.pdf', 'I');
 			//$pdf->Output('example_003.pdf', 'I');
 		}
