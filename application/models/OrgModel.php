@@ -112,24 +112,29 @@
 		//end of VIEW PROFILE FUNCTIONS
 
 		//MEMBERSHIP FUNCTIONS
-		public function approveMembership($org_id, $student_id){
+		public function approveMembership($org_id, $student_id)
+		{
 			//tables: orgmember, orgapplication
 		}
 
-		public function disapproveMembership($org_id, $student_id){
+		public function disapproveMembership($org_id, $student_id)
+		{
 			//tables: orgmember, orgapplicaton
 		}
 
-		public function editMembership($org_id, $student_id, $positon){
+		public function editMembership($org_id, $student_id, $positon)
+		{
 			//tables: orgmember
 		}
 
-		public function removeMembership($org_id, $student_id){
+		public function removeMembership($org_id, $student_id)
+		{
 			//tables: org member
 			//note: change position to 'Member' too
 		}
 
-		public function getApplicationStatus($org_id, $student_id){
+		public function getApplicationStatus($org_id, $student_id)
+		{
 			//tables: orgapplication
 			//return: status
 		}

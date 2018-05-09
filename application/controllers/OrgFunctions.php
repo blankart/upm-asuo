@@ -359,7 +359,40 @@
 			// set font
 			$pdf->SetFont('Helvetica', '', 12);
 
+			$html= '<p align="right"><b>Date filed:</b></p><br>
+			<b>Organization Name:</b><br>
+			<b>Number of members:</b><br>	
+			<b>Category:</b><br>
+			<b>Position/Designation:   </b>&nbsp;&nbsp;&nbsp;&nbsp;<b>College/Unit</b><br>
+			<b>Contact Person:</b>
+			<b>Position in the Organization</b>
+			<br>
+			<b>Address</b>
+			<br>
+			<b>Telephone no.:</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>Mobile no.:</b>
+			<br>
+			<b>Email:</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>Other contact details:</b>
+			<br>
+			<b>Objectives of Organization:</b>
+			<br>
+			<b>Brief description of Organization:</b>
+			<br>
+			<br>
+			<br>
+				<p align="right">___________________________________<br>
+				<b>Name of Person Filing the Application</b>
+				<br>
+				___________________________________<br>
+				<b>Position in the Organization</b>
+				<br>
+				___________________________________<br>
+				<b>Signature</b>
+				<br>
 
+
+
+				</p>
+			';
 
 			// add a page
 			$pdf->AddPage();
@@ -416,7 +449,7 @@
 						$pdf->AddPage();
 					$temp = '<br><p align="right"><b><u>'.$result[$i]['org_name'].'</u></b><br>
 					<b>Name of Organization</b></p><br>
-					<h3 align="center"><b>LIST OF MEMBERS</b></h3>
+					<h3 align="center"><b>LIST OF OFFICERS</b></h3>
 					<h5 align="center">AY 2017-2018</h5>';
 					}
 				$samplehtml = $temp.' 
@@ -500,7 +533,7 @@
 			{
 				if($result[$i]['isRemoved'] == 0)
 				{
-					if(($i % 4) == 0 || $i == 0)
+					if(($i+1 % 2) == 0 || $i == 0)
 				{
 					$pdf->AddPage();
 					$temp = '<br><p align="right"><b><u>'.$result[$i]['org_name'].'</u></b><br>
@@ -508,26 +541,27 @@
 					<h3 align="center"><b>LIST OF MEMBERS</b></h3>
 					<h5 align="center">AY 2017-2018</h5>';
 				}
-				$samplehtml = $temp.' 
+				$samplehtml = $temp.'
 			<table>
   			<tr>
-   	 			<td colspan = "2"><b>Name:</b> '.$result[$i]['first_name'].' '.$result[$i]['middle_name'].' '.$result[$i]['last_name'].'</td>
-   	 			<td> </td>
+   	 			<td><b>Name:</b></td>
+   	 			<td colspan = "2" style ="">'.$result[$i]['first_name'].' '.$result[$i]['middle_name'].' '.$result[$i]['last_name'].'</td>
    	 			<td> </td>
     			<td rowspan="5"><img src="'.K_PATH_PROFILE_PIC.'/assets/student/profile_pic/'.$result[$i]['profile_pic'].'" width="80" height="100" align="right"></td>
   			</tr>
   			<tr>
     			<td><b>Year:</b> '.$result[$i]['year_level'].'</td>
-    			<td colspan="2"><b>Year/Course:</b>'.$result[$i]['course'].'</td>
+    			<td colspan = "3"><b>Course:</b>'.$result[$i]['course'].'</td>
   			</tr>
   			<tr>
     			<td colspan="3"><b>Address:</b> '.$result[$i]['up_mail'].'</td>
   			</tr>
   			<tr>
     			<td colspan="2"><b>Phone:</b> '.$result[$i]['contact_num'].'</td>
-    			<td colspan="3"><b>Email:</b> '.$result[$i]['up_mail'].'</td>
+    			<td colspan="2"><b>Email:</b> '.$result[$i]['up_mail'].'</td>
   			</tr>
   			<tr>
+  			<br> 
   				<td colspan="5" rowspan="5"><img src="'.K_PATH_PROFILE_PIC.'/assets/student/form_5/'.$result[$i]['form5'].'" width="350" height="200" align="center"></td>
   			</tr>
 		</table> 
