@@ -522,13 +522,10 @@
 					$temp = '<br><p align="right"><b><u>'.$result[$i]['org_name'].'</u></b><br>
 					<b>Name of Organization</b></p><br>
 					<h3 align="center"><b>LIST OF OFFICERS</b></h3>
-<<<<<<< HEAD
-					<h5 align="center">AY 2017-2018</h5>';
-					}
-=======
+
 					<h4 align="center">AY 2017-2018</h4>';
 				}
->>>>>>> 2ac4571e61e80a8be28bd5bab2a60a00f83df582
+
 				$samplehtml = $temp.' 
 			<table>
   			<tr>
@@ -624,11 +621,7 @@
 			{
 				if($result[$i]['isRemoved'] == 0)
 				{
-<<<<<<< HEAD
-					if(($i+1 % 2) == 0 || $i == 0)
-=======
 					if(($i+1 % 4) == 0 || $i == 0)
->>>>>>> 2ac4571e61e80a8be28bd5bab2a60a00f83df582
 				{
 					$pdf->AddPage();
 					$temp = '<br><p align="right"><b><u>'.$result[$i]['org_name'].'</u></b><br>
