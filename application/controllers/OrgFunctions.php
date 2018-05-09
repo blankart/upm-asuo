@@ -519,11 +519,12 @@
 					if(($i+1 % 4) == 0 || $i == 0)
 				{
 					$pdf->AddPage();
+					$year = date("Y");
 					$temp = '<br><p align="right"><b><u>'.$result[$i]['org_name'].'</u></b><br>
 					<b>Name of Organization</b></p><br>
 					<h3 align="center"><b>LIST OF OFFICERS</b></h3>
 
-					<h4 align="center">AY 2017-2018</h4>';
+					<h4 align="center">AY '.$year.' - '.($year+1).'</h4>';
 				}
 
 				$samplehtml = $temp.' 
@@ -621,15 +622,17 @@
 			{
 				if($result[$i]['isRemoved'] == 0)
 				{
-					if(($i+1 % 4) == 0 || $i == 0)
+				if(($i+1 % 2) == 0 || $i == 0)
 				{
 					$pdf->AddPage();
+					$year = date("Y");
 					$temp = '<br><p align="right"><b><u>'.$result[$i]['org_name'].'</u></b><br>
 					<b>Name of Organization</b></p><br>
 					<h3 align="center"><b>LIST OF MEMBERS</b></h3>
-					<h5 align="center">AY 2017-2018</h5>';
+					<h5 align="center">AY '.$year.' - '.($year+1).'</h5>';
 				}
 				$samplehtml = $temp.'
+			<div>
 			<table>
   			<tr>
    	 			<td><b>Name:</b></td>
@@ -649,15 +652,13 @@
     			<td colspan="2"><b>Email:</b> '.$result[$i]['up_mail'].'</td>
   			</tr>
   			<tr>
-<<<<<<< HEAD
   			<br> 
   				<td colspan="5" rowspan="5"><img src="'.K_PATH_PROFILE_PIC.'/assets/student/form_5/'.$result[$i]['form5'].'" width="350" height="200" align="center"></td>
-=======
   				<td colspan="5" rowspan="5"> Form5</td>
->>>>>>> 2ac4571e61e80a8be28bd5bab2a60a00f83df582
   			</tr>
 		</table> 
-				';
+		</div>
+		';
 				/*
 				$html= $temp.'
 
