@@ -91,7 +91,11 @@
    }
 
    function swalSucc(){
-      swal("Saved!", "You have updated your profile!", "success");
+   		swal({title: "Success!", text: "You have updated your profile!", type: "success"},
+            function(){ 
+                location.reload();
+            }
+ 		);
    }
 
    function swalFail(){
@@ -143,7 +147,8 @@
             data:{org_id: org_id, data: orgdata},
             dataType: 'json',
             success:function(result){
-               swalSucc();
+            	swalSucc();
+               
             },
             error: function(XMLHttpRequest, textStatus, errorThrown) { 
                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
@@ -315,7 +320,7 @@
          </div>
          <!-- Modal footer -->
          <div class="modal-footer">
-         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         <button type="button" class="btn btn-default" onclick = " location.reload() " data-dismiss="modal">Close</button>
          <button type="button" id="saveChangesButton" class="btn btn-danger">Save</button>
          </div>
          </form>
