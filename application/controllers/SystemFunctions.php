@@ -133,7 +133,6 @@
 			$org_session['account_type'] = 'unverifiedOrg';
 			$this->setSessions($org_session);
 		}
-
 	
 		private function checkLogin()
 		{
@@ -158,20 +157,21 @@
 		//Session variables
 		// all: account type, logged_in, user_id
 		// student: first_name, username, email
-		// org: name, acronym, email
-		// admin:
+		// org: org_name, acronym, nsacronym, email
+		// admin: username, admin_name
 		private function setSessions($data){	
 
+			$account_type = $data['account_type'];
 
-			if($data['account_type'] == 'unverifiedOrg' || $data['account_type'] == 'unactivatedOrg' || $data['account_type'] == 'archivedOrg'){
+			if($account_type == 'org' || $account_type == 'unverifiedOrg' || $account_type == 'unactivatedOrg' || $account_type == 'archivedOrg'){
 
-				echo '<pre>';
-				print_r($data);
-				echo '</pre>';
+				//echo '<pre>';
+				//print_r($data);
+				//echo '</pre>';
 
 				$nsacronym = str_replace(' ', '', $data['acronym']);
 			   	$details = array(
-			   		'account_type' => $data['account_type'],
+			   		'account_type' => $account_type,
 			   		'user_id' => $data['org_id'],
 			   		'org_name' => $data['org_name'],
 		    		'acronym' => $data['acronym'],
@@ -183,17 +183,16 @@
 			    $this->session->set_userdata($details);
 			    redirect(base_url().'org/'.$nsacronym);
 			}
-			
 
-			if($data['account_type'] == 'unverifiedStudent' || $data['account_type'] == 'unactivatedStudent' || $data['account_type'] == 'archivedStudent'){
+			if($account_type == 'student' || $account_type == 'unverifiedStudent' || $account_type == 'unactivatedStudent' || $account_type == 'archivedStudent'){
 
-
-				echo '<pre>';
-				print_r($data);
-				echo '</pre>';
+				//echo '<pre>';
+				//print_r($data);
+				//echo '</pre>';
 
 				$details = array(
-			   		'account_type' => $data['account_type'],
+			   		'account_type' => $account_type,
+			   		'user_id' => $data['student_id'],
 		    		'first_name'  => $data['first_name'],
 		   			'username'  => $data['username'],
 		    		'email'     => $data['up_mail'],
@@ -204,8 +203,7 @@
 				redirect(base_url().'student/'.$details['username']);
 			}
 
-			if($data['account_type'] == 'admin')
-			{
+			if($account_type == 'admin'){
 				$details = array(
 					'account_type' => 'admin',
 					'user_id' => $data['admin_id'],
@@ -216,36 +214,6 @@
 
 				$this->session->set_userdata($details);
 				redirect(base_url().'admin/'.$details['username']);
-			}
-
-			if($data['account_type'] == 'org'){
-
-				$nsacronym = str_replace(' ', '', $data['acronym']);
-			   	$details = array(
-			   		'account_type' => 'org',
-			   		'user_id' => $data['org_id'],
-			   		'org_name' => $data['org_name'],
-		    		'acronym' => $data['acronym'],
-		    		'nsacronym' => $nsacronym,
-		    		'email'     => $data['org_email'],
-		    		'logged_in' => TRUE
-				);
-
-				$this->session->set_userdata($details);
-				redirect(base_url().'org/'.$nsacronym);
-			}
-
-			if($data['account_type'] == 'student'){
-			   	$details = array(
-			   		'account_type' => 'student',
-		    		'first_name'  => $data['first_name'],
-		   			'username'  => $data['username'],
-		    		'email'     => $data['up_mail'],
-		    		'logged_in' => TRUE
-				);
-
-				$this->session->set_userdata($details);
-				redirect(base_url().'student/'.$data['username']);
 			}
 		}
 

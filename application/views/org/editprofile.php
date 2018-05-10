@@ -103,7 +103,7 @@
    }
 
    function noUploads(){
-      swal("Failed!", "You have not uploaded any constitution yet!", "error");
+      swal("Failed!", "You have not uploaded any constitution yet!", "warning");
    }
 
    function editProfile(){
@@ -124,7 +124,7 @@
          var incSEC = 0;
 
       if(org_id == "" || acronym == "" || mailing_address == "" || org_website == "" || date_established == "" || objectives == "" || description == ""){
-            //error, empty field found
+           swal("Failed!", "An empty field has been found!\nPlease review your entries.", "warning");
       }
       else{
          var orgdata = {
@@ -166,7 +166,6 @@
          textbox.disabled = true;
       }
    }
-
 
    window.onload = incSEC;
 </script>

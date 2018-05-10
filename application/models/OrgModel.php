@@ -112,7 +112,7 @@
 		}
 		//end of VIEW PROFILE FUNCTIONS
 
-		//MEMBERSHIP FUNCTIONS
+		//MEMBERSHIP-RELATED FUNCTIONS
 		public function approveMembership($org_id, $student_id)
 		{
 			//tables: orgmember, orgapplication
@@ -139,7 +139,7 @@
 			//tables: orgapplication
 			//return: status
 		}
-		//end of MEMBERSHIP FUNCTIONS
+		//end of MEMBERSHIP-RELATED FUNCTIONS
 
 		//CREATE POST FUNCTION
 		public function createPost($post){
@@ -196,7 +196,7 @@
 		public function checkOrgPassword($id, $orgpassword){
 			$condition = "org_id = " .$id. " AND password = '" .$orgpassword. "'";
 
-			$this->db->select('*');
+			$this->db->select('org_id');
 			$this->db->from('organizationaccount');
 			$this->db->where ($condition);
 

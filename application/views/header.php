@@ -54,7 +54,7 @@
 				<a class='nav-link' href='".base_url()."student/".$username."'>".$first_name."</a>
 		  		</li>
 		  		<li class='nav-item'>
-		  		<a class='nav-link' href='".base_url()."student/change_password'>Change Password</a>
+		  		<a class='nav-link' href='#' data-toggle='modal' data-target='#changestudentpassword'>Change Password</a>
 		  		</li>
 		  		<li class='nav-item'>
 		  		<a class='nav-link' href='".base_url()."logout'>Log Out</a>

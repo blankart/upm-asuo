@@ -80,6 +80,8 @@
 		}
 
 		private function redirectToProfile(){
+			$account_type = $this->session->userdata['account_type'];
+			
 			if($account_type == 'student' || $account_type == 'unverifiedStudent' || $account_type == 'unactivatedStudent' || $account_type == 'archivedStudent' )
 			 	redirect(base_url()."student/".$this->session->userdata['username']);
 			
