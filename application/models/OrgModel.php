@@ -16,7 +16,7 @@
 
 		public function getOrgMembers()
 		{
-			$condition = "om.org_id = op.org_id AND om.student_id = sp.student_id AND om.student_id = sa.student_id";
+			$condition = "om.org_id = op.org_id AND om.student_id = sp.student_id AND om.student_id = sa.student_id AND om.isRemoved = 0";
 			$this->db->select("op.org_name, sp.*, om.*,sa.up_mail,");
 			$this->db->from("organizationprofile op, studentprofile sp, orgmember om, studentaccount sa");
 			$this->db->where($condition);
@@ -182,7 +182,7 @@
 		//ORG ACCREDITATION FUNCTIONS
 		public function getOrgOfficer()
 		{
-			$condition = "om.org_id = op.org_id AND om.student_id = sp.student_id AND om.student_id = sa.student_id";
+			$condition = "om.org_id = op.org_id AND om.student_id = sp.student_id AND om.student_id = sa.student_id AND om.isRemoved = 0 AND om.position <> 'Member'";
 			$this->db->select("op.org_name, sp.*, om.*,sa.up_mail,");
 			$this->db->from("organizationprofile op, studentprofile sp, orgmember om, studentaccount sa");
 			$this->db->where($condition);
