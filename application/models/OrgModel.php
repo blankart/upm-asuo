@@ -14,17 +14,6 @@
 			return $result;
 		}
 
-		public function getOrgMembers()
-		{
-			$condition = "om.org_id = op.org_id AND om.student_id = sp.student_id AND om.student_id = sa.student_id AND om.isRemoved = 0";
-			$this->db->select("op.org_name, sp.*, om.*,sa.up_mail,");
-			$this->db->from("organizationprofile op, studentprofile sp, orgmember om, studentaccount sa");
-			$this->db->where($condition);
-			$org_details = $this->db->get();
-			
-			return $org_details->result_array();			
-		}
-
 		private function getOrgDetails($org_id){
 			$condition = "oa.org_id = op.org_id AND op.org_id = " .$org_id;
 
@@ -141,13 +130,6 @@
 		}
 		//end of MEMBERSHIP-RELATED FUNCTIONS
 
-		//CREATE POST FUNCTION
-		public function createPost($post){
-			$this->db->insert('orgpost', $post);
-			return $this->db->insert_id();
-		}
-		//end of CREATE POST FUNCTION
-
 		//EDIT PROFILE FUNCTIONS
 		public function editOrgProfile($id, $changes){
 			$condition = 'org_id = ' .$id. ' AND org_id = '.$id;
@@ -190,7 +172,25 @@
 			
 			return $org_details->result_array();			
 		}
+
+		public function getOrgMembers()
+		{
+			$condition = "om.org_id = op.org_id AND om.student_id = sp.student_id AND om.student_id = sa.student_id AND om.isRemoved = 0";
+			$this->db->select("op.org_name, sp.*, om.*,sa.up_mail,");
+			$this->db->from("organizationprofile op, studentprofile sp, orgmember om, studentaccount sa");
+			$this->db->where($condition);
+			$org_details = $this->db->get();
+			
+			return $org_details->result_array();			
+		}
 		//end of ORG ACCREDITATION FUNCTIONS
+
+		//CREATE POST FUNCTION
+		public function createPost($post){
+			$this->db->insert('orgpost', $post);
+			return $this->db->insert_id();
+		}
+		//end of CREATE POST FUNCTION
 
 		//CHANGE PASSWORD FUNCTIONS
 		public function checkOrgPassword($id, $orgpassword){

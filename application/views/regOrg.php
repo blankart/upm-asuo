@@ -1,6 +1,6 @@
 <script>
     function OrgRegEmailChecker(){
-        var org_email = $("#OrgRegEmailAdd").val();
+        var org_email = ($("#org_email").val()).trim();
         var checker = false;
         //alert(org_email);
     if (org_email.length>0)
@@ -45,7 +45,7 @@
 
 function OrgRegAcronymChecker()
 {
-    var org_acronym = $("#OrgRegAcronym").val();
+    var org_acronym = ($("#acronym").val()).trim();
     var checker = false;
        // alert(org_acronym);
     if (org_acronym.length>0)
@@ -67,7 +67,7 @@ function OrgRegAcronymChecker()
                 $("#orgAcronymRestricted").removeClass();
                 $("#orgAcronymRestricted").html('');
                 $("#orgAcronymRestricted").addClass('notice notice-sm notice-danger');
-                $("#orgAcronymRestricted").html('<strong>Error:</strong> This acronym is restricted. For more info, visit OSA.');
+                $("#orgAcronymRestricted").html('<strong>Error:</strong> This acronym is already taken. For more info, visit OSA.');
                 $("#orgAcronymRestricted").slideDown(400);   
                 return false;
             }
@@ -83,7 +83,14 @@ function OrgRegAcronymChecker()
 
     });
 
-    }    
+    }
+    else{
+        $("#orgAcronymRestricted").addClass('notice notice-sm notice-danger');
+        $("#orgAcronymRestricted").html('<strong>Error:</strong> Acronym should not be empty!');
+        $("#orgAcronymRestricted").slideDown(400);   
+    }
+
+
     return checker;
 }
 
@@ -108,16 +115,79 @@ function conPassValidate()
 }
 
 function validateForm(){
+    resetErrorDisplays();
 
     if (conPassValidate() && OrgRegEmailChecker() && OrgRegAcronymChecker())
     {
-       // alert("true");
-        return true;
+        
+        var org_name = (document.getElementById("org_name").value).trim();
+        var acronym = (document.getElementById("acronym").value).trim();
+        var org_email = (document.getElementById("org_email").value).trim();
+        var org_website = (document.getElementById("org_website").value).trim();
+        var mailing_address = (document.getElementById("mailing_address").value).trim();
+
+        // alert("Org name: '"+ org_name + "'");
+        // alert("Acronym: '"+ acronym + "'");
+        // alert("Org Email: '"+ org_email + "'");
+        // alert("Org Website: '"+ org_website + "'");
+        // alert("Mailing Address: '"+ mailing_address + "'");
+
+        if(org_name == '' || acronym == '' || org_email == '' || org_website == '' || mailing_address == ''){
+
+           // alert ('invalid input found!');
+
+            if(org_name == ""){
+                $("#nameInvalidInput").addClass('notice notice-sm notice-danger');
+                $("#nameInvalidInput").html('<strong>Error:</strong> Organizaton Name field is empty!');
+                $("#nameInvalidInput").slideDown(400);   
+            }
+
+            if(org_website == ""){
+                $("#websiteInvalidInput").addClass('notice notice-sm notice-danger');
+                $("#websiteInvalidInput").html('<strong>Error:</strong> Organization Website field is empty!');
+                $("#websiteInvalidInput").slideDown(400);  
+            }
+    
+            if(mailing_address == ""){
+                $("#mailAddressInvalidInput").addClass('notice notice-sm notice-danger');
+                $("#mailAddressInvalidInput").html('<strong>Error:</strong> Mailing Address field is empty!');
+                $("#mailAddressInvalidInput").slideDown(400);   
+            }
+
+            return false;
+        }
+        else{
+            document.getElementById("org_name").value = org_name;
+            document.getElementById("acronym").value = acronym;
+            document.getElementById("org_email").value = org_email;
+            document.getElementById("org_website").value = org_website;
+            document.getElementById("mailing_address").value = mailing_address;
+
+            return true;
+        }
     }
     else {
         return false;
     };
 }
+
+    function resetErrorDisplays(){
+        $("#nameInvalidInput").removeClass();
+        $("#nameInvalidInput").html('');
+
+        $("#orgAcronymRestricted").removeClass();
+        $("#orgAcronymRestricted").html('');
+
+        $("#orgEmailTaken").removeClass();
+        $("#orgEmailTaken").html('');
+
+        $("#mailAddressInvalidInput").removeClass();
+        $("#mailAddressInvalidInput").html('');
+
+        $("#websiteInvalidInput").removeClass();
+        $("#websiteInvalidInput").html('');        
+    }
+
 </script>
 <!DOCTYPE html>
 <html>
@@ -146,17 +216,18 @@ function validateForm(){
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-8">
-                                                <input type="text" maxlength="100" class="form-control" placeholder="Organization Full Name" name="data[org_name]" required>
+                                                <input type="text" maxlength="100" class="form-control" placeholder="Organization Full Name" name="data[org_name]" id='org_name' required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                                <div id="nameInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
                                             </div>
                                             <div class="col-4">
-                                                <input type="text" maxlength="30" class="form-control" id="OrgRegAcronym" onblur="OrgRegAcronymChecker()" placeholder="Acronym" name="data[acronym]" required>
+                                                <input type="text" maxlength="30" class="form-control" onblur="OrgRegAcronymChecker()" placeholder="Acronym" name="data[acronym]" id='acronym' required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                                <div id="orgAcronymRestricted" class="notice notice-sm notice-danger" style="display: none;">
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="orgAcronymRestricted" class="notice notice-sm notice-danger" style="display: none;">
-
+                    
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
@@ -196,27 +267,29 @@ function validateForm(){
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-7">
-                                                <input type="email" maxlength="50" id="OrgRegEmailAdd" onblur="OrgRegEmailChecker()" class="form-control" name="data[org_email]" placeholder="Email Address" required>
+                                                <input type="email" maxlength="50" onblur="OrgRegEmailChecker()" class="form-control" name="data[org_email]" id='org_email' placeholder="Email Address" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
                                             <div class="col-5">
-                                                <input type="text" maxlength="50" class="form-control" name="data[org_website]" placeholder="Website" required>
+                                                <input type="text" maxlength="50" class="form-control" name="data[org_website]" id ='org_website' placeholder="Website" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                                 <div id="websiteInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
                                             </div>
 
                                         </div>
                                     </div>
-                                    <div id="orgEmailTaken" class="notice notice-sm notice-danger" style="display: none;">
+                                    <div id="orgEmailTaken" class="notice notice-sm notice-danger" style="display: none;"></div>
 
-                                    </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12">
-                                                <input type="text" maxlength="100" class="form-control" name="data[mailing_address]" placeholder="Mailing Address" required>
+                                                <input type="text" maxlength="100" class="form-control" name="data[mailing_address]" id='mailing_address' placeholder="Mailing Address" required>
                                                 <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                             </div>
                                         </div>
+                                        <div id="mailAddressInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
                                     </div>
+                             
 
                                     <div class="form-group">
                                         <div class="row">
