@@ -504,19 +504,9 @@
 			$result = $this->OrgModel->getOrgOfficer();	
 			//var_dump($result);
 			$temp = "";
-			//$pdf->setJPEGQuality(75);
-			//var_dump(K_PATH_IMAGES."\logo.png");
-			//$pdf->Image(K_PATH_IMAGES."\sample.jpg");
-			//$pdf->writeHTML($html, true, false, true, false, '');
-			//$image = file_get_contents('../logo.png');
-			//var_dump($image);
-			//$pdf->Image('@'.$image);
-			// Image example with resizing
 			for($i=0;$i<sizeof($result);$i++)
 			{
-				if($result[$i]['isRemoved'] == 0 && $result[$i]['position'] != 'Member')
-				{
-					if(($i+1 % 4) == 0 || $i == 0)
+					if(($i % 3) == 0 || $i == 0)
 				{
 					$pdf->AddPage();
 					$year = date("Y");
@@ -551,26 +541,8 @@
   			</tr>
 		</table> 
 				';
-				/*
-				$html= $temp.'
-
-					<b style="padding: 20px">Name:</b>&nbsp;&nbsp;'.$result[$i]['first_name'].'  '.$result[$i]['middle_name'].'  '.$result[$i]['last_name'].'<br>
-					<b style="padding: 20px">Position:</b>&nbsp;&nbsp;'.$result[$i]['position'].'&nbsp;&nbsp;&nbsp;&nbsp;
-					<b style="padding: 20px">Year/Course:</b>&nbsp;&nbsp;'.$result[$i]['year_level']. '/&nbsp;'.$result[$i]['course'].'<br>
-					<b style="padding: 20px">Address:</b>&nbsp;&nbsp;'.$result[$i]['up_mail'].'<br>
-					<b style="padding: 20px">Phone:</b>&nbsp;&nbsp;'.$result[$i]['contact_num'].'
-					<b style="padding: 20px">Email:</b>&nbsp;&nbsp;'.$result[$i]['up_mail'].'<br>
-					<b style="padding: 20px">Other Contact Details:</b>&nbsp;&nbsp; Empty pa ito.
-					<br>
-					<img src="http://localhost/ASUO/assets/student/profile_pic/aldrin.jpg" width="50" height="50" align="right">
-					';
-				*/
 				$temp = "";
 				$pdf->writeHTML($samplehtml, true, 0, true, 0);
-				}
-
-				
-				
 			}
 			
 			$pdf->Output('example_003.pdf', 'I');
@@ -620,8 +592,7 @@
 			// add a page
 			for($i=0;$i<sizeof($result);$i++)
 			{
-				if($result[$i]['isRemoved'] == 0)
-				{
+
 				if(($i+1 % 2) == 0 || $i == 0)
 				{
 					$pdf->AddPage();
@@ -632,7 +603,6 @@
 					<h5 align="center">AY '.$year.' - '.($year+1).'</h5>';
 				}
 				$samplehtml = $temp.'
-			<div>
 			<table>
   			<tr>
    	 			<td><b>Name:</b></td>
@@ -657,25 +627,11 @@
   				<td colspan="5" rowspan="5"> Form5</td>
   			</tr>
 		</table> 
-		</div>
-		';
-				/*
-				$html= $temp.'
 
-					<b style="padding: 20px">Name:</b>&nbsp;&nbsp;'.$result[$i]['first_name'].'  '.$result[$i]['middle_name'].'  '.$result[$i]['last_name'].'<br>
-					<b style="padding: 20px">Position:</b>&nbsp;&nbsp;'.$result[$i]['position'].'&nbsp;&nbsp;&nbsp;&nbsp;
-					<b style="padding: 20px">Year/Course:</b>&nbsp;&nbsp;'.$result[$i]['year_level']. '/&nbsp;'.$result[$i]['course'].'<br>
-					<b style="padding: 20px">Address:</b>&nbsp;&nbsp;'.$result[$i]['up_mail'].'<br>
-					<b style="padding: 20px">Phone:</b>&nbsp;&nbsp;'.$result[$i]['contact_num'].'
-					<b style="padding: 20px">Email:</b>&nbsp;&nbsp;'.$result[$i]['up_mail'].'<br>
-					<b style="padding: 20px">Other Contact Details:</b>&nbsp;&nbsp; Empty pa ito.
-					<br>
-					<img src="http://localhost/ASUO/assets/student/profile_pic/aldrin.jpg" width="50" height="50" align="right">
-					';
-				*/
+		';
 				$temp = "";
 				$pdf->writeHTML($samplehtml, true, 0, true, 0);
-				}
+				
 
 				
 				
