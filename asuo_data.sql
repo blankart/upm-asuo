@@ -7,7 +7,8 @@ INSERT INTO `studentaccount` (`student_id`, `up_id`, `up_mail`, `username`, `pas
 (6, '201408109', 'pslasmarias@up.edu.ph', 'pslasmarias', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
 (7, '201479241', 'ncmendoza1@up.edu.ph', 'ncmendoza1', '32250170a0dca92d53ec9624f336ca24', 1, 0, 0),
 (8, '201499764', 'dgperez@up.edu.ph', 'dgperez', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
-(9, '201480756', 'avsangeuenza@up.edu.ph', 'avsanguenza', '32250170a0dca92d53ec9624f336ca24', 0, 0, 0);
+(9, '201480756', 'avsangeuenza@up.edu.ph', 'avsanguenza', '32250170a0dca92d53ec9624f336ca24', 0, 0, 0),
+(10, '201480768', 'aleinstein@up.edu.ph', 'aleinstein', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0);
 
 INSERT INTO `studentprofile` (`student_id`, `first_name`, `middle_name`, `last_name`, `sex`, `birthday`, `course`, `year_level`, `contact_num`, `profile_pic`, `form5`) VALUES
 (1, 'Angelica', 'A', 'Ayos', 'Female', '1997-01-01', 'BS Computer Science', '3', '09XXXXXXXXX', 'angelica.jpg', 'angelica_form5.jpg'),
@@ -18,7 +19,8 @@ INSERT INTO `studentprofile` (`student_id`, `first_name`, `middle_name`, `last_n
 (6, 'Paula Nicole', 'S', 'Lasmarias', 'Female', '1997-01-01', 'BS Computer Science', '2', '09XXXXXXXXX', 'paula.jpg', 'paula_form5.jpg'),
 (7, 'Nico', 'Cruelala', 'Mendoza', 'Male', '1997-01-01', 'BS Computer Science', 'Masteral', '09XXXXXXXXX', 'nico.jpg', 'nico_form5.jpg'),
 (8, 'Darlene Grace', 'A', 'Perez', 'Female', '1997-01-01', 'BS Computer Science', 'Doctoral', '09XXXXXXXXX', 'darlene.jpg', 'darlene_form5.jpg'),
-(9, 'Alyssa Fatima', 'V', 'Sanguenza', 'Female', '1997-01-01', 'BS Computer Science', 'Masteral', '09XXXXXXXXX', 'alyssa.jpg', 'alyssa_form5.jpg');
+(9, 'Alyssa Fatima', 'V', 'Sanguenza', 'Female', '1997-01-01', 'BS Computer Science', 'Masteral', '09XXXXXXXXX', 'alyssa.jpg', 'alyssa_form5.jpg'),
+(10, 'Albert', 'Hans', 'Einstein', 'Male', '1879-03-14', 'BS Computer Science', 'Doctoral', '09XXXXXXXXX', 'albert.jpg', 'albert_form5.jpg');
 
 INSERT INTO `admin` (`admin_id`, `username`, `password`, `admin_name`, `admin_email`) VALUES
 (1, 'OSA', '32250170a0dca92d53ec9624f336ca24', 'Office of Student Affairs', 'admin@up.edu.ph'),
@@ -123,7 +125,12 @@ INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`, `i
 (6, 6, 6, 'Finance Officer', 0),
 (7, 6, 7, 'Treasurer', 0),
 (8, 6, 8, 'Member', 1),
-(9, 6, 9, 'Auditor', 0);
+(9, 6, 9, 'Auditor', 0),
+
+(10, 1, 10, 'President', 0),
+(11, 3, 10, 'Member', 0),
+(12, 4, 10, 'Member', 1),
+(13, 9, 10, 'Auditor', 0);
 
 -- -------------------------------------------------------------------------
 
@@ -133,7 +140,14 @@ INSERT INTO `orgpost` (`post_id`, `org_id`, `title`, `content`, `date_posted`, `
 (3, 6, "Title 3", "This is content 3", '2018-11-11 13:23:46', 'Officers', 1),
 (4, 6, "4th Title", "This is content 4", '2018-11-11 13:23:47', 'Members', 1),
 (5, 6, "Title of 5th Post", "This is content 5", '2018-11-11 13:23:48', 'Officers', 0),
-(6, 6, "6 our of 6 Title", "This is content 6", '2018-11-11 13:23:49', 'Public', 0);
+(6, 6, "6 out of 6 Title", "This is content 6", '2018-11-11 13:23:49', 'Public', 0),
+
+(7, 1, "Untitled", "This is content 7", '2018-11-11 13:24:44', 'Public', 0),
+(8, 1, "Title of 8", "This is content 8", '2018-11-11 13:25:45', 'Members', 0),
+(9, 1, "Title 9", "This is content 9", '2018-11-11 13:26:46', 'Officers', 0),
+(10, 3, "10th Title", "This is content 10", '2018-11-11 13:27:47', 'Members', 0),
+(11, 3, "Title of 11th Post", "This is content 11", '2018-11-11 13:28:48', 'Officers', 0),
+(12, 3, "12 out of 12 Title", "This is content 12", '2018-11-11 13:29:49', 'Public', 0);
 
 -- -------------------------------------------------------------------------
 
@@ -141,12 +155,20 @@ INSERT INTO `orgapplication` (`orgapp_id`, `org_id`, `student_id`, `status`) VAL
 (1, 6, 1, 'Approved'),
 (2, 6, 2, 'Approved'),
 (3, 6, 3, 'Approved'),
-(4, 6, 4, 'Disapproved'),
+(4, 6, 4, 'Rejected'),
 (5, 6, 5, 'Approved'),
 (6, 6, 6, 'Approved'),
 (7, 6, 7, 'Approved'),
 (8, 6, 8, 'Pending'),
-(9, 6, 9, 'Approved');
+(9, 6, 9, 'Approved'),
+
+(10, 1, 10, 'Approved'),
+(11, 2, 10, 'Pending'),
+(12, 3, 10, 'Pending'),
+(13, 4, 10, 'Approved'),
+(14, 5, 10, 'Pending'),
+(15, 6, 10, 'Pending'),
+(16, 9, 10, 'Approved');
 
 -- ------------------------------------------------------------------------
 INSERT INTO `verificationcode` (`code_id`, `type`, `account_id`, `code`, `status`) VALUES

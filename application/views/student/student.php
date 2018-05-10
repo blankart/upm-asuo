@@ -1,5 +1,9 @@
 <html>
 <body>
-	<?php echo 'Medy is cute!'; ?>
+	<?php 
+		echo '<pre>';
+		print_r($info);
+		echo '</pre>';
+	?>
 </body>
 </html>
