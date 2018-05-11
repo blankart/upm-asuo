@@ -125,6 +125,19 @@
 		}
 		// end of EDIT PROFILE FUNCTIONS
 
+		// SEARCH FUNCTIONS
+		public function search($searchItem){
+			$condition = "(op.org_name LIKE '%" .$searchItem. "%' OR op.acronym LIKE '%" .$searchItem. "%' OR oa.org_email LIKE '%" .$searchItem. "%') AND oa.archived = 0 AND op.org_id = oa.org_id";
+
+			$this->db->select("op.org_id, op.org_name, op.acronym, oa.org_email");
+			$this->db->distinct();
+			$this->db->from("organizationprofile op, organizationaccount oa");
+			$this->db->where($condition);
+			$query = $this->db->get();
+			return $query->result_array();
+		}
+		// end of SEARCH FUNCTIONS
+
 		//CHANGE PASSWORD FUNCTIONS
 		public function checkStudentPassword($id, $orgpassword){
 			$condition = "student_id = " .$id. " AND password = '" .$orgpassword. "'";

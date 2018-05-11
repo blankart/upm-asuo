@@ -1,7 +1,7 @@
 <?php
 	class StudentFunctions extends CI_Controller{
 
-		public function perform( $action = 'login'){
+		public function perform( $action = 'login', $searchItem = ''){
 			 if($action == 'login' || $action == 'regstud' || $action == 'regorg'){
 				if( isset($this->session->userdata['logged_in']) )
 			 		$this->redirectToProfile();
@@ -11,6 +11,17 @@
 					$this->load->view('footer');
 				}
 			}
+			else if($action == 'editStudentProfile')
+				$this->editStudentProfile();
+			else if($action == 'changePicture')
+				$this->changePicture();
+			else if($action == 'uploadForm5')
+				$this->uploadForm5();
+
+			else if($action == 'search')
+				//echo 'here';
+				$this->search($searchItem);
+
 			else if($action == 'checkStudentPassword')
 				$this->checkStudentPassword();
 			else if($action == 'changeStudentPassword')
@@ -62,6 +73,87 @@
 			$this->load->view('student/student.php', $data);
 			$this->load->view('footer');
 			$this->load->view('student/changepassword');
+		}
+
+		private function editStudentProfile(){
+			$data = $this->input->post('data');
+			$student_id = $this->input->post('student_id');
+		
+			if($student_id != NULL && $data != NULL){
+				$this->load->model('StudentModel');
+				$this->StudentModel->editStudentProfile($student_id, $data);
+				echo json_encode(true);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function changePicture(){
+
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('studentProfilePic'.$id);
+
+			$config['upload_path'] = './assets/student/profile_pic/';
+			$config['allowed_types'] = 'jpg';
+			$config['overwrite'] = TRUE;
+			$config['max_size']     = '500';
+			$config['file_name'] = $file_name;
+
+			$this->upload->initialize($config);
+
+			if ( ! $this->upload->do_upload('profile_pic')){
+	            show_404();
+                $error = array('msg' => $this->upload->display_errors());
+                echo json_encode($error);
+                exit();
+            }
+            else {
+                $this->load->model('StudentModel');
+				$this->StudentModel->changePicture($id, $file_name.".jpg");  
+				$data = array('msg' => $this->upload->data());  
+				echo json_encode($data);
+				exit();     
+            }
+		}
+
+		private function uploadForm5(){
+
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('studentForm5'.$id);
+
+			$config['upload_path'] = './assets/student/form_5/';
+			$config['allowed_types'] = 'jpg';
+			$config['overwrite'] = TRUE;
+			$config['max_size']     = '500';
+			$config['file_name'] = $file_name;
+
+			$this->upload->initialize($config);
+
+			if ( ! $this->upload->do_upload('form_5')){
+	            show_404();
+                $error = array('msg' => $this->upload->display_errors());
+                echo json_encode($error);
+                exit();
+            }
+            else {
+                $this->load->model('StudentModel');
+				$this->StudentModel->uploadForm5($id, $file_name.".jpg");  
+				$data = array('msg' => $this->upload->data());  
+				echo json_encode($data);
+				exit();     
+            }
+		}
+
+		private function search($searchItem){
+			//echo $searchItem . "'+'";
+
+			$this->load->model("StudentModel");
+			$result = $this->StudentModel->search($searchItem);
+			echo "Search results for '" .$searchItem. "'";
+			echo "<pre>";
+			print_r($result);
+			echo "</pre>";
 		}
 
 		private function checkStudentPassword(){

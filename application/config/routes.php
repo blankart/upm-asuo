@@ -52,9 +52,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['default_controller'] = 'SystemFunctions/perform';
 $route['(:any)'] = 'SystemFunctions/perform/$1';
-$route['(:any)/(:any)/(:any)'] = 'SystemFunctions/perform/$1/$2/$3';
+
 $route['student/(:any)'] = 'StudentFunctions/perform/$1';
+$route['student/search/(:any)'] = 'StudentFunctions/perform/search/$1';
 $route['org/(:any)'] = 'OrgFunctions/perform/$1';
 $route['admin/(:any)'] = 'AdminFunctions/perform/$1';
+
+$route['verify/(:any)/(:any)'] = 'SystemFunctions/perform/verify/$1/$2';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
