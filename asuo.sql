@@ -3,7 +3,7 @@ CREATE TABLE `studentaccount` (
   `student_id` int(11) UNSIGNED NOT NULL,
   `up_id` char(9) NOT NULL,
   `up_mail` varchar(50) NOT NULL,
-  `username` varchar(32) NOT NULL,
+  ` z` varchar(32) NOT NULL,
   `password` varchar(32) NOT NULL,
   `isVerified` tinyint(1) NOT NULL DEFAULT 0,
   `isActivated` tinyint(1) NOT NULL DEFAULT 0,
@@ -20,7 +20,7 @@ CREATE TABLE `studentprofile` (
   `course` varchar(50) NOT NULL,
   `year_level` varchar(10) NOT NULL,
   `contact_num` varchar(11) NOT NULL,
-  `profile_pic` varchar(40) NOT NULL DEFAULT 'img_default.jpg',
+  `profile_pic` varchar(40) NOT NULL DEFAULT 'default_male.jpg',
   `form5` varchar(40) NOT NULL DEFAULT 'form5_default.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

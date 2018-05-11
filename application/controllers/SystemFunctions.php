@@ -13,20 +13,28 @@
 					$this->load->view('footer');
 				}
 			}
-			else if($action == 'logout')
-				$this->logOut();
-			else if($action == 'checkLogin')
-				$this->checkLogin();
+
 			else if($action == 'validate_org_email')
-				$this->validate_org_email();
+				$this->vaidate_org_email();
 			else if($action == 'validate_org_acronym')
 				$this->validate_org_acronym();
 			else if($action == 'registerOrg')
 				$this->registerOrg();
+
+			else if($action == 'validateStudentUPMail')
+				$this->validateStudentUPMail();
+			else if($action == 'registerStudent')
+				$this->registerStudent();
+
 			else if($action == 'verify')
 				$this->verify($type, $code);
 			else if($action == 'sendVerificationMail')
 				$this->sendVerificationMail();
+
+			else if($action == 'checkLogin')
+				$this->checkLogin();
+			else if($action == 'logout')
+				$this->logOut();
 			else
 				show_404();
 		}
@@ -97,45 +105,113 @@
 		private function registerOrg()
 		{
 			$result = $this->input->post('data');
+
+			if($result != NULL){
 			
-			$account_data = array(
-				'org_email' => $result['org_email'],
-				'password' => md5($result['password']),
-				'org_status' => 'Unaccredited',
-				'isVerified' => 0,
-				'isActivated'=> 0,
-				'archived' => 0
-			);
+				$account_data = array(
+					'org_email' => $result['org_email'],
+					'password' => md5($result['password']),
+					'org_status' => 'Unaccredited',
+					'isVerified' => 0,
+					'isActivated'=> 0,
+					'archived' => 0
+				);
 
-			$this->load->model('SystemModel');
-			$org_id = $this->SystemModel->createOrgAccount($account_data);
-			//insert profile details to db
-			//var_dump($org_id);
+				$this->load->model('SystemModel');
+				$org_id = $this->SystemModel->createOrgAccount($account_data);
+				//insert profile details to db
+				//var_dump($org_id);
 
-			$profile_details = array(
-				'org_id' => $org_id,
-				'org_name' => $result['org_name'], 
-				'acronym' => $result['acronym'], 
-				'org_category' => $result['org_category'], 
-				'org_college' => $result['org_college'],
-				'description' => 'N/A', 
-				'objectives' => 'N/A', 
-				'org_website' => $result['org_website'], 
-				'mailing_address' => $result['mailing_address'], 
-				'date_established' => 'N/A', 
-				'org_logo' => 'logo_default.jpg',
-				'constitution' => 'No uploads yet',
-				'incSEC' => 0,
-				'sec_years' => 0
-			);
+				$profile_details = array(
+					'org_id' => $org_id,
+					'org_name' => $result['org_name'], 
+					'acronym' => $result['acronym'], 
+					'org_category' => $result['org_category'], 
+					'org_college' => $result['org_college'],
+					'description' => 'N/A', 
+					'objectives' => 'N/A', 
+					'org_website' => $result['org_website'], 
+					'mailing_address' => $result['mailing_address'], 
+					'date_established' => 'N/A', 
+					'org_logo' => 'logo_default.jpg',
+					'constitution' => 'No uploads yet',
+					'incSEC' => 0,
+					'sec_years' => 0
+				);
 
-			$org_session = $this->SystemModel->createOrgProfile($profile_details);
-			$org_session['account_type'] = 'unverifiedOrg';
-			$this->setSessions($org_session);
+				$org_session = $this->SystemModel->createOrgProfile($profile_details);
+				$org_session['account_type'] = 'unverifiedOrg';
+				$this->setSessions($org_session);
+			}
+			else
+				show_404();
+		}
+
+		private function validateStudentUPMail(){
+			$up_mail = $this->input->post('up_mail');
+
+			if($up_mail != NULL){
+
+				$this->load->model('SystemModel');
+				$result = $this->SystemModel->validateStudentUPMail($up_mail);
+		
+				if($result)
+					echo json_encode(true);
+				else
+					echo json_encode(false);
+				
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function registerStudent(){
+			$result = $this->input->post('data');
+
+			if($result != NULL){
+				$username = explode('@up.edu.ph', $result['up_mail']);
+				
+				$account_data = array(
+					'up_id' => $result['up_id'],
+					'up_mail' => $result['up_mail'],
+					'username' => $username,
+					'password' => $result['password'],
+					'isVerified' => 0,
+					'isActivated'=> 0,
+					'archived' => 0
+				);
+
+				$this->load->model('SystemModel');
+				$student_id = $this->SystemModel->createStudentAccount($account_data);
+
+				if($result['sex'] == 'Female')
+					$profile_pic = 'default_female.jpg';
+				else
+					$profile_pic = 'default_male.jpg';
+
+				$profile_details = array(
+					'student_id' => $student_id,
+					'first_name' => $result['first_name'], 
+					'middle_name' => $result['middle_name'], 
+					'last_name' => $result['last_name'], 
+					'sex' => $result['sex'],
+					'birthday' => $result['birthday'],
+					'course' => $result['course'],
+					'year_level' => $result['year_level'], 
+					'contact_num' => 'N/A',
+					'profile_pic' => $profile_pic
+				);
+
+				$student_session = $this->SystemModel->createStudentProfile($profile_details);
+				$student_session['account_type'] = 'unverifiedStudent';
+				$this->setSessions($student_session);
+			}
+			else 
+				show_404();
 		}
 	
-		private function checkLogin()
-		{
+		private function checkLogin(){
 			$credentials = $this->input->post('credentials');
 
 			if($credentials != NULL)
@@ -165,10 +241,6 @@
 
 			if($account_type == 'org' || $account_type == 'unverifiedOrg' || $account_type == 'unactivatedOrg' || $account_type == 'archivedOrg'){
 
-				//echo '<pre>';
-				//print_r($data);
-				//echo '</pre>';
-
 				$nsacronym = str_replace(' ', '', $data['acronym']);
 			   	$details = array(
 			   		'account_type' => $account_type,
@@ -185,10 +257,6 @@
 			}
 
 			if($account_type == 'student' || $account_type == 'unverifiedStudent' || $account_type == 'unactivatedStudent' || $account_type == 'archivedStudent'){
-
-				//echo '<pre>';
-				//print_r($data);
-				//echo '</pre>';
 
 				$details = array(
 			   		'account_type' => $account_type,
