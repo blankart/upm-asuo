@@ -1,5 +1,7 @@
 <script>
-   
+	
+
+}
 </script>
 <!DOCTYPE html>
 <html>
@@ -29,7 +31,7 @@
                                     <div id="nameInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
                                  </div>
                                  <div class="col-4">
-                                    <input type="text" maxlength="100" class="form-control" placeholder="Middle Name" name="data[mid_name]" id='mid_name' required>
+                                    <input type="text" maxlength="100" class="form-control" placeholder="Middle Name" name="data[middle_name]" id='mid_name' required>
                                     <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                     <div id="nameInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
                                  </div>
@@ -44,11 +46,14 @@
                            <div class="form-group">
                               <div class="row">
                                  <div class="col-6">
-                                    <select class="form-control" name="data[yr_level]" required>
+                                    <select class="form-control" name="data[year_level]" required>
                                        <option>First Year</option>
                                        <option>Second Year</option>
                                        <option>Third Year</option>
                                        <option>Fourth Year</option>
+                                       <option>Fifth Year</option>
+                                       <option>Sixth Year</option>
+                                       <option>Seventh Year</option>
                                        <option>Masteral</option>
                                        <option>Doctoral</option>
                                     </select>
@@ -56,26 +61,26 @@
                                  </div>
                                  <div class="col-6">
                                     <select class="form-control" name="data[course]" required>
-                                       <option>BS Applied Physics</option>
                                        <option>BA Behavioral Sciences</option>
+                                       <option>BA Development Studies</option>
+                                       <option>BA Organizational Communication</option>
+                                       <option>BA Philippine Arts</option>
+                                       <option>BA Political Science</option>
+                                       <option>BA Social Sciences</option>
+                                       <option>BS Applied Physics</option>
                                        <option>BS Biochemistry</option>
                                        <option>BS Biology</option>
                                        <option>BS Computer Science</option>
-                                       <option>D Dental Medicine</option>
-                                       <option>BA Development Studies</option>
                                        <option>BS Industrial Pharmacy</option>
-                                       <option>Intarmed</option>
-                                       <option>D Medicine</option>
                                        <option>BS Nursing</option>
                                        <option>BS Occupational Therapy</option>
-                                       <option>BA Organizational Communication</option>
                                        <option>BS Pharmacy</option>
-                                       <option>BA Philippine Arts</option>
                                        <option>BS Physical Therapy</option>
-                                       <option>BA Political Science</option>
                                        <option>BS Public Health</option>
-                                       <option>BA Social Sciences</option>
                                        <option>BS Speech Pathology</option>
+                                       <option>D Dental Medicine</option>
+                                       <option>D Medicine</option>
+                                       <option>Intarmed</option>
                                        <option>Not Applicable</option>
                                     </select>
                                     <small class="form-text text-muted">Sed ut perspiciatis.</small>
@@ -84,12 +89,27 @@
                            </div>
                            <div class="form-group">
                               <div class="row">
+                                 <div class="col-4">
+                                    <select class="form-control" name="data[sex]" required>
+                                       <option>Female</option>
+                                       <option>Male</option>
+                                    </select>
+                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                 </div>
+                                 <div class="col-8">
+                                    <input type="text" maxlength="30" class="form-control" placeholder="Birthday" name="data[birthday]" id='birthday' required>
+                                    <small class="form-text text-muted">YYYY-MM-DD</small>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div class="row">
                                  <div class="col-7">
-                                    <input type="email" maxlength="50" onblur="" class="form-control" name="data[stud_email]" id='stud_email' placeholder="UP Mail" required>
+                                    <input type="email" maxlength="50" onblur="" class="form-control" name="data[up_email]" id='up_email' placeholder="UP Mail" required>
                                     <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                  </div>
                                  <div class="col-5">
-                                    <input type="text" maxlength="50" class="form-control" name="data[num]" id ='num' placeholder="Phone Number" required>
+                                    <input type="text" maxlength="50" class="form-control" name="data[contact_num]" id ='contact_num' placeholder="Phone Number" required>
                                     <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                     <div id="websiteInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
                                  </div>
@@ -99,7 +119,7 @@
                            <div class="form-group">
                               <div class="row">
                                  <div class="col-12">
-                                    <input type="text" maxlength="100" class="form-control" name="data[mailing_address]" id='mailing_address' placeholder="Mailing Address" required>
+                                    <input type="text" maxlength="100" class="form-control" name="data[address]" id='address' placeholder="Mailing Address" required>
                                     <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                  </div>
                               </div>
