@@ -1,52 +1,141 @@
+<script>
+   
+</script>
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<meta name="author" content="UPCS">
-	<title>Register</title>
-<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
-</head>
-<body class="my-login-page">
-	<div class="container reg-page-center">
-				<div class="card-wrapper-reg">
-					<div class="brand">
-						<img src="<?php echo base_url();?>img/logo.jpg">
-					</div>
-					<div class="card fat">
-						<div class="panel-heading">
-						<hr>
-					</div>	
-						<div class="card-body">
-							<form method="POST" role="form" id="stud-reg">
-							 <h4 class="card-title">Register as Student</h4>
-								<fieldset>
-								<div class="form-group">
-									<label for="email">UP Mail Address</label>
-									<input id="email" type="email" class="form-control" name="email" required>
-								</div>
-
-								<div class="form-group">
-									<label for="password">Password</label>
-									<input id="password" type="password" class="form-control" name="password" required>
-								</div>
-									<div class="form-group">
-									<label for="password">Confirm Password</label>
-									<input id="password" type="password" class="form-control" name="password" required>
-								</div>
-
-								<div class="form-group no-margin">
-									<button type="submit" name="next" class="btn btn-danger btn-block next action-button">
-										Register
-									</button>
-								</div>
-								<div class="margin-top20 text-center">
-									Already have an account? <a href="<?php echo base_url();?>login">Login</a>
-								</div>
-								</fieldset>
-							</form>
-						</div>
-					</div>
-				</div>
-		</div>
-</body>
+   <head>
+      <meta charset="utf-8">
+      <meta name="author" content="UPCS">
+      <title>Register</title>
+   </head>
+   <body>
+      <div class="container py-5 animated fadeIn">
+      <div class="row">
+         <div class="col-md-12">
+            <div class="row">
+               <div class="col-md-9 mx-auto">
+                  <div class="card border-danger" style="margin-top: 80px;">
+                     <div class="card-header">
+                        <h3 class="mb-0 my-2" style="text-align: center;">Sign Up as Student</h3>
+                     </div>
+                     <div class="card-body">
+                        <small class="form-text text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</small>
+                        <form class="form" method="POST" onsubmit="" action="registerStud" role="form" autocomplete="off" style="margin-top: 10px;">
+                           <div class="form-group">
+                              <div class="row">
+                                 <div class="col-4">
+                                    <input type="text" maxlength="100" class="form-control" placeholder="First Name" name="data[first_name]" id='first_name' required>
+                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                    <div id="nameInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
+                                 </div>
+                                 <div class="col-4">
+                                    <input type="text" maxlength="100" class="form-control" placeholder="Middle Name" name="data[mid_name]" id='mid_name' required>
+                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                    <div id="nameInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
+                                 </div>
+                                 <div class="col-4">
+                                    <input type="text" maxlength="30" class="form-control" placeholder="Last Name" name="data[last_name]" id='last_name' required>
+                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                    <div id="nameInvalidInput" class="notice notice-sm notice-danger" style="display: none;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div class="row">
+                                 <div class="col-6">
+                                    <select class="form-control" name="data[yr_level]" required>
+                                       <option>First Year</option>
+                                       <option>Second Year</option>
+                                       <option>Third Year</option>
+                                       <option>Fourth Year</option>
+                                       <option>Masteral</option>
+                                       <option>Doctoral</option>
+                                    </select>
+                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                 </div>
+                                 <div class="col-6">
+                                    <select class="form-control" name="data[course]" required>
+                                       <option>BS Applied Physics</option>
+                                       <option>BA Behavioral Sciences</option>
+                                       <option>BS Biochemistry</option>
+                                       <option>BS Biology</option>
+                                       <option>BS Computer Science</option>
+                                       <option>D Dental Medicine</option>
+                                       <option>BA Development Studies</option>
+                                       <option>BS Industrial Pharmacy</option>
+                                       <option>Intarmed</option>
+                                       <option>D Medicine</option>
+                                       <option>BS Nursing</option>
+                                       <option>BS Occupational Therapy</option>
+                                       <option>BA Organizational Communication</option>
+                                       <option>BS Pharmacy</option>
+                                       <option>BA Philippine Arts</option>
+                                       <option>BS Physical Therapy</option>
+                                       <option>BA Political Science</option>
+                                       <option>BS Public Health</option>
+                                       <option>BA Social Sciences</option>
+                                       <option>BS Speech Pathology</option>
+                                       <option>Not Applicable</option>
+                                    </select>
+                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="form-group">
+                              <div class="row">
+                                 <div class="col-7">
+                                    <input type="email" maxlength="50" onblur="" class="form-control" name="data[stud_email]" id='stud_email' placeholder="UP Mail" required>
+                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                 </div>
+                                 <div class="col-5">
+                                    <input type="text" maxlength="50" class="form-control" name="data[num]" id ='num' placeholder="Phone Number" required>
+                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                    <div id="websiteInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div id="orgEmailTaken" class="notice notice-sm notice-danger" style="display: none;"></div>
+                           <div class="form-group">
+                              <div class="row">
+                                 <div class="col-12">
+                                    <input type="text" maxlength="100" class="form-control" name="data[mailing_address]" id='mailing_address' placeholder="Mailing Address" required>
+                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                 </div>
+                              </div>
+                              <div id="mailAddressInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
+                           </div>
+                           <div class="form-group">
+                              <div class="row">
+                                 <div class="col-6">
+                                    <input type="password" minlength="7" maxlength="32" onblur="" id="Pass" class="form-control" placeholder="Password" name="data[password]" required>
+                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                 </div>
+                                 <div class="col-6   ">
+                                    <input type="password" minlength="7" maxlength="32" onblur="" id="conPass" class="form-control" placeholder="Confirm Password" required>
+                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                 </div>
+                              </div>
+                           </div>
+                           <div id="orgRegPwChecker" class="notice notice-sm notice-danger" style="display: none;">
+                           </div>
+                           <div class="form-group">
+                              <label id="form5" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Form5<input type="file" style="display: none;" class="form-control" id = 'consti' name = 'form5' onchange=""></label>
+                              <button type="button" class="btn btn-primary" style="margin-left: 1em" onclick="" > Preview File</button>
+                              <button type="submit" style="display: none;" id = 'submitCons'> </button>
+                              <div class="form-group">
+                                 <div class="margin-top20 text-center">
+                                    Already registered?<a href="<?php echo base_url();?>login"> Log In</a>
+                                 </div>
+                                 <button type="submit" class="btn btn-danger btn-md float-right">Create a new account</button>
+                              </div>
+                        </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
 </html>
