@@ -4,7 +4,7 @@
 		public function searchStudents($string){
 			$condition = "sa.student_id = sp.student_id AND sa.isActivated = 0 AND sa.isVerified = 1 AND (sp.last_name LIKE '%".$string."%' OR sp.first_name LIKE '%".$string."%' OR sa.up_id LIKE '%".$string."%') "; 
 			
-			$this->db->select('sa.student_id, sa.up_mail, sa.up_id, sp.first_name, sp.last_name');
+			$this->db->select('sa.student_id, sa.up_mail, sa.up_id, sp.first_name, sp.last_name, sp.middle_name');
 			$this->db->from('studentaccount sa, studentprofile sp');
 			$this->db->order_by('sp.last_name');
 			$this->db->where ($condition);
@@ -74,7 +74,7 @@
 		public function searchAllStudents($string){
 			$condition = "sa.student_id = sp.student_id AND (sp.last_name LIKE '%".$string."%' OR sp.first_name LIKE '%".$string."%' OR sa.up_id LIKE '%".$string."%')"; 
 			
-			$this->db->select('sa.student_id, sa.up_mail, sa.up_id, sp.first_name, sp.last_name');
+			$this->db->select('sa.student_id, sa.up_mail, sa.up_id, sp.first_name, sp.last_name, sp.middle_name');
 			$this->db->from('studentaccount sa, studentprofile sp');
 			$this->db->order_by('sp.last_name');
 			$this->db->where ($condition);

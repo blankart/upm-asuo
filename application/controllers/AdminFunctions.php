@@ -2,15 +2,12 @@
 	class AdminFunctions extends CI_Controller{
 
 		public function perform( $action = 'login'){
-			if($action == 'login' || $action == 'regstud' || $action == 'regorg'){
-				if( isset($this->session->userdata['logged_in']) )
-			 		$this->redirectToProfile();
-				else{
-					$this->load->view('header');
-					$this->load->view(''.$action);
-					$this->load->view('footer');
-				}
-			}
+
+			if( !isset($this->session->userdata['logged_in']) )
+				redirect(base_url().'login');
+			else if($action == 'login' || $action == 'regstud' || $action == 'regorg')
+			 	$this->redirectToProfile();
+
 			else if ($action == 'searchStudents')
 				$this->searchStudents();
 			else if ($action == 'viewStudentInfo')

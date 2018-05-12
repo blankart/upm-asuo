@@ -22,7 +22,7 @@
            if (result.hasOwnProperty(key)) {
               output+="<tr>"+
                        "<td>"+result[key]['up_id']+"</td>"+
-                       "<td>"+result[key]['first_name']+" "+result[key]['last_name']+"</td>"+
+                       "<td>"+result[key]['last_name']+", "+result[key]['first_name']+ " " +result[key]['middle_name']+ "</td>"+
                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Account</button><button onclick='approveStud("+result[key]['student_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Validate</button></td>"+
                     "</tr>";
            }

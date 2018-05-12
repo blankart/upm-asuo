@@ -3,15 +3,11 @@
 
 		public function perform( $action = 'login'){
 
-			if($action == 'login' || $action == 'regstud' || $action == 'regorg'){
-				if( isset($this->session->userdata['logged_in']) )
+			if( !isset($this->session->userdata['logged_in']) )
+				redirect(base_url().'login');
+			else if($action == 'login' || $action == 'regstud' || $action == 'regorg')
 			 		$this->redirectToProfile();
-				else{
-					$this->load->view('header');
-					$this->load->view(''.$action);
-					$this->load->view('footer');
-				}
-			}
+
 			else if ($action == 'checkOrgPassword')
 				$this->checkOrgPassword();
 			else if ($action == 'changeOrgPassword')
@@ -79,24 +75,50 @@
 			else if($action == 'viewFormF'){
 				$this->viewFormF();
 			}
-			else
-				if($this->session->userdata['account_type'] == 'org'){
-					if($action  == $this->session->userdata['nsacronym'])					
+			else{
+				$account_type = $this->session->userdata['account_type'];
+
+				if( $account_type == 'student' || $account_type == 'admin'){
+					
+					 $this->load->model('OrgModel');
+					 $org_id = $this->OrgModel->getOrgId($action);
+
+					if ( !$org_id )
+						echo "That org does not exist, darlin'! ";
+					else{
+
+						if ( $this->session->userdata['account_type'] == 'admin')
+					 		$isAdmin = true;
+						else{
+							$isAdmin = false;
+						 	$student_id = $this->session->userdata['user_id'];
+						 	$isMember = $this->OrgModel->isMember($org_id, $student_id);
+						}
+
+						if ($isAdmin)
+							echo "All hail the almighty admin! We present you with everything!"; //user is an admin
+						else if($isMember)
+							echo "Since you are a member, feel priviliged. Don't take it for granted ;)"; //user is a member
+						else
+						 	echo 'You can only view limited stuff, puny human. HA-HA';		// user is not a member of the org		
+					}
+				}
+				else if($action == $this->session->userdata['nsacronym']){
+					if($account_type == 'org')		
 						$this->loadOrgProfile();
-					else
-			 			show_404();
+
+					if($account_type == 'unverifiedOrg')
+						echo 'verify your email using ' .$this->session->userdata['email']. "."; //load view here note: redirect
+			
+					if($account_type == 'unactivatedOrg')
+						echo 'You account is not yet activated. Procced to OSA.'; //load view here note: redirect
+				
+					if($account_type == 'archivedOrg')
+						echo 'You account is blocked. Procced to OSA.'; //load view here note: redirect
 			 	}
-				else if($this->session->userdata['account_type'] == 'unverifiedOrg'){
-					echo  'verify your email using ' .$this->session->userdata['email']. "."; //load view here note: redirect
-				}
-				else if($this->session->userdata['account_type'] == 'unactivatedOrg'){
-					echo 'You account is not yet activated. Procced to OSA.'; //load view here note: redirect
-				}
-				else if($this->session->userdata['account_type'] == 'archivedOrg'){
-					echo 'You account is blocked. Procced to OSA.'; //load view here note: redirect
-				}
 				else
 					redirect(base_url().'login');
+			}
 		}
 		
 		private function redirectToProfile(){

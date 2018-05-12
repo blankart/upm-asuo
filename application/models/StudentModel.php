@@ -165,5 +165,21 @@
 			$this->db->update('studentaccount', $changes);		
 		}
 		//end of CHANGE PASSWORD FUNCTIONS
+
+		// ORG-VIEWS-STUDENT FUNCTIONS
+		public function getStudentId($input){
+			$condition = "username = '" .$input. "' AND username = '" .$input. "'";
+
+			$this->db->select('student_id');
+			$this->db->from('studentaccount');
+			$this->db->where($condition);
+			$query = $this->db->get();
+			
+			if ($query->num_rows() == 1)
+				return $query->result_array()[0]['student_id'];
+			else 
+				return false;
+		}
+		// end of ORG-VIEWS-STUDENT FUNCTIONS
 	}
 ?>

@@ -10,17 +10,17 @@ INSERT INTO `studentaccount` (`student_id`, `up_id`, `up_mail`, `username`, `pas
 (9, '201480756', 'avsangeuenza@up.edu.ph', 'avsanguenza', '32250170a0dca92d53ec9624f336ca24', 0, 0, 0),
 (10, '201480768', 'aleinstein@up.edu.ph', 'aleinstein', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0);
 
-INSERT INTO `studentprofile` (`student_id`, `first_name`, `middle_name`, `last_name`, `sex`, `birthday`, `course`, `year_level`, `contact_num`, `profile_pic`, `form5`) VALUES
-(1, 'Angelica', 'A', 'Ayos', 'Female', '1997-01-01', 'BS Computer Science', '3', '09XXXXXXXXX', 'angelica.jpg', 'angelica_form5.jpg'),
-(2, 'Medy Rae', 'Jordan', 'Fernando', 'Male', '1997-04-11', 'BS Computer Science', '4', '09453291650', 'medy.jpg', 'medy_form5.jpg'),
-(3, 'Ma Christina', 'J', 'Galvez', 'Female', '1997-01-01', 'BS Computer Science', '1', '09XXXXXXXXX', 'christina.jpg', 'christina_form5.jpg'),
-(4, 'Aldrin', 'C', 'Racusa', 'Male', '1997-01-01', 'BS Computer Science', '2', '09XXXXXXXXX', 'aldrin.jpg', 'aldrin_form5.jpg'),
-(5, 'Kylle Audrey', 'A', 'Columna', 'Female', '1997-04-11', 'BS Computer Science', 'Doctoral', '09XXXXXXXXX', 'kylle.jpg', 'kylle_form5.jpg'),
-(6, 'Paula Nicole', 'S', 'Lasmarias', 'Female', '1997-01-01', 'BS Computer Science', '2', '09XXXXXXXXX', 'paula.jpg', 'paula_form5.jpg'),
-(7, 'Nico', 'Cruelala', 'Mendoza', 'Male', '1997-01-01', 'BS Computer Science', 'Masteral', '09XXXXXXXXX', 'nico.jpg', 'nico_form5.jpg'),
-(8, 'Darlene Grace', 'A', 'Perez', 'Female', '1997-01-01', 'BS Computer Science', 'Doctoral', '09XXXXXXXXX', 'darlene.jpg', 'darlene_form5.jpg'),
-(9, 'Alyssa Fatima', 'V', 'Sanguenza', 'Female', '1997-01-01', 'BS Computer Science', 'Masteral', '09XXXXXXXXX', 'alyssa.jpg', 'alyssa_form5.jpg'),
-(10, 'Albert', 'Hans', 'Einstein', 'Male', '1879-03-14', 'BS Computer Science', 'Doctoral', '09XXXXXXXXX', 'albert.jpg', 'albert_form5.jpg');
+INSERT INTO `studentprofile` (`student_id`, `first_name`, `middle_name`, `last_name`, `sex`, `birthday`, `course`, `year_level`, `contact_num`, `address`, `profile_pic`, `form5`) VALUES
+(1, 'Angelica', 'A', 'Ayos', 'Female', '1997-01-01', 'BS Computer Science', '3', '09XXXXXXXXX', 'Cavite', 'angelica.jpg', 'angelica_form5.jpg'),
+(2, 'Medy Rae', 'Jordan', 'Fernando', 'Male', '1997-04-11', 'BS Computer Science', '4', '09453291650', 'Antique', 'medy.jpg', 'medy_form5.jpg'),
+(3, 'Ma Christina', 'J', 'Galvez', 'Female', '1997-01-01', 'BS Computer Science', '1', '09XXXXXXXXX', 'Manila', 'christina.jpg', 'christina_form5.jpg'),
+(4, 'Aldrin', 'C', 'Racusa', 'Male', '1997-01-01', 'BS Computer Science', '2', '09XXXXXXXXX', 'Rizal', 'aldrin.jpg', 'aldrin_form5.jpg'),
+(5, 'Kylle Audrey', 'A', 'Columna', 'Female', '1997-04-11', 'BS Computer Science', 'Doctoral', '09XXXXXXXXX', 'Manila', 'kylle.jpg', 'kylle_form5.jpg'),
+(6, 'Paula Nicole', 'S', 'Lasmarias', 'Female', '1997-01-01', 'BS Computer Science', '2', '09XXXXXXXXX', 'Davao', 'paula.jpg', 'paula_form5.jpg'),
+(7, 'Nico', 'Cruelala', 'Mendoza', 'Male', '1997-01-01', 'BS Computer Science', 'Masteral', '09XXXXXXXXX', 'Mindoro', 'nico.jpg', 'nico_form5.jpg'),
+(8, 'Darlene Grace', 'A', 'Perez', 'Female', '1997-01-01', 'BS Computer Science', 'Doctoral', '09XXXXXXXXX', 'Manila', 'darlene.jpg', 'darlene_form5.jpg'),
+(9, 'Alyssa Fatima', 'V', 'Sanguenza', 'Female', '1997-01-01', 'BS Computer Science', 'Masteral', '09XXXXXXXXX', 'Bulacan', 'alyssa.jpg', 'alyssa_form5.jpg'),
+(10, 'Albert', 'Hans', 'Einstein', 'Male', '1879-03-14', 'BS Computer Science', 'Doctoral', '09XXXXXXXXX', 'Under the Sea', 'albert.jpg', 'albert_form5.jpg');
 
 INSERT INTO `admin` (`admin_id`, `username`, `password`, `admin_name`, `admin_email`) VALUES
 (1, 'OSA', '32250170a0dca92d53ec9624f336ca24', 'Office of Student Affairs', 'admin@up.edu.ph'),
@@ -172,9 +172,9 @@ INSERT INTO `orgapplication` (`orgapp_id`, `org_id`, `student_id`, `status`) VAL
 
 -- ------------------------------------------------------------------------
 INSERT INTO `verificationcode` (`code_id`, `type`, `account_id`, `code`, `status`) VALUES
-(1, 'org', 1, '32250170a0dca92d53ec9624f336ca24', 'Pending'),
-(2, 'org', 7, '32250170a0dca92d53ec9624f336ca24', 'Pending'),
-(3, 'org', 10, '32250170a0dca92d53ec9624f336ca24', 'Pending');
+(1, 2, 1, '32250170a0dca92d53ec9624f336ca24', 'Pending'),
+(2, 2, 7, '32250170a0dca92d53ec9624f336ca24', 'Pending'),
+(3, 2, 10, '32250170a0dca92d53ec9624f336ca24', 'Pending');
 -- ------------------------------------------------------------------------
 
 INSERT INTO `restrictedacronym` (`res_id`, `acronym`) VALUES

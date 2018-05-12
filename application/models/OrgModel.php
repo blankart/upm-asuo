@@ -219,5 +219,41 @@
 			$this->db->update('organizationaccount', $changes);		
 		}
 		//end of CHANGE PASSWORD FUNCTIONS
+
+
+		// STUDENT-VIEWS-ORG FUNCTIONS
+
+		public function getOrgId($input){
+			$this->db->select('org_id, acronym');
+			$this->db->from('OrganizationProfile');
+			$query = $this->db->get();
+			$acronyms = $query->result_array();
+			
+			foreach ($acronyms as $acronym) {
+
+				$nsacronym = str_replace(' ', '', $acronym['acronym']);
+				$nsinput  = str_replace(' ', '', $input);
+
+				if(strtolower($nsacronym) == strtolower($nsinput))
+					return $acronym['org_id'];
+			}
+
+			return false;
+		}
+
+		public function isMember($org_id, $student_id){
+			$condition = "org_id = " .$org_id. " AND student_id = " .$student_id. " AND isRemoved = 0";
+
+			$this->db->select('org_id');
+			$this->db->from('orgmember');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if ($query->num_rows() == 1)
+				return true;
+			else 
+				return false;
+		}
+		// end of STUDENT-VIEWS-ORG FUNCTIONS
 	}
 ?>

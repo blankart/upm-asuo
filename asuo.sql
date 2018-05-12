@@ -3,7 +3,7 @@ CREATE TABLE `studentaccount` (
   `student_id` int(11) UNSIGNED NOT NULL,
   `up_id` char(9) NOT NULL,
   `up_mail` varchar(50) NOT NULL,
-  ` z` varchar(32) NOT NULL,
+  `username` varchar(32) NOT NULL,
   `password` varchar(32) NOT NULL,
   `isVerified` tinyint(1) NOT NULL DEFAULT 0,
   `isActivated` tinyint(1) NOT NULL DEFAULT 0,
@@ -20,6 +20,7 @@ CREATE TABLE `studentprofile` (
   `course` varchar(50) NOT NULL,
   `year_level` varchar(10) NOT NULL,
   `contact_num` varchar(11) NOT NULL,
+  `address` varchar(100) NOT NULL DEFAULT 'N/A',
   `profile_pic` varchar(40) NOT NULL DEFAULT 'default_male.jpg',
   `form5` varchar(40) NOT NULL DEFAULT 'form5_default.jpg'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -39,7 +40,7 @@ ALTER TABLE `studentprofile`
 ALTER TABLE `studentprofile`
   ADD CONSTRAINT `studentprofile_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `studentaccount` (`student_id`);
 
-  -- ------------------------------------------------------------------------------------------------------------------------
+-- ------------------------------------------------------------------------------------------------------------------------
 -- ADMIN
 
  CREATE TABLE `admin` (
@@ -54,7 +55,7 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`),
   ADD UNIQUE KEY `username` (`username`);
 
-  -- ------------------------------------------------------------------------------------------------------------------------
+ -- ------------------------------------------------------------------------------------------------------------------------
 
 -- ORGANIZATION
   CREATE TABLE `organizationaccount` (
@@ -234,10 +235,10 @@ ALTER TABLE `orgapplication`
   ADD CONSTRAINT `orgapplication_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `studentaccount` (`student_id`);
 
   -- ----------------------------------------------------------------------------------------------------------------------------
-  -- ORG APPLICATIONS (Pending, Validated, Removed)
+  -- ORG APPLICATIONS (Pending, Validated, Removed), type 1 = student, 2 = org
 CREATE TABLE `verificationcode` (
    `code_id` int(11) UNSIGNED NOT NULL,
-   `type` varchar(10) NOT NULL DEFAULT 'None',
+   `type` tinyint(1) NOT NULL DEFAULT 0,
    `account_id` int(11) UNSIGNED NOT NULL,
    `code` varchar(32) NOT NULL DEFAULT 'None',
    `status` varchar(10) NOT NULL DEFAULT 'Removed'

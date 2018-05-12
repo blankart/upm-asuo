@@ -2,15 +2,12 @@
 	class StudentFunctions extends CI_Controller{
 
 		public function perform( $action = 'login', $searchItem = ''){
-			 if($action == 'login' || $action == 'regstud' || $action == 'regorg'){
-				if( isset($this->session->userdata['logged_in']) )
-			 		$this->redirectToProfile();
-				else{
-					$this->load->view('header');
-					$this->load->view(''.$action);
-					$this->load->view('footer');
-				}
-			}
+			
+			if( !isset($this->session->userdata['logged_in']) )
+				redirect(base_url().'login');
+			else if($action == 'login' || $action == 'regstud' || $action == 'regorg')
+			 	$this->redirectToProfile();
+
 			else if($action == 'editStudentProfile')
 				$this->editStudentProfile();
 			else if($action == 'changePicture')
@@ -26,24 +23,41 @@
 				$this->checkStudentPassword();
 			else if($action == 'changeStudentPassword')
 				$this->changeStudentPassword();
-			else
-				if($this->session->userdata['account_type'] == 'student'){
-					if($action  == $this->session->userdata['username'])
+			else{
+
+				$account_type = $this->session->userdata['account_type'];
+
+				if($account_type == 'org' || $account_type == 'admin'){
+
+					$this->load->model('StudentModel');
+				//	echo "'".$action."'";
+					$student_id = $this->StudentModel->getStudentId($action);
+
+					//print_r($student_id);
+
+					if ( !$student_id )
+						echo "This student is imaginary, darlin'! ";
+					else				
+						echo "Since you are an org and an admin, you can view anything that you like. How's that?";		// user is an org or an admin		
+					
+				}
+				else if($action  == $this->session->userdata['username']){
+
+					if($account_type== 'student')				
 						$this->loadStudentProfile();
-					else
-			 			 show_404(); //pwede din customizedpage
-				}
-				else if($this->session->userdata['account_type'] == 'unverifiedStudent'){
-					echo  'verify your email using ' .$this->session->userdata['email']. "."; //load view here note: redirect
-				}
-				else if($this->session->userdata['account_type'] == 'unactivatedStudent'){
-					echo 'You account is not yet activated. Procced to OSA.'; //load view here note: redirect
-				}
-				else if($this->session->userdata['account_type'] == 'archivedStudent'){
-					echo 'You account is blocked. Procced to OSA.'; //load view here note: redirect
+					
+					if($account_type == 'unverifiedStudent')
+						echo  'verify your email using ' .$this->session->userdata['email']. "."; //load view here note: redirect
+				
+					if($account_type == 'unactivatedStudent')
+						echo 'You account is not yet activated. Procced to OSA.'; //load view here note: redirect
+				
+					if($account_type == 'archivedStudent')
+						echo 'You account is blocked. Procced to OSA.'; //load view here note: redirect
 				}
 				else
 					redirect(base_url().'login');
+			}
 		}
 
 		private function redirectToProfile(){
