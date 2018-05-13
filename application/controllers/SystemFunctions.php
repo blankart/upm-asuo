@@ -15,7 +15,7 @@
 			}
 
 			else if($action == 'validate_org_email')
-				$this->vaidate_org_email();
+				$this->validate_org_email();
 			else if($action == 'validate_org_acronym')
 				$this->validate_org_acronym();
 			else if($action == 'registerOrg')
@@ -69,7 +69,7 @@
 				{
 					echo json_encode(false);
 				}
-				//exit();
+				exit();
 			}
 			else
 			{
@@ -169,18 +169,27 @@
 		private function registerStudent(){
 			$result = $this->input->post('data');
 			
+			echo "<pre>";
+			print_r($result);
+			echo "</pre>";
+
 			if($result != NULL){
-				$username = str_replace('@up.edu.ph', '', $result['up_mail']);
+				$username = str_replace('@up.edu.ph', '',  (strtolower($result['up_mail']) ) );
 				
 				$account_data = array(
-					'up_id' => 'up_id',
-					'up_mail' => $result['up_mail'],
+					'up_mail' =>  ucwords(strtolower( $result['up_mail'] ) ),
+					'up_id' => $result['up_id'],
 					'username' => $username,
 					'password' => md5 ($result['password']),
 					'isVerified' => 0,
 					'isActivated'=> 0,
 					'archived' => 0
 				);
+
+			echo "<pre>";
+			print_r($account_data);
+			echo "</pre>";
+
 
 				$this->load->model('SystemModel');
 				$student_id = $this->SystemModel->createStudentAccount($account_data);
@@ -192,15 +201,15 @@
 
 				$profile_details = array(
 					'student_id' => $student_id,
-					'first_name' => $result['first_name'], 
-					'middle_name' => $result['middle_name'], 
-					'last_name' => $result['last_name'], 
+					'first_name' => ucwords(strtolower($result['first_name']) ), 
+					'middle_name' => ucwords( strtolower($result['middle_name']) ), 
+					'last_name' => ucwords ( strtolower($result['last_name']) ), 
 					'sex' => $result['sex'],
 					'birthday' => $result['birthday'],
 					'course' => $result['course'],
 					'year_level' => $result['year_level'], 
 					'contact_num' =>  $result['contact_num'],
-					'address' =>  $result['address'],
+					'address' =>  ucwords( strtolower($result['address']) ),
 					'profile_pic' => $profile_pic
 				);
 
@@ -208,8 +217,8 @@
 				$student_session['account_type'] = 'unverifiedStudent';
 				$this->setSessions($student_session);
 			}
-			else 
-				show_404();
+		//	else 
+				//show_404();
 		}
 	
 		private function checkLogin(){

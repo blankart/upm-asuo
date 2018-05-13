@@ -32,7 +32,7 @@
 	    // ORG
 		public function validateOrgEmail($org_email)
 		{
-			$condition = "org_email = '" . $org_email."'";
+			$condition = "org_email = '" .$org_email."'";
 			$this->db->select('*');
 			$this->db->from('OrganizationAccount');
 			$this->db->where($condition);

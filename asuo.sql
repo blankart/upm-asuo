@@ -27,7 +27,6 @@ CREATE TABLE `studentprofile` (
 
 ALTER TABLE `studentaccount`
   ADD PRIMARY KEY (`student_id`),
-  ADD UNIQUE KEY `up_id` (`up_id`),
   ADD UNIQUE KEY `up_mail` (`up_mail`),
   ADD UNIQUE KEY `username` (`username`);
 

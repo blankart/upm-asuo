@@ -1,7 +1,89 @@
 <script>
+
+
+  function nameFormatCheck(input) {  
+    var regex_num = new RegExp('^[0-9]*$');
+    var regex = new RegExp("^[a-zA-Z]+( [a-zA-Z]+)*$");
+    var value =  input.value;
+    
+    if( regex_num.test(value) )
+       input.setCustomValidity("Numbers are not allowed!");   
+    else if( !regex.test(value) )
+      input.setCustomValidity("Special characters are not allowed!");   
+    else 
+      input.setCustomValidity("");      
+  }
+
+  function studNumFormatCheck(input) {
+
+    var regex_num = new RegExp('^[0-9]*$');
+    var value =  input.value;
+
+    if( !regex_num.test(value) )
+       input.setCustomValidity("Input numbers only!");
+    else{
+
+      var regex = new RegExp('^[0-9]{9}');   
+
+      if( !regex.test(value) )
+          input.setCustomValidity("UP Student Numbers are exactly 9 digits!");   
+      else 
+        input.setCustomValidity("");    
+    }      
+  }  
+
+  function upMailFormatCheck(input){
+    var regex = new RegExp('\@up.edu.ph$');
+    var value =  input.value;
+
+    if( !regex.test(value) ){
+        input.setCustomValidity("Input a valid UP Mail! (example@up.edu.ph)");
+    }
+    else 
+      input.setCustomValidity("");
+  }
+
+  function contactNumFormatCheck(input){
+
+    var regex_num = new RegExp('^[0-9]*$');
+    var value =  input.value;
+
+    if( !regex_num.test(value) )
+       input.setCustomValidity("Input numbers only!");
+    else{
+
+      var regex = new RegExp('^[0-9]{11}');   
+
+      if( !regex.test(value) )
+          input.setCustomValidity("Contact numbers are exactly 11 digits!");   
+      else 
+        input.setCustomValidity("");    
+    }   
+  }
+
+  function addressFormatCheck(input){
+    var regex = new RegExp("^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$"); 
+    var value =  input.value;
+
+      if( !regex.test(value) )
+          input.setCustomValidity("Extra spaces are not allowed!");   
+      else 
+        input.setCustomValidity(""); 
+  }
+
+  function passwordFormatCheck(input){
+    var value =  input.value;
+    
+    if( /\s/.test(value) )
+      input.setCustomValidity("Spaces are not allowed in passwords!");   
+    else 
+      input.setCustomValidity(""); 
+  }
+
 	function UPMailChecker(){
         var up_mail = ($("#up_mail").val()).trim();
         var checker = false;
+
 
     if (up_mail.length>0)
     {
@@ -9,7 +91,7 @@
         //alert(org_email);
         $.ajax({
        type:"post",
-       url:"",
+       url:"<?php echo base_url().'validateStudentUPMail'?>",
        cache: false,
        data:{up_mail: up_mail},
        dataType: 'json',
@@ -43,11 +125,15 @@
     
 }
 
+
+
 	function conPassValidate()
 {
     var conPass = $("#conPass").val();
     var Pass = $("#Pass").val();
-    if (conPass!=Pass && $("#conPass").val().length > 0 && $("#Pass").val().length > 0){
+
+
+    if (conPass!=Pass){
         $("#studPwChecker").removeClass();
         $("#studPwChecker").html('');
         $("#studPwChecker").addClass('notice notice-sm notice-danger');
@@ -66,7 +152,7 @@
 function validateForm(){
     resetErrorDisplays();
 
-    if (conPassValidate())
+    if (conPassValidate() && UPMailChecker())
     {
         
         var first_name = (document.getElementById("first_name").value).trim();
@@ -157,23 +243,23 @@ function validateForm(){
                         <h3 class="mb-0 my-2" style="text-align: center;">Sign Up as Student</h3>
                      </div>
                      <div class="card-body">
-                        <small class="form-text text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</small>
-                        <form class="form" method="POST" onsubmit="" action="registerStudent" role="form" autocomplete="off" style="margin-top: 10px;">
+                       
+                        <form class="form" method="POST" onsubmit="return validateForm()" action="registerStudent" role="form" autocomplete="off" style="margin-top: 10px;">
                            <div class="form-group">
                               <div class="row">
                                  <div class="col-4">
-                                    <input type="text" maxlength="100" class="form-control" placeholder="First Name" name="data[first_name]" id='first_name' required>
-                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                    <input type="text" maxlength="30" class="form-control" name="data[first_name]" id='first_name' onkeyup="nameFormatCheck(this)" required>
+                                    <small class="form-text text-muted">First Name</small>
                                     <div id="nameInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
                                  </div>
                                  <div class="col-4">
-                                    <input type="text" maxlength="100" class="form-control" placeholder="Middle Name" name="data[middle_name]" id='mid_name' required>
-                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                    <input type="text" maxlength="30" class="form-control" name="data[middle_name]" id='mid_name' onkeyup="nameFormatCheck(this)" required>
+                                    <small class="form-text text-muted">Middle Name</small>
                                     <div id="nameInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
                                  </div>
                                  <div class="col-4">
-                                    <input type="text" maxlength="30" class="form-control" placeholder="Last Name" name="data[last_name]" id='last_name' required>
-                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                    <input type="text" maxlength="30" class="form-control" name="data[last_name]" id='last_name' onkeyup="nameFormatCheck(this)" required>
+                                    <small class="form-text text-muted">Last Name</small>
                                     <div id="nameInvalidInput" class="notice notice-sm notice-danger" style="display: none;">
                                     </div>
                                  </div>
@@ -182,8 +268,8 @@ function validateForm(){
                            <div class="form-group">
                               <div class="row">
                                  <div class="col-3">
-                                    <input type="text" maxlength="30" class="form-control" placeholder="Student Number" name="data[up_id]" id='up_id' required>
-                                    <small class="form-text text-muted">20XXXXXXX</small>
+                                    <input type="text" maxlength="9" class="form-control" name="data[up_id]" id='up_id' onkeyup="studNumFormatCheck(this)" required>
+                                    <small class="form-text text-muted">Student Number</small>
                                  </div>
                                  <div class="col-3">
                                     <select class="form-control" name="data[year_level]" required>
@@ -197,7 +283,7 @@ function validateForm(){
                                        <option>Masteral</option>
                                        <option>Doctoral</option>
                                     </select>
-                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                    <small class="form-text text-muted">Year Level</small>
                                  </div>
                                  <div class="col-6">
                                     <select class="form-control" name="data[course]" required>
@@ -223,7 +309,7 @@ function validateForm(){
                                        <option>Intarmed</option>
                                        <option>Not Applicable</option>
                                     </select>
-                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                    <small class="form-text text-muted">College</small>
                                  </div>
                                  <div id="StudNumInvalidInput" class="notice notice-sm notice-danger" style="display: none;">
                               </div>
@@ -236,23 +322,23 @@ function validateForm(){
                                        <option>Female</option>
                                        <option>Male</option>
                                     </select>
-                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                    <small class="form-text text-muted">Sex</small>
                                  </div>
                                  <div class="col-8">
-                                    <input type="text" maxlength="30" class="form-control" placeholder="Birthday" name="data[birthday]" id='birthday' required>
-                                    <small class="form-text text-muted">YYYY-MM-DD</small>
+                                    <input type="date" class="form-control" placeholder="Birthday" name="data[birthday]" id='birthday' required>
+                                    <small class="form-text text-muted">Birthday</small>
                                  </div>
                               </div>
                            </div>
                            <div class="form-group">
                               <div class="row">
                                  <div class="col-7">
-                                    <input type="email" maxlength="50" onblur="UPMailChecker()" class="form-control" name="data[up_mail]" id='up_mail' placeholder="UP Mail" required>
-                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                    <input type="email" maxlength="50" onblur="UPMailChecker()" class="form-control" name="data[up_mail]" id='up_mail' onkeyup="upMailFormatCheck(this)" required>
+                                    <small class="form-text text-muted">UP Mail</small>
                                  </div>
                                  <div class="col-5">
-                                    <input type="text" maxlength="50" class="form-control" name="data[contact_num]" id ='contact_num' placeholder="Phone Number" required>
-                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                    <input type="text" maxlength="11" class="form-control" name="data[contact_num]" id ='contact_num' onkeyup="contactNumFormatCheck(this)" required>
+                                    <small class="form-text text-muted">Phone Number</small>
                                     <div id="NumInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
                                  </div>
                               </div>
@@ -261,8 +347,8 @@ function validateForm(){
                            <div class="form-group">
                               <div class="row">
                                  <div class="col-12">
-                                    <input type="text" maxlength="100" class="form-control" name="data[address]" id='address' placeholder="Mailing Address" required>
-                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                    <input type="text" maxlength="100" class="form-control" name="data[address]" id='address' onkeyup="addressFormatCheck(this)"required>
+                                    <small class="form-text text-muted">Address</small>
                                  </div>
                               </div>
                               <div id="mailAddressInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
@@ -270,16 +356,16 @@ function validateForm(){
                            <div class="form-group">
                               <div class="row">
                                  <div class="col-6">
-                                    <input type="password" minlength="7" maxlength="32" onblur="conPassValidate()" id="Pass" class="form-control" placeholder="Password" name="data[password]" required>
-                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                    <input type="password" minlength="7" maxlength="32" onblur="conPassValidate()" id="Pass" class="form-control" name="data[password]" onkeyup="passwordFormatCheck(this)" required>
+                                    <small class="form-text text-muted">Password</small>
                                  </div>
                                  <div class="col-6   ">
-                                    <input type="password" minlength="7" maxlength="32" onblur="conPassValidate()" id="conPass" class="form-control" placeholder="Confirm Password" required>
-                                    <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                    <input type="password" minlength="7" maxlength="32" onblur="conPassValidate()" id="conPass" class="form-control" onkeyup="passwordFormatCheck(this)" required>
+                                    <small class="form-text text-muted">Confirm Password</small>
                                  </div>
                               </div>
                            </div>
-                           <div id="orgRegPwChecker" class="notice notice-sm notice-danger" style="display: none;">
+                           <div id="studPwChecker" class="notice notice-sm notice-danger" style="display: none;">
                            </div>
                            <div class="form-group">
                               <label id="form5" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Form5<input type="file" style="display: none;" class="form-control" id = 'consti' name = 'form5' onchange=""></label>
