@@ -22,7 +22,7 @@
                      </div>
                      <div class="card-body">
                         <small class="form-text text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</small>
-                        <form class="form" method="POST" onsubmit="" action="registerStud" role="form" autocomplete="off" style="margin-top: 10px;">
+                        <form class="form" method="POST" onsubmit="" action="registerStudent" role="form" autocomplete="off" style="margin-top: 10px;">
                            <div class="form-group">
                               <div class="row">
                                  <div class="col-4">
@@ -47,13 +47,13 @@
                               <div class="row">
                                  <div class="col-6">
                                     <select class="form-control" name="data[year_level]" required>
-                                       <option>First Year</option>
-                                       <option>Second Year</option>
-                                       <option>Third Year</option>
-                                       <option>Fourth Year</option>
-                                       <option>Fifth Year</option>
-                                       <option>Sixth Year</option>
-                                       <option>Seventh Year</option>
+                                       <option value ='1' >First Year</option>
+                                       <option value ='2' >Second Year</option>
+                                       <option value ='3' >Third Year</option>
+                                       <option value ='4' >Fourth Year</option>
+                                       <option value ='5' >Fifth Year</option>
+                                       <option value ='6' >Sixth Year</option>
+                                       <option value ='7' >Seventh Year</option>
                                        <option>Masteral</option>
                                        <option>Doctoral</option>
                                     </select>
@@ -105,7 +105,7 @@
                            <div class="form-group">
                               <div class="row">
                                  <div class="col-7">
-                                    <input type="email" maxlength="50" onblur="" class="form-control" name="data[up_email]" id='up_email' placeholder="UP Mail" required>
+                                    <input type="email" maxlength="50" onblur="" class="form-control" name="data[up_mail]" id='up_mail' placeholder="UP Mail" required>
                                     <small class="form-text text-muted">Sed ut perspiciatis.</small>
                                  </div>
                                  <div class="col-5">

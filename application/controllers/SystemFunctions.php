@@ -154,7 +154,7 @@
 
 				$this->load->model('SystemModel');
 				$result = $this->SystemModel->validateStudentUPMail($up_mail);
-		
+				
 				if($result)
 					echo json_encode(true);
 				else
@@ -168,15 +168,15 @@
 
 		private function registerStudent(){
 			$result = $this->input->post('data');
-
+			
 			if($result != NULL){
-				$username = explode('@up.edu.ph', $result['up_mail']);
+				$username = str_replace('@up.edu.ph', '', $result['up_mail']);
 				
 				$account_data = array(
-					'up_id' => $result['up_id'],
+					'up_id' => 'up_id',
 					'up_mail' => $result['up_mail'],
 					'username' => $username,
-					'password' => $result['password'],
+					'password' => md5 ($result['password']),
 					'isVerified' => 0,
 					'isActivated'=> 0,
 					'archived' => 0
@@ -199,7 +199,8 @@
 					'birthday' => $result['birthday'],
 					'course' => $result['course'],
 					'year_level' => $result['year_level'], 
-					'contact_num' => 'N/A',
+					'contact_num' =>  $result['contact_num'],
+					'address' =>  $result['address'],
 					'profile_pic' => $profile_pic
 				);
 

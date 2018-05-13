@@ -5,7 +5,7 @@
 
 		// STUDENT
 		public function validateStudentUPMail($up_mail){
-			$condition = "up_mail = '" . $up_mail."'";
+			$condition = "up_mail = '" . $up_mail."' AND up_mail = '" . $up_mail."'";
 
 			$this->db->select('student_id');
 			$this->db->from('studentaccount');
