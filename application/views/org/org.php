@@ -8,7 +8,7 @@
 <body>
     <script>
                $(document).ready(function(){
-                   dispOrgPosts();
+                   dispAdminAnnouncements();
                    $("#orgPostsBut").click(function(){
                       dispOrgPosts();
                    })
@@ -24,6 +24,10 @@
                    $("#orgAdminAnnouncementsBut").click(function(){
                       dispAdminAnnouncements();
                    });
+
+                   $("#orgProfileBTN").click(function(){
+                      dispOrgProfile();
+                   });
        
                 });
        
@@ -34,8 +38,23 @@
                    $("#orgMembers").hide();
                    $("#orgApplications").hide();
                    $("#orgAdminAnnouncements").hide();
+                   $("#orgProfile").hide();
+                   $("#orgProfileBTN").removeClass('active');
                    $("#orgPosts").fadeIn(400);
                    $("#orgPostsBut").addClass('active');
+                   
+                }
+                 function dispOrgProfile(){
+                   $("#orgMembersBut").removeClass('active');
+                   $("#orgApplicationsBut").removeClass('active');
+                   $("#orgAdminAnnouncementsBut").removeClass('active');
+                   $("#orgMembers").hide();
+                   $("#orgApplications").hide();
+                   $("#orgAdminAnnouncements").hide();
+                   $("#orgPosts").hide();
+                   $("#orgPostsBut").removeClass('active');
+                   $("#orgProfile").fadeIn(400);
+                   $("#orgProfileBTN").addClass('active');
                 }
                 function dispOrgMembers(){
                    $("#orgPostsBut").removeClass('active');
@@ -54,6 +73,8 @@
                    $("#orgPosts").hide();
                    $("#orgMembers").hide();
                    $("#orgApplications").hide();
+                   $("#orgProfile").hide();
+                   $("#orgProfileBTN").removeClass('active');
                    $("#orgAdminAnnouncements").fadeIn(400);
                    $("#orgAdminAnnouncementsBut").addClass('active');
                 }
@@ -64,6 +85,8 @@
                    $("#orgPosts").hide();
                    $("#orgMembers").hide();
                    $("#orgAdminAnnouncements").hide();
+                   $("#orgProfile").hide();
+                   $("#orgProfileBTN").removeClass('active');
                    $("#orgApplications").fadeIn(400);
                    $("#orgApplicationsBut").addClass('active');
                 }
@@ -89,11 +112,15 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-8">
                     <div class="card" style="box-shadow: 0 0 40px rgba(0,0,0,.2)">
                         <div class="card-body">
-                            <button class="btn btn-light btn-lg active" id="orgPostsBut" type="button">Posts</button> <button class="btn btn-light btn-lg" id="orgMembersBut" style="margin-left: 15px;" type="button">Members</button> <button class="btn btn-light btn-lg" id="orgApplicationsBut" style="margin-left: 15px;" type="button">Applications</button> <button class="btn btn-light btn-lg" id="orgAdminAnnouncementsBut" style="margin-left: 15px;" type="button">Admin Announcements</button>
+                            <button class="btn btn-light btn-lg" id="orgAdminAnnouncementsBut" style="margin-left: 15px;" type="button">Admin Announcements</button> <button class="btn btn-light btn-lg" id="orgMembersBut" style="margin-left: 15px;" type="button">Members</button> <button class="btn btn-light btn-lg" id="orgApplicationsBut" style="margin-left: 15px;" type="button">Applications</button> <button class="btn btn-light btn-lg active" id="orgPostsBut" type="button">Posts</button> <button class="btn btn-light btn-lg active" id="orgProfileBTN" type="button">About OrgName</button>
                             <hr>
+                            <div id="orgProfile">
+                              
+                            </div>
                             <div id="orgPosts">
                               
                             </div>
