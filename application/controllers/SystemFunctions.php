@@ -327,13 +327,13 @@
 		    //load email library
 		  	$this->email->initialize($config);
 
-		    $email = 'mjfernando@up.edu.ph'; //
+		    $email = 'avsanguenza@up.edu.ph'; //
 		    $activation_code = 'This is my activation code';
 		    $link = base_url().'verify/org/this';
 
 		    $this->email->set_mailtype('html');
 		    $this->email->from($email, 'ASUO Team');
-		    $this->email->to('mjfernando@up.edu.ph');
+		    $this->email->to($email);
 		    $this->email->subject('Please verify your email address');
 
 		    $message = '<html><body>';

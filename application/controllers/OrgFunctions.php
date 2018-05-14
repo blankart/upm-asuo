@@ -396,98 +396,109 @@
 			// set font
 			$pdf->SetFont('Helvetica', '', 12);
 
-			$html= '<p align="right"><b>Date filed:</b></p><br>
-			<b>Organization Name:</b><br>
-			<b>Number of members:</b><br>	
-			<b>Category:</b><br>
-			<b>Position/Designation:   </b>&nbsp;&nbsp;&nbsp;&nbsp;<b>College/Unit</b><br>
-			<b>Contact Person:</b>
-			<b>Position in the Organization</b>
+			$pdf->addPage();
+			
+			$org_id = $this->session->userdata['user_id'];
+			$this->load->model('OrgModel');
+			$result = $this->OrgModel->getOrgDetails($org_id);	
+
+			$tally = $this->OrgModel->getOrgTally($org_id);
+
+			$html= '<p align="right"><b>Date filed:</b>'.date("M d, Y").'</p><br>
+			<b>Name of Organization: </b>'.$result['org_name'].'<br>
+			<b>Acronym: </b>'.$result['acronym'].'<br>	
+			<b>Mailing Address: </b>'.$result['mailing_address'].'<br>
+			<b>E-mail Address:   </b>'.$result['org_email'].'<br>
+			<b>Website:</b>  http://www.'.$result['org_website'].'
 			<br>
-			<b>Address</b>
+			<b>Date Established: </b>'.$result['date_established'].'
 			<br>
-			<b>Telephone no.:</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>Mobile no.:</b>
+			<b>Total Number of Members: </b>'.array_sum($tally).'
 			<br>
-			<b>Email:</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>Other contact details:</b>
-			<br>
-			<b>Objectives of Organization:</b>
-			<br>
-			<b>Brief description of Organization:</b>
-			<br>
-			<br>
-			<br>
-				<p align="right">___________________________________<br>
-				<b>Name of Person Filing the Application</b>
-				<br>
-				___________________________________<br>
-				<b>Position in the Organization</b>
-				<br>
-				___________________________________<br>
-				<b>Signature</b>
-				<br>
+			';	
+
+			$tally = $this->OrgModel->getOrgTally($org_id);
+			$tbl='<br><table cellspacing="0" cellpadding="1" border="1">
+ 			   <tr>
+        		<td colspan="17"><b><br><p align="center">MEMBERSHIP DISTRIBUTION</p></b><br><p align="center">As of '.date("Y").' - '.(date("Y")+1).'</p></td>
+   			   </tr>
+   				
+   			<tr>
+    	<td  colspan="2"></td>
+        <td>First Year</td>
+        <td colspan="2">Second Year</td>
+        <td>Third Year</td>
+        <td  colspan="2">Fourth Year</td>
+        <td>Fifth Year</td>
+        <td>Sixth Year</td>
+        <td  colspan="2">Seventh Year</td>
+        <td  colspan="2">Masteral Students</td>
+        <td  colspan="2">Doctoral Students</td>
+        <td>Total</td>
+		    </tr>
+		    <tr>
+		       	<td  colspan="2">Male</td>
+			   	<td>'.$tally['male_first'].'</td>    
+				<td colspan="2">'.$tally['male_second'].'</td>
+				<td>'.$tally['male_third'].'</td>  
+				<td colspan="2">'.$tally['male_fourth'].'</td>
+				<td>'.$tally['male_fifth'].'</td>
+				<td>'.$tally['male_sixth'].'</td>
+				<td colspan="2">'.$tally['male_seventh'].'</td>
+				<td colspan="2">'.$tally['male_masteral'].'</td>
+				<td colspan="2">'.$tally['male_doctoral'].'</td>   	 
+				<td>'.($tally['male_first']+$tally['male_second']+$tally['male_third']+$tally['male_fourth']+$tally['male_fifth']+$tally['male_sixth']+$tally['male_seventh']+$tally['male_masteral']+$tally['male_doctoral']).'</td>     
+		    </tr>
+		    <tr>
+		    	<td colspan="2">Female</td>
+			   	<td>'.$tally['female_first'].'</td>    
+				<td colspan="2">'.$tally['female_second'].'</td>
+				<td>'.$tally['female_third'].'</td>  
+				<td colspan="2">'.$tally['female_fourth'].'</td>
+				<td>'.$tally['female_fifth'].'</td>
+				<td>'.$tally['female_sixth'].'</td>
+				<td colspan="2">'.$tally['female_seventh'].'</td>
+				<td colspan="2">'.$tally['female_masteral'].'</td>
+				<td colspan="2">'.$tally['female_doctoral'].'</td>   	 
+				<td>'.($tally['female_first']+$tally['female_second']+$tally['female_third']+$tally['female_fourth']+$tally['female_fifth']+$tally['female_sixth']+$tally['female_seventh']+$tally['female_masteral']+$tally['female_doctoral']).'</td>     
+		    </tr>
+		    <tr>
+		    	<td  colspan="2">Total</td>
+		       <td>'.($tally['male_first']+$tally['female_first']).'</td>
+		       <td colspan="2">'.($tally['male_second']+$tally['female_second']).'</td>
+		       <td>'.($tally['male_third']+$tally['female_third']).'</td>
+		       <td colspan="2">'.($tally['male_fourth']+$tally['female_fourth']).'</td>
+		       <td>'.($tally['male_fifth']+$tally['female_fifth']).'</td>
+		       <td>'.($tally['male_sixth']+$tally['female_sixth']).'</td>
+		       <td colspan="2">'.($tally['male_seventh']+$tally['female_seventh']).'</td>
+		       <td colspan="2">'.($tally['male_masteral']+$tally['female_masteral']).'</td>
+		       <td colspan="2">'.($tally['male_doctoral']+$tally['female_doctoral']).'</td>
+		       <td>'.array_sum($tally).'</td>
+		    </tr>
+
+			</table>
 
 
+		 	';
+		 	$ans= ($result['incSEC']==1 ? 'Yes' : 'No');
+		 	$year = ($result['incSEC']==1 ? $result['sec_years']: ' ') ; 
+		 	$text2='
+				<b>Is your organization incorporated with the Securities and Exchange Commission (SEC)? If yes, when? </b>'.$ans.', for '.$year.' years.
+				<br>
 
-				</p>
 			';
 
-			// add a page
-			$pdf->AddPage();
-			//$pdf->AddPage();
-			$pdf->Output('example_003.pdf', 'I');
-					$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+			$text3 = '<b>Is your organization incorporated with the Securities and Exchange Commission (SEC)? If yes, when?</b>'.$ans.'
+				<br>';
+			$line = ($result['incSEC']== 1 ? $text2 : $text3);			
+		 
+	
 
-			// set document information
-			$pdf->SetCreator(PDF_CREATOR);
-			$pdf->SetAuthor('');
-			$pdf->SetTitle('Form C');
-			$pdf->SetSubject('');
-			$pdf->SetKeywords('');
+			$pdf->writeHTML($html, true, 0, true, 0);
+			$pdf->writeHTML($tbl, true, false, false, false, '');
+			$pdf->writeHTML($line, true, 0, true, 0);
 
-			// set default header data
-			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form C: Organization Profile", PDF_HEADER_STRING);
-			// set header and footer fonts
-			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-			$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
-
-			// set default monospaced fonts
-			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-
-			// set margins
-			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-			$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-			$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);	
-
-			// set auto page breaks
-			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
-			// set image scale factor
-			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-
-			// set font
-			$pdf->SetFont('Helvetica', '', 12);
-
-
-
-			// add a page
-			$pdf->AddPage();
-			//$pdf->AddPage();
-			$text ='
-				<p align="center"><b><h3>Organization Profile</h3></b></p>
-				<b>Name of Organization:</b><br>
-				<b>Acronym:</b><br>
-				<b>Mailing Address:</b><br>
-				<b>E-mail Address:</b><br>
-				<b>Website: </b><br>
-				<b>Date Established:</b><br>
-				<b>Total Number of Members:</b><br>
-
-				<table>
-
-				</table>
-			';
-			$pdf->writeHTML($text, true, 0, true, 0);
-			$pdf->Output('example_003.pdf', 'I');
+			$pdf->Output('formc.pdf', 'I');
 		}
 
 		private function viewFormD(){

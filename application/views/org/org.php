@@ -119,7 +119,16 @@
                             <button class="btn btn-light btn-lg" id="orgAdminAnnouncementsBut" style="margin-left: 15px;" type="button">Admin Announcements</button> <button class="btn btn-light btn-lg" id="orgMembersBut" style="margin-left: 15px;" type="button">Members</button> <button class="btn btn-light btn-lg" id="orgApplicationsBut" style="margin-left: 15px;" type="button">Applications</button> <button class="btn btn-light btn-lg active" id="orgPostsBut" type="button">Posts</button> <button class="btn btn-light btn-lg active" id="orgProfileBTN" type="button">About OrgName</button>
                             <hr>
                             <div id="orgProfile">
-                              
+                              <div class="well profile text-left">
+                        		<h2>ACRONYM</h2>
+                        		<p><strong>College</strong></p>
+                        		<p><a href="">Email</a> || <a href="">website.com</a></p>
+                        		<br>
+                        		<p><strong>Organization Description:</strong></p>
+                        		<p>yuuuhz descrip</p><br>
+                        		<p><strong>Organization Objectives:</strong></p>
+                        		<p>yuuuhz objectives</p><br>
+                    		  </div> 
                             </div>
                             <div id="orgPosts">
                               
