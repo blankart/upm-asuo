@@ -1,4 +1,6 @@
-<?php $account_type=$this->session->userdata["account_type"];
+<?php 
+  
+  $account_type=$this->session->userdata["account_type"];
 
 ?>
 
@@ -149,7 +151,7 @@
                 }
     </script>
     <div class="header" style="padding-top: 80px; text-align: center; color: white;">
-        <h1 style="font-size: 40px; font-family: Lato;">Hi <?php echo $profile['acronym']; ?>!</h1>
+         <?php if($account_type=="org"){ ?>  <h1 style="font-size: 40px; font-family: Lato;">Hi <?php echo $profile['acronym']; ?>!</h1> <?php } ?> 
     </div>
     <div class="animated fadeIn" style="background-color: rgb(255,255,255); margin-top: 40px; padding-top: 50px; box-shadow: 0 0 40px rgba(0,0,0,.50); padding-bottom: 50px;">
         <div class="container">
@@ -165,7 +167,11 @@
                             <h6 style="text-align: center; margin-bottom: 30px;"><strong><?php echo $profile['acronym']; ?></strong></h6>
                             <p style="text-align: center;"><?php echo $profile['org_category']; ?></p>
                             <hr>
+
+                            <?php if($account_type == 'org') {?>
                             <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#editprofile">Edit Profile</button> <a class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" href="<?php echo base_url(); ?>org/applyforaccreditation">Apply for Accreditation</a><button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#createposts">Create Post</button>
+
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -173,33 +179,39 @@
                 <div class="col-8">
                     <div class="card" style="box-shadow: 0 0 40px rgba(0,0,0,.2)">
                         <div class="card-body">
-                            <button class="btn btn-light btn-lg" id="orgAdminAnnouncementsBut" style="margin-left: 15px;" type="button">Admin Announcements</button> <button class="btn btn-light btn-lg" id="orgMembersBut" style="margin-left: 15px;" type="button">Members</button> <button class="btn btn-light btn-lg" id="orgApplicationsBut" style="margin-left: 15px;" type="button">Applications</button> <button class="btn btn-light btn-lg active" id="orgPostsBut" type="button">Posts</button> <?php if($account_type!="org"){ ?> <button class="btn btn-light btn-lg active" id="orgProfileBTN" type="button">About OrgName</button> <?php } ?>
+                            <?php if($account_type!="org"){ ?> 
+                              <button class="btn btn-light btn-lg active" id="orgProfileBTN" type="button">About <?php echo $profile['acronym']; ?> </button> 
+                            <?php } ?>
+
+                            <?php if($account_type=="org"){ ?> 
+                            <button class="btn btn-light btn-lg" id="orgAdminAnnouncementsBut" style="margin-left: 15px;" type="button">Admin Announcements</button> 
+                             <?php } ?>
+
+                            <button class="btn btn-light btn-lg" id="orgMembersBut" style="margin-left: 15px;" type="button">Members</button> 
+
+                            <?php if($account_type=="org"){ ?> 
+                            <button class="btn btn-light btn-lg" id="orgApplicationsBut" style="margin-left: 15px;" type="button">Applications</button> 
+                             <?php } ?>
+
+                            <button class="btn btn-light btn-lg active" id="orgPostsBut" type="button">Posts</button> 
+
+                            
+
                             <hr>
                             <div id="orgProfile">
-<<<<<<< HEAD
-                              <div class="well profile text-left">
-                        		<h2>ACRONYM</h2>
-                        		<p><strong>College</strong></p>
-                        		<p><a href="">Email</a> || <a href="">website.com</a></p>
-                        		<br>
-                        		<p><strong>Organization Description:</strong></p>
-                        		<p>yuuuhz descrip</p><br>
-                        		<p><strong>Organization Objectives:</strong></p>
-                        		<p>yuuuhz objectives</p><br>
-                    		  </div> 
-=======
+
                               <div class="well profile text-center">
-                        		    <h2>ACRONYM</h2>
-                        		    <h5>College</h5>
-                        		    <h6><a href="">Email</a> || <a href="">website.com</a></h6>
+                        		    <h2><?php echo $profile['acronym']; ?></h2>
+                        		    <h5><?php echo $profile['org_college']; ?></h5>
+                        		    <h6><a href=""><?php echo $profile['org_email']; ?></a> || <a href=""><?php echo $profile['org_website']; ?></a></h6>
                         		  </div>
                               <div class="well profile text-left">
                         		    <p><strong>Organization Description:</strong></p>
-                        		    <p>yuuuhz descrip</p><br>
+                        		    <p> <?php echo $profile['description']; ?></p><br>
                         		    <p><strong>Organization Objectives:</strong></p>
-                        		    <p>yuuuhz objectives</p><br>
+                        		    <p><?php echo $profile['objectives']; ?></p><br>
                     		      </div> 
->>>>>>> 58d598d1bf5cbdc6d75cb90c256c2f074c8d1c58
+
                             </div>
 
                             <div id="orgPosts">
@@ -233,11 +245,16 @@
                                                     <th><span>Student Name</span></th>
                                                     <th class="text-center"><span>Position</span></th>
                                                     <th><span>Email</span></th>
-                                                    <th><span>Action</span></th>
+                                                    <?php if($account_type == 'org') {?> <th><span>Action</span></th> <?php } ?>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                             <?php foreach($members as $member){ ?>
+
+
+                                             <?php foreach($members as $member){ 
+                                                if($member['position'] != "Member"){
+
+                                                      ?>
                                                 <tr>
                                                     <td>
                                                      <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$member['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="#"><?php echo $member['first_name']; ?> <?php echo $member['last_name']; ?></a>
@@ -247,19 +264,40 @@
                                                     <td>
                                                       <a href="#"><?php echo $member['up_mail']; ?></a>
                                                     </td>
+                                                     <?php if($account_type == 'org') {?>
                                                     <td>
                                                       <button class="btn btn-sm btn-info" onclick="changePosition()" type="button" id="changePosBTN">Edit Position</button><br><br>
                                                       <button class="btn btn-sm btn-danger" onclick="removeMember()" type="button" id="removeBTN">Remove</button>
-                                                    </td>
+                                                      </td>
+                                                     <?php } ?>
                                                 </tr>
-                                                <?php } ?>
+                                                <?php }  }
+                                                foreach($members as $member){ 
+                                                  if($member['position'] == "Member"){ ?>
+                                                <tr>
+                                                    <td>
+                                                     <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$member['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="#"><?php echo $member['first_name']; ?> <?php echo $member['last_name']; ?></a>
+                                                    </td>
+                                                    <td class="text-center">
+                                                      <span class="badge badge-success"><?php echo $member['position']; ?></span></td>
+                                                    <td>
+                                                      <a href="#"><?php echo $member['up_mail']; ?></a>
+                                                    </td>
+                                                     <?php if($account_type == 'org') {?>
+                                                      <td>
+                                                      <button class="btn btn-sm btn-info" onclick="changePosition()" type="button" id="changePosBTN">Edit Position</button><br><br>
+                                                      <button class="btn btn-sm btn-danger" onclick="removeMember()" type="button" id="removeBTN">Remove</button>
+                                                      </td>
+                                                     <?php } ?>
+                                                </tr>
+                                                <?php }  } ?>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- working here -->
+                            <?php if($account_type=="org"){ ?> 
                             <div id="orgApplications" style="display: none;">
                                 <div class="main-box clearfix">
                                   <div class="table-responsive">
@@ -290,6 +328,9 @@
                                   </div>
                                 </div>
                             </div>
+                            <?php } ?>
+
+                            <?php if($account_type == 'org') {?>
                             <div id="orgAdminAnnouncements" style="display: none;">
                                 <?php foreach($announcements as $announcement){ ?>
                                 <div class="stream-post">
@@ -307,6 +348,7 @@
                                 </div>
                                 <?php } ?>
                             </div>
+                             <?php } ?>
                         </div>
                     </div>
                 </div>

@@ -1,12 +1,3 @@
-<?php 
-	$dbhandle = new mysqli('localhost','root','','asuo');
-	echo $dbhandle->connect_error;
-
-	$query = "SELECT * FROM organizationprofile";
-	$res = $dbhandle->query($query);
-
-	$row=$res->fetch_assoc();
-?>
 
 <!DOCTYPE html>
 <html>

@@ -14,6 +14,15 @@
 			return $result;
 		}
 
+		//by admin
+		public function getOrgProfileDetailsByAdmin($org_id){
+			$result['profile']= $this->getOrgDetails($org_id);
+			$result['members']= $this->getMembers($org_id);
+			$result['posts']= $this->getOrgPosts($org_id);
+
+			return $result;
+					}
+
 		public function getOrgDetails($org_id){
 			$condition = "oa.org_id = op.org_id AND op.org_id = " .$org_id;
 

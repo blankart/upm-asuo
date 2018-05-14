@@ -82,8 +82,9 @@
 						 	$isApplicant = $this->OrgModel->isApplicant($org_id, $student_id);
 						}
 
-						if ($isAdmin)
-							echo "All hail the almighty admin! We present you with everything!"; //user is an admin
+						if ($isAdmin){
+							$this->loadOrgProfileByAdmin($org_id);
+						}
 						else if($isMember)
 							echo "Since you are a member, feel priviliged. Don't take it for granted ;)"; //user is a member
 						else
@@ -144,6 +145,17 @@
 			$this->load->view('org/createposts');
 			$this->load->view('org/editprofile', $org_data);
 			$this->load->view('org/changepassword');
+		}
+
+		private function loadOrgProfileByAdmin($org_id){
+			echo "All hail the almighty admin! We present you with everything!"; //user is an admin
+
+			$this->load->model('OrgModel');
+			$result = $this->OrgModel->getOrgProfileDetailsByAdmin($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/org', $result);
+			$this->load->view('footer');
 		}
 
 		private function checkOrgPassword(){
