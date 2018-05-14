@@ -1,27 +1,15 @@
-<?php 
-	$dbhandle = new mysqli('localhost','root','','asuo');
-	echo $dbhandle->connect_error;
-
-	$query = "SELECT * FROM studentprofile";
-	$res = $dbhandle->query($query);
-
-	$row=$res->fetch_assoc();
-
-	//other db
-	$query = "SELECT * FROM studentaccount";
-	$res2 = $dbhandle->query($query);
-
-	$row2=$res2->fetch_assoc();
-?>
-
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Form E: Members' Profile</title>
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/phases.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/sidenav.css"> 
-		<script type="text/javascript" src="<?php echo base_url();?>js/script.js"></script>
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/sidenav.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/upload.css">
+
+        <script>
+            function openWin() {
+                window.open("applyforaccreditation/formE.pdf"); //change location
+            }
+        </script>
 	</head>
 
 	<body>
@@ -41,19 +29,13 @@
             </div>
             <!-- Page Content -->
 			<div class="main">
-				<h1>Form E: Members' Profile</h1>
-				<!-- add pages -->
-				<form id="multiphase" onsubmit="return false">
-					<img src="<?php echo base_url();?>img/logo.jpg" alt="<?php echo $row['first_name']. ' ' . $row['middle_name']. ' ' . $row['last_name']; ?>" style="float:left;">&nbsp;&nbsp;
-					Name:&nbsp;&nbsp;<input type="text" id="name" name="name" id="name" value="<?php echo $row['first_name']. ' ' . $row['middle_name']. ' ' . $row['last_name']; ?>" disabled><br>&nbsp;&nbsp;
-					Year:&nbsp;&nbsp;<input type="text" name="yearLvl" id="yearLvl" value="<?php echo $row['year_level']; ?>" disabled>&nbsp;&nbsp;
-					Course:&nbsp;&nbsp;<input type="text" name="Course" id="Course" value="<?php echo $row['course']; ?>" disabled><br>&nbsp;&nbsp;
-					Address:&nbsp;&nbsp;<input type="text" name="add" id="add" disabled><br>&nbsp;&nbsp;
-					Phone:&nbsp;&nbsp;<input type="text" name="phone" id="phone" disabled>&nbsp;&nbsp;
-					Email:&nbsp;&nbsp;<input type="text" name="mail" id="mail" value="<?php echo $row2['up_mail'];?>" disabled><br><br>
-				
-					<button class="button">Next</button>
-				</form>
+			<h1>Form E: Members' Profile</h1>
+                <object data="<?php echo base_url(); ?>org/viewFormE" type="pdf" width="100%" height="400">
+                    <iframe src="<?php echo base_url(); ?>org/viewFormE" style="border: none;" width="100%" height="400">This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo base_url(); ?>org/formDpdf">Download PDF</a>
+                    </iframe>
+                </object>
+
+                <button class="button">Save</button><br><br>
 			</div>
 		</div>
 	</body>
