@@ -109,7 +109,7 @@
 			if($result != NULL){
 			
 				$account_data = array(
-					'org_email' => $result['org_email'],
+					'org_email' => strtolower ($result['org_email']),
 					'password' => md5($result['password']),
 					'org_status' => 'Unaccredited',
 					'isVerified' => 0,
@@ -124,14 +124,14 @@
 
 				$profile_details = array(
 					'org_id' => $org_id,
-					'org_name' => $result['org_name'], 
+					'org_name' => ucwords( strtolower ( $result['org_name'] )), 
 					'acronym' => $result['acronym'], 
 					'org_category' => $result['org_category'], 
 					'org_college' => $result['org_college'],
 					'description' => 'N/A', 
 					'objectives' => 'N/A', 
-					'org_website' => $result['org_website'], 
-					'mailing_address' => $result['mailing_address'], 
+					'org_website' =>  strtolower ($result['org_website']), 
+					'mailing_address' => ucwords( strtolower ( $result['mailing_address'] )), 
 					'date_established' => 'N/A', 
 					'org_logo' => 'logo_default.jpg',
 					'constitution' => 'No uploads yet',

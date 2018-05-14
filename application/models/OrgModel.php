@@ -81,6 +81,15 @@
 			$tally['male_fourth'] = $this->getTally($org_id, 'Male', '4');
 			$tally['female_fourth'] = $this->getTally($org_id, 'Female', '4');
 
+			$tally['male_fifth'] = $this->getTally($org_id, 'Male', '5');
+			$tally['female_fifth'] = $this->getTally($org_id, 'Female', '5');
+
+			$tally['male_sixth'] = $this->getTally($org_id, 'Male', '6');
+			$tally['female_sixth'] = $this->getTally($org_id, 'Female', '6');
+
+			$tally['male_seventh'] = $this->getTally($org_id, 'Male', '7');
+			$tally['female_seventh'] = $this->getTally($org_id, 'Female', '7');
+
 			$tally['male_masteral'] = $this->getTally($org_id, 'Male', 'Masteral');
 			$tally['female_masteral'] = $this->getTally($org_id, 'Female', 'Masteral');
 

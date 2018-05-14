@@ -240,7 +240,7 @@
                <div class="form-group">
                   <label class="col-lg control-label">Total Number of Members</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" name="members" value = "<?php echo $tally['female_first'] + $tally['female_second'] + $tally['female_third'] + $tally['female_fourth'] + $tally['female_masteral'] + $tally['female_doctoral'] +  $tally['male_first'] + $tally['male_second'] + $tally['male_third'] + $tally['male_fourth'] + $tally['male_masteral'] + $tally['male_doctoral']; ?>" readonly required>
+                     <input class="form-control" type="text" name="members" value = "<?php echo $tally['female_first'] + $tally['female_second'] + $tally['female_third'] + $tally['female_fourth'] + $tally['female_fifth'] + $tally['female_sixth'] + $tally['female_seventh'] + $tally['female_masteral'] + $tally['female_doctoral'] +  $tally['male_first'] + $tally['male_second'] + $tally['male_third'] + $tally['male_fourth'] + $tally['male_fifth'] + $tally['male_sixth'] + $tally['male_seventh'] + $tally['male_masteral'] + $tally['male_doctoral']; ?>" readonly required>
                   </div>
                </div>
                <br>
@@ -267,12 +267,12 @@
                            <td><?php echo $tally['male_second']; ?></td>
                            <td><?php echo $tally['male_third']; ?></td>
                            <td><?php echo $tally['male_fourth']; ?></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
+                           <td><?php echo $tally['male_fifth']; ?></td>
+                           <td><?php echo $tally['male_sixth']; ?></td>
+                           <td><?php echo $tally['male_seventh']; ?></td>
                            <td><?php echo $tally['male_masteral']; ?></td>
                            <td><?php echo $tally['male_doctoral']; ?></td>
-                           <td><?php echo $tally['male_first'] + $tally['male_second'] + $tally['male_third'] + $tally['male_fourth'] + $tally['male_masteral'] + $tally['male_doctoral']; ?></td>
+                           <td><?php echo $tally['male_first'] + $tally['male_second'] + $tally['male_third'] + $tally['male_fourth'] + $tally['male_fifth'] + $tally['male_sixth'] + $tally['male_seventh'] +$tally['male_masteral'] + $tally['male_doctoral']; ?></td>
                         </tr>
                         <tr>
                            <td><b>Female</b></B></td>
@@ -280,12 +280,12 @@
                            <td><?php echo $tally['female_second']; ?></td>
                            <td><?php echo $tally['female_third']; ?></td>
                            <td><?php echo $tally['female_fourth']; ?></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
+                           <td><?php echo $tally['female_fifth']; ?></td>
+                           <td><?php echo $tally['female_sixth']; ?></td>
+                           <td><?php echo $tally['female_seventh']; ?></td>
                            <td><?php echo $tally['female_masteral']; ?></td>
                            <td><?php echo $tally['female_doctoral']; ?></td>
-                           <td><?php echo $tally['female_first'] + $tally['female_second'] + $tally['female_third'] + $tally['female_fourth'] + $tally['female_masteral'] + $tally['female_doctoral']; ?></td>
+                           <td><?php echo $tally['female_first'] + $tally['female_second'] + $tally['female_third'] + $tally['female_fourth']  + $tally['female_fifth']  + $tally['female_sixth'] + $tally['female_seventh'] + $tally['female_masteral'] + $tally['female_doctoral']; ?></td>
                         </tr>
                         <tr>
                            <td><b>Total</b></td>
@@ -293,12 +293,12 @@
                            <td><?php echo $tally['male_second'] + $tally['female_second']; ?></td>
                            <td><?php echo $tally['male_third'] + $tally['female_third']; ?></td>
                            <td><?php echo $tally['male_fourth'] + $tally['female_fourth']; ?></td>
-                           <td></td>
-                           <td></td>
-                           <td></td>
+                           <td><?php echo $tally['male_fifth'] + $tally['female_fifth']; ?></td>
+                           <td><?php echo $tally['male_sixth'] + $tally['female_sixth']; ?></td>
+                           <td><?php echo $tally['male_seventh'] + $tally['female_seventh']; ?></td>
                            <td><?php echo $tally['male_masteral'] + $tally['female_masteral']; ?></td>
                            <td><?php echo $tally['male_doctoral'] + $tally['female_doctoral']; ?></td>
-                           <td><?php echo $tally['female_first'] + $tally['female_second'] + $tally['female_third'] + $tally['female_fourth'] + $tally['female_masteral'] + $tally['female_doctoral'] +  $tally['male_first'] + $tally['male_second'] + $tally['male_third'] + $tally['male_fourth'] + $tally['male_masteral'] + $tally['male_doctoral']; ?></td>
+                           <td><?php echo $tally['female_first'] + $tally['female_second'] + $tally['female_third'] + $tally['female_fourth'] + $tally['female_fifth'] + $tally['female_sixth'] + $tally['female_seventh']+  $tally['female_masteral'] + $tally['female_doctoral'] +  $tally['male_first'] + $tally['male_second'] + $tally['male_third'] + $tally['male_fourth'] + $tally['male_fifth'] + $tally['male_sixth'] + $tally['male_seventh'] + $tally['male_masteral'] + $tally['male_doctoral']; ?></td>
                         </tr>
                      </tbody>
                   </table>
