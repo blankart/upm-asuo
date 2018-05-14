@@ -1,3 +1,6 @@
+<?php $account_type=$this->session->userdata["account_type"];
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -110,6 +113,14 @@
                   swal("Membership Updated!", "You updated Student_Name's position to " + inputValue + ".", "success");
                   });
                 }
+
+                function studApproved(){
+                  swal("Approved!", "StudentName is now a member of OrgAcronym.", "success");
+                }
+
+                function studReject(){
+                  swal("Rejected!", "You rejected StudentName's application.", "error");
+                }
     </script>
     <div class="header" style="padding-top: 80px; text-align: center; color: white;">
         <h1 style="font-size: 40px; font-family: Lato;">Hi <?php echo $profile['acronym']; ?>!</h1>
@@ -136,7 +147,7 @@
                 <div class="col-8">
                     <div class="card" style="box-shadow: 0 0 40px rgba(0,0,0,.2)">
                         <div class="card-body">
-                            <button class="btn btn-light btn-lg" id="orgAdminAnnouncementsBut" style="margin-left: 15px;" type="button">Admin Announcements</button> <button class="btn btn-light btn-lg" id="orgMembersBut" style="margin-left: 15px;" type="button">Members</button> <button class="btn btn-light btn-lg" id="orgApplicationsBut" style="margin-left: 15px;" type="button">Applications</button> <button class="btn btn-light btn-lg active" id="orgPostsBut" type="button">Posts</button> <button class="btn btn-light btn-lg active" id="orgProfileBTN" type="button">About OrgName</button>
+                            <button class="btn btn-light btn-lg" id="orgAdminAnnouncementsBut" style="margin-left: 15px;" type="button">Admin Announcements</button> <button class="btn btn-light btn-lg" id="orgMembersBut" style="margin-left: 15px;" type="button">Members</button> <button class="btn btn-light btn-lg" id="orgApplicationsBut" style="margin-left: 15px;" type="button">Applications</button> <button class="btn btn-light btn-lg active" id="orgPostsBut" type="button">Posts</button> <?php if($account_type!="org"){ ?> <button class="btn btn-light btn-lg active" id="orgProfileBTN" type="button">About OrgName</button> <?php } ?>
                             <hr>
                             <div id="orgProfile">
                               <div class="well profile text-center">
@@ -209,7 +220,33 @@
                                 </div>
                             </div>
                             <div id="orgApplications" style="display: none;">
-                                orgApplications
+                                <div class="main-box clearfix">
+                                  <div class="table-responsive">
+                                    <table class="table user-list">
+                                      <thead>
+                                        <tr>
+                                          <th><span>Student Name</span></th>
+                                          <th class="text-center"><span>Email</span></th>
+                                          <th><span>Action</span></th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        <tr>
+                                          <td>
+                                            <img alt="" src="<?php echo base_url();?>img/UP logo.png"><a class="user-link" href="#">Student_Name</a>
+                                          </td>
+                                          <td>
+                                            <a href="#">Email</a>
+                                          </td>
+                                          <td>
+                                             <button class="btn btn-success" onclick="studApproved()" type="button" id="approveBTN">Approve</button>
+                                             <button class="btn btn-danger" onclick="studReject()" type="button" id="rejectBTN">Reject</button>
+                                          </td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
                             </div>
                             <div id="orgAdminAnnouncements" style="display: none;">
                                 <?php foreach($announcements as $announcement){ ?>
