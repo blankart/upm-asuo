@@ -520,12 +520,12 @@
 
 			// set image scale factor
 			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-
+			$org_id = $this->session->userdata['user_id'];
 			// set font
 			$pdf->SetFont('Helvetica', '', 12);
 			//$pdf->AddPage();
 			$this->load->model('OrgModel');
-			$result = $this->OrgModel->getOrgOfficer();	
+			$result = $this->OrgModel->getOrgOfficer($org_id);	
 			//var_dump($result);
 			$temp = "";
 			for($i=0;$i<sizeof($result);$i++)
@@ -547,14 +547,14 @@
    	 			<td colspan = "2"><b>Name:</b> '.$result[$i]['first_name'].' '.$result[$i]['middle_name'].' '.$result[$i]['last_name'].'</td>
    	 			<td> </td>
    	 			<td> </td>
-    			<td rowspan="5"><img src="'.K_PATH_PROFILE_PIC.'/assets/student/profile_pic/'.$result[$i]['profile_pic'].'" width="80" height="100" align="right"></td>
+    			<td rowspan="5"><img src="'.base_url().'/assets/student/profile_pic/'.$result[$i]['profile_pic'].'" width="80" height="80" align="right"></td>
   			</tr>
   			<tr>
     			<td colspan = "2"><b>Position:</b> '.$result[$i]['position'].'</td>
     			<td colspan="2.5"><b>Year/Course:</b> '.$result[$i]['year_level'].' '.$result[$i]['course'].'</td>
   			</tr>
   			<tr>
-    			<td colspan="3"><b>Address:</b> '.$result[$i]['up_mail'].'</td>
+    			<td colspan="3"><b>Address:</b> '.$result[$i]['address'].'</td>
   			</tr>
   			<tr>
     			<td colspan="2"><b>Phone:</b> '.$result[$i]['contact_num'].'</td>
@@ -575,7 +575,7 @@
 
 		}
 
-		private function viewFormE(){
+		public function viewFormE(){
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 			// set document information
@@ -608,16 +608,17 @@
 
 			// set font
 			$pdf->SetFont('Helvetica', '', 12);
-
+			$org_id = $this->session->userdata['user_id'];
 			$this->load->model('OrgModel');
-			$result = $this->OrgModel->getOrgMembers();	
-
+			$result = $this->OrgModel->getOrgMembers($org_id);	
+			//var_dump($result);
 			$temp = "";
+			$samplehtml = "";
 			// add a page
 			for($i=0;$i<sizeof($result);$i++)
 			{
 
-				if(($i+1 % 2) == 0 || $i == 0)
+				if($i % 2 == 0 || $i == 0)
 				{
 					$pdf->AddPage();
 					$year = date("Y");
@@ -627,19 +628,20 @@
 					<h5 align="center">AY '.$year.' - '.($year+1).'</h5>';
 				}
 				$samplehtml = $temp.'
+			<br><br><br><br><br><br><br><br><br>
 			<table>
   			<tr>
    	 			<td><b>Name:</b></td>
    	 			<td colspan = "2" style ="">'.$result[$i]['first_name'].' '.$result[$i]['middle_name'].' '.$result[$i]['last_name'].'</td>
    	 			<td> </td>
-    			<td rowspan="5"><img src="'.K_PATH_PROFILE_PIC.'/assets/student/profile_pic/'.$result[$i]['profile_pic'].'" width="80" height="100" align="right"></td>
+    			<td rowspan="5"><img src="'.base_url().'assets/student/profile_pic/'.$result[$i]['profile_pic'].'" width="80" height="100" align="right"></td>
   			</tr>
   			<tr>
     			<td><b>Year:</b> '.$result[$i]['year_level'].'</td>
     			<td colspan = "3"><b>Course:</b>'.$result[$i]['course'].'</td>
   			</tr>
   			<tr>
-    			<td colspan="3"><b>Address:</b> '.$result[$i]['up_mail'].'</td>
+    			<td colspan="3"><b>Address:</b> '.$result[$i]['address'].'</td>
   			</tr>
   			<tr>
     			<td colspan="2"><b>Phone:</b> '.$result[$i]['contact_num'].'</td>
@@ -647,24 +649,19 @@
   			</tr>
   			<tr>
   			<br> 
-  				<td colspan="5" rowspan="5"><img src="'.K_PATH_PROFILE_PIC.'/assets/student/form_5/'.$result[$i]['form5'].'" width="350" height="200" align="center"></td>
+  				<td colspan="5" rowspan="5"><img src="'.base_url().'assets/student/form_5/'.$result[$i]['form5'].'" width="350" height="180" align="center"></td>
   				<td colspan="5" rowspan="5"> Form5</td>
   			</tr>
 		</table> 
-
 		';
 				$temp = "";
+			//	
 				$pdf->writeHTML($samplehtml, true, 0, true, 0);
-				
-
-				
-				
 			}
+		
 			
-	
-			$pdf->Output('example_003.pdf', 'I');
-
-			
+			//var_dump($samplehtml);
+			$pdf->Output('example_003.pdf', 'I');			
 		}
 
 		private function viewFormF(){
