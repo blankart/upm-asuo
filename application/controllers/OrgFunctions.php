@@ -467,17 +467,20 @@
 
 			$tally = $this->OrgModel->getOrgTally($org_id);
 
-			$html= '<p align="right"><b>Date filed:</b>'.date("M d, Y").'</p><br>
-			<b>Name of Organization: </b>'.$result['org_name'].'<br>
-			<b>Acronym: </b>'.$result['acronym'].'<br>	
-			<b>Mailing Address: </b>'.$result['mailing_address'].'<br>
-			<b>E-mail Address:   </b>'.$result['org_email'].'<br>
+			$html= '
+			<p align="right"><b>Date filed:</b>'.date("M d, Y").'</p><br>
+			<p align="center"><h3><b>ORGANIZATION PROFILE</b></h3></p>
+			<br><br><br>
+			<b>Name of Organization: </b>'.$result['org_name'].'<br><br>
+			<b>Acronym: </b>'.$result['acronym'].'<br><br>
+			<b>Mailing Address: </b>'.$result['mailing_address'].'<br><br>
+			<b>E-mail Address:   </b>'.$result['org_email'].'<br><br>
 			<b>Website:</b>  http://www.'.$result['org_website'].'
-			<br>
+			<br><br>
 			<b>Date Established: </b>'.$result['date_established'].'
-			<br>
+			<br><br>
 			<b>Total Number of Members: </b>'.array_sum($tally).'
-			<br>
+			<br><br><br>
 			';	
 
 			$tally = $this->OrgModel->getOrgTally($org_id);
@@ -541,7 +544,7 @@
 
 			</table>
 
-
+			<br><br>	
 		 	';
 		 	$ans= ($result['incSEC']==1 ? 'Yes' : 'No');
 		 	$year = ($result['incSEC']==1 ? $result['sec_years']: ' ') ; 
