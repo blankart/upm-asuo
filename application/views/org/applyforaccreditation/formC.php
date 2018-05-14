@@ -22,6 +22,7 @@
             <div class="col-4">
                 <!-- insert sidenav -->
                 <div class="sidenav">
+                	<?php if($org_status == "Accredited"){ ?>
                     <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
                     <li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
                     <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
@@ -30,6 +31,17 @@
                     <li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
                     <li><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
                     <li><a href="<?php echo base_url(); ?>org/formG">Financial Report</a></li>
+
+                    <?php } else{ ?>
+                    <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
+                    <li class="active"><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
+                    <?php } ?>
+                    
                 </div>
             </div>
         <!-- Page Content -->
@@ -41,12 +53,12 @@
 			<!-- form -->
 			<form id="multiphase2" onsubmit="return false">
 				<div id="cphase1">
-					Name of Organization:&nbsp;&nbsp;<input type="text" id="orgName" name="orgName" value="<?php echo $row['org_name']; ?>" disabled>&nbsp;&nbsp;&nbsp;
-					Acronym:&nbsp;&nbsp;<input type="text" id="acronym" name="acronym" value="<?php echo $row['acronym']; ?>" disabled>
+					Name of Organization:&nbsp;&nbsp;<input type="text" id="orgName" name="orgName" value="<?php echo $org_name; ?>" disabled>&nbsp;&nbsp;&nbsp;
+					Acronym:&nbsp;&nbsp;<input type="text" id="acronym" name="acronym" value="<?php echo $acronym; ?>" disabled>
 					Mailing Address:&nbsp;&nbsp;<input type="text" id="address" name="address">
 					Email Address:&nbsp;&nbsp;<input type="text" id="email" name="email" disabled>&nbsp;&nbsp;
-					Website:&nbsp;&nbsp;<input type="text" id="website" name="website" value="<?php echo $row['org_website']; ?>" disabled>&nbsp;&nbsp;
-					Date Established:&nbsp;&nbsp;<input type="text" id="established" name="established" value="<?php echo $row['date_established']; ?>" disabled>
+					Website:&nbsp;&nbsp;<input type="text" id="website" name="website" value="<?php echo $org_website; ?>" disabled>&nbsp;&nbsp;
+					Date Established:&nbsp;&nbsp;<input type="text" id="established" name="established" value="<?php echo $date_established; ?>" disabled>
 					<br><br>
 
 					<button class="button" onclick="processcPhase1()">Continue</button>
