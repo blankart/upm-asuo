@@ -12,14 +12,14 @@ INSERT INTO `studentaccount` (`student_id`, `up_id`, `up_mail`, `username`, `pas
 
 INSERT INTO `studentprofile` (`student_id`, `first_name`, `middle_name`, `last_name`, `sex`, `birthday`, `course`, `year_level`, `contact_num`, `address`, `profile_pic`, `form5`) VALUES
 (1, 'Angelica', 'A', 'Ayos', 'Female', '1997-01-01', 'BS Computer Science', '3', '09XXXXXXXXX', 'Cavite', 'angelica.jpg', 'angelica_form5.jpg'),
-(2, 'Medy Rae', 'Jordan', 'Fernando', 'Male', '1997-04-11', 'BS Computer Science', '4', '09453291650', 'Antique', 'medy.jpg', 'medy_form5.jpg'),
+(2, 'Medy Rae', 'Jordan', 'Fernando', 'Male', '1997-04-11', 'BS Computer Science', '5', '09453291650', 'Antique', 'medy.jpg', 'medy_form5.jpg'),
 (3, 'Ma Christina', 'J', 'Galvez', 'Female', '1997-01-01', 'BS Computer Science', '1', '09XXXXXXXXX', 'Manila', 'christina.jpg', 'christina_form5.jpg'),
 (4, 'Aldrin', 'C', 'Racusa', 'Male', '1997-01-01', 'BS Computer Science', '2', '09XXXXXXXXX', 'Rizal', 'aldrin.jpg', 'aldrin_form5.jpg'),
 (5, 'Kylle Audrey', 'A', 'Columna', 'Female', '1997-04-11', 'BS Computer Science', 'Doctoral', '09XXXXXXXXX', 'Manila', 'kylle.jpg', 'kylle_form5.jpg'),
-(6, 'Paula Nicole', 'S', 'Lasmarias', 'Female', '1997-01-01', 'BS Computer Science', '2', '09XXXXXXXXX', 'Davao', 'paula.jpg', 'paula_form5.jpg'),
+(6, 'Paula Nicole', 'S', 'Lasmarias', 'Female', '1997-01-01', 'BS Computer Science', '7', '09XXXXXXXXX', 'Davao', 'paula.jpg', 'paula_form5.jpg'),
 (7, 'Nico', 'Cruelala', 'Mendoza', 'Male', '1997-01-01', 'BS Computer Science', 'Masteral', '09XXXXXXXXX', 'Mindoro', 'nico.jpg', 'nico_form5.jpg'),
 (8, 'Darlene Grace', 'A', 'Perez', 'Female', '1997-01-01', 'BS Computer Science', 'Doctoral', '09XXXXXXXXX', 'Manila', 'darlene.jpg', 'darlene_form5.jpg'),
-(9, 'Alyssa Fatima', 'V', 'Sanguenza', 'Female', '1997-01-01', 'BS Computer Science', 'Masteral', '09XXXXXXXXX', 'Bulacan', 'alyssa.jpg', 'alyssa_form5.jpg'),
+(9, 'Alyssa Fatima', 'V', 'Sanguenza', 'Female', '1997-01-01', 'BS Computer Science', '6', '09XXXXXXXXX', 'Bulacan', 'alyssa.jpg', 'alyssa_form5.jpg'),
 (10, 'Albert', 'Hans', 'Einstein', 'Male', '1879-03-14', 'BS Computer Science', 'Doctoral', '09XXXXXXXXX', 'Under the Sea', 'albert.jpg', 'albert_form5.jpg');
 
 INSERT INTO `admin` (`admin_id`, `username`, `password`, `admin_name`, `admin_email`) VALUES

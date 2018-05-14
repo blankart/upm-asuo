@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <script type="text/javascript">
 	function inStay(){
       var inStay = "<?php echo $stay; ?>"
@@ -20,6 +21,8 @@
 
    window.onload = inStay;
 </script>
+=======
+>>>>>>> a99caad95721322dd31ba2be9118983ed8616bf6
 <!DOCTYPE html>
 <html>
 	<head>
@@ -34,6 +37,7 @@
             <div class="col-4">
 				<!-- sidenav -->
                 <div class="sidenav">
+                	<?php if($org_status == "Accredited"){ ?>
                     <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
                     <li class="active"><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
                     <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
@@ -42,6 +46,17 @@
                     <li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
                     <li><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
                     <li><a href="<?php echo base_url(); ?>org/formG">Financial Report</a></li>
+
+                    <?php } else{ ?>
+                    <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
+                    <li class="active"><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
+                    <li><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
+                    <?php } ?>
+                    
                 </div>
             </div>
             
@@ -62,9 +77,15 @@
 
 					<div id="phase2">
 						Organization Name:&nbsp;&nbsp;<input type="text" id="orgName" name="orgName" value="<?php echo $org_name; ?>" disabled/>&nbsp;	
+<<<<<<< HEAD
 						<input type="radio" name="data[stay]" id="new" onclick="activateText(this.value)" value="new">&nbsp; New &nbsp; &nbsp;
 						<input type="radio" name="data[stay]" id="old"  onclick="activateText(this.value)" value="old">&nbsp; Old &nbsp; |
 						<input type="text" id ="years" name="data[experience]" value="<?php echo $experience ?>">
+=======
+						<input type="radio" name="stay" id="new" value="new">&nbsp; New &nbsp; &nbsp;
+						<input type="radio" name="stay" id="old" value="old">&nbsp; Old &nbsp; |
+						<input type="text" id ="years" name="years" placeholder="years in existence...">
+>>>>>>> a99caad95721322dd31ba2be9118983ed8616bf6
 						<br><br><br>
 
 						<button class="button" onclick="processPhase2()">Continue</button>
@@ -72,7 +93,11 @@
 					</div>
 
 					<div id="phase3">
+<<<<<<< HEAD
 						Category:&nbsp;&nbsp;<input type="text" id="category" name="category" value="<?php echo $org_category ?>" disabled>
+=======
+						Category:&nbsp;&nbsp;<input type="text" id="category" name="category" value="<?php echo $org_category; ?>" disabled>
+>>>>>>> a99caad95721322dd31ba2be9118983ed8616bf6
 						<br><br><br>
 
 						<button class="button" onclick="processPhase3()">Continue</button>
@@ -105,9 +130,15 @@
 
 					<div id="phase6">
 						Objectives of Organization:
+<<<<<<< HEAD
 						<input type="text" id="objectives" name="objectives" value="<?php echo $objectives?>" disabled><br>
 						Brief Description of Organization:
 						<input type="text" id="description" name="description" value="<?php echo $description ?>" disabled><br><br>
+=======
+						<input type="text" id="objectives" name="objectives" value="<?php echo $objectives;?>" disabled><br>
+						Brief Description of Organization:
+						<input type="text" id="description" name="description" value="<?php echo $description; ?>" disabled><br><br>
+>>>>>>> a99caad95721322dd31ba2be9118983ed8616bf6
 
 						<button class="button" onclick="processPhase6()">Continue</button>
 						<button class="button" onclick="back5()">Back</button>

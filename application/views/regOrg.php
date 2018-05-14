@@ -1,4 +1,36 @@
 <script>
+
+
+    function noSpecialCharactersAndExtraSpacesCheck(input){
+
+        var regex = new RegExp("^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$");
+        var value =  input.value;
+        
+        if( !regex.test(value) )
+          input.setCustomValidity("Special characters and extra spaces are not allowed!");   
+        else 
+          input.setCustomValidity("");    
+    }
+
+
+    function websiteFormatCheck(input){
+        var value =  input.value;
+        
+        if( /\s/.test(value) )
+          input.setCustomValidity("Spaces are not allowed in websites!");   
+        else 
+          input.setCustomValidity(""); 
+    }
+
+    function passwordFormatCheck(input){
+        var value =  input.value;
+        
+        if( /\s/.test(value) )
+          input.setCustomValidity("Spaces are not allowed in passwords!");   
+        else 
+          input.setCustomValidity(""); 
+    }
+
     function OrgRegEmailChecker(){
         var org_email = ($("#org_email").val()).trim();
         var checker = false;
@@ -114,78 +146,22 @@ function conPassValidate()
 
 }
 
-function validateForm(){
-    resetErrorDisplays();
+    function validateForm(){
+        resetErrorDisplays();
 
-    if (conPassValidate() && OrgRegEmailChecker() && OrgRegAcronymChecker())
-    {
-        
-        var org_name = (document.getElementById("org_name").value).trim();
-        var acronym = (document.getElementById("acronym").value).trim();
-        var org_email = (document.getElementById("org_email").value).trim();
-        var org_website = (document.getElementById("org_website").value).trim();
-        var mailing_address = (document.getElementById("mailing_address").value).trim();
-
-        // alert("Org name: '"+ org_name + "'");
-        // alert("Acronym: '"+ acronym + "'");
-        // alert("Org Email: '"+ org_email + "'");
-        // alert("Org Website: '"+ org_website + "'");
-        // alert("Mailing Address: '"+ mailing_address + "'");
-
-        if(org_name == '' || acronym == '' || org_email == '' || org_website == '' || mailing_address == ''){
-
-           // alert ('invalid input found!');
-
-            if(org_name == ""){
-                $("#nameInvalidInput").addClass('notice notice-sm notice-danger');
-                $("#nameInvalidInput").html('<strong>Error:</strong> Organizaton Name field is empty!');
-                $("#nameInvalidInput").slideDown(400);   
-            }
-
-            if(org_website == ""){
-                $("#websiteInvalidInput").addClass('notice notice-sm notice-danger');
-                $("#websiteInvalidInput").html('<strong>Error:</strong> Organization Website field is empty!');
-                $("#websiteInvalidInput").slideDown(400);  
-            }
-    
-            if(mailing_address == ""){
-                $("#mailAddressInvalidInput").addClass('notice notice-sm notice-danger');
-                $("#mailAddressInvalidInput").html('<strong>Error:</strong> Mailing Address field is empty!');
-                $("#mailAddressInvalidInput").slideDown(400);   
-            }
-
-            return false;
-        }
-        else{
-            document.getElementById("org_name").value = org_name;
-            document.getElementById("acronym").value = acronym;
-            document.getElementById("org_email").value = org_email;
-            document.getElementById("org_website").value = org_website;
-            document.getElementById("mailing_address").value = mailing_address;
-
+        if (conPassValidate() && OrgRegEmailChecker() && OrgRegAcronymChecker())
             return true;
-        }
+        else 
+            return false;
     }
-    else {
-        return false;
-    };
-}
 
     function resetErrorDisplays(){
-        $("#nameInvalidInput").removeClass();
-        $("#nameInvalidInput").html('');
 
         $("#orgAcronymRestricted").removeClass();
         $("#orgAcronymRestricted").html('');
 
         $("#orgEmailTaken").removeClass();
         $("#orgEmailTaken").html('');
-
-        $("#mailAddressInvalidInput").removeClass();
-        $("#mailAddressInvalidInput").html('');
-
-        $("#websiteInvalidInput").removeClass();
-        $("#websiteInvalidInput").html('');        
     }
 
 </script>
@@ -210,19 +186,17 @@ function validateForm(){
                                 <h3 class="mb-0 my-2" style="text-align: center;">Sign Up as Organization</h3>
                             </div>
                             <div class="card-body">
-                                <small class="form-text text-muted">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</small>
                                 <form class="form" method="POST" onsubmit="return validateForm()" action="registerOrg" role="form" autocomplete="off" style="margin-top: 10px;">
 
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-8">
-                                                <input type="text" maxlength="100" class="form-control" placeholder="Organization Full Name" name="data[org_name]" id='org_name' required>
-                                                <small class="form-text text-muted">Sed ut perspiciatis.</small>
-                                                <div id="nameInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
+                                                <input type="text" maxlength="100" class="form-control" name="data[org_name]" id='org_name' onkeyup="noSpecialCharactersAndExtraSpacesCheck(this)" required>
+                                                <small class="form-text text-muted">Organization Full Name</small>
                                             </div>
                                             <div class="col-4">
-                                                <input type="text" maxlength="30" class="form-control" onblur="OrgRegAcronymChecker()" placeholder="Acronym" name="data[acronym]" id='acronym' required>
-                                                <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                                <input type="text" maxlength="30" class="form-control" onblur="OrgRegAcronymChecker()" name="data[acronym]" id='acronym' onkeyup="noSpecialCharactersAndExtraSpacesCheck(this)" required>
+                                                <small class="form-text text-muted">Acronym</small>
                                                 <div id="orgAcronymRestricted" class="notice notice-sm notice-danger" style="display: none;">
                                             </div>
                                         </div>
@@ -246,7 +220,7 @@ function validateForm(){
                                                     <option>Sports/Recreation</option>
                                           
                                                 </select>
-                                                <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                                <small class="form-text text-muted">Category</small>
                                             </div>
                                             <div class="col-6">
                                                 <select class="form-control" name="data[org_college]" required>
@@ -258,7 +232,7 @@ function validateForm(){
                                                     <option>College of Pharmacy</option>
                                                     <option>College of Public Health</option>
                                                 </select>
-                                                <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                                <small class="form-text text-muted">College</small>
                                             </div>
 
                                         </div>
@@ -267,13 +241,12 @@ function validateForm(){
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-7">
-                                                <input type="email" maxlength="50" onblur="OrgRegEmailChecker()" class="form-control" name="data[org_email]" id='org_email' placeholder="Email Address" required>
-                                                <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                                <input type="email" maxlength="50" onblur="OrgRegEmailChecker()" class="form-control" name="data[org_email]" id='org_email' required>
+                                                <small class="form-text text-muted">Email Address</small>
                                             </div>
                                             <div class="col-5">
-                                                <input type="text" maxlength="50" class="form-control" name="data[org_website]" id ='org_website' placeholder="Website" required>
-                                                <small class="form-text text-muted">Sed ut perspiciatis.</small>
-                                                 <div id="websiteInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
+                                                <input type="text" maxlength="50" class="form-control" name="data[org_website]" id ='org_website' onkeyup="websiteFormatCheck(this)" required>
+                                                <small class="form-text text-muted">Website</small>
                                             </div>
 
                                         </div>
@@ -283,23 +256,22 @@ function validateForm(){
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12">
-                                                <input type="text" maxlength="100" class="form-control" name="data[mailing_address]" id='mailing_address' placeholder="Mailing Address" required>
-                                                <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                                <input type="text" maxlength="100" class="form-control" name="data[mailing_address]" id='mailing_address' onkeyup="noSpecialCharactersAndExtraSpacesCheck(this)"  required>
+                                                <small class="form-text text-muted">Mailing Address</small>
                                             </div>
                                         </div>
-                                        <div id="mailAddressInvalidInput" class="notice notice-sm notice-danger" style="display: none;"></div>
                                     </div>
                              
 
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-6">
-                                                <input type="password" minlength="7" maxlength="32" onblur="conPassValidate()" id="Pass" class="form-control" placeholder="Password" name="data[password]" required>
-                                                <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                                <input type="password" minlength="7" maxlength="32" onblur="conPassValidate()" id="Pass" class="form-control" name="data[password]" onkeyup="passwordFormatCheck(this)" required>
+                                                <small class="form-text text-muted">Password</small>
                                             </div>
                                             <div class="col-6   ">
-                                                <input type="password" minlength="7" maxlength="32" onblur="conPassValidate()" id="conPass" class="form-control" placeholder="Confirm Password" required>
-                                                <small class="form-text text-muted">Sed ut perspiciatis.</small>
+                                                <input type="password" minlength="7" maxlength="32" onblur="conPassValidate()" id="conPass" class="form-control" onkeyup="passwordFormatCheck(this)" required>
+                                                <small class="form-text text-muted">Confirm Password</small>
                                             </div>
 
                                         </div>

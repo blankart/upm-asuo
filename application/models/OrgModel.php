@@ -37,7 +37,7 @@
 			return $announcements->result_array();
 		}
 
-		private function getMembers($org_id){
+		public function getMembers($org_id){
 			$condition = "om.org_id = " .$org_id. " AND om.student_id = sa.student_id AND sa.student_id = sp.student_id AND om.isRemoved = 0";
 
 			$this->db->select("sp.*, sa.up_mail, om.position");
@@ -62,14 +62,14 @@
 		private function getOrgApplications($org_id){
 			$condition = "oap.student_id = sp.student_id AND op.org_id = oap.org_id AND oap.org_id = ".$org_id. " AND oap.status <> 'Approved'";
 
-			$this->db->select("oap.*, op.org_name, sp.first_name, sp.middle_name, sp.last_name");
+			$this->db->select("oap.*, op.org_name, sp.first_name, sp.middle_name, sp.last_name, sp.profile_pic");
 			$this->db->from("orgapplication oap, organizationprofile op, studentprofile sp");
 			$this->db->where($condition);
 			$orgapps = $this->db->get();
 			return $orgapps->result_array();
 		}
 
-		private function getOrgTally($org_id){
+		public function getOrgTally($org_id){
 			$tally['male_first'] = $this->getTally($org_id, 'Male', '1');
 			$tally['female_first'] = $this->getTally($org_id, 'Female', '1');
 
@@ -82,6 +82,15 @@
 			$tally['male_fourth'] = $this->getTally($org_id, 'Male', '4');
 			$tally['female_fourth'] = $this->getTally($org_id, 'Female', '4');
 
+			$tally['male_fifth'] = $this->getTally($org_id, 'Male', '5');
+			$tally['female_fifth'] = $this->getTally($org_id, 'Female', '5');
+
+			$tally['male_sixth'] = $this->getTally($org_id, 'Male', '6');
+			$tally['female_sixth'] = $this->getTally($org_id, 'Female', '6');
+
+			$tally['male_seventh'] = $this->getTally($org_id, 'Male', '7');
+			$tally['female_seventh'] = $this->getTally($org_id, 'Female', '7');
+
 			$tally['male_masteral'] = $this->getTally($org_id, 'Male', 'Masteral');
 			$tally['female_masteral'] = $this->getTally($org_id, 'Female', 'Masteral');
 
@@ -91,7 +100,7 @@
 			return $tally;
 		}
 
-		private function getTally($org_id, $sex, $year){
+		public function getTally($org_id, $sex, $year){
 				$condition = "om.org_id  = " .$org_id. " AND om.student_id = sp.student_id AND om.isRemoved = 0 AND sp.sex = '".$sex."' AND sp.year_level = '". $year. "'";
 
 				$this->db->select('sp.student_id');
@@ -352,6 +361,20 @@
 
 			$this->db->select('org_id');
 			$this->db->from('orgmember');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if ($query->num_rows() == 1)
+				return true;
+			else 
+				return false;
+		}
+
+		public function isApplicant($org_id, $student_id){
+			$condition = "org_id = " .$org_id. " AND student_id = " .$student_id. " AND isRemoved = 0";
+
+			$this->db->select('org_id');
+			$this->db->from('orgapplication');
 			$this->db->where($condition);
 			$query = $this->db->get();
 

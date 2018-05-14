@@ -22,38 +22,30 @@
 				$this->uploadConstitution();
 					
 			else if ($action == 'applyforaccreditation'){
-				$this->load->view('header');
-				$this->load->view('org/applyforaccreditation/applyforaccreditation');
-				$this->load->view('footer');
+				$this->loadAccreditationHome();
 			}
 			else if ($action == 'formA'){
+<<<<<<< HEAD
 				//lalagay tong mga to sa private function pagkakuha ng details
 				$this->generateFormA();
+=======
+				$this->loadFormA();
+>>>>>>> a99caad95721322dd31ba2be9118983ed8616bf6
 			}
 			else if ($action == 'formB'){
-				$this->load->view('header');
-				$this->load->view('org/applyforaccreditation/formB');
-				$this->load->view('footer');
+				$this->loadFormB();
 			}
 			else if ($action == 'formC'){
-				$this->load->view('header');
-				$this->load->view('org/applyforaccreditation/formC');
-				$this->load->view('footer');
+				$this->loadFormC();
 			}
 			else if ($action == 'formD'){
-				$this->load->view('header');
-				$this->load->view('org/applyforaccreditation/formD');
-				$this->load->view('footer');
+				$this->loadFormD();
 			}
 			else if ($action == 'formE'){
-				$this->load->view('header');
-				$this->load->view('org/applyforaccreditation/formE');
-				$this->load->view('footer');
+				$this->loadFormE();
 			}
 			else if ($action == 'formF'){
-				$this->load->view('header');
-				$this->load->view('org/applyforaccreditation/formF');
-				$this->load->view('footer');
+				$this->loadFormF();
 			}
 			else if ($action == 'formG'){
 				$this->load->view('header');
@@ -95,6 +87,7 @@
 							$isAdmin = false;
 						 	$student_id = $this->session->userdata['user_id'];
 						 	$isMember = $this->OrgModel->isMember($org_id, $student_id);
+						 	$isApplicant = $this->OrgModel->isApplicant($org_id, $student_id);
 						}
 
 						if ($isAdmin)
@@ -338,6 +331,7 @@
 				
 		}
 
+<<<<<<< HEAD
 		//saving data from form a accreditation
 		private function saveFormA()
 		{
@@ -349,6 +343,85 @@
 			// var_dump($temp);
 			 redirect(base_url().'org/formA');
 		}
+=======
+		private function loadAccreditationHome(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/applyforaccreditation', $data);
+			$this->load->view('footer');
+		}
+
+		private function loadFormA(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/formA', $data);
+			$this->load->view('footer');
+		}
+				
+		private function loadFormB(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/formB', $data);
+			$this->load->view('footer');
+		}
+		private function loadFormC(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/formC', $data);
+			$this->load->view('footer');
+		}
+
+		private function loadFormD(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/formD', $data);
+			$this->load->view('footer');
+		}
+
+		private function loadFormE(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/formE', $data);
+			$this->load->view('footer');
+		}
+
+		private function loadFormF(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/formF', $data);
+			$this->load->view('footer');
+		}
+
+		private function viewFormA(){
+>>>>>>> a99caad95721322dd31ba2be9118983ed8616bf6
 
 		private function viewFormA()
 		{
@@ -478,41 +551,102 @@
 			// set font
 			$pdf->SetFont('Helvetica', '', 12);
 
-			$html= '<p align="right"><b>Date filed:</b></p><br>
-			<b>Organization Name:</b><br>
-			<b>Number of members:</b><br>	
-			<b>Category:</b><br>
-			<b>Position/Designation:   </b>&nbsp;&nbsp;&nbsp;&nbsp;<b>College/Unit</b><br>
-			<b>Contact Person:</b>
-			<b>Position in the Organization</b>
-			<br>
-			<b>Address</b>
-			<br>
-			<b>Telephone no.:</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>Mobile no.:</b>
-			<br>
-			<b>Email:</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>Other contact details:</b>
-			<br>
-			<b>Objectives of Organization:</b>
-			<br>
-			<b>Brief description of Organization:</b>
-			<br>
-			<br>
-			<br>
-				<p align="right">___________________________________<br>
-				<b>Name of Person Filing the Application</b>
-				<br>
-				___________________________________<br>
-				<b>Position in the Organization</b>
-				<br>
-				___________________________________<br>
-				<b>Signature</b>
+			$pdf->addPage();
+			
+			$org_id = $this->session->userdata['user_id'];
+			$this->load->model('OrgModel');
+			$result = $this->OrgModel->getOrgDetails($org_id);	
+
+			$tally = $this->OrgModel->getOrgTally($org_id);
+
+			$html= '
+			<p align="right"><b>Date filed:</b>'.date("M d, Y").'</p><br>
+			<p align="center"><h3><b>ORGANIZATION PROFILE</b></h3></p>
+			<br><br><br>
+			<b>Name of Organization: </b>'.$result['org_name'].'<br><br>
+			<b>Acronym: </b>'.$result['acronym'].'<br><br>
+			<b>Mailing Address: </b>'.$result['mailing_address'].'<br><br>
+			<b>E-mail Address:   </b>'.$result['org_email'].'<br><br>
+			<b>Website:</b>  http://www.'.$result['org_website'].'
+			<br><br>
+			<b>Date Established: </b>'.$result['date_established'].'
+			<br><br>
+			<b>Total Number of Members: </b>'.array_sum($tally).'
+			<br><br><br>
+			';	
+
+			$tally = $this->OrgModel->getOrgTally($org_id);
+			$tbl='<br><table cellspacing="0" cellpadding="1" border="1">
+ 			   <tr>
+        		<td colspan="17"><b><br><p align="center">MEMBERSHIP DISTRIBUTION</p></b><br><p align="center">As of '.date("Y").' - '.(date("Y")+1).'</p></td>
+   			   </tr>
+   				
+   			<tr>
+    	<td  colspan="2"></td>
+        <td>First Year</td>
+        <td colspan="2">Second Year</td>
+        <td>Third Year</td>
+        <td  colspan="2">Fourth Year</td>
+        <td>Fifth Year</td>
+        <td>Sixth Year</td>
+        <td  colspan="2">Seventh Year</td>
+        <td  colspan="2">Masteral Students</td>
+        <td  colspan="2">Doctoral Students</td>
+        <td>Total</td>
+		    </tr>
+		    <tr>
+		       	<td  colspan="2">Male</td>
+			   	<td>'.$tally['male_first'].'</td>    
+				<td colspan="2">'.$tally['male_second'].'</td>
+				<td>'.$tally['male_third'].'</td>  
+				<td colspan="2">'.$tally['male_fourth'].'</td>
+				<td>'.$tally['male_fifth'].'</td>
+				<td>'.$tally['male_sixth'].'</td>
+				<td colspan="2">'.$tally['male_seventh'].'</td>
+				<td colspan="2">'.$tally['male_masteral'].'</td>
+				<td colspan="2">'.$tally['male_doctoral'].'</td>   	 
+				<td>'.($tally['male_first']+$tally['male_second']+$tally['male_third']+$tally['male_fourth']+$tally['male_fifth']+$tally['male_sixth']+$tally['male_seventh']+$tally['male_masteral']+$tally['male_doctoral']).'</td>     
+		    </tr>
+		    <tr>
+		    	<td colspan="2">Female</td>
+			   	<td>'.$tally['female_first'].'</td>    
+				<td colspan="2">'.$tally['female_second'].'</td>
+				<td>'.$tally['female_third'].'</td>  
+				<td colspan="2">'.$tally['female_fourth'].'</td>
+				<td>'.$tally['female_fifth'].'</td>
+				<td>'.$tally['female_sixth'].'</td>
+				<td colspan="2">'.$tally['female_seventh'].'</td>
+				<td colspan="2">'.$tally['female_masteral'].'</td>
+				<td colspan="2">'.$tally['female_doctoral'].'</td>   	 
+				<td>'.($tally['female_first']+$tally['female_second']+$tally['female_third']+$tally['female_fourth']+$tally['female_fifth']+$tally['female_sixth']+$tally['female_seventh']+$tally['female_masteral']+$tally['female_doctoral']).'</td>     
+		    </tr>
+		    <tr>
+		    	<td  colspan="2">Total</td>
+		       <td>'.($tally['male_first']+$tally['female_first']).'</td>
+		       <td colspan="2">'.($tally['male_second']+$tally['female_second']).'</td>
+		       <td>'.($tally['male_third']+$tally['female_third']).'</td>
+		       <td colspan="2">'.($tally['male_fourth']+$tally['female_fourth']).'</td>
+		       <td>'.($tally['male_fifth']+$tally['female_fifth']).'</td>
+		       <td>'.($tally['male_sixth']+$tally['female_sixth']).'</td>
+		       <td colspan="2">'.($tally['male_seventh']+$tally['female_seventh']).'</td>
+		       <td colspan="2">'.($tally['male_masteral']+$tally['female_masteral']).'</td>
+		       <td colspan="2">'.($tally['male_doctoral']+$tally['female_doctoral']).'</td>
+		       <td>'.array_sum($tally).'</td>
+		    </tr>
+
+			</table>
+
+			<br><br>	
+		 	';
+		 	$ans= ($result['incSEC']==1 ? 'Yes' : 'No');
+		 	$year = ($result['incSEC']==1 ? $result['sec_years']: ' ') ; 
+		 	$text2='
+				<b>Is your organization incorporated with the Securities and Exchange Commission (SEC)? If yes, when? </b>'.$ans.', for '.$year.' years.
 				<br>
 
-
-
-				</p>
 			';
 
+<<<<<<< HEAD
 			// add a page
 			$pdf->AddPage();
 			//$pdf->AddPage();
@@ -550,27 +684,19 @@
 			// set font
 			$pdf->SetFont('Helvetica', '', 12);
 
+=======
+			$text3 = '<b>Is your organization incorporated with the Securities and Exchange Commission (SEC)? If yes, when?</b>'.$ans.'
+				<br>';
+			$line = ($result['incSEC']== 1 ? $text2 : $text3);			
+		 
+	
+>>>>>>> a99caad95721322dd31ba2be9118983ed8616bf6
 
+			$pdf->writeHTML($html, true, 0, true, 0);
+			$pdf->writeHTML($tbl, true, false, false, false, '');
+			$pdf->writeHTML($line, true, 0, true, 0);
 
-			// add a page
-			$pdf->AddPage();
-			//$pdf->AddPage();
-			$text ='
-				<p align="center"><b><h3>Organization Profile</h3></b></p>
-				<b>Name of Organization:</b><br>
-				<b>Acronym:</b><br>
-				<b>Mailing Address:</b><br>
-				<b>E-mail Address:</b><br>
-				<b>Website: </b><br>
-				<b>Date Established:</b><br>
-				<b>Total Number of Members:</b><br>
-
-				<table>
-
-				</table>
-			';
-			$pdf->writeHTML($text, true, 0, true, 0);
-			$pdf->Output('example_003.pdf', 'I');
+			$pdf->Output('formc.pdf', 'I');
 		}
 
 		private function viewFormD(){
