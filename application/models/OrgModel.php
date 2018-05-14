@@ -263,6 +263,20 @@
 			else 
 				return false;
 		}
+
+		public function isApplicant($org_id, $student_id){
+			$condition = "org_id = " .$org_id. " AND student_id = " .$student_id. " AND isRemoved = 0";
+
+			$this->db->select('org_id');
+			$this->db->from('orgapplication');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if ($query->num_rows() == 1)
+				return true;
+			else 
+				return false;
+		}
 		// end of STUDENT-VIEWS-ORG FUNCTIONS
 	}
 ?>

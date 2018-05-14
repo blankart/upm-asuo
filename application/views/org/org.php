@@ -163,7 +163,6 @@
                     		      </div> 
                             </div>
 
-                            <!-- working here -->
                             <div id="orgPosts">
                                 <?php foreach($posts as $mypost){ ?>
                                 <div class="stream-post">
@@ -219,6 +218,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- working here -->
                             <div id="orgApplications" style="display: none;">
                                 <div class="main-box clearfix">
                                   <div class="table-responsive">
@@ -230,13 +231,15 @@
                                           <th><span>Action</span></th>
                                         </tr>
                                       </thead>
+
+                                      <?php foreach($orgapps as $applicant){ ?>
                                       <tbody>
                                         <tr>
                                           <td>
-                                            <img alt="" src="<?php echo base_url();?>img/UP logo.png"><a class="user-link" href="#">Student_Name</a>
+                                            <img alt="" src="<?php echo base_url();?>img/UP logo.png"> <a class="user-link" href="#"><?php echo $applicant['first_name']; ?> <?php echo $applicant['last_name']; ?></a>
                                           </td>
                                           <td>
-                                            <a href="#">Email</a>
+                                            <a href="#">mail</a>
                                           </td>
                                           <td>
                                              <button class="btn btn-success" onclick="studApproved()" type="button" id="approveBTN">Approve</button>
@@ -244,6 +247,9 @@
                                           </td>
                                         </tr>
                                       </tbody>
+                                      <?php } ?>
+
+
                                     </table>
                                   </div>
                                 </div>

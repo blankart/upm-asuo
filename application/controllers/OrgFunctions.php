@@ -79,6 +79,7 @@
 							$isAdmin = false;
 						 	$student_id = $this->session->userdata['user_id'];
 						 	$isMember = $this->OrgModel->isMember($org_id, $student_id);
+						 	$isApplicant = $this->OrgModel->isApplicant($org_id, $student_id);
 						}
 
 						if ($isAdmin)
