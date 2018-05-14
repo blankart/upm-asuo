@@ -25,12 +25,11 @@
 				$this->loadAccreditationHome();
 			}
 			else if ($action == 'formA'){
-<<<<<<< HEAD
+
 				//lalagay tong mga to sa private function pagkakuha ng details
 				$this->generateFormA();
-=======
-				$this->loadFormA();
->>>>>>> a99caad95721322dd31ba2be9118983ed8616bf6
+				//$this->loadFormA();
+
 			}
 			else if ($action == 'formB'){
 				$this->loadFormB();
@@ -343,7 +342,6 @@
 				
 		}
 
-<<<<<<< HEAD
 		//saving data from form a accreditation
 		private function saveFormA()
 		{
@@ -355,7 +353,7 @@
 			// var_dump($temp);
 			 redirect(base_url().'org/formA');
 		}
-=======
+
 		private function loadAccreditationHome(){
 			$org_id = $this->session->userdata['user_id'];
 
@@ -432,8 +430,6 @@
 			$this->load->view('footer');
 		}
 
-		private function viewFormA(){
->>>>>>> a99caad95721322dd31ba2be9118983ed8616bf6
 
 		private function viewFormA()
 		{
@@ -658,51 +654,11 @@
 
 			';
 
-<<<<<<< HEAD
-			// add a page
-			$pdf->AddPage();
-			//$pdf->AddPage();
-
-			$pdf->Output('example_003.pdf', 'I');
-					$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-
-			// set document information
-			$pdf->SetCreator(PDF_CREATOR);
-			$pdf->SetAuthor('');
-			$pdf->SetTitle('Form C');
-			$pdf->SetSubject('');
-			$pdf->SetKeywords('');
-
-			// set default header data
-			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form C: Organization Profile", PDF_HEADER_STRING);
-			// set header and footer fonts
-			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-			$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
-
-			// set default monospaced fonts
-			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-
-			// set margins
-			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-			$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-			$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);	
-
-			// set auto page breaks
-			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
-			// set image scale factor
-			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-
-			// set font
-			$pdf->SetFont('Helvetica', '', 12);
-
-=======
 			$text3 = '<b>Is your organization incorporated with the Securities and Exchange Commission (SEC)? If yes, when?</b>'.$ans.'
 				<br>';
 			$line = ($result['incSEC']== 1 ? $text2 : $text3);			
 		 
-	
->>>>>>> a99caad95721322dd31ba2be9118983ed8616bf6
+
 
 			$pdf->writeHTML($html, true, 0, true, 0);
 			$pdf->writeHTML($tbl, true, false, false, false, '');
