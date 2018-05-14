@@ -34,6 +34,7 @@
                   </div>
                   <div class="card-body" style="padding-top: 0px;">
                  <br><button type="button" onclick="searchBox('Pending')" class="btn btn-danger admin-button" data-toggle="modal" data-target="#viewaccreditapp">View Accreditation Applications</button></br>
+                 <br><button type="button" class="btn btn-danger admin-button" data-toggle="modal" data-target="#openaccreditperiod">Open Accreditation Period</button></br>
                   </div>
                </div>
                <div class="card" style="margin-top: 30px; width: 25rem;">

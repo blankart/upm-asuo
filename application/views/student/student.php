@@ -31,7 +31,18 @@
       $("#announcements").fadeIn(400);
       $("#announcementsBTN").addClass('active');
     }
-
+	$(function () {
+		$('a[href="#search"]').on('click', function(event){
+			event.preventDefault();
+			$('#search').addClass('open');
+			$('#search > form > input[type="search"]').focus();
+		});
+		$('#search, #search button.close').on('click keyup', function(event){
+			if(event.target == this || event.target.className == 'close' || event.keyCode == 27){
+				$(this).removeClass('open');
+			}
+		});
+	});
     function dispStudProfile(){
       $("#myOrgsBTN").removeClass('active');
       $("#myOrgs").hide();
@@ -60,14 +71,15 @@
       <div class="row">
          <div class="col-3">
             <div class="card" id="studentProfile" style="box-shadow: 0 0 40px rgba(0,0,0,.2)">
-               <img class="card-img-top" src="img/dp.jpg" alt="card image" style="max-height: 250px width: 100%">
+               <img class="card-img-top" src="img/nico.jpg" alt="card image" style="max-height: 250px width: 100%">
                <div class="card-body" >
                   <h5 class="card-title">Student Name</h5>
                   <p class="card-text">Course, Year</p>
                   <p class="card-text">E-mail</p>
-                  <hr>
+                  <hr> 
                   <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#editProfile">Edit Profile</button>
                   <?php require('editProfile.php') ?>
+				  <a button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" href="#search">Apply to Organizations</button></a>
                </div>
             </div>
          </div>
@@ -137,7 +149,7 @@
                       <tr>
                         <td>
                           <div class="hovereffect">
-                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/University_of_the_Philippines_Manila_Logo.png/220px-University_of_the_Philippines_Manila_Logo.png" alt="orgLogo" class="img-responsive" style="max-height:170px; overflow:auto;">
+                            <img src="img/nico.jpg" alt="orgLogo" class="img-responsive" style="max-height:170px; overflow:auto;">
                             <div class="overlay">
                               <h2> ACRONYM 1 </h2>
                 <a class="info" data-toggle="modal" data-target="#viewOrgDetails">Details</a>
@@ -153,7 +165,7 @@
                       <tr>
                         <td>
                           <div class="hovereffect">
-                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/University_of_the_Philippines_Manila_Logo.png/220px-University_of_the_Philippines_Manila_Logo.png" alt="orgLogo" class="img-responsive" style="max-height:170px; overflow:auto;">
+                            <img src="img/nico.jpg" alt="orgLogo" class="img-responsive" style="max-height:170px; overflow:auto;">
                             <div class="overlay">
                               <h2>ACRONYM 2</h2>
                               <a class="info" data-toggle="modal" data-target="#viewOrgDetails">Details</a>
@@ -169,7 +181,7 @@
                       <tr>
                         <td>
                           <div class="hovereffect">
-                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/University_of_the_Philippines_Manila_Logo.png/220px-University_of_the_Philippines_Manila_Logo.png" alt="orgLogo" class="img-responsive" style="max-height:170px; overflow:auto;">
+                            <img src="img/nico.jpg" alt="orgLogo" class="img-responsive" style="max-height:170px; overflow:auto;">
                             <div class="overlay">
                               <h2> ACRONYM 3</h2>
                 <a class="info" data-toggle="modal" data-target="#viewOrgDetails">Details</a>
@@ -185,7 +197,7 @@
                       <tr>
                         <td>
                           <div class="hovereffect">
-                            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/9d/University_of_the_Philippines_Manila_Logo.png/220px-University_of_the_Philippines_Manila_Logo.png" alt="orgLogo" class="img-responsive" style="max-height:170px; overflow:auto;">
+                            <img src="img/nico.jpg" alt="orgLogo" class="img-responsive" style="max-height:170px; overflow:auto;">
                             <div class="overlay">
                               <h2>ACRONYM 4</h2>
                 <a class="info" data-toggle="modal" data-target="#viewOrgDetails">Details</a>
@@ -199,10 +211,17 @@
                 </div>
                </div>
             </div>
-    </div>
+    
    </div>
 </div>
+<div id="search">
+	<button type="button" class="close">x</button>
+		<form>
+			<input type="search" value="" placeholder="type organization name here"/>
+				<button type="submit" class="btn btn-primary">Search</button>
+		</form>				 
 </div>
+
   
   
 

@@ -1,0 +1,159 @@
+.hovereffect {
+width:100%;
+height:100%;
+float:left;
+overflow:hidden;
+position:relative;
+text-align:center;
+cursor:default;
+}
+
+body {
+    padding: 40px 0px;   
+}
+
+#search {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    
+    -webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+
+    -webkit-transform: translate(0px, -100%) scale(0, 0);
+	-moz-transform: translate(0px, -100%) scale(0, 0);
+	-o-transform: translate(0px, -100%) scale(0, 0);
+	-ms-transform: translate(0px, -100%) scale(0, 0);
+	transform: translate(0px, -100%) scale(0, 0);
+    
+    opacity: 0;
+}
+
+#search.open {
+    -webkit-transform: translate(0px, 0px) scale(1, 1);
+    -moz-transform: translate(0px, 0px) scale(1, 1);
+	-o-transform: translate(0px, 0px) scale(1, 1);
+	-ms-transform: translate(0px, 0px) scale(1, 1);
+	transform: translate(0px, 0px) scale(1, 1); 
+    opacity: 1;
+}
+
+#search input[type="search"] {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    color: rgb(255, 255, 255);
+    background: rgba(0, 0, 0, 0);
+    font-size: 60px;
+    font-weight: 300;
+    text-align: center;
+    border: 0px;
+    margin: 0px auto;
+    margin-top: -51px;
+    padding-left: 30px;
+    padding-right: 30px;
+    outline: none;
+}
+#search .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: 61px;
+    margin-left: -45px;
+	background-color: #f44242;
+}
+#search .close {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    color: #fff;
+	background-color: #f44242;
+	border-color: #357ebd;
+	opacity: 1;
+	padding: 10px 17px;
+	font-size: 27px;
+}
+
+.hovereffect .overlay {
+width:100%;
+height:100%;
+position:absolute;
+overflow:hidden;
+top:0;
+left:0;
+opacity:0;
+background-color:rgba(0,0,0,0.5);
+-webkit-transition:all .4s ease-in-out;
+transition:all .4s ease-in-out
+}
+
+.hovereffect img {
+display:block;
+position:relative;
+top:0;
+bottom:0;
+right:0;
+left: 0;
+-webkit-transition:all .4s linear;
+transition:all .4s linear;
+}
+
+.hovereffect h2 {
+text-transform:uppercase;
+color:#fff;
+text-align:center;
+position:relative;
+font-size:17px;
+background:rgba(0,0,0,0.6);
+-webkit-transform:translatey(-100px);
+-ms-transform:translatey(-100px);
+transform:translatey(-100px);
+-webkit-transition:all .2s ease-in-out;
+transition:all .2s ease-in-out;
+padding:10px;
+}
+
+.hovereffect a.info {
+text-decoration:none;
+display:inline-block;
+text-transform:uppercase;
+color:#fff;
+border:1px solid #fff;
+background-color:transparent;
+opacity:0;
+filter:alpha(opacity=0);
+-webkit-transition:all .2s ease-in-out;
+transition:all .2s ease-in-out;
+margin:50px 0 0;
+padding:7px 14px;
+}
+
+.hovereffect:hover img {
+-ms-transform:scale(2);
+-webkit-transform:scale(2);
+transform:scale(2);
+}
+
+.hovereffect:hover .overlay {
+opacity:1;
+filter:alpha(opacity=100);
+}
+
+.hovereffect:hover h2,.hovereffect:hover a.info {
+opacity:1;
+filter:alpha(opacity=100);
+-ms-transform:translatey(0);
+-webkit-transform:translatey(0);
+transform:translatey(0);
+}
+
+.hovereffect:hover a.info {
+-webkit-transition-delay:.2s;
+transition-delay:.2s;
+}
