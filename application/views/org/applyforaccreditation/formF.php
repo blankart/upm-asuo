@@ -1,3 +1,14 @@
+<?php
+	$dbhandle = new mysqli('localhost','root','','asuo');
+	echo $dbhandle->connect_error;
+
+	$query = "SELECT * FROM organizationaccount";
+	$res = $dbhandle->query($query);
+
+	$row=$res->fetch_assoc();
+
+?>
+
 <!DOCTYPE html>
 <html class="no-js">
 	<head>
@@ -24,7 +35,16 @@
             </div>
             <!-- Page Content -->
 			<div class="main">
-			<h1>Form F: Projects</h1>
+				<?php 
+					if($row['org_status'] == "Unaccredited"){
+						echo "<h1>Form F: Plans for the Academic Year</h1>";
+					}
+					else{
+						echo "<h1>Form F: Activity Report of Previous Academic Year</h1>";
+					}
+				?>
+
+			<!-- h1>Form F: Projects</h1-->
 				<div class="content">
 					<div class="box">
 						<input type="file" name="file-1[]" id="file-1" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" multiple />

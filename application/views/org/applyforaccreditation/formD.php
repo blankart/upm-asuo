@@ -1,25 +1,7 @@
-<?php 
-	$dbhandle = new mysqli('localhost','root','','asuo');
-	echo $dbhandle->connect_error;
-
-	$query = "SELECT * FROM studentprofile";
-	$res = $dbhandle->query($query);
-
-	$row=$res->fetch_assoc();
-
-
-	//other db
-	$query = "SELECT * FROM studentaccount";
-	$res2 = $dbhandle->query($query);
-
-	$row2=$res2->fetch_assoc();
-?>
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Form D: Officers' Profile</title>
-		<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/phases.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/sidenav.css">
 	</head>
 
@@ -41,21 +23,13 @@
             
             <!-- Page Content -->
 			<div class="main">
-			<h1>Form D: Officers' Profile</h1><br>
-				<!-- add pages -->
-				<form id="multiphase" onsubmit="return false">
-					<img src="<?php echo base_url();?>img/logo.jpg" alt="<?php echo $row['first_name']. ' ' . $row['middle_name']. ' ' . $row['last_name']; ?>" style="float:left;">&nbsp;&nbsp;
-					Name:&nbsp;&nbsp;<input type="text" id="name" name="name" id="name" value="<?php echo $row['first_name']. ' ' . $row['middle_name']. ' ' . $row['last_name']; ?>" disabled><br>&nbsp;&nbsp;
-					Position:&nbsp;&nbsp;<input type="text" id="pos" name="pos" id="pos" disabled>&nbsp;&nbsp;
-					Year/ Course:&nbsp;&nbsp;<input type="text" name="course" id="course" value="<?php echo $row['year_level']. ' ' .$row['course']; ?>" disabled><br>&nbsp;&nbsp;
-					Address:&nbsp;&nbsp;<input type="text" name="add" id="add" disabled><br>&nbsp;&nbsp;
-					Phone:&nbsp;&nbsp;<input type="text" name="phone" id="phone" disabled>&nbsp;&nbsp;
-					Email:&nbsp;&nbsp;<input type="text" name="mail" id="mail" value="<?php echo $row2['up_mail'];?>" disabled><br>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-					Other Contact Details:&nbsp;&nbsp;<input type="text" name="more" id="more" disabled><br><br>
-				
-					<button class="button">Next</button>
-				</form>
-			<!-- button class="button">Submit</button-->
+			<h1>Form D: Officers' Profile</h1>
+				<object data="<?php echo base_url(); ?>org/viewFormD" type="pdf" width="100%" height="400">
+					<iframe src="<?php echo base_url(); ?>org/viewFormD" style="border: none;" width="100%" height="400">This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo base_url(); ?>org/formDpdf">Download PDF</a>
+					</iframe>
+				</object>
+
+				<button class="button">Save</button><br><br>
 			</div>
 		</div>
 	</body>
