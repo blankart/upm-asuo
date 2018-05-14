@@ -4,7 +4,7 @@
 		public function perform($action = 'login', $type = '', $code = ''){
 			
 
-			 if($action == 'login' || $action == 'regstud' || $action == 'regorg'){
+			 if($action == 'login' || $action == 'regstud' || $action == 'regorg' || $action == 'forgot'){
 			 	if( isset($this->session->userdata['logged_in']) )
 			 		$this->redirectToProfile();
 				else{
@@ -167,58 +167,77 @@
 		}
 
 		private function registerStudent(){
+
 			$result = $this->input->post('data');
 			
-			echo "<pre>";
-			print_r($result);
-			echo "</pre>";
-
 			if($result != NULL){
-				$username = str_replace('@up.edu.ph', '',  (strtolower($result['up_mail']) ) );
-				
-				$account_data = array(
-					'up_mail' => strtolower( $result['up_mail'] ),
-					'up_id' => $result['up_id'],
-					'username' => $username,
-					'password' => md5 ($result['password']),
-					'isVerified' => 0,
-					'isActivated'=> 0,
-					'archived' => 0
-				);
-
-			echo "<pre>";
-			print_r($account_data);
-			echo "</pre>";
 
 
-				$this->load->model('SystemModel');
-				$student_id = $this->SystemModel->createStudentAccount($account_data);
+				//uploads form 5
+				$file_name = md5('studentForm5'.$student_id);
 
-				if($result['sex'] == 'Female')
-					$profile_pic = 'default_female.jpg';
-				else
-					$profile_pic = 'default_male.jpg';
+				$config['upload_path'] = './assets/student/form_5/';
+				$config['allowed_types'] = 'jpg';
+				$config['overwrite'] = TRUE;
+				$config['max_size'] = '500';
+				$config['file_name'] = $file_name;
+				$this->upload->initialize($config);
 
-				$profile_details = array(
-					'student_id' => $student_id,
-					'first_name' => ucwords(strtolower($result['first_name']) ), 
-					'middle_name' => ucwords( strtolower($result['middle_name']) ), 
-					'last_name' => ucwords ( strtolower($result['last_name']) ), 
-					'sex' => $result['sex'],
-					'birthday' => $result['birthday'],
-					'course' => $result['course'],
-					'year_level' => $result['year_level'], 
-					'contact_num' =>  $result['contact_num'],
-					'address' =>  ucwords( strtolower($result['address']) ),
-					'profile_pic' => $profile_pic
-				);
+				if ( ! $this->upload->do_upload('form5')){
+		            show_404();
+	                $error = array('msg' => $this->upload->display_errors());
+	                echo json_encode($error);
+	                exit();
+            	}
+           		 else {
+	            
+	         		$username = str_replace('@up.edu.ph', '',  (strtolower($result['up_mail']) ) );
+					
+					$account_data = array(
+						'up_mail' => strtolower( $result['up_mail'] ),
+						'up_id' => $result['up_id'],
+						'username' => $username,
+						'password' => md5 ($result['password']),
+						'isVerified' => 0,
+						'isActivated'=> 0,
+						'archived' => 0
+					);
 
-				$student_session = $this->SystemModel->createStudentProfile($profile_details);
-				$student_session['account_type'] = 'unverifiedStudent';
-				$this->setSessions($student_session);
+					$this->load->model('SystemModel');
+					$student_id = $this->SystemModel->createStudentAccount($account_data);
+
+					if($result['sex'] == 'Female')
+						$profile_pic = 'default_female.jpg';
+					else
+						$profile_pic = 'default_male.jpg';
+
+					$profile_details = array(
+						'student_id' => $student_id,
+						'first_name' => ucwords(strtolower($result['first_name']) ), 
+						'middle_name' => ucwords( strtolower($result['middle_name']) ), 
+						'last_name' => ucwords ( strtolower($result['last_name']) ), 
+						'sex' => $result['sex'],
+						'birthday' => $result['birthday'],
+						'course' => $result['course'],
+						'year_level' => $result['year_level'], 
+						'contact_num' =>  $result['contact_num'],
+						'address' =>  ucwords( strtolower($result['address']) ),
+						'profile_pic' => $profile_pic
+					);
+
+					$student_session = $this->SystemModel->createStudentProfile($profile_details);
+					$student_session['account_type'] = 'unverifiedStudent';
+
+					$this->load->model('StudentModel');
+					$this->StudentModel->uploadForm5($student_id, $file_name.".jpg"); 
+
+					$this->setSessions($student_session);
+         			echo json_encode(true);
+         			exit();
+          		}			
 			}
-		//	else 
-				//show_404();
+			else 
+				show_404();
 		}
 	
 		private function checkLogin(){
@@ -327,13 +346,21 @@
 		    //load email library
 		  	$this->email->initialize($config);
 
+<<<<<<< HEAD
 		    $email = 'avsanguenza@up.edu.ph'; //
+=======
+		    $email = 'avsanguenza@up.edu.ph'; //input email
+>>>>>>> 58d598d1bf5cbdc6d75cb90c256c2f074c8d1c58
 		    $activation_code = 'This is my activation code';
 		    $link = base_url().'verify/org/this';
 
 		    $this->email->set_mailtype('html');
 		    $this->email->from($email, 'ASUO Team');
+<<<<<<< HEAD
 		    $this->email->to($email);
+=======
+		    $this->email->to('avsanguenza@up.edu.ph');
+>>>>>>> 58d598d1bf5cbdc6d75cb90c256c2f074c8d1c58
 		    $this->email->subject('Please verify your email address');
 
 		    $message = '<html><body>';

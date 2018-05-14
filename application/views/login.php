@@ -48,6 +48,7 @@
 									<label for="password">Password
 									</label>
 									<input id="password" type="password" minlength="7" maxlength = "32" class="form-control" name="credentials[password]" required data-eye>
+									<a href="<?php echo base_url();?>forgot">Forgot Password?</a>
 								</div>
 								<div class="form-group no-margin">
 									<button type="submit" class="btn btn-danger btn-block">

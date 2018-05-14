@@ -1,7 +1,6 @@
 <?php
 	class StudentModel extends CI_Model{
 
-
 		// VIEW STUDENT PROFILE  FUNCTIONS
 		public function getStudentProfileDetails($student_id){
 			$result['profile']= $this->getStudentDetails($student_id);
