@@ -11,7 +11,7 @@
       var preview = document.querySelector('img[alt=avatar]');
       var file    = document.querySelector('input[type=file]').files[0];
       var reader
-     = new FileReader();
+	  = new FileReader();
 
       reader.onloadend = function () {
       preview.src = reader.result;
@@ -44,13 +44,11 @@
          </div>
          <!-- Modal body -->
          <div class="modal-body" style="height: 450px; overflow-y: auto;">
+            <form class="form-horizontal" role="form" name="profileForm">
             <div class="text-center">
-               <form enctype="multipart/form-data"  method="POST" id="changeLogoForm">
-                  <img src="" class="avatar img-thumbnail" alt="avatar" height="500px"  width="500px">
-                  <br><br>
-                  <label id="orgLogo" style="margin-left: 20em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Logo<input type="file" style="display: none;" onchange="" class="form-control" id = 'profilePic' name = 'profilePic'></label>
-                  <button type="submit" style="display: none;" id = 'submitLogo'> </button>
-              </form>
+               <img src="" class="avatar img-thumbnail" alt="avatar" height="200px">
+               <h6>Upload profile picture.</h6>
+               <input type="file" style="text-align: center;" onchange="showPreview()" class="form-control text-center" style="width: 250px" id="dp" required>
             </div>
                <div class="form-group">
                   <label class="col-lg control-label">Name</label>
@@ -88,6 +86,12 @@
                      <input class="form-control" type="text" name="est" required readonly>
                   </div>
                </div>
+               <div class="form-group">
+                  <label class="col-lg control-label">Upload Form5</label>
+                  <div class="col-lg">
+                     <input type="file" class="form-control" name="form5" style="width: 250px" required>
+                  </div>
+               </div>
          </div>
          <!-- Modal footer -->
          <div class="modal-footer">
@@ -95,13 +99,11 @@
          <button type="submit" onclick="validateForm()" class="btn btn-danger">Save</button>
          </div>
          </form>
-         <form enctype="multipart/form-data" id= 'uploadForm5' method="POST">
-                 <div class="form-group">
-                  <label id="consti" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Constitution<input type="file" style="display: none;" class="form-control" id = 'form5' name = 'fomr5' onchange=""></label>
-                  <button type="button" class="btn btn-primary" style="margin-left: 1em" onclick="" > Preview File</button>
+			<div class="form-group">
+                  <label id="form5" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Form 5<input type="file" style="display: none;" class="form-control" id = 'form5' name = 'formFive' onchange="document.getElementById('submitForm5').click();"></label>
+                  <button type="button" class="btn btn-info" style="margin-left: 1em"; id='previewForm5'>Preview File</button>
                   <button type="submit" style="display: none;" id = 'submitForm5'> </button>
                </div>
-            </form>
       </div>
    </div>
 </div>
