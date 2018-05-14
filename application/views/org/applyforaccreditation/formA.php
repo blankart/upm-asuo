@@ -1,13 +1,25 @@
-<?php 
-	$dbhandle = new mysqli('localhost','root','','asuo');
-	echo $dbhandle->connect_error;
+<script type="text/javascript">
+	function inStay(){
+      var inStay = "<?php echo $stay; ?>"
 
-	$query = "SELECT * FROM organizationprofile";
-	$res = $dbhandle->query($query);
+      if(inStay == "new")
+         document.getElementById("new").checked = true;
+      else if(inStay == "old"){
+         document.getElementById("old").checked = true; 
+      }
+   }
+   function activateText(value){
+      var textbox = document.getElementById("years");
 
-	$row=$res->fetch_assoc();
-?>
+      if(value == "old"){
+         textbox.disabled = false;
+      } else {
+         textbox.disabled = true;
+      }
+   }
 
+   window.onload = inStay;
+</script>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -40,7 +52,7 @@
 				<progress id="progressBar" class="progressBar" value="0" max="100"></progress><br><br>
 
 				<!-- form -->
-				<form id="multiphase" onsubmit="return false">
+				<form id="multiphase" onsubmit="return false" method="POST" action="saveFormA">
 					<div id="phase1">
 						Date Filed:&nbsp;&nbsp;<input type="date" id="dateFiled" name="dateFiled" value="<?php echo date('Y-m-d'); ?>" disabled/>
 						<br><br><br>
@@ -49,10 +61,10 @@
 					</div>
 
 					<div id="phase2">
-						Organization Name:&nbsp;&nbsp;<input type="text" id="orgName" name="orgName" value="<?php echo $row['org_name']; ?>" disabled/>&nbsp;	
-						<input type="radio" name="stay" id="new" value="new">&nbsp; New &nbsp; &nbsp;
-						<input type="radio" name="stay" id="old" value="old">&nbsp; Old &nbsp; |
-						<input type="text" id ="years" name="years" placeholder="years in existence...">
+						Organization Name:&nbsp;&nbsp;<input type="text" id="orgName" name="orgName" value="<?php echo $org_name; ?>" disabled/>&nbsp;	
+						<input type="radio" name="data[stay]" id="new" onclick="activateText(this.value)" value="new">&nbsp; New &nbsp; &nbsp;
+						<input type="radio" name="data[stay]" id="old"  onclick="activateText(this.value)" value="old">&nbsp; Old &nbsp; |
+						<input type="text" id ="years" name="data[experience]" value="<?php echo $experience ?>">
 						<br><br><br>
 
 						<button class="button" onclick="processPhase2()">Continue</button>
@@ -60,7 +72,7 @@
 					</div>
 
 					<div id="phase3">
-						Category:&nbsp;&nbsp;<input type="text" id="category" name="category" value="<?php echo $row['org_category']; ?>" disabled>
+						Category:&nbsp;&nbsp;<input type="text" id="category" name="category" value="<?php echo $org_category ?>" disabled>
 						<br><br><br>
 
 						<button class="button" onclick="processPhase3()">Continue</button>
@@ -68,9 +80,9 @@
 					</div>
 
 					<div id="phase4">
-						Name of Adviser:&nbsp;&nbsp;<input type="text" id="adviser" name="adviser">
-						Position/Designation:&nbsp;&nbsp;<input type="text" id="adviserPos" name="adviserPos">&nbsp;&nbsp;
-						College/Unit:&nbsp;&nbsp;<input type="text" id="adviserUnit" name="adviserUnit">
+						Name of Adviser:&nbsp;&nbsp;<input type="text" id="adviser" name="data[adviser]" value="<?php echo $adviser ?>">
+						Position/Designation:&nbsp;&nbsp;<input type="text" id="adviserPos" name="data[adviser_position]" value="<?php echo $adviser_position ?>">&nbsp;&nbsp;
+						College/Unit:&nbsp;&nbsp;<input type="text" id="adviserUnit" name="data[adviser_college]" value="<?php echo $adviser_college ?>">
 						<br><br>
 
 						<button class="button" onclick="processPhase4()">Continue</button>
@@ -78,13 +90,13 @@
 					</div>
 
 					<div id="phase5">
-						Contact Person:&nbsp;&nbsp;<input type="text" id="contactPerson" name="contactPerson">
-						Position in Organization:&nbsp;&nbsp;<input type="text" id="contactPos" name="contactPos" placeholder="enter position">&nbsp;&nbsp;
-						Email:&nbsp;&nbsp;<input type="text" id="contactMail" name="contactMail" placeholder="sample@up.edu.ph">
-						Address:&nbsp;&nbsp;<input type="text" id="contactAddress" name="contactAddress" placeholder="enter address">
-						Telephone No.:&nbsp;&nbsp;<input type="text" id="contactPhone" name="contactPhone" placeholder="xxx-xx-xx">&nbsp;&nbsp;
-						Mobile No.:&nbsp;&nbsp;<input type="text" id="contactMobile" name="contactMobile" placeholder="xxx-xxx-xxxx">&nbsp;&nbsp;
-						Other Contact Details:&nbsp;&nbsp;<input type="text" id="contactOthers" name="contactOthers">
+						Contact Person:&nbsp;&nbsp;<input type="text" id="contactPerson" name="data[contact_person]" value="<?php echo $contact_person ?>">
+						Position in Organization:&nbsp;&nbsp;<input type="text" id="contactPos" name="data[contact_position]" value="<?php echo $contact_position ?>">&nbsp;&nbsp;
+						Email:&nbsp;&nbsp;<input type="text" id="contactMail" name="data[contact_email]"  value="<?php echo $contact_email ?>">
+						Address:&nbsp;&nbsp;<input type="text" id="contactAddress" name="data[contact_address]"  value="<?php echo $contact_address ?>">
+						Telephone No.:&nbsp;&nbsp;<input type="text" id="contactPhone" name="data[contact_tel]"  value="<?php echo $contact_tel ?>">&nbsp;&nbsp;
+						Mobile No.:&nbsp;&nbsp;<input type="text" id="contactMobile" name="data[contact_mobile]"  value="<?php echo $contact_mobile ?>">&nbsp;&nbsp;
+						Other Contact Details:&nbsp;&nbsp;<input type="text" id="contactOthers" name="data[contact_other_details]" value="<?php echo $contact_other_details ?>">
 						<br><br>
 
 						<button class="button" onclick="processPhase5()">Continue</button>
@@ -93,9 +105,9 @@
 
 					<div id="phase6">
 						Objectives of Organization:
-						<input type="text" id="objectives" name="objectives" value="<?php echo $row['objectives'];?>" disabled><br>
+						<input type="text" id="objectives" name="objectives" value="<?php echo $objectives?>" disabled><br>
 						Brief Description of Organization:
-						<input type="text" id="description" name="description" value="<?php echo $row['description']; ?>" disabled><br><br>
+						<input type="text" id="description" name="description" value="<?php echo $description ?>" disabled><br><br>
 
 						<button class="button" onclick="processPhase6()">Continue</button>
 						<button class="button" onclick="back5()">Back</button>
@@ -109,6 +121,7 @@
 						<button class="button" onclick="submitForm()">Save</button>
 						<button class="button" onclick="back6()">Back</button>
 					</div>
+					<input type="hidden" name="data[app_id]" value="<?php echo $app_id;?>">
 				</form>
 
 			</div>

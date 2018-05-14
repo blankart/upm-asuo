@@ -116,6 +116,31 @@ ALTER TABLE `accreditationapplication`
 ALTER TABLE `accreditationapplication`
   ADD CONSTRAINT `accreditationapplication_ibfk_1` FOREIGN KEY (`org_id`) REFERENCES `organizationaccount` (`org_id`);
 
+ -- -----------------------------------------------------------------------------------------------------------------------------
+ -- FORM A DETAILS
+CREATE TABLE `form_a_details` (
+  `app_id` int(11) UNSIGNED NOT NULL,
+  `stay` varchar (3) NOT NULL,
+  `experience` int(11) UNSIGNED NOT NULL,
+  `adviser` varchar (100) NOT NULL,
+  `adviser_position` varchar (100) NOT NULL,
+  `adviser_college` varchar (100) NOT NULL,
+  `contact_person` varchar (100) NOT NULL,
+  `contact_position` varchar (100) NOT NULL,
+  `contact_email` varchar (50) NOT NULL,
+  `contact_address` varchar(100) NOT NULL,
+  `contact_tel` varchar(11) NOT NULL,
+  `contact_mobile` varchar(11) NOT NULL,
+  `contact_other_details` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `form_a_details`
+  ADD PRIMARY KEY (`app_id`);
+
+ALTER TABLE `form_a_details`
+  ADD CONSTRAINT `form_a_details_ibfk_1` FOREIGN KEY (`app_id`) REFERENCES `accreditationapplication` (`app_id`);
+
+
   -- ----------------------------------------------------------------------------------------------------------------------------
 -- ANNOUNCEMENTS
  CREATE TABLE `announcement` (
