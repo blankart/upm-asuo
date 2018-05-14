@@ -346,21 +346,21 @@
 		    //load email library
 		  	$this->email->initialize($config);
 
-<<<<<<< HEAD
+
 		    $email = 'avsanguenza@up.edu.ph'; //
-=======
+
 		    $email = 'avsanguenza@up.edu.ph'; //input email
->>>>>>> 58d598d1bf5cbdc6d75cb90c256c2f074c8d1c58
+				// 58d598d1bf5cbdc6d75cb90c256c2f074c8d1c58
 		    $activation_code = 'This is my activation code';
 		    $link = base_url().'verify/org/this';
 
 		    $this->email->set_mailtype('html');
 		    $this->email->from($email, 'ASUO Team');
-<<<<<<< HEAD
+
 		    $this->email->to($email);
-=======
+
 		    $this->email->to('avsanguenza@up.edu.ph');
->>>>>>> 58d598d1bf5cbdc6d75cb90c256c2f074c8d1c58
+// 58d598d1bf5cbdc6d75cb90c256c2f074c8d1c58
 		    $this->email->subject('Please verify your email address');
 
 		    $message = '<html><body>';
