@@ -1,13 +1,30 @@
-<?php 
-	$dbhandle = new mysqli('localhost','root','','asuo');
-	echo $dbhandle->connect_error;
+<script type="text/javascript">
+	
+   function incSEC(){
+      var incSEC = "<?php echo $incSEC; ?>";
 
-	$query = "SELECT * FROM organizationprofile";
-	$res = $dbhandle->query($query);
+      if(incSEC == 1){
+         document.getElementById("yes").checked = true;
+         document.getElementById('when').value = "<?php echo $sec_years; ?>";
+      }
+      else{
+         document.getElementById("no").checked = true; 
+         document.getElementById("when").disabled = true;
+      }
 
-	$row=$res->fetch_assoc();
-?>
+   }
 
+   function activateText(value){
+      var textbox = document.getElementById("when");
+
+      if(value == "yes"){
+         textbox.disabled = false;
+      } else {
+         textbox.disabled = true;
+      }
+   }
+   window.onload=incSEC;
+</script>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -55,8 +72,8 @@
 				<div id="cphase1">
 					Name of Organization:&nbsp;&nbsp;<input type="text" id="orgName" name="orgName" value="<?php echo $org_name; ?>" disabled>&nbsp;&nbsp;&nbsp;
 					Acronym:&nbsp;&nbsp;<input type="text" id="acronym" name="acronym" value="<?php echo $acronym; ?>" disabled>
-					Mailing Address:&nbsp;&nbsp;<input type="text" id="address" name="address">
-					Email Address:&nbsp;&nbsp;<input type="text" id="email" name="email" disabled>&nbsp;&nbsp;
+					Mailing Address:&nbsp;&nbsp;<input type="text" id="address" name="address" value="<?php echo $mailing_address; ?>" disabled> 
+					Email Address:&nbsp;&nbsp;<input type="text" id="email" name="email" value="<?php echo $org_email; ?>" disabled>&nbsp;&nbsp;
 					Website:&nbsp;&nbsp;<input type="text" id="website" name="website" value="<?php echo $org_website; ?>" disabled>&nbsp;&nbsp;
 					Date Established:&nbsp;&nbsp;<input type="text" id="established" name="established" value="<?php echo $date_established; ?>" disabled>
 					<br><br>
@@ -65,48 +82,20 @@
 				</div>
 
 				<div id="cphase2">
-					Total Number of Members:&nbsp;&nbsp;<input type="text" id="numMembers" name="numMembers" disabled><br><br>
-					<!--
-					<table>
-						<tr>
-							Membership Distribution
-						</tr>
-						<tr>
-							<td></td>
-							<td>FIRST YEAR</td>
-							<td>SECOND YEAR</td>
-							<td>THIRD YEAR</td>
-							<td>FOURTH YEAR</td>
-							<td>MASTERAL STUDENTS</td>
-							<td>DOCTORAL STUDENTS</td>
-							<td>TOTAL</td>
-						</tr>
-						<tr>
-							<td>MALE</td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</table>
-					-->
-					
+					Total Number of Members:&nbsp;&nbsp;<input type="text" id="numMembers" name="numMembers" value ="<?php 
+					echo array_sum($tally);
+
+					 ?>" disabled><br><br>
+		
 					<button class="button" onclick="processcPhase2()">Continue</button>
 					<button class="button" onclick="backc1()">Back</button>
 				</div>
 			
 				<div id="cphase3">
 					Is your organization incorporated with the Securities and Exchange Commission(SEC)?<br>
-					<input type="radio" id="no" name="no" value="no">&nbsp; No &nbsp;&nbsp;
-					<input type="radio" id="yes" name="yes" value="yes">&nbsp; Yes,&nbsp;when?&nbsp;&nbsp;
-					<input type="text" id="when" name="when" placeholder="year">
+					<input type="radio" id="no" name="incSEC" value="no" onclick="activateText(this.value)" disabled>&nbsp; No &nbsp;&nbsp;
+					<input type="radio" id="yes" name="incSEC" onclick="activateText(this.value)" value="yes" disabled>&nbsp; Yes,&nbsp;when?&nbsp;&nbsp;
+					<input type="text" id="when" name="when" placeholder="year" disabled>
 					<br><br>
 
 					<button class="button" onclick="processcPhase3()">Continue</button>
@@ -115,8 +104,10 @@
 
 				<!-- review details before submitting-->
 				<div id="show_all_data">
-					First Name: <span id="display_fname"></span><br>
-
+					<object data="<?php echo base_url(); ?>org/viewFormC" type="pdf" width="100%" height="400">
+					<iframe src="<?php echo base_url(); ?>org/viewFormC" style="border: none;" width="100%" height="400">This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo base_url(); ?>org/formCpdf">Download PDF</a>
+					</iframe>
+				</object>	
 					<button class="button" onclick="submitForm()">Save</button>
 					<button class="button" onclick="backc3()">Back</button>
 				</div>

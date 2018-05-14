@@ -304,6 +304,8 @@
 
 			$this->load->model('OrgModel');
 			$data = $this->OrgModel->getOrgDetails($org_id);
+			
+			$data['tally'] = $this->OrgModel->getOrgTally($org_id);
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formC', $data);
