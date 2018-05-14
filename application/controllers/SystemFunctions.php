@@ -177,7 +177,7 @@
 				$username = str_replace('@up.edu.ph', '',  (strtolower($result['up_mail']) ) );
 				
 				$account_data = array(
-					'up_mail' =>  ucwords(strtolower( $result['up_mail'] ) ),
+					'up_mail' => strtolower( $result['up_mail'] ),
 					'up_id' => $result['up_id'],
 					'username' => $username,
 					'password' => md5 ($result['password']),

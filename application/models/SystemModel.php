@@ -32,7 +32,15 @@
 	    // ORG
 		public function validateOrgEmail($org_email)
 		{
-			$condition = "org_email = '" .$org_email."'";
+			$takenByAnotherOrg = $this->checkOrgEmailCollisions($org_email);
+			if($takenByAnotherOrg)
+				return true;
+			else
+				return $this->validateStudentUPMail($org_email); //checks if email is taken by student
+		}
+
+		private function checkOrgEmailCollisions($org_email){
+			$condition = "org_email = '" .$org_email."' AND org_email = '" .$org_email."'";
 			$this->db->select('*');
 			$this->db->from('OrganizationAccount');
 			$this->db->where($condition);
@@ -48,6 +56,7 @@
 				return false;
 			}
 		}
+
 
 		public function validateOrgAcronym($org_acronym)
 		{
