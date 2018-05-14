@@ -4,7 +4,7 @@
 		public function perform($action = 'login', $type = '', $code = ''){
 			
 
-			 if($action == 'login' || $action == 'regstud' || $action == 'regorg'){
+			 if($action == 'login' || $action == 'regstud' || $action == 'regorg' || $action == 'forgot'){
 			 	if( isset($this->session->userdata['logged_in']) )
 			 		$this->redirectToProfile();
 				else{

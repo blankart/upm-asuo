@@ -1,6 +1,7 @@
 <?php $account_type=$this->session->userdata["account_type"];
 
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -226,15 +227,16 @@
                                              <?php foreach($members as $member){ ?>
                                                 <tr>
                                                     <td>
-                                                      <img alt="" src="<?php echo base_url();?>img/UP logo.png"> <a class="user-link" href="#"><?php echo $member['first_name']; ?> <?php echo $member['last_name']; ?></a>
+                                                     <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$member['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="#"><?php echo $member['first_name']; ?> <?php echo $member['last_name']; ?></a>
                                                     </td>
                                                     <td class="text-center">
-                                                      <span class="badge badge-success">Member</span></td>
+                                                      <span class="badge badge-success"><?php echo $member['position']; ?></span></td>
                                                     <td>
                                                       <a href="#"><?php echo $member['up_mail']; ?></a>
                                                     </td>
                                                     <td>
-                                                      <button class="btn btn-sm btn-info" onclick="changePosition()" type="button" id="changePosBTN">Edit Position</button><br><br><button class="btn btn-sm btn-danger" onclick="removeMember()" type="button" id="removeBTN">Remove</button>
+                                                      <button class="btn btn-sm btn-info" onclick="changePosition()" type="button" id="changePosBTN">Edit Position</button><br><br>
+                                                      <button class="btn btn-sm btn-danger" onclick="removeMember()" type="button" id="removeBTN">Remove</button>
                                                     </td>
                                                 </tr>
                                                 <?php } ?>
@@ -252,7 +254,6 @@
                                       <thead>
                                         <tr>
                                           <th><span>Student Name</span></th>
-                                          <th class="text-center"><span>Email</span></th>
                                           <th><span>Action</span></th>
                                         </tr>
                                       </thead>
@@ -261,12 +262,9 @@
                                       <tbody>
                                         <tr>
                                           <td>
-                                            <img alt="" src="<?php echo base_url();?>img/UP logo.png"> <a class="user-link" href="#"><?php echo $applicant['first_name']; ?> <?php echo $applicant['last_name']; ?></a>
+                                            <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$applicant['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="#"><?php echo $applicant['first_name']; ?> <?php echo $applicant['last_name']; ?></a>
                                           </td>
-                                          <td>
-                                            <a href="#">mail</a>
-                                          </td>
-                                          <td>
+                                          <td align=right>
                                              <button class="btn btn-success" onclick="studApproved()" type="button" id="approveBTN">Approve</button>
                                              <button class="btn btn-danger" onclick="studReject()" type="button" id="rejectBTN">Reject</button>
                                           </td>

@@ -32,22 +32,18 @@ header("Location: index.php" );
 		<div class="container h-100">
 			<div class="row justify-content-md-center align-items-center h-100">
 				<div class="card-wrapper">
-					<div class="brand">
-						<img src="<?php echo base_url();?>img/logo.jpg">
-					</div>
 					<div class="card fat">
 						<div class="card-body">
-							<h4 class="card-title">Forgot Password</h4>
+							<h4 class="card-title">Forgot Password?</h4>
 							<form method="POST">
 							 
 								<div class="form-group">
-									<label for="email">E-Mail Address</label>
-									<input id="email" type="email" class="form-control" name="email" value="" required autofocus>
+									<label for="email">Please enter your email address</label>
+									<input id="email" type="email" class="form-control" name="email" value="" required autofocus placeholder="sample@up.edu.ph">
 									<div class="form-text text-muted">
-										By clicking "Reset Password" we will send a password reset link
+										<small>By clicking "Reset Password" we will send a password reset link to the email provided.</small>
 									</div>
 								</div>
-
 								<div class="form-group no-margin">
 									<button type="submit" class="btn btn-danger btn-block">
 										Reset Password
