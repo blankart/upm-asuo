@@ -14,7 +14,7 @@
 			return $result;
 		}
 
-		private function getOrgDetails($org_id){
+		public function getOrgDetails($org_id){
 			$condition = "oa.org_id = op.org_id AND op.org_id = " .$org_id;
 
 			$this->db->select("op.*, oa.org_status, oa.org_email");

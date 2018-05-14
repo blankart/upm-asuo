@@ -22,39 +22,25 @@
 				$this->uploadConstitution();
 					
 			else if ($action == 'applyforaccreditation'){
-				$this->load->view('header');
-				$this->load->view('org/applyforaccreditation/applyforaccreditation');
-				$this->load->view('footer');
+				$this->loadAccreditationHome();
 			}
 			else if ($action == 'formA'){
-				$this->load->view('header');
-				$this->load->view('org/applyforaccreditation/formA');
-				$this->load->view('footer');
+				$this->loadFormA();
 			}
 			else if ($action == 'formB'){
-				$this->load->view('header');
-				$this->load->view('org/applyforaccreditation/formB');
-				$this->load->view('footer');
+				$this->loadFormB();
 			}
 			else if ($action == 'formC'){
-				$this->load->view('header');
-				$this->load->view('org/applyforaccreditation/formC');
-				$this->load->view('footer');
+				$this->loadFormC();
 			}
 			else if ($action == 'formD'){
-				$this->load->view('header');
-				$this->load->view('org/applyforaccreditation/formD');
-				$this->load->view('footer');
+				$this->loadFormD();
 			}
 			else if ($action == 'formE'){
-				$this->load->view('header');
-				$this->load->view('org/applyforaccreditation/formE');
-				$this->load->view('footer');
+				$this->loadFormE();
 			}
 			else if ($action == 'formF'){
-				$this->load->view('header');
-				$this->load->view('org/applyforaccreditation/formF');
-				$this->load->view('footer');
+				$this->loadFormF();
 			}
 			else if ($action == 'formG'){
 				$this->load->view('header');
@@ -278,6 +264,82 @@
 				echo json_encode($data);
 				exit();     
             }
+		}
+
+		private function loadAccreditationHome(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/applyforaccreditation', $data);
+			$this->load->view('footer');
+		}
+
+		private function loadFormA(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/formA', $data);
+			$this->load->view('footer');
+		}
+				
+		private function loadFormB(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/formB', $data);
+			$this->load->view('footer');
+		}
+		private function loadFormC(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/formC', $data);
+			$this->load->view('footer');
+		}
+
+		private function loadFormD(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/formD', $data);
+			$this->load->view('footer');
+		}
+
+		private function loadFormE(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/formE', $data);
+			$this->load->view('footer');
+		}
+
+		private function loadFormF(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/formF', $data);
+			$this->load->view('footer');
 		}
 
 		private function viewFormA(){
