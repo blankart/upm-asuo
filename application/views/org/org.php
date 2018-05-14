@@ -61,6 +61,8 @@
                    $("#orgApplicationsBut").removeClass('active');
                    $("#orgAdminAnnouncementsBut").removeClass('active');
                    $("#orgPosts").hide();
+                   $("#orgProfile").hide();
+                   $("#orgProfileBTN").removeClass('active');
                    $("#orgApplications").hide();
                    $("#orgAdminAnnouncements").hide();
                    $("#orgMembers").fadeIn(400);
@@ -89,6 +91,24 @@
                    $("#orgProfileBTN").removeClass('active');
                    $("#orgApplications").fadeIn(400);
                    $("#orgApplicationsBut").addClass('active');
+                }
+
+                function changePosition(){
+                  swal({
+                    title: "Membership",
+                    text: "Enter new position:",
+                    type: "input",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    inputPlaceholder: "Position"
+                  }, function (inputValue) {
+                  if (inputValue === false) return false;
+                  if (inputValue === "") {
+                    swal("Error!", "Input empty.", "error");
+                    return false
+                  }
+                  swal("Membership Updated!", "You updated Student_Name's position to " + inputValue + ".", "success");
+                  });
                 }
     </script>
     <div class="header" style="padding-top: 80px; text-align: center; color: white;">
@@ -119,7 +139,17 @@
                             <button class="btn btn-light btn-lg" id="orgAdminAnnouncementsBut" style="margin-left: 15px;" type="button">Admin Announcements</button> <button class="btn btn-light btn-lg" id="orgMembersBut" style="margin-left: 15px;" type="button">Members</button> <button class="btn btn-light btn-lg" id="orgApplicationsBut" style="margin-left: 15px;" type="button">Applications</button> <button class="btn btn-light btn-lg active" id="orgPostsBut" type="button">Posts</button> <button class="btn btn-light btn-lg active" id="orgProfileBTN" type="button">About OrgName</button>
                             <hr>
                             <div id="orgProfile">
-                              
+                              <div class="well profile text-center">
+                        		    <h2>ACRONYM</h2>
+                        		    <h5>College</h5>
+                        		    <h6><a href="">Email</a> || <a href="">website.com</a></h6>
+                        		  </div>
+                              <div class="well profile text-left">
+                        		    <p><strong>Organization Description:</strong></p>
+                        		    <p>yuuuhz descrip</p><br>
+                        		    <p><strong>Organization Objectives:</strong></p>
+                        		    <p>yuuuhz objectives</p><br>
+                    		      </div> 
                             </div>
                             <div id="orgPosts">
                               
@@ -131,25 +161,24 @@
                                             <thead>
                                                 <tr>
                                                     <th><span>Student Name</span></th>
-                                                    <th><span>Joined</span></th>
-                                                    <th class="text-center"><span>Status</span></th>
+                                                    <th class="text-center"><span>Position</span></th>
                                                     <th><span>Email</span></th>
-                                                    <th>&nbsp;</th>
+                                                    <th><span>Action</span></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                              <?php foreach($members as $member){ ?>
                                                 <tr>
                                                     <td>
-                                                        <img alt="" src="<?php echo base_url();?>img/UP logo.png"> <a class="user-link" href="#"><?php echo $member['first_name']; ?> <?php echo $member['last_name']; ?></a>
+                                                      <img alt="" src="<?php echo base_url();?>img/UP logo.png"> <a class="user-link" href="#"><?php echo $member['first_name']; ?> <?php echo $member['last_name']; ?></a>
                                                     </td>
-                                                    <td>2013/08/12</td>
-                                                    <td class="text-center"><span class="badge badge-success">Active</span></td>
+                                                    <td class="text-center">
+                                                      <span class="badge badge-success">Member</span></td>
                                                     <td>
-                                                        <a href="#"><?php echo $member['up_mail']; ?></a>
+                                                      <a href="#"><?php echo $member['up_mail']; ?></a>
                                                     </td>
-                                                    <td style="width: 20%;">
-                                                        <a class="table-link" href="#"><span class="fa-stack"><i class="fa fa-square fa-stack-2x"></i> <i class="fa fa-pencil fa-stack-1x fa-inverse"></i></span></a> <a class="table-link danger" href="#"><span class="fa-stack"><i class="fa fa-square fa-stack-2x"></i> <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i></span></a>
+                                                    <td>
+                                                      <button class="btn btn-info" onclick="changePosition()" type="button" id="changePosBTN">Edit Position</button>
                                                     </td>
                                                 </tr>
                                                 <?php } ?>
