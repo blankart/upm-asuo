@@ -29,7 +29,6 @@
 					</iframe>
 				</object>
 
-				<!-- embed src="<?php echo base_url(); ?>org/viewFormD" width="100%" height="500" / -->
 				<button class="button">Save</button><br><br>
 			</div>
 		</div>
