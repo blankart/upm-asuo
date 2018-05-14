@@ -121,8 +121,29 @@
                             <div id="orgProfile">
                               
                             </div>
+
+                            <!-- working here -->
                             <div id="orgPosts">
-                              
+                                <?php foreach($posts as $mypost){ ?>
+                                <div class="stream-post">
+                                    <div class="sp-author">
+                                        <a class="sp-author-avatar" href="#"><img alt="" src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo'].'?'.rand(1, 100); ?>"></a>
+                                        <h6 class="sp-author-name"><a href="#"><?php echo $profile['acronym']; ?></a></h6>
+                                    </div>
+
+                                    <div class="sp-content">
+                                      <div class="sp-info">
+                                        <h6><?php echo $mypost['title']; ?></h6>
+                                              <?php echo $mypost['date_posted']. ' | ' .$mypost['privacy']; ?>
+                                      </div>
+                                            
+                                      <p class="sp-paragraph mb-0">
+                                        <?php echo $mypost['content']; ?>
+                                      </p>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                                
                             </div>
                             <div id="orgMembers" style="display: none;">
                                 <div class="main-box clearfix">
