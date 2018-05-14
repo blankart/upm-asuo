@@ -39,7 +39,6 @@
       $("#announcementsBTN").removeClass('active');
       $("#studProfileBTN").addClass('active');
       $("#studProfile").fadeIn(400);
-      $("#myOrgs").fadeIn(400);
     }
 
     function dispMyOrgs(){
@@ -101,8 +100,6 @@
                         <h2>NAME</h2>
                         <p><strong>Year, Course</strong></p>
                         <p><a href="">Email</a> || Contact Num</p>
-                        <br>
-                        <strong>Affiliations:</strong>
                     </div> 
                   </div>   
                   <div id="myOrgs" style="display: none">
