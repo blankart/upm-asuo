@@ -176,6 +176,18 @@
                             <button class="btn btn-light btn-lg" id="orgAdminAnnouncementsBut" style="margin-left: 15px;" type="button">Admin Announcements</button> <button class="btn btn-light btn-lg" id="orgMembersBut" style="margin-left: 15px;" type="button">Members</button> <button class="btn btn-light btn-lg" id="orgApplicationsBut" style="margin-left: 15px;" type="button">Applications</button> <button class="btn btn-light btn-lg active" id="orgPostsBut" type="button">Posts</button> <?php if($account_type!="org"){ ?> <button class="btn btn-light btn-lg active" id="orgProfileBTN" type="button">About OrgName</button> <?php } ?>
                             <hr>
                             <div id="orgProfile">
+<<<<<<< HEAD
+                              <div class="well profile text-left">
+                        		<h2>ACRONYM</h2>
+                        		<p><strong>College</strong></p>
+                        		<p><a href="">Email</a> || <a href="">website.com</a></p>
+                        		<br>
+                        		<p><strong>Organization Description:</strong></p>
+                        		<p>yuuuhz descrip</p><br>
+                        		<p><strong>Organization Objectives:</strong></p>
+                        		<p>yuuuhz objectives</p><br>
+                    		  </div> 
+=======
                               <div class="well profile text-center">
                         		    <h2>ACRONYM</h2>
                         		    <h5>College</h5>
@@ -187,6 +199,7 @@
                         		    <p><strong>Organization Objectives:</strong></p>
                         		    <p>yuuuhz objectives</p><br>
                     		      </div> 
+>>>>>>> 58d598d1bf5cbdc6d75cb90c256c2f074c8d1c58
                             </div>
 
                             <div id="orgPosts">

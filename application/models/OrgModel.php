@@ -25,6 +25,7 @@
 			return $org_details->result_array()[0];
 		}
 
+
 		private function getAnnouncements($org_id){
 			$condition = "r.org_id = " .$org_id. " AND a.notice_ID = r.notice_ID AND op.org_id = r.org_id AND a.sender = ad.admin_id AND a.archived = 0";
 
@@ -36,7 +37,7 @@
 			return $announcements->result_array();
 		}
 
-		private function getMembers($org_id){
+		public function getMembers($org_id){
 			$condition = "om.org_id = " .$org_id. " AND om.student_id = sa.student_id AND sa.student_id = sp.student_id AND om.isRemoved = 0";
 
 			$this->db->select("sp.*, sa.up_mail, om.position");
@@ -68,7 +69,7 @@
 			return $orgapps->result_array();
 		}
 
-		private function getOrgTally($org_id){
+		public function getOrgTally($org_id){
 			$tally['male_first'] = $this->getTally($org_id, 'Male', '1');
 			$tally['female_first'] = $this->getTally($org_id, 'Female', '1');
 
@@ -99,7 +100,7 @@
 			return $tally;
 		}
 
-		private function getTally($org_id, $sex, $year){
+		public function getTally($org_id, $sex, $year){
 				$condition = "om.org_id  = " .$org_id. " AND om.student_id = sp.student_id AND om.isRemoved = 0 AND sp.sex = '".$sex."' AND sp.year_level = '". $year. "'";
 
 				$this->db->select('sp.student_id');
