@@ -14,6 +14,15 @@
 			return $result;
 		}
 
+		//by admin
+		public function getOrgProfileDetailsByAdmin($org_id){
+			$result['profile']= $this->getOrgDetails($org_id);
+			$result['members']= $this->getMembers($org_id);
+			$result['posts']= $this->getOrgPosts($org_id);
+
+			return $result;
+					}
+
 		public function getOrgDetails($org_id){
 			$condition = "oa.org_id = op.org_id AND op.org_id = " .$org_id;
 
@@ -175,7 +184,7 @@
 		public function getOrgOfficer($org_id)
 		{
 			$condition = "om.org_id = ".$org_id." AND om.org_id = op.org_id AND om.student_id = sp.student_id AND om.student_id = sa.student_id AND om.isRemoved = 0 AND om.position <> 'Member'";
-			$this->db->select("op.org_name, sp.*, om.*,sa.up_mail,");
+			$this->db->select("op.org_name, sp.*, om.*,sa.up_mail");
 			$this->db->from("organizationprofile op, studentprofile sp, orgmember om, studentaccount sa");
 			$this->db->where($condition);
 			$org_details = $this->db->get();
@@ -186,12 +195,117 @@
 		public function getOrgMembers($org_id)
 		{
 			$condition = "om.org_id = ".$org_id." AND om.org_id = op.org_id AND om.student_id = sp.student_id AND om.student_id = sa.student_id AND om.isRemoved = 0";
-			$this->db->select("op.org_name, sp.*, om.*,sa.up_mail,");
+			$this->db->select("op.org_name, sp.*, om.*,sa.up_mail");
 			$this->db->from("organizationprofile op, studentprofile sp, orgmember om, studentaccount sa");
 			$this->db->where($condition);
 			$org_details = $this->db->get();
 			
 			return $org_details->result_array();			
+		}
+
+		public function getDBformA($org_id)
+		{
+			$condition = $org_id." = aa.org_id AND aa.app_id = fa.app_id";
+			$this->db->select("fa.*");
+			$this->db->from("form_a_details fa, accrediationapplication aa");
+			$this->db->where($condition);
+			$org_details = $this->db->get();
+			
+			return $org_details;
+		}
+
+		public function getFormAdetails($org_id)
+		{
+
+			$data = $this->getOrgDetails($org_id);
+			$data['formA'] = $this->getDBformA();
+			$data['tally'] = $this->getOrgTally($org_id);
+
+			return $data;
+		}
+		//form accreditation
+		public function insertFormAdetails($data)
+		{
+
+			$condition = "aa.app_id = ".$data['app_id'];
+			$this->db->select("fa.*");
+			$this->db->from("accreditationapplication aa,form_a_details fa");
+			$this->db->where($condition);
+			$org_details = $this->db->get();
+
+			if($org_details->num_rows() == 1)
+			{
+				$condition = "app_id = ".$data['app_id'];
+				$this->db->where($condition);
+				$this->db->update('form_a_details', $data);
+			}
+			else
+			{
+				$this->db->insert('form_a_details', $data);
+			}
+
+			//return $org_details->result_array()[0];
+			//
+		}
+
+		public function getPartialFormA($org_id)
+		{
+			$condition = "aa.app_id = fa.app_id AND oa.org_id = ".$org_id." AND aa.org_id = oa.org_id";
+			$this->db->select("fa.*");
+			$this->db->from("accreditationapplication aa,form_a_details fa,organizationprofile oa");
+			$this->db->where($condition);
+			$org_details = $this->db->get();
+
+			if($org_details->num_rows() == 1)
+			{
+				//$condition = "app_id = ".$data['app_id'];
+				//$this->db->where($condition);
+				//$this->db->update('form_a_details', $data);
+				$condition = "oa.org_id = ".$org_id. " AND aa.org_id = oa.org_id";
+				$this->db->select("oa.org_name,oa.org_category,oa.description,oa.objectives,aa.app_id,fa.*");
+				$this->db->from("organizationprofile oa,accreditationapplication aa,form_a_details fa");
+				$this->db->where($condition);
+				$org_details = $this->db->get();
+
+				$temp = $org_details->result_array()[0];
+				
+				if($temp == NULL)
+				{
+					$temp['org_app_empty'] = true;
+				}
+				else
+				{
+					$temp['org_app_empty'] = false;
+				}
+				$temp['formAempty'] = false;
+				return $temp;
+			}
+			else
+			{
+				//$this->db->insert('form_a_details', $data);
+				$condition = "oa.org_id = ".$org_id. " AND aa.org_id = oa.org_id";
+				$this->db->select("oa.org_name,oa.org_category,oa.description,oa.objectives,aa.app_id");
+				$this->db->from("organizationprofile oa,accreditationapplication aa");
+				$this->db->where($condition);
+				$org_details = $this->db->get();
+
+
+				$temp = $org_details->result_array()[0];				
+				if($temp== NULL)
+				{
+					$temp['org_app_empty'] = true;
+				}
+				else
+				{
+					$temp['org_app_empty'] = false;
+				}
+				$temp['formAempty'] = true;
+
+				return $temp;
+			}
+
+
+			
 		}
 		//end of ORG ACCREDITATION FUNCTIONS
 

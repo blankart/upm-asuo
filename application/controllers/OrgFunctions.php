@@ -25,7 +25,11 @@
 				$this->loadAccreditationHome();
 			}
 			else if ($action == 'formA'){
-				$this->loadFormA();
+
+				//lalagay tong mga to sa private function pagkakuha ng details
+				$this->generateFormA();
+				//$this->loadFormA();
+
 			}
 			else if ($action == 'formB'){
 				$this->loadFormB();
@@ -46,9 +50,12 @@
 				$this->load->view('header');
 				$this->load->view('org/applyforaccreditation/formG');
 				$this->load->view('footer');
+			}else if ($action == 'saveFormA') {
+				$this->saveFormA();
 			}
-			else if($action == 'viewFormA')
+			else if($action == 'viewFormA'){
 				$this->viewFormA();
+			}
 			else if($action == 'viewFormC'){
 				$this->viewFormC();
 			}
@@ -82,8 +89,9 @@
 						 	$isApplicant = $this->OrgModel->isApplicant($org_id, $student_id);
 						}
 
-						if ($isAdmin)
-							echo "All hail the almighty admin! We present you with everything!"; //user is an admin
+						if ($isAdmin){
+							$this->loadOrgProfileByAdmin($org_id);
+						}
 						else if($isMember)
 							echo "Since you are a member, feel priviliged. Don't take it for granted ;)"; //user is a member
 						else
@@ -144,6 +152,17 @@
 			$this->load->view('org/createposts');
 			$this->load->view('org/editprofile', $org_data);
 			$this->load->view('org/changepassword');
+		}
+
+		private function loadOrgProfileByAdmin($org_id){
+			echo "All hail the almighty admin! We present you with everything!"; //user is an admin
+
+			$this->load->model('OrgModel');
+			$result = $this->OrgModel->getOrgProfileDetailsByAdmin($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/org', $result);
+			$this->load->view('footer');
 		}
 
 		private function checkOrgPassword(){
@@ -266,6 +285,74 @@
 				exit();     
             }
 		}
+//-------------------------------FORMS FOR ACCREDITATION---------------------------------------
+		private function generateFormA()
+		{
+				$this->load->model('OrgModel');
+				$org_id = $this->session->userdata['user_id'];
+				$result = $this->OrgModel->getPartialFormA($org_id);
+				$org_det = $this->OrgModel->getOrgDetails($org_id);
+
+				if($result['formAempty'])
+				{
+					if($result['org_app_empty'])
+					{
+
+						$result['org_name'] = $org_det['org_name'];
+						$result['org_category'] = $org_det['org_category'];
+						$result['description'] = $org_det['description'];
+						$result['objectives'] = $org_det['objectives'];
+						$result['app_id'] = "";
+						$result['stay'] = "";
+						$result['experience'] = "";
+						$result['adviser'] = "";
+						$result['adviser_position'] = "";
+						$result['adviser_college'] = "";
+						$result['contact_person'] = "";
+						$result['contact_position'] = "";
+						$result['contact_email'] = "";
+						$result['contact_address'] = "";
+						$result['contact_tel'] = "";
+						$result['contact_mobile'] = "";
+						$result['contact_other_details'] = "";
+						//var_dump($result);
+					}
+					else
+					{
+						$result['stay'] = "";
+						$result['experience'] = "";
+						$result['adviser'] = "";
+						$result['adviser_position'] = "";
+						$result['adviser_college'] = "";
+						$result['contact_person'] = "";
+						$result['contact_position'] = "";
+						$result['contact_email'] = "";
+						$result['contact_address'] = "";
+						$result['contact_tel'] = "";
+						$result['contact_mobile'] = "";
+						$result['contact_other_details'] = "";
+					
+					}
+				}
+						var_dump($result);
+						$this->load->view('header');
+						$this->load->view('org/applyforaccreditation/formA', $result);
+						$this->load->view('footer');	
+				//
+				
+		}
+
+		//saving data from form a accreditation
+		private function saveFormA()
+		{
+			 
+			 $form_details = $this->input->post('data');
+			// var_dump($form_details);
+			 $this->load->model('OrgModel');
+			 $temp = $this->OrgModel->insertFormAdetails($form_details);
+			// var_dump($temp);
+			 redirect(base_url().'org/formA');
+		}
 
 		private function loadAccreditationHome(){
 			$org_id = $this->session->userdata['user_id'];
@@ -345,8 +432,9 @@
 			$this->load->view('footer');
 		}
 
-		private function viewFormA(){
 
+		private function viewFormA()
+		{
 
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
@@ -381,30 +469,41 @@
 			// set font
 			$pdf->SetFont('Helvetica', '', 12);
 
-
-
-			// add a page
+			$org_id = $this->session->userdata['user_id'];
+			// set font
+			$pdf->SetFont('Helvetica', '', 12);
 			$pdf->AddPage();
+			$this->load->model('OrgModel');
+
+			$result = $this->OrgModel->getFormAdetails($org_id);
+			//var_dump($result);
+			$addtlresult = $this->OrgModel->getDBformA($org_id);
+			//var_dump($addtlresult);
+			// add a page
+			$tally = $result['tally']['male_first'] + $result['tally']['female_first'] +$result['tally']['male_second'] +$result['tally']['female_second'] +$result['tally']['male_third'] +$result['tally']['female_third'] +$result['tally']['male_fourth'] +$result['tally']['female_fourth'] +$result['tally']['male_masteral'] +$result['tally']['female_masteral'] +$result['tally']['male_doctoral'] +$result['tally']['female_doctoral'];
+			////$pdf->AddPage();
+			//var_dump($tally);
 
 			//$name = 'UP Society of Computer Scientists';
-			// set some text to print
+			// WALA PANG POSITION/DESIGNATION
 			$html= '<p align="right"><b>Date filed:</b>'.date("M d, Y").'</p><br>
-			<b>Organization Name:</b><br>
-			<b>Number of members:</b><br>	
-			<b>Category:</b><br>
-			<b>Position/Designation:   </b>&nbsp;&nbsp;&nbsp;&nbsp;<b>College/Unit</b><br>
-			<b>Contact Person:</b>
+			<b>Organization Name:</b>'.$result['org_name'].'<br>
+			<b>Number of members:</b>'.$tally.'<br>	
+			<b>Category:</b>'.$result['org_category'].'<br>
+			<b>Adviser:</b><br>
+			<b>Position/Designation:</b>&nbsp;&nbsp;&nbsp;&nbsp;<br><b>College/Unit: </b><br>
+			<b>Contact Person:</b><br>
 			<b>Position in the Organization</b>
 			<br>
-			<b>Address</b>
+			<b>Address:</b>
 			<br>
 			<b>Telephone no.:</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>Mobile no.:</b>
 			<br>
 			<b>Email:</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>Other contact details:</b>
 			<br>
-			<b>Objectives of Organization:</b>
+			<b>Objectives of Organization:</b>'.$result['objectives'].'
 			<br>
-			<b>Brief description of Organization:</b>
+			<b>Brief description of Organization:</b>'.$result['description'].'
 			<br>
 			<br>
 			<br>
@@ -422,8 +521,9 @@
 
 				</p>
 			';
-			$pdf->writeHTML($html, true, false, true, false, '');
-			$pdf->Output('example_003.pdf', 'I');
+			var_dump($html);
+			//$pdf->writeHTML($html, true, 0, true, 0);
+			//$pdf->Output('example_003.pdf', 'I');
 
 
 		}
@@ -560,7 +660,7 @@
 				<br>';
 			$line = ($result['incSEC']== 1 ? $text2 : $text3);			
 		 
-	
+
 
 			$pdf->writeHTML($html, true, 0, true, 0);
 			$pdf->writeHTML($tbl, true, false, false, false, '');

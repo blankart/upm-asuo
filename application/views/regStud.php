@@ -35,22 +35,7 @@
                    }   
                 });
             }
-      });
-
-      $('#previewBtn').click(function(e){
-          if ( $('[name=form5]').val() == "" ){
-              noUploads();
-          }
-          else{
-
-             swal({
-                title: "Form 5",
-                text: $('[name=form5]').val(),
-                html: true
-              });
-          }
-                 
-       });           
+      });          
   });
 
 
@@ -355,13 +340,19 @@
                            <div id="studPwChecker" class="notice notice-sm notice-danger" style="display: none;">
                            </div>
                            <div class="form-group">
+                              <label id="form5" style="padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Form5
 
-                              <label id="form5" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Form5<input type="file" style="display: none;" class="form-control" id = 'form5' name = 'form5' ></label>  <div id="fileCheckerNote" class="notice notice-sm notice-danger" style="display: none;">
+                              <input type="file" style="display: none;" class="form-control" id="form5" name="form5" onchange="loadFile(event)"></label>  
+                              <img id="output"/>
+                              <script>
+                                var loadFile = function(event) {
+                                var output = document.getElementById('output');
+                                output.src = URL.createObjectURL(event.target.files[0]);
+                                };
+                              </script>
+                              <div id="fileCheckerNote" class="notice notice-sm notice-danger" style="display: none;">
                            </div>
-
-                            <button type="button" class="btn btn-primary" id="previewBtn" style="margin-left: 1em" > Preview File</button>
-
-
+                           <br><br>
                               <div class="form-group">
                                  <div class="margin-top20 text-center">
                                     Already registered?<a href="<?php echo base_url();?>login"> Log In</a>
