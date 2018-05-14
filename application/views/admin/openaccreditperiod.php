@@ -34,7 +34,7 @@
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-basic" data-dismiss="modal">Close</button> <button type="submit" onclick="openAccredPer()" class="btn btn-danger">Save</button>
+                <button type="button" class="btn btn-basic" data-dismiss="modal">Close</button> <button type="submit" onclick="setAccredPer()" class="btn btn-danger">Save</button>
             </div>
             </div>
         </div>

@@ -101,6 +101,7 @@
             $this->load->view("admin/viewallorg.php");
             $this->load->view("admin/viewallstudents.php");
             $this->load->view("admin/changepassword.php");
+              $this->load->view("admin/openaccreditperiod.php");
 		}
 
 		private function searchStudents(){
