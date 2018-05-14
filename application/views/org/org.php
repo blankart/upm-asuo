@@ -121,6 +121,31 @@
                 function studReject(){
                   swal("Rejected!", "You rejected StudentName's application.", "error");
                 }
+
+                function removeMember(){
+                  swal({
+                    title: "Membership",
+                    text: "Reason for removing member:",
+                    type: "input",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                  }, function (inputValue) {
+                  if (inputValue === false) return false;
+                  if (inputValue === "") {
+                    swal("Error!", "Reason empty.", "error");
+                    return false
+                  }
+                  swal("Member removed!", "StudentName has been removed from OrgAcronym.", "success");
+                  });
+                }
+
+                function studApproved(){
+                  swal("Approved!", "StudentName is now a member of OrgAcronym.", "success");
+                }
+
+                function studReject(){
+                  swal("Rejected!", "You rejected StudentName's application.", "error");
+                }
     </script>
     <div class="header" style="padding-top: 80px; text-align: center; color: white;">
         <h1 style="font-size: 40px; font-family: Lato;">Hi <?php echo $profile['acronym']; ?>!</h1>
@@ -209,7 +234,7 @@
                                                       <a href="#"><?php echo $member['up_mail']; ?></a>
                                                     </td>
                                                     <td>
-                                                      <button class="btn btn-info" onclick="changePosition()" type="button" id="changePosBTN">Edit Position</button>
+                                                      <button class="btn btn-sm btn-info" onclick="changePosition()" type="button" id="changePosBTN">Edit Position</button><br><br><button class="btn btn-sm btn-danger" onclick="removeMember()" type="button" id="removeBTN">Remove</button>
                                                     </td>
                                                 </tr>
                                                 <?php } ?>
