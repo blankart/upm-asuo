@@ -36,6 +36,21 @@
                 });
             }
       });
+
+      $('#previewBtn').click(function(e){
+          if ( $('[name=form5]').val() == "" ){
+              noUploads();
+          }
+          else{
+
+             swal({
+                title: "Form 5",
+                text: $('[name=form5]').val(),
+                html: true
+              });
+          }
+                 
+       });           
   });
 
 
@@ -183,6 +198,10 @@
     }
 
 }
+
+ function noUploads(){
+      swal("Failed!", "You have not uploaded any form 5 yet!", "warning");
+   }
 
   function validateForm(){
     resetErrorDisplays();
@@ -339,7 +358,9 @@
 
                               <label id="form5" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Form5<input type="file" style="display: none;" class="form-control" id = 'form5' name = 'form5' ></label>  <div id="fileCheckerNote" class="notice notice-sm notice-danger" style="display: none;">
                            </div>
-                              <button type="button" class="btn btn-primary" style="margin-left: 1em" onclick="" > Preview File</button>
+
+                            <button type="button" class="btn btn-primary" id="previewBtn" style="margin-left: 1em" > Preview File</button>
+
 
                               <div class="form-group">
                                  <div class="margin-top20 text-center">
