@@ -20,6 +20,13 @@
 				$this->changeLogo();
 			else if ($action == 'uploadConstitution')
 				$this->uploadConstitution();
+
+			else if ($action == 'rejectMembership')
+				$this->rejectMembership();
+			else if ($action == 'approveMembership')
+				$this->approveMembership();
+			else if ($action == 'editMembershipPosition')
+				$this->editMembershipPosition();
 					
 			else if ($action == 'applyforaccreditation'){
 				$this->loadAccreditationHome();
@@ -285,6 +292,63 @@
 				exit();     
             }
 		}
+
+		private function rejectMembership(){
+
+			$student_id = $this->input->post('student_id');
+
+			if($student_id != NULL){
+
+				$org_id = $this->session->userdata['user_id'];
+
+				$this->load->model('OrgModel');
+				$this->OrgModel->rejectMembership($org_id, $student_id);
+
+				echo json_encode(true);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function approveMembership(){
+
+			$student_id = $this->input->post('student_id');
+
+			if($student_id != NULL){
+
+				$org_id = $this->session->userdata['user_id'];
+
+				$this->load->model('OrgModel');
+				$this->OrgModel->approveMembership($org_id, $student_id);
+
+				echo json_encode(true);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function editMembershipPosition(){
+
+			$student_id = $this->input->post('student_id');
+			$position = $this->input->post('position');
+
+			if($student_id != NULL && $position != NULL){
+
+				$org_id = $this->session->userdata['user_id'];
+
+				$this->load->model('OrgModel');
+				$this->OrgModel->editMembershipPosition($org_id, $student_id, $position);
+
+				echo json_encode($position);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+
 //-------------------------------FORMS FOR ACCREDITATION---------------------------------------
 		private function generateFormA()
 		{

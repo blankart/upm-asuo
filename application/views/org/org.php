@@ -99,7 +99,48 @@
                    $("#orgApplicationsBut").addClass('active');
                 }
 
-                function changePosition(){
+                function studApproved(name, acronym, id){
+                   $.ajax({
+                      type: "post",
+                      url: "<?php echo base_url();?>org/approveMembership",
+                      data: {student_id: id},
+                      dataType: "JSON",
+                      async: false,
+                      cache: false,
+                      success: function(result){
+
+                        if(result){
+                          swal({title: "Approved!", text: name + " is now a member of " + acronym, type: "success"},
+                             function(){ 
+                                 location.reload();
+                             });
+                        }
+                      }
+                    });
+                
+                }
+
+                function studReject(name, id){
+                    $.ajax({
+                      type: "post",
+                      url: "<?php echo base_url();?>org/rejectMembership",
+                      data: {student_id: id},
+                      dataType: "JSON",
+                      async: false,
+                      cache: false,
+                      success: function(result){
+
+                        if(result){
+                          swal({title: "Rejected!", text: "You rejected" +name+ "'s application.", type: "error"},
+                             function(){ 
+                                 location.reload();
+                             });
+                        }
+                      }
+                    });
+                }
+
+                function changePosition(name, id ){
                   swal({
                     title: "Membership",
                     text: "Enter new position:",
@@ -107,25 +148,41 @@
                     showCancelButton: true,
                     closeOnConfirm: false,
                     inputPlaceholder: "Position"
-                  }, function (inputValue) {
-                  if (inputValue === false) return false;
-                  if (inputValue === "") {
+                  }, function (position) {
+                  if (position === false)
+                    return false;
+                  if (position.trim() === "") {
                     swal("Error!", "Input empty.", "error");
                     return false
                   }
-                  swal("Membership Updated!", "You updated Student_Name's position to " + inputValue + ".", "success");
+
+                  if ((position.trim()).length >  20) {
+                    swal("Error!", "Position name should not be more than 20 characters!", "error");
+                    return false
+                  }
+
+                    $.ajax({
+                      type: "post",
+                      url: "<?php echo base_url();?>org/editMembershipPosition",
+                      data: {student_id: id, position: position},
+                      dataType: "JSON",
+                      async: false,
+                      cache: false,
+                      success: function(result){
+
+                        if(result){
+                          swal({title: "Membership Updated!", text: "You updated " +name+ "'s position to '" + position + "'.", type: "success"},
+                             function(){ 
+                                 location.reload();
+                             });
+                        }
+                      }
+                    });
+
                   });
                 }
 
-                function studApproved(){
-                  swal("Approved!", "StudentName is now a member of OrgAcronym.", "success");
-                }
-
-                function studReject(){
-                  swal("Rejected!", "You rejected StudentName's application.", "error");
-                }
-
-                function removeMember(){
+                function removeMember(name, acronym){
                   swal({
                     title: "Membership",
                     text: "Reason for removing member:",
@@ -133,22 +190,18 @@
                     showCancelButton: true,
                     closeOnConfirm: false,
                   }, function (inputValue) {
-                  if (inputValue === false) return false;
-                  if (inputValue === "") {
-                    swal("Error!", "Reason empty.", "error");
-                    return false
-                  }
-                  swal("Member removed!", "StudentName has been removed from OrgAcronym.", "success");
-                  });
+                    if (inputValue === false) 
+                      return false;
+                    if (inputValue.trim() === "") {
+                      swal("Error!", "Reason empty.", "error");
+                      return false
+                    }
+
+                    swal("Member removed!", name + " has been removed from " +acronym+ ".", "success");
+                    });
                 }
 
-                function studApproved(){
-                  swal("Approved!", "StudentName is now a member of OrgAcronym.", "success");
-                }
-
-                function studReject(){
-                  swal("Rejected!", "You rejected StudentName's application.", "error");
-                }
+              
     </script>
     <div class="header" style="padding-top: 80px; text-align: center; color: white;">
          <?php if($account_type=="org"){ ?>  <h1 style="font-size: 40px; font-family: Lato;">Hi <?php echo $profile['acronym']; ?>!</h1> <?php } ?> 
@@ -225,7 +278,7 @@
                                     <div class="sp-content">
                                       <div class="sp-info">
                                         <h6><?php echo $mypost['title']; ?></h6>
-                                              <?php echo $mypost['date_posted']. ' | ' .$mypost['privacy']; ?>
+                                              <?php echo date("F j, Y, g:i:s a", strtotime($mypost['date_posted'])). ' | ' .$mypost['privacy']; ?>
                                       </div>
                                             
                                       <p class="sp-paragraph mb-0">
@@ -257,7 +310,7 @@
                                                       ?>
                                                 <tr>
                                                     <td>
-                                                     <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$member['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="#"><?php echo $member['first_name']; ?> <?php echo $member['last_name']; ?></a>
+                                                     <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$member['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="#"><?php echo $member['first_name']." ".$member['middle_name']." ".$member['last_name']; ?></a>
                                                     </td>
                                                     <td class="text-center">
                                                       <span class="badge badge-success"><?php echo $member['position']; ?></span></td>
@@ -266,8 +319,8 @@
                                                     </td>
                                                      <?php if($account_type == 'org') {?>
                                                     <td>
-                                                      <button class="btn btn-sm btn-info" onclick="changePosition()" type="button" id="changePosBTN">Edit Position</button><br><br>
-                                                      <button class="btn btn-sm btn-danger" onclick="removeMember()" type="button" id="removeBTN">Remove</button>
+                                                      <button class="btn btn-sm btn-info" onclick="changePosition(' <?php echo $member['first_name'].' '.$member['middle_name'].' '.$member['last_name']; ?>', '<?php echo $member['student_id']; ?>')" type="button" id="changePosBTN">Edit Position</button><br><br>
+                                                      <button class="btn btn-sm btn-danger" onclick="removeMember(' <?php echo $member['first_name'].' '.$member['middle_name'].' '.$member['last_name']; ?>', '<?php echo $member['org_name']; ?>')" type="button" id="removeBTN">Remove</button>
                                                       </td>
                                                      <?php } ?>
                                                 </tr>
@@ -276,7 +329,7 @@
                                                   if($member['position'] == "Member"){ ?>
                                                 <tr>
                                                     <td>
-                                                     <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$member['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="#"><?php echo $member['first_name']; ?> <?php echo $member['last_name']; ?></a>
+                                                     <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$member['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="#"><?php echo $member['first_name']." ".$member['middle_name']." ".$member['last_name']; ?></a>
                                                     </td>
                                                     <td class="text-center">
                                                       <span class="badge badge-success"><?php echo $member['position']; ?></span></td>
@@ -285,8 +338,8 @@
                                                     </td>
                                                      <?php if($account_type == 'org') {?>
                                                       <td>
-                                                      <button class="btn btn-sm btn-info" onclick="changePosition()" type="button" id="changePosBTN">Edit Position</button><br><br>
-                                                      <button class="btn btn-sm btn-danger" onclick="removeMember()" type="button" id="removeBTN">Remove</button>
+                                                      <button class="btn btn-sm btn-info" onclick="changePosition(' <?php echo $member['first_name'].' '.$member['middle_name'].' '.$member['last_name']; ?>', '<?php echo $member['student_id']; ?>')" type="button" id="changePosBTN">Edit Position</button><br><br>
+                                                      <button class="btn btn-sm btn-danger" onclick="removeMember(' <?php echo $member['first_name'].' '.$member['middle_name'].' '.$member['last_name']; ?>', ''' <?php echo $member['org_name']; ?>')" type="button" id="removeBTN">Remove</button>
                                                       </td>
                                                      <?php } ?>
                                                 </tr>
@@ -313,11 +366,11 @@
                                       <tbody>
                                         <tr>
                                           <td>
-                                            <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$applicant['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="#"><?php echo $applicant['first_name']; ?> <?php echo $applicant['last_name']; ?></a>
+                                            <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$applicant['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="#"><?php echo $applicant['first_name']." ".$applicant['middle_name']." ".$applicant['last_name']; ?></a>
                                           </td>
                                           <td align=right>
-                                             <button class="btn btn-success" onclick="studApproved()" type="button" id="approveBTN">Approve</button>
-                                             <button class="btn btn-danger" onclick="studReject()" type="button" id="rejectBTN">Reject</button>
+                                             <button class="btn btn-success" onclick="studApproved(' <?php echo $applicant['first_name'].' '.$applicant['middle_name'].' '.$applicant['last_name']; ?> ', '<?php echo $applicant['acronym']; ?>', '<?php echo $applicant['student_id']; ?>')" type="button" id="approveBTN">Approve</button>
+                                             <button class="btn btn-danger" onclick="studReject(' <?php echo $applicant['first_name'].' '.$applicant['middle_name'].' '.$applicant['last_name']; ?>', '<?php echo $applicant['student_id']; ?>')" type="button" id="rejectBTN">Reject</button>
                                           </td>
                                         </tr>
                                       </tbody>
@@ -341,7 +394,7 @@
                                     <div class="sp-content">
                                         <div class="sp-info">
                                           <h6><?php echo $announcement['title']; ?></h6>
-                                              <?php echo $announcement['date_posted']; ?>
+                                              <?php echo date("F j, Y, g:i:s a", strtotime($announcement['date_posted'])); ?>
                                         </div>
                                         <p class="sp-paragraph mb-0">  <?php echo $announcement['content']; ?></p>
                                     </div>

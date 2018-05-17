@@ -193,7 +193,7 @@ CREATE TABLE `orgmember` (
    `membership_id` int(11) UNSIGNED NOT NULL,
    `org_id` int(11) UNSIGNED NOT NULL,
    `student_id` int(11) UNSIGNED NOT NULL,
-   `position` varchar(50) NOT NULL,
+   `position` varchar(20) NOT NULL,
    `isRemoved` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -236,7 +236,7 @@ ALTER TABLE `orgpost`
   ADD CONSTRAINT `orgpost_ibfk_1` FOREIGN KEY (`org_id`) REFERENCES `organizationaccount` (`org_id`);
 
   -- ----------------------------------------------------------------------------------------------------------------------------
-  -- ORG APPLICATIONS
+  -- ORG APPLICATIONS (status: Pending, Approved, Rejected)
 CREATE TABLE `orgapplication` (
    `orgapp_id` int(11) UNSIGNED NOT NULL,
    `org_id` int(11) UNSIGNED NOT NULL,
@@ -259,7 +259,7 @@ ALTER TABLE `orgapplication`
   ADD CONSTRAINT `orgapplication_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `studentaccount` (`student_id`);
 
   -- ----------------------------------------------------------------------------------------------------------------------------
-  -- ORG APPLICATIONS (Pending, Validated, Removed), type 1 = student, 2 = org
+  -- ORG APPLICATIONS (Pending, Verified, Removed), type 1 = student, 2 = org
 CREATE TABLE `verificationcode` (
    `code_id` int(11) UNSIGNED NOT NULL,
    `type` tinyint(1) NOT NULL DEFAULT 0,
