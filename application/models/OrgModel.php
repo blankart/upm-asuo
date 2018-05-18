@@ -15,7 +15,7 @@
 		}
 
 		//viewed by admin
-		public function getOrgProfileDetailsByAdmin($org_id){
+		public function getOrgProfileDetailsByOthers($org_id){
 			$result['profile']= $this->getOrgDetails($org_id);
 			$result['members']= $this->getMembers($org_id);
 			$result['posts']= $this->getOrgPosts($org_id);
@@ -411,7 +411,21 @@
 		}
 
 		public function isMember($org_id, $student_id){
-			$condition = "org_id = " .$org_id. " AND student_id = " .$student_id. " AND isRemoved = 0";
+			$condition = "org_id = " .$org_id. " AND student_id = " .$student_id. " AND position = 'Member' AND isRemoved = 0";
+
+			$this->db->select('org_id');
+			$this->db->from('orgmember');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if ($query->num_rows() == 1)
+				return true;
+			else 
+				return false;
+		}
+
+		public function isOfficer($org_id, $student_id){
+			$condition = "org_id = " .$org_id. " AND student_id = " .$student_id. " AND position <> 'Member' AND isRemoved = 0";
 
 			$this->db->select('org_id');
 			$this->db->from('orgmember');
@@ -425,7 +439,7 @@
 		}
 
 		public function isApplicant($org_id, $student_id){
-			$condition = "org_id = " .$org_id. " AND student_id = " .$student_id. " AND isRemoved = 0";
+			$condition = "org_id = " .$org_id. " AND student_id = " .$student_id. " AND status = 'Pending'";
 
 			$this->db->select('org_id');
 			$this->db->from('orgapplication');

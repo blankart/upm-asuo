@@ -2,6 +2,20 @@
   
   $account_type=$this->session->userdata["account_type"];
 
+    if($account_type == 'student' || $account_type == 'admin'){
+        $isAdmin = $isAdmin;
+        $isOfficer = $isOfficer;
+        $isMember = $isMember;
+        $isApplicant = $isApplicant;
+        $isOrg = false;
+    }else{
+        $isAdmin = false;
+        $isOfficer = false;
+        $isMember = false;
+        $isApplicant = false;
+        $isOrg = true;
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -260,7 +274,9 @@
                             <button class="btn btn-light btn-lg" id="orgAdminAnnouncementsBut" style="margin-left: 15px;" type="button">Admin Announcements</button> 
                              <?php } ?>
 
+                            <?php if($isAdmin || $isOfficer || $isMember || $isOrg){ ?>
                             <button class="btn btn-light btn-lg" id="orgMembersBut" style="margin-left: 15px;" type="button">Members</button> 
+                            <?php } ?>
 
                             <?php if($account_type=="org"){ ?> 
                             <button class="btn btn-light btn-lg" id="orgApplicationsBut" style="margin-left: 15px;" type="button">Applications</button> 
@@ -269,7 +285,6 @@
                             <button class="btn btn-light btn-lg active" id="orgPostsBut" type="button">Posts</button> 
 
                             
-
                             <hr>
                             <div id="orgProfile">
 
@@ -288,7 +303,13 @@
                             </div>
 
                             <div id="orgPosts">
-                                <?php foreach($posts as $mypost){ ?>
+                                <?php foreach($posts as $mypost){ 
+                                    if( 
+                                      ($mypost['privacy'] == 'Officers' && ($isOfficer || $isAdmin)) ||
+                                      ($mypost['privacy'] == 'Members' && ($isMember || $isOfficer || $isAdmin)) ||
+                                      ($mypost['privacy'] == 'Public') 
+                                      ){
+                                   ?>
                                 <div class="stream-post">
                                     <div class="sp-author">
                                         <a class="sp-author-avatar" href="#"><img alt="" src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo'].'?'.rand(1, 100); ?>"></a>
@@ -306,9 +327,10 @@
                                       </p>
                                     </div>
                                 </div>
-                                <?php } ?>
+                                <?php  } } ?>
                                 
                             </div>
+
                             <div id="orgMembers" style="display: none;">
                                 <div class="main-box clearfix">
                                     <div class="table-responsive">
