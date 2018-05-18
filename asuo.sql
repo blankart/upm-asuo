@@ -194,7 +194,8 @@ CREATE TABLE `orgmember` (
    `org_id` int(11) UNSIGNED NOT NULL,
    `student_id` int(11) UNSIGNED NOT NULL,
    `position` varchar(20) NOT NULL,
-   `isRemoved` tinyint(1) NOT NULL DEFAULT 1
+   `isRemoved` tinyint(1) NOT NULL DEFAULT 1,
+   `removal_reason` varchar(100) NOT NULL DEFAULT 'Not removed'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `orgmember`

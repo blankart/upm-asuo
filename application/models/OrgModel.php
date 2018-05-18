@@ -134,34 +134,16 @@
 
 			$this->db->where($condition);
 			$this->db->update('orgapplication', $changes);
+			
+			//insert
+			$data = array(
+				'org_id' => $org_id,
+				'student_id' => $student_id,
+				'position' => 'Member',
+				'isRemoved' => 0
+			);
 
-			//inserting
-			$this->db->select('membership_id');
-			$this->db->from('orgmember');
-			$this->db->where($condition);
-			$query = $this->db->get();
-
-			if($query->num_rows() == 1){
-
-				$changes = array(
-					'position' => 'Member',
-					'isRemoved' => 0
-				);
-
-				$this->db->where($condition);
-				$this->db->update('orgmember', $changes);
-
-			}
-			else{
-				$data = array(
-					'org_id' => $org_id,
-					'student_id' => $student_id,
-					'position' => 'Member',
-					'isRemoved' => 0
-				);
-
-				$this->db->insert('orgmember', $data);
-			}
+			$this->db->insert('orgmember', $data);
 		}
 
 		public function rejectMembership($org_id, $student_id){
@@ -191,10 +173,18 @@
 			
 		}
 
-		public function removeMembership($org_id, $student_id)
-		{
-			//tables: org member
-			//note: change position to 'Member' too
+		public function removeMember($org_id, $student_id, $reason){
+			//tables: org member, change reason
+
+			$condition = 'org_id = ' .$org_id. ' AND student_id = ' .$student_id. ' AND isRemoved = 0';
+		
+			$changes = array(
+				'isRemoved' => 1,
+				'removal_reason' => $reason
+			);
+
+			$this->db->where($condition);
+			$this->db->update('orgmember', $changes);	
 		}
 
 		public function getApplicationStatus($org_id, $student_id)

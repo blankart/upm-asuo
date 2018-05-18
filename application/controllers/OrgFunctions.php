@@ -27,6 +27,8 @@
 				$this->approveMembership();
 			else if ($action == 'editMembershipPosition')
 				$this->editMembershipPosition();
+			else if ($action == 'removeMember')
+				$this->removeMember();
 					
 			else if ($action == 'applyforaccreditation'){
 				$this->loadAccreditationHome();
@@ -342,6 +344,26 @@
 				$this->OrgModel->editMembershipPosition($org_id, $student_id, $position);
 
 				echo json_encode($position);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function removeMember(){
+
+			$student_id = $this->input->post('student_id');
+			$reason = $this->input->post('reason');
+
+
+			if($student_id != NULL && $reason != NULL){
+
+				$org_id = $this->session->userdata['user_id'];
+
+				$this->load->model('OrgModel');
+				$this->OrgModel->removeMember($org_id, $student_id, $reason);
+
+				echo json_encode(true);
 				exit();
 			}
 			else

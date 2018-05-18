@@ -153,12 +153,12 @@
                     return false;
                   if (position.trim() === "") {
                     swal("Error!", "Input empty.", "error");
-                    return false
+                    return false;
                   }
 
                   if ((position.trim()).length >  20) {
                     swal("Error!", "Position name should not be more than 20 characters!", "error");
-                    return false
+                    return false;
                   }
 
                     $.ajax({
@@ -182,26 +182,46 @@
                   });
                 }
 
-                function removeMember(name, acronym){
+                function removeMember(name, acronym, id){
+
                   swal({
                     title: "Membership",
                     text: "Reason for removing member:",
                     type: "input",
                     showCancelButton: true,
                     closeOnConfirm: false,
-                  }, function (inputValue) {
-                    if (inputValue === false) 
+                  }, function (reason) {
+                    if (reason === false) 
                       return false;
-                    if (inputValue.trim() === "") {
+                    if (reason.trim() === "") {
                       swal("Error!", "Reason empty.", "error");
-                      return false
+                      return false;
                     }
 
-                    swal("Member removed!", name + " has been removed from " +acronym+ ".", "success");
-                    });
-                }
+                    if ((reason.trim()).length > 100) {
+                      swal("Error!", "Reason should not be more than 100 characters!", "error");
+                      return false;
+                    }
 
-              
+                      $.ajax({
+                      type: "post",
+                      url: "<?php echo base_url();?>org/removeMember",
+                      data: {student_id: id, reason: reason},
+                      dataType: "JSON",
+                      async: false,
+                      cache: false,
+                      success: function(result){
+
+                        if(result){
+                          swal({title: "Member removed!", text: "" +name + " has been removed from " +acronym+ ".", type: "success"},
+                             function(){ 
+                                 location.reload();
+                             });
+                        }
+                      }
+                    });
+                });
+              }              
     </script>
     <div class="header" style="padding-top: 80px; text-align: center; color: white;">
          <?php if($account_type=="org"){ ?>  <h1 style="font-size: 40px; font-family: Lato;">Hi <?php echo $profile['acronym']; ?>!</h1> <?php } ?> 
@@ -320,7 +340,7 @@
                                                      <?php if($account_type == 'org') {?>
                                                     <td>
                                                       <button class="btn btn-sm btn-info" onclick="changePosition(' <?php echo $member['first_name'].' '.$member['middle_name'].' '.$member['last_name']; ?>', '<?php echo $member['student_id']; ?>')" type="button" id="changePosBTN">Edit Position</button><br><br>
-                                                      <button class="btn btn-sm btn-danger" onclick="removeMember(' <?php echo $member['first_name'].' '.$member['middle_name'].' '.$member['last_name']; ?>', '<?php echo $member['org_name']; ?>')" type="button" id="removeBTN">Remove</button>
+                                                      <button class="btn btn-sm btn-danger" onclick="removeMember(' <?php echo $member['first_name'].' '.$member['middle_name'].' '.$member['last_name']; ?>', '<?php echo $member['acronym']; ?>', '<?php echo $member['student_id']; ?>')" type="button" id="removeBTN">Remove</button>
                                                       </td>
                                                      <?php } ?>
                                                 </tr>
@@ -339,7 +359,7 @@
                                                      <?php if($account_type == 'org') {?>
                                                       <td>
                                                       <button class="btn btn-sm btn-info" onclick="changePosition(' <?php echo $member['first_name'].' '.$member['middle_name'].' '.$member['last_name']; ?>', '<?php echo $member['student_id']; ?>')" type="button" id="changePosBTN">Edit Position</button><br><br>
-                                                      <button class="btn btn-sm btn-danger" onclick="removeMember(' <?php echo $member['first_name'].' '.$member['middle_name'].' '.$member['last_name']; ?>', ''' <?php echo $member['org_name']; ?>')" type="button" id="removeBTN">Remove</button>
+                                                      <button class="btn btn-sm btn-danger" onclick="removeMember(' <?php echo $member['first_name'].' '.$member['middle_name'].' '.$member['last_name']; ?>', '<?php echo $member['acronym']; ?>', '<?php echo $member['student_id']; ?>')" type="button" id="removeBTN">Remove</button>
                                                       </td>
                                                      <?php } ?>
                                                 </tr>

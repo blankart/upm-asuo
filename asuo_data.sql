@@ -116,21 +116,21 @@ INSERT INTO `accreditationapplication` (`app_id`, `org_id`, `app_status` ,`form_
 
 -- -------------------------------------------------------------------------
 
-INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`, `isRemoved`) VALUES
-(1, 6, 1, 'President', 0),
-(2, 6, 2, 'Member', 0),
-(3, 6, 3, 'Member', 0),
-(4, 6, 4, 'Member', 1),
-(5, 6, 5, 'Secretary', 0),
-(6, 6, 6, 'Finance Officer', 0),
-(7, 6, 7, 'Treasurer', 0),
-(8, 6, 8, 'Member', 1),
-(9, 6, 9, 'Auditor', 0),
+INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`, `isRemoved`, `removal_reason`) VALUES
+(1, 6, 1, 'President', 0, 'Not removed'),
+(2, 6, 2, 'Member', 0, 'Not removed'),
+(3, 6, 3, 'Member', 0, 'Not removed'),
+(4, 6, 4, 'Member', 1, 'Not cute enough XD'),
+(5, 6, 5, 'Secretary', 0, 'Not removed'),
+(6, 6, 6, 'Finance Officer', 0, 'Not removed'),
+(7, 6, 7, 'Treasurer', 0, 'Not removed'),
+(8, 6, 8, 'Member', 1, 'Kulang ng 3 paligo'),
+(9, 6, 9, 'Auditor', 0, 'Not removed'),
 
-(10, 1, 10, 'President', 0),
-(11, 3, 10, 'Member', 0),
-(12, 4, 10, 'Member', 1),
-(13, 9, 10, 'Auditor', 0);
+(10, 1, 10, 'President', 0, 'Not removed'),
+(11, 3, 10, 'Member', 0, 'Not removed'),
+(12, 4, 10, 'Member', 1, 'Too school for cool'),
+(13, 9, 10, 'Auditor', 0, 'Not removed');
 
 -- -------------------------------------------------------------------------
 

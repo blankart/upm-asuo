@@ -52,8 +52,6 @@
             });
         });
 
-
-
         $('#changeLogoForm').on("submit",function(e){
                e.preventDefault();
                $.ajax({
