@@ -1,6 +1,6 @@
 INSERT INTO `studentaccount` (`student_id`, `up_id`, `up_mail`, `username`, `password`, `isVerified`, `isActivated`, `archived`) VALUES
 (1, '201412345', 'anayos@up.edu.ph', 'anayos', '32250170a0dca92d53ec9624f336ca24', 1, 1, 1),
-(2, '201364909', 'mjfernando@up.edu.ph', 'mjfernando', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
+(2, '201364909', 'mrfernando@up.edu.ph', 'mrfernando', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
 (3, '201470124', 'mjgalvez@up.edu.ph', 'mjgalvez', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
 (4, '201481207', 'acracusa@up.edu.ph', 'acracusa', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
 (5, '201411235', 'kacolumna@up.edu.ph', 'kacolumna', '32250170a0dca92d53ec9624f336ca24', 1, 0, 1),
@@ -170,11 +170,6 @@ INSERT INTO `orgapplication` (`orgapp_id`, `org_id`, `student_id`, `status`) VAL
 (15, 6, 10, 'Pending'),
 (16, 9, 10, 'Approved');
 
--- ------------------------------------------------------------------------
-INSERT INTO `verificationcode` (`code_id`, `type`, `account_id`, `code`, `status`) VALUES
-(1, 2, 1, '32250170a0dca92d53ec9624f336ca24', 'Pending'),
-(2, 2, 7, '32250170a0dca92d53ec9624f336ca24', 'Pending'),
-(3, 2, 10, '32250170a0dca92d53ec9624f336ca24', 'Pending');
 -- ------------------------------------------------------------------------
 
 INSERT INTO `restrictedacronym` (`res_id`, `acronym`) VALUES

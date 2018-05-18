@@ -263,8 +263,8 @@ ALTER TABLE `orgapplication`
   -- ORG APPLICATIONS (Pending, Verified, Removed), type 1 = student, 2 = org
 CREATE TABLE `verificationcode` (
    `code_id` int(11) UNSIGNED NOT NULL,
-   `type` tinyint(1) NOT NULL DEFAULT 0,
-   `account_id` int(11) UNSIGNED NOT NULL,
+   `type` varchar(7) NOT NULL DEFAULT 'None',
+   `user_id` int(11) UNSIGNED NOT NULL,
    `code` varchar(32) NOT NULL DEFAULT 'None',
    `status` varchar(10) NOT NULL DEFAULT 'Removed'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -274,8 +274,6 @@ ALTER TABLE `verificationcode`
 
 ALTER TABLE `verificationcode`
   MODIFY `code_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
-
-
 
 
 

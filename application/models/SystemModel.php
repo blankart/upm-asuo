@@ -160,6 +160,63 @@
 	    }
 	    // end of REGISTER FUNCTIONS
 
+	    // VERIFICATION FUNCTIONS
+		public function createVerificationCode($data){
+			$this->db->insert('verificationcode', $data);
+			return $this->db->insert_id();	
+		}
+
+		public function verifyStudentAccount($code){
+
+			$condition = "code = '" .$code. "' AND type = 'student'";
+
+			$this->db->select('user_id');
+			$this->db->from('verificationcode');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if($query->num_rows() == 1){
+				$student_id = $query->result_array()[0]['user_id'];
+
+				$condition2 = "student_id = " .$student_id. " AND student_id = " .$student_id;
+
+				$changes = array(
+					'isVerified' => 1
+				);
+
+				$this->db->where($condition2);
+				return  $this->db->update('studentaccount', $changes);
+			}
+			else 
+				return false;
+		}
+
+		public function verifyOrgAccount($code){
+
+			$condition = "code = '" .$code. "' AND type = 'org'";
+
+			$this->db->select('user_id');
+			$this->db->from('verificationcode');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if($query->num_rows() == 1){
+				$org_id = $query->result_array()[0]['user_id'];
+
+				$condition2 = "org_id = " .$org_id. " AND org_id = " .$org_id;
+
+				$changes = array(
+					'isVerified' => 1
+				);
+
+				$this->db->where($condition2);
+				return  $this->db->update('OrganizationAccount', $changes);
+			}
+			else 
+				return false;
+		}
+		// end of VERIFICATION FUNCTIONS
+
 	    // LOGIN FUNCTIONS
 		public function login($credentials){
 			
