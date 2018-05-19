@@ -267,7 +267,7 @@
                       "<h4 style='font-size: 18px'>"+result['org_email']+"</h4>"+
                       "</div>"+
                    "</div>"+
-                   "<button type='button' class='btn btn-info'>View Org Profile</button>"
+                   "<button type='button' class='btn btn-info'>View Org Profile</button>"+
                 "</div>"
        },
        function(){
