@@ -51,7 +51,7 @@
                         <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formF">Activity Report</li>
+                        <li><a href="<?php echo base_url(); ?>org/formF">Activity Report</a>a</li>
                         <li><a href="<?php echo base_url(); ?>org/formG">Financial Report</a></li>
                         <li><a href="<?php echo base_url(); ?>org/plans">Plans</a></li>
                     </ul>
