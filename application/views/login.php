@@ -10,7 +10,7 @@
 <section class="h-100">
 	<div class="headerbar">
 					<h1 class="display-1" style="font-size: 60px;">UP Organizations</h1>
-			<div class="container h-100">
+			<div class="container h-100 animated fadeIn">
 			<div class="row">
 			<div class="col-sm-7 text">
 			<div class="row justify-content-md-center h-100">
