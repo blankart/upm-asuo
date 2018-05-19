@@ -1,4 +1,16 @@
 <!-- JS code -->
+<?php
+	$account_type = $this->session->userdata['account_type'];
+
+	if($account_type == 'admin' || $account_type == 'org'){
+
+		$isStudent = false;
+
+	}
+	else{
+		$isStudent = true;
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,7 +116,7 @@
 	   }
 	</script>
 	<div class="header" style="padding-top: 80px; text-align: center; color: white;">
-		<h1 style="font-size: 40px; font-family: Lato; color: white">Hi <?php echo $profile['first_name']; ?>!</h1>
+		<?php if($isStudent){ ?> <h1 style="font-size: 40px; font-family: Lato; color: white">Hi <?php echo $profile['first_name']; ?>!</h1> <?php } ?>
 	</div><br>
 	<div style="background-color: rgb(255,255,255); margin-top: 40px; padding-top: 50px; box-shadow: 0 0 40px rgba(0,0,0,.50); padding-bottom: 50px;">
 		<div class="container animated fadeIn">
@@ -118,24 +130,46 @@
 							<div class='wrapper'><img class='profileicon' src="<?php echo base_url().'assets/student/profile_pic/'.$profile['profile_pic'];?>"></div>
 							<h3 style="text-align: center; margin-bottom: 5 px; margin-top: 30px;"><strong><?php echo $profile['first_name']; ?> <?php echo $profile['last_name']; ?></strong></h3>
 							<h6 style="text-align: center; margin-bottom: 30px;"><strong><?php echo $profile['course']; ?>, <?php echo $profile['year_level']; ?></strong></h6>
-							<p style="text-align: center;">E-mail</p>
+							<p style="text-align: center;"><?php echo $profile['up_mail']; ?></p>
 							<hr>
-							<button class="btn btn-danger btn-block" data-target="#editProfile" data-toggle="modal" style="margin-top: 10px;" type="button">Edit Profile</button><a href="#search"><button style="margin-top: 10px;" class="btn btn-danger btn-block" type='button'>Apply to Organizations</button></a>
+							<?php if($isStudent){ ?>
+							<button class="btn btn-danger btn-block" data-target="#editProfile" data-toggle="modal" style="margin-top: 10px;" type="button">Edit Profile</button>
+							<a href="#search"><button style="margin-top: 10px;" class="btn btn-danger btn-block" type='button'>Apply to Organizations</button></a>
+							<?php } ?>
+
 						</div>
 					</div>
 				</div>
 				<div class="col-6">
 					<div class="card" style="box-shadow: 0 0 40px rgba(0,0,0,.2);">
 						<div class="card-header">
-							<button class="btn btn-light btn-sm active" id="announcementsBTN" type="button">Announcements</button> <button class="btn btn-light btn-sm" id="myOrgsBTN" style="margin-left: 15px;" type="button">My Organizations</button> <button class="btn btn-light btn-sm" id="studProfileBTN" style="margin-left: 15px;" type="button">About NameOfStudent</button>
+
+							<?php if(!$isStudent){ ?>
+							<button class="btn btn-light btn-sm" id="studProfileBTN" style="margin-left: 15px;" type="button">About <?php echo $profile['first_name']; ?></button>
+							<?php } ?>
+
+							<?php if($isStudent){ ?>
+							<button class="btn btn-light btn-sm active" id="announcementsBTN" type="button">Announcements</button> 
+							<?php } ?>
+
+							<?php if($isStudent){ ?>
+							<button class="btn btn-light btn-sm" id="myOrgsBTN" style="margin-left: 15px;" type="button">My Organizations</button>
+							<?php } ?>
+
+							<?php if(!$isStudent){ ?>
+							<button class="btn btn-light btn-sm" id="myOrgsBTN" style="margin-left: 15px;" type="button"><?php echo $profile['first_name']; ?>'s Organizations</button>
+							<?php } ?>
+
 						</div>
+
+						<?php if($isStudent){ ?>
 						<div class="card-body" style=" height: 600px; overflow-y: scroll;">
 								<div id="announcements" style="display:none;">
 								<?php foreach($orgposts as $orgpost){ 
                                                       ?>
 								<div class="stream-post">
 									<div class="sp-author">
-										<a class="sp-author-avatar" href="#"><img alt="" src="<?php echo base_url().'assets/org/logo/'.$orgpost['org_logo'].'?'.rand(1, 100); ?>"></a>
+										<a class="sp-author-avatar" href="<?php echo base_url().'org/'.str_replace(' ', '', $orgpost['acronym']); ?>"><img alt="" src="<?php echo base_url().'assets/org/logo/'.$orgpost['org_logo'].'?'.rand(1, 100); ?>"></a>
 										<h6 class="sp-author-name"><a href="#"><?php echo $orgpost['acronym']; ?></a></h6>
 									</div>
 									<div class="sp-content">
@@ -147,6 +181,9 @@
 								</div>
 							<?php } ?>
 							</div>
+							<?php } ?>
+							
+
 							<div id="studProfile" style="display:none;">
 								<div class="well profile text-center">
 									<img alt="avatar" class="avatar img-thumbnail" height="250px" src="<?php echo base_url().'assets/student/profile_pic/'.$profile['profile_pic'];?>" width="250px"><br>
@@ -156,6 +193,7 @@
 									<p><a href=""><?php echo $profile['up_mail']; ?></a> || <?php echo $profile['contact_num']; ?></p>
 								</div>
 							</div>
+
 							<div id="myOrgs" style="display: none">
 								<div class="table-responsive">
 									<table class="table">
@@ -170,7 +208,7 @@
 											<?php foreach($orgs as $org){?>
 											<tr>
 												<td>
-													<a class="org-link" href="#"><img alt="orgLogo" src="<?php echo base_url().'assets/org/logo/'.$org['org_logo'].'?'.rand(1, 100); ?>" style="max-height: 80px" title="ACRONYM"></a>
+													<a class="org-link" href="<?php echo base_url().'org/'.str_replace(' ', '', $org['acronym']); ?>"><img alt="orgLogo" src="<?php echo base_url().'assets/org/logo/'.$org['org_logo'].'?'.rand(1, 100); ?>" style="max-height: 80px" title="ACRONYM"></a>
 												</td>
 												<td><?php echo $org['position'];?></td>
 												<td><?php echo $org['org_email'];?></td>
@@ -183,6 +221,8 @@
 						</div>
 					</div>
 				</div>
+
+				<?php if($isStudent){ ?>
 				<div class="col-3">
 					<div class="card" id="applications" style="box-shadow: 0 0 40px rgba(0,0,0,.2); padding: 0 !important;">
 						<div class="card-header" style="background-color: rgb(123,17,19); text-align: center;">
@@ -210,13 +250,9 @@
 						</div>
 					</div>
 				</div>
+
+				<?php } ?>
 			</div>
-		</div>
-		<div id="search">
-			<button class="close" type="button">x</button>
-			<form>
-				<input placeholder="type organization name here" type="search" value=""> <button class="btn btn-primary" type="submit">Search</button>
-			</form>
 		</div>
 	</div>
 </body>

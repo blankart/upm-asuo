@@ -31,7 +31,7 @@
                       "<button type='button' class='btn btn-link'>View Form5</button>"+
                       "</div>"+
                    "</div>"+
-                    "<button type='button' class='btn btn-info'>View Student Profile</button>"+
+                    "<a href = '<?php echo base_url();?>student/"+result['username']+"'><button type='button' class='btn btn-info'>View Student Profile</button></a>"+
                 "</div>"
        },
        function(){

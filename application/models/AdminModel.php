@@ -16,7 +16,7 @@
 		public function viewStudentInfo($id){
 			$condition = "sa.student_id = sp.student_id AND sa.student_id = " .$id;
 
-			$this->db->select('sa.student_id, sa.up_mail, sa.up_id, sp.first_name, sp.middle_name, sp.last_name, sp.course, sp.contact_num, sp.year_level');
+			$this->db->select('sa.student_id, sa.username, sa.up_mail, sa.up_id, sp.first_name, sp.middle_name, sp.last_name, sp.course, sp.contact_num, sp.year_level');
 			$this->db->from('studentaccount sa, studentprofile sp');
 			$this->db->order_by('sa.student_id');
 			$this->db->where ($condition);

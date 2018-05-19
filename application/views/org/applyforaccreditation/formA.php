@@ -60,26 +60,27 @@
 				<!-- sidenav -->
                 <div class="sidenav">
                 	<?php if($org_status == "Accredited"){ ?>
-                    <ul class="menu">
-                    	<li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
-                    	<li class="active"><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formG">Financial Report</a></li>
+                	<ul class="menu">
+                        <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
+                        <li class="active"><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
+                      	<li><a href="<?php echo base_url(); ?>org/formF">Activity Report</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formG">Financial Report</a></li>
+                      	<li><a href="<?php echo base_url(); ?>org/plans">Plans</a></li>
                     </ul>
 
                     <?php } else{ ?>
                     <ul class="menu">
-                    	<li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
-                    	<li class="active"><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
+                        <li class="active"><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/plans">Plans</a></li>
                     </ul>
                     <?php } ?>
                     
@@ -137,7 +138,7 @@
 						Address:&nbsp;&nbsp;<input type="text" id="contactAddress" name="data[contact_address]"  value="<?php echo $contact_address ?>" required>
 						Telephone No.:&nbsp;&nbsp;<input type="text" id="contactPhone" name="data[contact_tel]"  value="<?php echo $contact_tel ?>" required>&nbsp;&nbsp;
 						Mobile No.:&nbsp;&nbsp;<input type="text" id="contactMobile" onkeyup="incomplete2()" name="data[contact_mobile]"  value="<?php echo $contact_mobile ?>" required>&nbsp;&nbsp;
-						Other Contact Details:&nbsp;&nbsp;<input type="text" id="contactOthers" name="data[contact_other_details]" value="<?php echo $contact_other_details ?>">
+						Other Contact Details:&nbsp;&nbsp;<input type="text" id="contactOthers" name="data[contact_other_details]" value="<?php echo $contact_other_details ?>" required>
 						<br><br>
 
 						<button class="button" id="phase5but" onclick="processPhase5()" disabled>Continue</button>

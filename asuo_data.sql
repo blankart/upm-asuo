@@ -32,7 +32,7 @@ INSERT INTO `organizationaccount` (`org_id`, `org_email`, `password`, `org_statu
 (3, 'gabriela@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 0,  0),
 (4, 'morg@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 0,  0),
 (5, 'upbeau@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Accredited', 1, 1,  0),
-(6, 'upsocomsci@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Acredited', 1, 1, 0),
+(6, 'upsocomsci@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Accredited', 1, 1, 0),
 (7, 'orcomsoc@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 0, 0,  1),
 (8, 'upvector@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 0,  1),
 (9, 'orgasm@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1,  1),

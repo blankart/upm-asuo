@@ -11,6 +11,13 @@
 			return $result;
 		}
 
+		public function getStudentProfileDetailsByOthers($student_id){
+			$result['profile']= $this->getStudentDetails($student_id);
+			$result['orgs'] = $this->getStudentOrgs($student_id);
+
+			return $result;
+		}
+
 		private function getStudentDetails($student_id){
 			$condition = "sa.student_id = sp.student_id AND sp.student_id = " .$student_id;
 
@@ -24,7 +31,7 @@
 
 
 		private function getStudentOrgs($student_id){
-			$condition = "om.student_id = ".$student_id." AND om.org_id = op.org_id AND om.org_id = oa.org_id AND om.isRemoved = 0";
+			$condition = "om.student_id = ".$student_id." AND om.org_id = op.org_id AND om.org_id = oa.org_id AND om.isRemoved = 0 AND oa.archived = 0";
 
 			$this->db->select("op.org_id, op.org_name, op.acronym, om.position, op.org_logo, oa.org_email");
 			$this->db->from("orgmember om, organizationprofile op, organizationaccount oa");
@@ -67,13 +74,13 @@
 		}
 
 		private function getOrgPosts($org_id, $position = 'Member'){
-			$condition = "opt.org_id = op.org_id AND opt.org_id = ".$org_id." AND opt.archived = 0";
+			$condition = "oa.org_id = op.org_id AND opt.org_id = op.org_id AND opt.org_id = ".$org_id." AND opt.archived = 0 AND oa.archived = 0";
 
 			if($position == 'Member')
 				$condition .= " AND opt.privacy <> 'Officers'";
 		
 			$this->db->select("op.org_name, op.acronym, op.org_logo, opt.*");
-			$this->db->from("orgpost opt, organizationprofile op");
+			$this->db->from("orgpost opt, organizationprofile op, organizationaccount oa");
 			$this->db->where($condition);
 			$this->db->order_by("opt.date_posted");
 			$orgposts = $this->db->get();
@@ -82,10 +89,10 @@
 		}
 
 		private function getStudentOrgApplications($student_id){
-			$condition = "oap.student_id = ".$student_id." AND  oap.org_id = op.org_id AND oap.status ='Pending'";
+			$condition = "op.org_id = oa.org_id  AND oap.student_id = ".$student_id." AND  oap.org_id = op.org_id AND oap.status ='Pending' AND oa.archived = 0";
 			
 			$this->db->select("op.org_id, op.org_name, op.acronym, op.org_logo");
-			$this->db->from("orgapplication oap, organizationprofile op");
+			$this->db->from("orgapplication oap, organizationprofile op, organizationaccount oa");
 			$this->db->where($condition);
 			$applications = $this->db->get();
 
@@ -128,7 +135,7 @@
 		public function search($searchItem){
 			$condition = "(op.org_name LIKE '%" .$searchItem. "%' OR op.acronym LIKE '%" .$searchItem. "%' OR oa.org_email LIKE '%" .$searchItem. "%') AND oa.archived = 0 AND op.org_id = oa.org_id";
 
-			$this->db->select("op.org_id, op.org_name, op.acronym, oa.org_email");
+			$this->db->select("op.org_id, op.org_name, op.acronym, oa.org_email, op.org_category, op.description, op.org_logo");
 			$this->db->distinct();
 			$this->db->from("organizationprofile op, organizationaccount oa");
 			$this->db->where($condition);
