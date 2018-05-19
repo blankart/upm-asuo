@@ -70,6 +70,16 @@
 			$this->db->where($condition);
 			$this->db->update('organizationaccount', $changes);
 		}
+		public function rejectStud($student_id)
+		{
+			$condition = "student_id = ".$student_id;
+
+			$result['archived'] = 1;
+
+			$this->db->where($condition);
+			$this->db->update('studentaccount', $result);
+			
+		}
 
 		public function searchAllStudents($string){
 			$condition = "sa.student_id = sp.student_id AND (sp.last_name LIKE '%".$string."%' OR sp.first_name LIKE '%".$string."%' OR sa.up_id LIKE '%".$string."%')"; 

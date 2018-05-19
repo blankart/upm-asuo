@@ -59,10 +59,11 @@
                                  location.reload();
                              });
                         }
+                      },
+                      error: function(){
+                        alert("error");
                       }
                     });
-
-          swal("Rejected!", "The account has been blocked.", "success");
         });
       }
 
