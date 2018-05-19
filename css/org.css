@@ -308,6 +308,7 @@
 	color: #a75d54;
 }
 
+/** for org.php **/
 #orgLogo, #consti{
     margin-left: 20em; 
     padding: 10px; 
@@ -320,4 +321,53 @@
 
 #consti{
     margin-left: 1em; 
+}
+
+.header{
+    padding-top: 80px; 
+    text-align: center; 
+    color: white;
+}
+
+h1{
+    font-size: 40px; 
+    font-family: Lato;
+}
+
+h3{
+    text-align: center; 
+    margin-bottom: 5px; 
+    margin-top: 30px;
+}
+
+h4{
+    color: white;
+}
+
+#panel{
+    background-color: rgb(255,255,255);
+    margin-top: 40px; 
+    padding-top: 50px; 
+    box-shadow: 0 0 40px rgba(0,0,0,.50); 
+    padding-bottom: 50px;
+}
+
+#ProfileDetails{
+    box-shadow: 0 0 40px rgba(0,0,0,.2);
+}
+
+.card-header{
+    background-color: rgb(123,17,19); 
+    text-align: center;
+}
+
+#logo{
+    position: relative; 
+    margin-left: 80px; 
+    border-radius: 50%; 
+    border-style: solid; 
+    border-width: medium; 
+    border-color: white; 
+    box-shadow: 0 0 40px rgba(0,0,0,.2); 
+    align-items: center;
 }
