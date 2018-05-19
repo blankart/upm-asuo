@@ -356,7 +356,7 @@ h3{
     box-shadow: 0 0 40px rgba(0,0,0,.2);
 }
 
-.card-header{
+#myCard{
     background-color: rgb(123,17,19); 
     text-align: center;
 }
