@@ -24,6 +24,8 @@
 				$this->uploadFormB();
 			else if($action == 'uploadFormF')
 				$this->uploadFormF();
+			else if($action == 'applyToOrg')
+				$this->applyToOrg();
 			else if ($action == 'rejectMembership')
 				$this->rejectMembership();
 			else if ($action == 'approveMembership')
@@ -62,7 +64,15 @@
 				$this->load->view('header');
 				$this->load->view('org/applyforaccreditation/formG');
 				$this->load->view('footer');
-			}else if ($action == 'saveFormA') {
+			}
+
+			else if ($action == 'plans'){
+				$this->load->view('header');
+				$this->load->view('org/applyforaccreditation/plans');
+				$this->load->view('footer');
+			}
+
+			else if ($action == 'saveFormA') {
 				$this->saveFormA();
 			}
 			else if($action == 'viewFormA'){
@@ -197,7 +207,7 @@
 			$result['isOfficer'] = $data['isOfficer'];
 			$result['isMember'] = $data['isMember'];
 			$result['isApplicant'] = $data['isApplicant'];
-
+			$result['org_id'] = $org_id;
 			$this->load->view('header');
 			$this->load->view('org/org', $result);
 			$this->load->view('footer');
@@ -377,6 +387,26 @@
 				echo json_encode($data);
 				exit();     
             }	
+		}
+
+		private function applyToOrg()
+		{
+			$source = $this->input->post('org_id');			
+			$org_id = $source;
+			//$org_id = 6;
+			if($org_id != NULL)
+			{
+				$student_id = $this->session->userdata['user_id'];
+				$this->load->model('OrgModel');
+				$this->OrgModel->applyToOrganization($student_id,$org_id);
+				//var_dump($result);
+				echo json_encode($org_id);
+				exit(); 
+			}
+			else
+			{
+				show_404();
+			}
 		}
 
 		private function rejectMembership(){
