@@ -328,12 +328,6 @@
 				return "update success";
 			}
 
-			else
-			{
-				$this->db->insert('form_a_details', $data);
-			}
-
-
 			//return $org_details->result_array()[0];
 			//
 
