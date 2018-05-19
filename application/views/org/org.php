@@ -8,6 +8,13 @@
         $isMember = $isMember;
         $isApplicant = $isApplicant;
         $isOrg = false;
+
+        echo "admin: ".$isAdmin;
+        echo "officer: ".$isOfficer;
+        echo "member: ".$isMember;
+        echo "applicant: ".$isApplicant;
+        echo "org: ".$isOrg;
+
     }else{
         $isAdmin = false;
         $isOfficer = false;
@@ -274,9 +281,17 @@
                             <hr>
 
                             <?php if($account_type == 'org') {?>
-                            <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#editprofile">Edit Profile</button> <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" onclick="location.href = '<?php echo base_url(); ?>org/applyforaccreditation';">Apply for Accreditation</button><button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#createposts">Create Post</button><button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="applyToOrg()">Apply for Membership</button>
-
+                            <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#editprofile">Edit Profile</button> <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" onclick="location.href = '<?php echo base_url(); ?>org/applyforaccreditation';">Apply for Accreditation</button><button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#createposts">Create Post</button>
                             <?php } ?>
+
+                            <?php if(!$isAdmin && !$isOfficer && !$isMember && !$isOrg && !$isApplicant ){?>
+                            <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="applyToOrg()">Apply for Membership</button>
+                              <?php } ?>
+
+                            <?php if(!$isAdmin && !$isOfficer && !$isMember && !$isOrg && $isApplicant ){?>
+                            <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="applyToOrg()" disabled>Apply for Membership</button>
+                              <?php } ?>
+
                         </div>
                     </div>
                 </div>
