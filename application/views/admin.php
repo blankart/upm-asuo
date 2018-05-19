@@ -21,8 +21,8 @@
                      <br><button type="button" onclick="validatestudactSearch()" class="btn btn-danger admin-button" data-toggle="modal" data-target="#validatestudact">Validate Student Account</button></br>
                      <br><button type="button" onclick="activateorgactSearch()" class="btn btn-danger admin-button" data-toggle="modal" data-target="#activateorgact">Activate Organization Account</button></br>
                      <br><button type="button" onclick="livesearchallstud()" class="btn btn-danger admin-button" data-toggle="modal" data-target="#viewallstudents">View All Student Accounts</button></br>
-                    
                      <br><button type="button" onclick="livesearchallorg()" class="btn btn-danger admin-button" data-toggle="modal" data-target="#viewallorg">View All Organization Accounts</button></br>
+                     <br><button type="button" onclick="" class="btn btn-danger admin-button" data-toggle="modal" data-target="#changeloginnotice">Change Login Notice</button></br>
                
                   </div>
                </div>

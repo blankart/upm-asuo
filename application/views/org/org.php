@@ -241,7 +241,7 @@
     <div class="orgheader">
          <?php if($account_type=="org"){ ?>  <h1>Hi <?php echo $profile['acronym']; ?>!</h1> <?php } ?> 
     </div>
-    <div id="panel">
+    <div id="panel" class='animated fadeIn'>
         <div class="container">
             <div class="row">
                 <div class="col-4">
