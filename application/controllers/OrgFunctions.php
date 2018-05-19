@@ -119,14 +119,28 @@
 					if($account_type == 'org')		
 						$this->loadOrgProfile();
 
-					if($account_type == 'unverifiedOrg')
-						echo 'verify your email using ' .$this->session->userdata['email']. "."; //load view here note: redirect
+					if($account_type == 'unverifiedOrg'){
+						$data['org_email'] = $this->session->userdata['email'];
+
+						$this->load->view('header'); 
+						$this->load->view('errors/html/unverified', $data); 
+						$this->load->view('footer');
+					}					
 			
-					if($account_type == 'unactivatedOrg')
-						echo 'You account is not yet activated. Procced to OSA.'; //load view here note: redirect
+					if($account_type == 'unactivatedOrg'){
+						//echo 'You account is not yet activated. Procced to OSA.'; //load view here note: redirect
+						$this->load->view('header'); 
+						$this->load->view('errors/html/unactivated'); 
+						$this->load->view('footer');
+					}
 				
-					if($account_type == 'archivedOrg')
-						echo 'You account is blocked. Procced to OSA.'; //load view here note: redirect
+					if($account_type == 'archivedOrg'){
+						//echo 'You account is blocked. Procced to OSA.'; //load view here note: redirect
+
+						$this->load->view('header'); 
+						$this->load->view('errors/html/blocked'); 
+						$this->load->view('footer');
+					}
 			 	}
 				else
 					redirect(base_url().'login');
