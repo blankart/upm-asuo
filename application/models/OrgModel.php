@@ -146,6 +146,15 @@
 			$this->db->insert('orgmember', $data);
 		}
 
+		public function applyToOrganization($student_id,$org_id)
+		{
+			$toInsert['student_id'] = $student_id;
+			$toInsert['org_id'] = $org_id;
+			$toInsert['status'] = "Pending";
+			$this->db->insert('orgapplication',$toInsert);
+			return "success";
+		}
+
 		public function rejectMembership($org_id, $student_id){
 			//tables: orgapplicaton
 
@@ -444,7 +453,7 @@
 			$this->db->update("accreditationapplication", $changes);	
 		}
 		//end of ORG ACCREDITATION FUNCTIONS
-
+//---------------------------------------------END OF ORG ACCREDITATION FUNCTIONS -----------------------------
 		//CREATE POST FUNCTION
 		public function createPost($post){
 			$this->db->insert('orgpost', $post);
