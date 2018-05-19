@@ -187,6 +187,36 @@
 			$this->db->update('orgmember', $changes);	
 		}
 
+		public function getOrgName($org_id){
+
+			$condition = 'org_id = ' .$org_id. ' AND org_id = ' .$org_id;
+
+			$this->db->select('org_name');
+			$this->db->from('organizationprofile');
+			$this->db->where($condition);
+			$query = $this->db->get();
+	
+			if($query->num_rows() == 1)
+				return $query->result_array()[0]['org_name'];
+			else
+				return false;		
+		}
+
+		public function getStudentUPMail($student_id){
+
+			$condition = 'student_id = ' .$student_id. ' AND student_id = ' .$student_id;
+
+			$this->db->select('up_mail');
+			$this->db->from('studentaccount');
+			$this->db->where($condition);
+			$query = $this->db->get();
+	
+			if($query->num_rows() == 1)
+				return $query->result_array()[0]['up_mail'];
+			else
+				return false;		
+		}
+
 		public function getApplicationStatus($org_id, $student_id)
 		{
 			//tables: orgapplication
