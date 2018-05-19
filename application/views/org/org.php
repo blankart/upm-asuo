@@ -36,7 +36,11 @@
 <body>
     <script>
                $(document).ready(function(){
+                <?php if(!$isOrg ){?>
+                   dispOrgProfile();
+                <?php } else{ ?>
                    dispAdminAnnouncements();
+                <?php } ?>
                    $("#orgPostsBut").click(function(){
                       dispOrgPosts();
                    })
