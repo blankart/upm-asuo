@@ -271,7 +271,7 @@
         <div id="sendNoticeToOrg" style="display: none;"></div>
         <div id="sendNoticeToAll" style="display: none;"></div><!-- Modal footer -->
         <div class="modal-footer">
-          <button class="btn btn-success" onclick="">Send Notice</button> <button class="btn btn-danger" data-dismiss="modal" onclick="sendNoticeReset()" type="button">Close</button>
+          <button class="btn btn-danger" data-dismiss="modal" onclick="sendNoticeReset()" type="button">Close</button>
         </div>
       </div>
     </div>
