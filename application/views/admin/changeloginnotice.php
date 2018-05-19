@@ -7,8 +7,14 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
-             
-                </div>
+				<div class="form-group">
+					<input type="text" minlength="1" maxlength="50" class="form-control" id="sendNoticeTitle" name="subject" placeholder="Title" required>
+				</div>   
+				<div class="form-group">
+					<textarea minlength="1" maxlength="500" class="form-control" type="textarea" id="loginNotice" placeholder="Message" rows="7" required></textarea>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</a>
+            </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
