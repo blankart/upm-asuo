@@ -301,54 +301,37 @@
 		//form accreditation
 		public function insertFormAdetails($data,$org_id)
 		{
-		/*
-			if($data['app_id'] == 0)
-			{
-				$command['org_id'] = $org_id;
-				$command['app_status'] = "Pending";
-				$command['form_A'] = "No submission";
-				$this->db->select("*");
-				$this->db->from("accreditationapplication");
-				$formAnum = $this->db->get()->num_rows()+1;
-				$command['app_id'] = $formAnum;
-				//return $command;
-				$this->db->insert('accreditationapplication', $command);
-				//return $command;
-			}
-
-			$condition = "aa.org_id = ".$org_id." AND aa.org_id = op.org_id";
-			$this->db->select("aa.*,fa.*");
-			$this->db->from("organizationprofile op,accreditationapplication aa,form_a_details fa");
-			$this->db->where($condition);
-			$org_details = $this->db->get();
-			
+			//checker
 			//return $data;
-			return $org_details->result_array();
 
-			if($org_details->num_rows() == 1)
+			//check if form_a_details has value
+			$condition = "fa.app_id = aa.app_id AND aa.org_id = ".$org_id." AND aa.app_id = ".$data['app_id'];
+			$this->db->select("fa.*,aa.*");
+			$this->db->from("accreditationapplication aa,form_a_details fa");
+			$this->db->where($condition);
+			$faDetails = $this->db->get();
+
+			//checker
+			//return $faDetails->result_array();
+
+			//if form_a_details is empty
+			if($faDetails->num_rows() == 0)
+			{
+				$this->db->insert('form_a_details', $data);
+				return "insert success";
+			}
+			else //else if not empty
 			{
 				$condition = "app_id = ".$data['app_id'];
 				$this->db->where($condition);
 				$this->db->update('form_a_details', $data);
 				return "update success";
 			}
-			else if($org_details->num_rows() == 0)
-			{
-				//return $data;
-				//return "hello";
-				$this->db->insert('form_a_details', $data);
-				return "success";
-			}
-
-			//return $org_details->result_array()[0];
-			//
-		*/
+		
 		}
 
 		public function input_formA_details($org_id)
 		{
-			//get predefined org details
-			$pre_def_details = $this->getOrgDetails($org_id);
 
 			//check if has history of application
 			$condition = "org_id = ".$org_id;
@@ -360,76 +343,78 @@
 			//if accreditation application is empty
 			if($aaDetails->num_rows() == 0)
 			{
+
 				$aaInsert['org_id'] = $org_id;
 				$aaInsert['app_status'] = "Pending";
 				$aaInsert['form_A'] = "No Submission";
 				$this->db->insert('accreditationapplication', $aaInsert);
-			}
 
+				//get app_id from accreditationapplication
+				$condition = "org_id = ".$org_id;
+				$this->db->select("app_id");
+				$this->db->from("accreditationapplication");
+				$this->db->where($condition);
+				$aaApp_id = $this->db->get();			
+
+				//set user input details to blank
+				$result['stay'] = "new";
+				$result['app_id'] = $aaApp_id;
+				$result['experience'] = "0";
+				$result['adviser'] = "";
+				$result['adviser_position'] = "";
+				$result['adviser_college'] = "";
+				$result['contact_person'] = "";
+				$result['contact_position'] = "";
+				$result['contact_email'] = "";
+				$result['contact_address'] = "";
+				$result['contact_tel'] = "";
+				$result['contact_mobile'] = "";
+				$result['contact_other_details'] = "";
+				return $result;
+
+			}
 			//accreditation application is not empty
 			else
 			{
-				//check if form_a_details is empty
+				//get app_id from accreditationapplication
 				$condition = "org_id = ".$org_id;
-				$this->db->select("*");
-				$this->db->from("form_a_details");
+				$this->db->select("app_id");
+				$this->db->from("accreditationapplication");
 				$this->db->where($condition);
-				$aaDetails = $this->db->get();				
-			}
+				$aaApp_id = $this->db->get();			
 
-		/*
-			$condition = "aa.app_id = fa.app_id AND oa.org_id = ".$org_id." AND aa.org_id = oa.org_id";
-			$this->db->select("fa.*");
-			$this->db->from("accreditationapplication aa,form_a_details fa,organizationprofile oa");
-			$this->db->where($condition);
-			$org_details = $this->db->get();
-			//return $org_details->result_array();
-			if($org_details->num_rows() == 0)
-			{
-				$condition = "oa.org_id = ".$org_id. " AND aa.org_id = oa.org_id";
-				$this->db->select("oa.org_name,oa.org_category,oa.description,oa.objectives");
-				$this->db->from("organizationprofile oa,accreditationapplication aa");
+				//check if form_a_details is empty for checking of history application
+				$condition = "aa.org_id = ".$org_id." AND aa.app_id = fa.app_id";
+				$this->db->select("fa.*");
+				$this->db->from("accreditationapplication aa,form_a_details fa");
 				$this->db->where($condition);
-				$org_get = $this->db->get();
-
-				$temp = $org_get->result_array();
-				if($temp == NULL)
+				$faDetails = $this->db->get();
+				//if form_a_details value is empty
+				if($faDetails->num_rows() == 0)
 				{
-					$temp['org_app_empty'] = true;
+					//user input details set to blank
+						$result['stay'] = "new";
+						$result['app_id'] = $aaApp_id->result_array()[0]['app_id'];
+						$result['experience'] = "0";
+						$result['adviser'] = "";
+						$result['adviser_position'] = "";
+						$result['adviser_college'] = "";
+						$result['contact_person'] = "";
+						$result['contact_position'] = "";
+						$result['contact_email'] = "";
+						$result['contact_address'] = "";
+						$result['contact_tel'] = "";
+						$result['contact_mobile'] = "";
+						$result['contact_other_details'] = "";
+						return $result;
 				}
-				else
+				else //form_a_details value is not empty
 				{
-					$temp['org_app_empty'] = false;
+					return $faDetails->result_array()[0];		
 				}
-				$temp['formAempty'] = true;
+				
 
-				return $temp;
 			}
-			else
-			{
-				//$this->db->insert('form_a_details', $data);
-				$condition = "oa.org_id = ".$org_id. " AND aa.org_id = oa.org_id AND aa.app_id = fa.app_id";
-				$this->db->select("oa.org_name,oa.org_category,oa.description,oa.objectives,aa.*,fa.*");
-				$this->db->from("organizationprofile oa,accreditationapplication aa,form_a_details fa");
-				$this->db->where($condition);
-				$org_get = $this->db->get();
-
-
-				$temp = $org_get->result_array()[0];				
-				//return $temp;
-				if($temp == NULL)
-				{
-					$temp['org_app_empty'] = true;
-				}
-				else
-				{
-					$temp['org_app_empty'] = false;
-				}
-				$temp['formAempty'] = false;
-
-				return $temp;
-			}
-		*/
 
 		}
 		//end of ORG ACCREDITATION FUNCTIONS

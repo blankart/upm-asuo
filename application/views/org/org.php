@@ -24,6 +24,7 @@
     <meta charset="utf-8">
     <meta content="UPCS" name="author">
     <title>UP Organizations</title>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/org.css">
 </head>
 <body>
     <script>
@@ -237,26 +238,26 @@
                 });
               }              
     </script>
-    <div class="header" style="padding-top: 80px; text-align: center; color: white;">
-         <?php if($account_type=="org"){ ?>  <h1 style="font-size: 40px; font-family: Lato;">Hi <?php echo $profile['acronym']; ?>!</h1> <?php } ?> 
+    <div class="header">
+         <?php if($account_type=="org"){ ?>  <h1>Hi <?php echo $profile['acronym']; ?>!</h1> <?php } ?> 
     </div>
-    <div class="animated fadeIn" style="background-color: rgb(255,255,255); margin-top: 40px; padding-top: 50px; box-shadow: 0 0 40px rgba(0,0,0,.50); padding-bottom: 50px;">
+    <div class="animated fadeIn" id="panel">
         <div class="container">
             <div class="row">
                 <div class="col-4">
-                    <div class="card" id="ProfileDetails" style="box-shadow: 0 0 40px rgba(0,0,0,.2);">
-                        <div class="card-header" style="background-color: rgb(123,17,19); text-align: center;">
-                            <h4 style="color: white;">Profile Details</h4>
+                    <div class="card" id="ProfileDetails">
+                        <div class="card-header">
+                            <h4>Profile Details</h4>
                         </div>
                         <div class="card-body">
-                            <img src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo'].'?'.rand(1, 100); ?>" style="position: relative; margin-left: 80px; border-radius: 50%; border-style: solid; border-width: medium; border-color: white; box-shadow: 0 0 40px rgba(0,0,0,.2); align-items: center;" width="150">
-                            <h3 style="text-align: center; margin-bottom: 5   px; margin-top: 30px;"><strong><?php echo $profile['org_name']; ?></strong></h3>
+                            <img id="logo" src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo'].'?'.rand(1, 100); ?>" width="150">
+                            <h3><strong><?php echo $profile['org_name']; ?></strong></h3>
                             <h6 style="text-align: center; margin-bottom: 30px;"><strong><?php echo $profile['acronym']; ?></strong></h6>
                             <p style="text-align: center;"><?php echo $profile['org_category']; ?></p>
                             <hr>
 
                             <?php if($account_type == 'org') {?>
-                            <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#editprofile">Edit Profile</button> <a class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" href="<?php echo base_url(); ?>org/applyforaccreditation">Apply for Accreditation</a><button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#createposts">Create Post</button>
+                            <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#editprofile">Edit Profile</button> <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" onclick="location.href = '<?php echo base_url(); ?>org/applyforaccreditation';">Apply for Accreditation</button><button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#createposts">Create Post</button>
 
                             <?php } ?>
                         </div>
@@ -318,7 +319,7 @@
 
                                     <div class="sp-content">
                                       <div class="sp-info">
-                                        <h6><?php echo $mypost['title']; ?></h6>
+                                        <h6 style="color: #3f3f3f; font-size: 18px; font-weight: bold;"><?php echo $mypost['title']; ?></h6>
                                               <?php echo date("F j, Y, g:i:s a", strtotime($mypost['date_posted'])). ' | ' .$mypost['privacy']; ?>
                                       </div>
                                             
@@ -435,7 +436,7 @@
                                     </div>
                                     <div class="sp-content">
                                         <div class="sp-info">
-                                          <h6><?php echo $announcement['title']; ?></h6>
+                                          <h6 style="color: #3f3f3f; font-size: 18px; font-weight: bold;"><?php echo $announcement['title']; ?></h6>
                                               <?php echo date("F j, Y, g:i:s a", strtotime($announcement['date_posted'])); ?>
                                         </div>
                                         <p class="sp-paragraph mb-0">  <?php echo $announcement['content']; ?></p>
