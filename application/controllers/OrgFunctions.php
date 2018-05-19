@@ -387,20 +387,26 @@
 //-------------------------------FORMS FOR ACCREDITATION---------------------------------------
 		private function generateFormA()
 		{
-				$this->load->model('OrgModel');
-				$org_id = $this->session->userdata['user_id'];
-				$result = $this->OrgModel->input_formA_details($org_id);
-				var_dump($result);
-				//may laman siyang nakuha
-
-						//var_dump($result);
-						//$this->load->view('header');
-						//$this->load->view('org/applyforaccreditation/formA', $result);
-						//$this->load->view('footer');
-					
-							
-				//
+			$this->load->model('OrgModel');
+			
+			//get org id
+			$org_id = $this->session->userdata['user_id'];
+			
+			//get user input form a details
+			$result = $this->OrgModel->input_formA_details($org_id);
+			
+			//get predefined form a details
+			$pre_def_details = $this->OrgModel->getOrgDetails($org_id);
 				
+			$result['org_name'] = $pre_def_details['org_name'];
+			$result['org_category'] = $pre_def_details['org_category'];
+			$result['description'] = $pre_def_details['description'];
+			$result['objectives'] = $pre_def_details['objectives'];
+			//var_dump($result);
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/formA', $result);
+			$this->load->view('footer');
+
 		}
 
 		//saving data from form a accreditation
@@ -409,12 +415,11 @@
 			 
 			$form_details = $this->input->post('data');
 			$org_id = $this->session->userdata['user_id']; 
-			 //unset($form_details['app_id']);
-			 //var_dump($form_details);
-			 $this->load->model('OrgModel');
-			 $temp = $this->OrgModel->insertFormAdetails($form_details,$org_id);
-			 var_dump($temp);
-			 //redirect(base_url().'org/formA');
+			//var_dump("org id ".$org_id);
+			$this->load->model('OrgModel');
+			$temp = $this->OrgModel->insertFormAdetails($form_details,$org_id);
+			//var_dump($temp);
+			redirect(base_url().'org/formA');
 		}
 
 		private function loadAccreditationHome(){
