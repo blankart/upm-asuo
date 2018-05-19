@@ -359,6 +359,9 @@ h3{
 #myCard{
     background-color: rgb(123,17,19); 
     text-align: center;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 #logo{
