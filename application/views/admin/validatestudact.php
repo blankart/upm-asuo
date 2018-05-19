@@ -23,7 +23,7 @@
               output+="<tr>"+
                        "<td>"+result[key]['up_id']+"</td>"+
                        "<td>"+result[key]['last_name']+", "+result[key]['first_name']+ " " +result[key]['middle_name']+ "</td>"+
-                       "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Account</button><button onclick='approveStud("+result[key]['student_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Validate</button> <button onclick='rejectAcc()' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Reject</button></td>"+
+                       "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Account</button><button onclick='approveStud("+result[key]['student_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Validate</button> <button onclick='rejectAcc("+result[key]['student_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Reject</button></td>"+
                     "</tr>";
            }
         }
@@ -33,7 +33,7 @@
 
     }
 
-      function rejectAcc(){
+      function rejectAcc(student_id){
         swal({
           title: "Reject student account creation?",
           text: "Rejecting an account will automatically block it.",
@@ -44,6 +44,24 @@
           closeOnConfirm: false
         },
         function(){
+                $.ajax({
+                      type: "post",
+                      url: "<?php echo base_url();?>admin/rejectStudent",
+                      data: {student_id: student_id},
+                      dataType: "JSON",
+                      async: false,
+                      cache: false,
+                      success: function(result){
+                        //alert(result);
+                        if(result){
+                          swal({title: "Rejected!", text: "The account has been blocked.", type: "success"},
+                             function(){ 
+                                 location.reload();
+                             });
+                        }
+                      }
+                    });
+
           swal("Rejected!", "The account has been blocked.", "success");
         });
       }

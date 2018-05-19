@@ -14,6 +14,8 @@
 				$this->viewStudentInfo();
 			else if ($action == 'validateStudentAccount')
 				$this->validateStudentAccount();
+			else if ($action == 'rejectStudent')
+				$this->rejectStudent();
 
 			else if ($action == 'searchOrganizations')
 				$this->searchOrganizations();
@@ -136,6 +138,11 @@
 			}
 			else
 				show_404();
+		}
+
+		private function rejectStudent()
+		{
+			
 		}
 
 		private function searchOrganizations(){
