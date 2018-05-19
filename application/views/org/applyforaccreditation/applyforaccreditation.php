@@ -15,16 +15,17 @@
                 <!-- insert sidenav -->
                 <div class="sidenav">
                     <?php if($org_status == "Accredited"){ ?>
-                    <ul class="menu">
+                    <ul clas="menu">
                         <li class="active"><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formF">Activity Report</li>
                         <li><a href="<?php echo base_url(); ?>org/formG">Financial Report</a></li>
-                    </ol>
+                        <li><a href="<?php echo base_url(); ?>org/plans">Plans</a></li>
+                    </ul>
 
                     <?php } else{ ?>
                     <ul class="menu">
@@ -34,8 +35,8 @@
                         <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
-                    </ol>
+                        <li><a href="<?php echo base_url(); ?>org/plans">Plans</a></li>
+                    </ul>
                     <?php } ?>
 
                 </div>

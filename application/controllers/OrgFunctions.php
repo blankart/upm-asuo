@@ -62,7 +62,15 @@
 				$this->load->view('header');
 				$this->load->view('org/applyforaccreditation/formG');
 				$this->load->view('footer');
-			}else if ($action == 'saveFormA') {
+			}
+
+			else if ($action == 'plans'){
+				$this->load->view('header');
+				$this->load->view('org/applyforaccreditation/plans');
+				$this->load->view('footer');
+			}
+
+			else if ($action == 'saveFormA') {
 				$this->saveFormA();
 			}
 			else if($action == 'viewFormA'){
