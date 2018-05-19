@@ -1,11 +1,3 @@
-<link rel="stylesheet" type="text/css" href="../bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../css/my-login.css">
-<link rel="stylesheet" type="text/css" href="../css/animations.css">
-<link rel="stylesheet" type="text/css" href="../css/material-search.css">
-<link rel="stylesheet" type="text/css" href="../css/stylesheet.css">
-
-
-
 <script>
    function showPreview() {
       var preview = document.querySelector('img[alt=avatar]');

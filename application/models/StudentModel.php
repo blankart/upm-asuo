@@ -26,7 +26,7 @@
 		private function getStudentOrgs($student_id){
 			$condition = "om.student_id = ".$student_id." AND om.org_id = op.org_id AND om.org_id = oa.org_id AND om.isRemoved = 0";
 
-			$this->db->select("op.org_id, op.org_name, op.acronym, om.position");
+			$this->db->select("op.org_id, op.org_name, op.acronym, om.position, op.org_logo, oa.org_email");
 			$this->db->from("orgmember om, organizationprofile op, organizationaccount oa");
 			$this->db->where($condition);
 			$this->db->order_by("op.org_name");
@@ -72,7 +72,7 @@
 			if($position == 'Member')
 				$condition .= " AND opt.privacy <> 'Officers'";
 		
-			$this->db->select("op.org_name, op.acronym, opt.*");
+			$this->db->select("op.org_name, op.acronym, op.org_logo, opt.*");
 			$this->db->from("orgpost opt, organizationprofile op");
 			$this->db->where($condition);
 			$this->db->order_by("opt.date_posted");
@@ -84,7 +84,7 @@
 		private function getStudentOrgApplications($student_id){
 			$condition = "oap.student_id = ".$student_id." AND  oap.org_id = op.org_id AND oap.status ='Pending'";
 			
-			$this->db->select("op.org_id, op.org_name, op.acronym");
+			$this->db->select("op.org_id, op.org_name, op.acronym, op.org_logo");
 			$this->db->from("orgapplication oap, organizationprofile op");
 			$this->db->where($condition);
 			$applications = $this->db->get();
