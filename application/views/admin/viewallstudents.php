@@ -1,4 +1,47 @@
 <script>
+    function vStudInfo(studentID){
+          $.ajax({
+        type:"post",
+        url:"<?php echo base_url(); ?>admin/viewStudentInfo",
+        cache: false,
+        data:{id: studentID},
+        dataType: 'json',
+        async: false,
+        success:function(result){
+          swal({
+       imageUrl: "<?php echo base_url();?>"+"img/logo.jpg",
+       html: true,
+       title: "<h4>"+result['last_name']+", "+result['first_name']+" "+result['middle_name']+"</h4>",
+       text: "<div class='container' style='margin-top: 20px;'>"+
+                "<div class='row' style='text-align: left;'>"+
+                   "<div class='col'>"+
+                      "<h4 style='font-size: 18px'><strong>UP Mail</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>Course</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>Year Level</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>Student Number</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>Contact Number</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>Form5</strong></h4>"+
+                      "</div>"+
+                   "<div class='col'>"+
+                      "<h4 style='font-size: 18px'>"+result['up_mail']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['course']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['year_level']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['up_id']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['contact_num']+"</h4>"+
+                      "<button type='button' class='btn btn-link'>View Form5</button>"+
+                      "</div>"+
+                   "</div>"+
+                    "<button type='button' class='btn btn-info'>View Student Profile</button>"+
+                "</div>"
+       },
+       function(){
+       
+       
+       });
+       }
+       });
+        
+       }
     function livesearchallstud()
         {
         var search = $("#idInputAllStud").val();
@@ -35,7 +78,7 @@
                         "<td>"+result[key]['up_id']+"</td>"+
                         "<td>"+result[key]['last_name']+", "+result[key]['first_name']+ " " +result[key]['middle_name']+ "</td>"+
                         "<td>"+archived+"</td>"+
-                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Details</button>";
+                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='vStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Details</button>";
               if (result[key]['archived'] == 0)
               {
                 output+="<button onclick='blockStudAct("+result[key]['student_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Block Account</button></td></tr>";

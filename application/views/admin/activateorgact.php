@@ -112,22 +112,20 @@
        text: "<div class='container' style='margin-top: 20px;'>"+
                 "<div class='row' style='text-align: left;'>"+
                    "<div class='col'>"+
-                      "<h4 style='font-size: 18px'><strong>Date Established</strong></h4>"+
                       "<h4 style='font-size: 18px'><strong>Org Acronym</strong></h4>"+
                       "<h4 style='font-size: 18px'><strong>Org Category</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Description</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Objectives</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Organization Website</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>College</strong></h4>"+
                       "<h4 style='font-size: 18px'><strong>Mailing Address</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>Org Website</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>Email Address</strong></h4>"+
                       "</div>"+
-                   "<div class='col'>"+
-                      "<h4 style='font-size: 18px'>"+result['date_established']+"</h4>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['acronym']+"</h4>"+
                       "<h4 style='font-size: 18px'>"+result['org_category']+"</h4>"+
-                      "<h4 style='font-size: 18px'>"+result['description']+"</h4>"+
-                      "<h4 style='font-size: 18px'>"+result['objectives']+"</h4>"+
-                      "<h4 style='font-size: 18px'>"+result['org_website']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['org_college']+"</h4>"+
                       "<h4 style='font-size: 18px'>"+result['mailing_address']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['org_website']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['org_email']+"</h4>"+
                       "</div>"+
                    "</div>"+
                 "</div>"
