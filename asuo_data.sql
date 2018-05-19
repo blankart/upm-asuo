@@ -7,7 +7,7 @@ INSERT INTO `studentaccount` (`student_id`, `up_id`, `up_mail`, `username`, `pas
 (6, '201408109', 'pslasmarias@up.edu.ph', 'pslasmarias', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
 (7, '201479241', 'ncmendoza1@up.edu.ph', 'ncmendoza1', '32250170a0dca92d53ec9624f336ca24', 1, 0, 0),
 (8, '201499764', 'dgperez@up.edu.ph', 'dgperez', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
-(9, '201480756', 'avsangeuenza@up.edu.ph', 'avsanguenza', '32250170a0dca92d53ec9624f336ca24', 0, 0, 0),
+(9, '201480756', 'avsanguenza@up.edu.ph', 'avsanguenza', '32250170a0dca92d53ec9624f336ca24', 0, 0, 0),
 (10, '201480768', 'aleinstein@up.edu.ph', 'aleinstein', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0);
 
 INSERT INTO `studentprofile` (`student_id`, `first_name`, `middle_name`, `last_name`, `sex`, `birthday`, `course`, `year_level`, `contact_num`, `address`, `profile_pic`, `form5`) VALUES

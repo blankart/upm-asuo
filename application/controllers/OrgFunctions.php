@@ -376,12 +376,63 @@
 				$this->load->model('OrgModel');
 				$this->OrgModel->removeMember($org_id, $student_id, $reason);
 
-				echo json_encode(true);
+
+				$org_name = $this->OrgModel->getOrgName($org_id);
+				$up_mail = $this->OrgModel->getStudentUPMail($student_id);
+				$this->sendRemoveMembershipNotification($org_name, $up_mail, $reason);
+
+				echo json_encode($org_name.' '.$up_mail);
 				exit();
 			}
 			else
 				show_404();
 		}
+
+		private function sendRemoveMembershipNotification($org_name, $up_mail, $reason){
+		
+				$config = array(
+					'useragent' => "CodeIgniter",
+		        	'mailpath'  => "/usr/bin/sendmail",
+					'protocol'  => 'smtp' , 
+			        'smtp_host' => 'ssl://smtp.gmail.com' , 
+			        'smtp_port' => 465 , 
+			        'smtp_user' => 'asuodevelopers@gmail.com' ,
+			        'smtp_pass' => 'cmsc128.1',
+			        'mailtype'  => 'html', 
+			        'charset'   => 'utf-8', 
+			        'newline'   => "\r\n",  
+			        'wordwrap'  => TRUE 
+				);
+
+			    //load email library
+			  	$this->email->initialize($config);
+
+			    $this->email->set_mailtype('html');
+			    $this->email->from($up_mail, 'ASUO Team');
+
+			    $this->email->to($up_mail);
+			    $this->email->subject('Membership Removal');
+
+			    $message = '<html><body>';
+			    $message .= '<p> Notification from ASUO:</p>';
+			    $message .= '<p>Your membership from '. $org_name.' has been removed.</p>';
+			    $message .= "<p>The reason indicated was '".$reason."'.</p>";
+			    $message .= '<p>For more details, please communicate with your organization.</p>';
+			    $message .= '<p>ASUO Administrator</p>';
+			    $message .= '</body></html>';
+
+			    $this->email->message($message);
+			
+				if ($this->email->send()){
+				      $result['success'] = 'Yes';
+				}
+				else{
+				    $result['success'] = 'No';
+				    $result['error'] = $this->email->print_debugger(array('headers'));
+				   }
+		}
+
+
 
 
 //-------------------------------FORMS FOR ACCREDITATION---------------------------------------
