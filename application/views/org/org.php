@@ -245,10 +245,10 @@
                 });
               } 
 
-              function applyToOrg(){
+              function applyToOrg(org_id){
                 swal({
                   title: "Are you sure you want to apply?",
-                  text: "You will not be able to cancel tbis.",
+                  text: "You will not be able to cancel this.",
                   type: "warning",
                   showCancelButton: true,
                   confirmButtonClass: "btn-danger",
@@ -256,7 +256,24 @@
                   closeOnConfirm: false
                 },
                 function(){
-                  swal("Sent!", "Your application has been sent.", "success");
+
+                   $.ajax({
+                      type: "post",
+                      url: "<?php echo base_url();?>org/applyToOrg",
+                      data: {org_id: org_id},
+                      dataType: "JSON",
+                      async: false,
+                      cache: false,
+                      success: function(result){
+                        //alert(result);
+                        if(result){
+                          swal({title: "Sent!", text: "Your application has been sent.", type: "success"},
+                             function(){ 
+                                 location.reload();
+                             });
+                        }
+                      }
+                    });
                 });
               }             
     </script>
@@ -285,7 +302,7 @@
                             <?php } ?>
 
                             <?php if(!$isAdmin && !$isOfficer && !$isMember && !$isOrg && !$isApplicant ){?>
-                            <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="applyToOrg()">Apply for Membership</button>
+                            <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="applyToOrg(<?php echo $org_id;?>)">Apply for Membership</button>
                               <?php } ?>
 
                             <?php if(!$isAdmin && !$isOfficer && !$isMember && !$isOrg && $isApplicant ){?>
