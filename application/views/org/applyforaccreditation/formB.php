@@ -8,7 +8,7 @@
 	</head>
 
     <body>
-        <div class="animated fadeIn" style="background-color: rgb(255,255,255); margin-top: 110px; margin-left: 22%; margin-right: 1%; padding-top: 10px; box-shadow: 0 0 40px rgba(0,0,0,.50); padding-bottom: 35px; border-radius: 10px;">
+        <div class="animated fadeIn" id="panel">
             <div class="col-4">
                 <!-- insert sidenav -->
                 <div class="sidenav">
