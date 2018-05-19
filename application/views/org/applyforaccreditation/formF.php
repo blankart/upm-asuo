@@ -12,24 +12,28 @@
             <div class="col-4">
                 <!-- insert sidenav -->
                 <div class="sidenav">
-                	<?php if($org_status == "Accredited"){ ?>
-                    <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
-                    <li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
-                    <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
-                    <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
-                    <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
-                    <li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
-                    <li class="active"><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
-                    <li><a href="<?php echo base_url(); ?>org/formG">Financial Report</a></li>
+                	<ul class="menu">
+                		<?php if($org_status == "Accredited"){ ?>
+                    	<li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
+                    	<li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
+                    	<li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
+                    	<li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
+                    	<li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
+                    	<li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
+                    	<li class="active"><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
+                    	<li><a href="<?php echo base_url(); ?>org/formG">Financial Report</a></li>
+                    </ul>
 
                     <?php } else{ ?>
-                    <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
-                    <li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
-                    <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
-                    <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
-                    <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
-                    <li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
-                    <li class="active"><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
+                    <ul class="menu">
+                    	<li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
+                    	<li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
+                    	<li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
+                    	<li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
+                    	<li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
+                    	<li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
+                    	<li class="active"><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
+                    </ul>
                     <?php } ?>
 
                 </div>
