@@ -98,9 +98,9 @@
 
 			$this->load->view('header');
 			$this->load->view('student/student.php', $data);
-			//$this->load->view('student/editProfile');
+			$this->load->view('student/editProfile');
 			$this->load->view('footer');
-			//$this->load->view('student/changepassword');
+			$this->load->view('student/changepassword');
 		}
 
 		private function editStudentProfile(){

@@ -244,6 +244,10 @@
         dataType: 'json',
         async: false,
         success:function(result){
+
+          var acronym = result['acronym'];
+          var nsacronym = acronym.replace(/\s/g, '');
+
           swal({
        imageUrl: "<?php echo base_url();?>"+"img/logo.jpg",
        html: true,
@@ -267,7 +271,7 @@
                       "<h4 style='font-size: 18px'>"+result['org_email']+"</h4>"+
                       "</div>"+
                    "</div>"+
-                   "<button type='button' class='btn btn-info'>View Org Profile</button>"+
+                   "<a href = '<?php echo base_url();?>org/"+nsacronym+"'><button type='button' class='btn btn-info'>View Org Profile</button></a>"+
                 "</div>"
        },
        function(){
