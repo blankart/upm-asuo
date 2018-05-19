@@ -305,8 +305,8 @@
                             <div id="orgPosts">
                                 <?php foreach($posts as $mypost){ 
                                     if( 
-                                      ($mypost['privacy'] == 'Officers' && ($isOfficer || $isAdmin)) ||
-                                      ($mypost['privacy'] == 'Members' && ($isMember || $isOfficer || $isAdmin)) ||
+                                      ($mypost['privacy'] == 'Officers' && ($isOfficer || $isOrg)) ||
+                                      ($mypost['privacy'] == 'Members' && ($isMember || $isOfficer || $isOrg)) ||
                                       ($mypost['privacy'] == 'Public') 
                                       ){
                                    ?>
