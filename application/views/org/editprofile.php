@@ -181,7 +181,9 @@
                <form enctype="multipart/form-data"  method="POST" id="changeLogoForm">
                   <img src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo'].'?'.rand(1, 100); ?>" class="avatar img-thumbnail" alt="avatar" height="500px"  width="500px">
                   <br><br>
-                  <label id="orgLogo" style="margin-left: 20em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Logo<input type="file" style="display: none;" onchange="document.getElementById('submitLogo').click();" class="form-control" id = 'logo' name = 'logo'></label>
+                  <label id="orgLogo" style="margin-left: 20em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Logo
+                        <input type="file" style="display: none;" onchange="document.getElementById('submitLogo').click();" class="form-control" id = 'logo' name = 'logo'>
+                  </label>
                   <button type="submit" style="display: none;" id = 'submitLogo'> </button>
               </form>
             </div>
@@ -336,7 +338,8 @@
 
               <form enctype="multipart/form-data" id= 'uploadConstitutionForm' method="POST">
                  <div class="form-group">
-                  <label id="consti" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Constitution<input type="file" style="display: none;" class="form-control" id = 'consti' name = 'constitution' onchange="document.getElementById('submitCons').click();"></label>
+                  <label id="consti" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Constitution
+                     <input type="file" style="display: none;" class="form-control" id = 'consti' name = 'constitution' onchange="document.getElementById('submitCons').click();"></label>
                   <button type="button" class="btn btn-primary" style="margin-left: 1em" onclick="
                   <?php if ($profile["constitution"] != "No uploads yet"){ ?>
                      window.open('<?php echo base_url()."assets/org/constitution/".$profile["constitution"].".pdf"; ?>') 

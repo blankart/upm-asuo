@@ -289,6 +289,7 @@
 				$this->db->insert('form_a_details', $data);
 			}
 
+
 			//return $org_details->result_array()[0];
 			//
 		}
@@ -351,6 +352,29 @@
 
 
 			
+		}
+
+
+		public function uploadFormB($id, $file_name){
+			$condition = 'org_id = ' .$id;
+
+			$changes = array(
+				'form_B' => $file_name.'.pdf'
+			);
+
+			$this->db->where($condition);
+			$this->db->update("accreditationapplication", $changes);
+		}
+
+		public function uploadFormF($id, $file_name){
+			$condition = 'org_id = ' .$id;
+
+			$changes = array(
+				'form_F' => $file_name.'.pdf'
+			);
+
+			$this->db->where($condition);
+			$this->db->update("accreditationapplication", $changes);	
 		}
 		//end of ORG ACCREDITATION FUNCTIONS
 
