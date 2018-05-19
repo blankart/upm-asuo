@@ -126,12 +126,12 @@
 						College/Unit:&nbsp;&nbsp;<input type="text" id="adviserUnit" name="data[adviser_college]" value="<?php echo $adviser_college ?>" required>
 						<br><br>
 
-						<button class="button" onclick="processPhase4()">Continue</button>
+						<button class="button" type="submit" onclick="processPhase4()">Continue</button>
 						<button class="button" onclick="back3()">Back</button>
 					</div>
 
 					<div id="phase5">
-						Contact Person:&nbsp;&nbsp;<input type="text" id="contactPerson" name="data[contact_person]" value="<?php echo $contact_person ?>" required>
+						Contact Person:&nbsp;&nbsp;<input type="text" id="contactPerson" name="data[contact_person]" value="<?php echo $contact_person ?>" onkeyup="nameFormatCheck(this)" required>
 						Position in Organization:&nbsp;&nbsp;<input type="text" id="contactPos" name="data[contact_position]" value="<?php echo $contact_position ?>" required>&nbsp;&nbsp;
 						Email:&nbsp;&nbsp;<input type="email" id="contactMail" name="data[contact_email]"  value="<?php echo $contact_email ?>" required>
 						Address:&nbsp;&nbsp;<input type="text" id="contactAddress" name="data[contact_address]"  value="<?php echo $contact_address ?>" required>

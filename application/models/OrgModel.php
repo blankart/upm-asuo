@@ -327,7 +327,7 @@
 				$this->db->update('form_a_details', $data);
 				return "update success";
 			}
-<<<<<<< HEAD
+
 			else
 			{
 				$this->db->insert('form_a_details', $data);
@@ -336,9 +336,7 @@
 
 			//return $org_details->result_array()[0];
 			//
-=======
-		
->>>>>>> 52d462d2476cc5d9cbc0c84289bd98d164c15d0b
+
 		}
 
 		public function input_formA_details($org_id)
