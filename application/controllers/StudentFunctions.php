@@ -17,7 +17,7 @@
 
 			else if($action == 'search')
 				//echo 'here';
-				$this->search($searchItem);
+				$this->search();
 
 			else if($action == 'checkStudentPassword')
 				$this->checkStudentPassword();
@@ -98,7 +98,8 @@
 
 			$this->load->view('header');
 			$this->load->view('student/student.php', $data);
-			//$this->load->view('student/editProfile');
+			$this->load->view('student/editProfile');
+			$this->load->view('student/search');
 			$this->load->view('footer');
 			//$this->load->view('student/changepassword');
 		}
@@ -173,15 +174,13 @@
             }
 		}
 
-		private function search($searchItem){
+		private function search(){
 			//echo $searchItem . "'+'";
-
+			$searchItem = $this->input->post('query');
 			$this->load->model("StudentModel");
 			$result = $this->StudentModel->search($searchItem);
-			echo "Search results for '" .$searchItem. "'";
-			echo "<pre>";
-			print_r($result);
-			echo "</pre>";
+			echo json_encode($result);
+			exit();
 		}
 
 		private function checkStudentPassword(){
