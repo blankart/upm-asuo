@@ -19,13 +19,17 @@
 	      	output="";
 	      	for (var key in result) {
        if (result.hasOwnProperty(key)) {
+
+       	var acronym = result[key]["acronym"];
+       	var nsacronym = acronym.replace(/\s/g, '');
+
        output+="<div class='col-xs-12 col-sm-6 col-md-4'>"+
 							"<div class='image-flip'>"+
 								"<div class='mainflip'>"+
 									"<div class='frontside'>"+
 										"<div class='card'>"+
 											"<div class='card-body text-center'>"+
-												"<p><img alt='card image' class='img-fluid' src='<?php echo base_url().'assets/org/logo/"+result[key]["org_logo"]+"'.'?'.rand(1, 100); ?>'></p><a href='#'><button class='btn btn-danger' style='margin-top: 10px; margin-bottom: 10px;'>View Profile</button></a>"+
+												"<p><img alt='card image' class='img-fluid' src='<?php echo base_url().'assets/org/logo/"+result[key]["org_logo"]+"'.'?'.rand(1, 100); ?>'></p><a href = '<?php echo base_url();?>org/"+nsacronym+"'><button class='btn btn-danger' style='margin-top: 10px; margin-bottom: 10px;'>View Profile</button></a>"+
 												"<h4 class='card-title' style='margin: 0 !important; padding: 0! important'>"+result[key]["org_name"]+"</h4>"+
 												"<p class='card-text' style='margin: 0 !important; padding: 0! important'>"+result[key]["acronym"]+"</p>"+
 												"<p class='card-text' style='margin: 0 !important; padding: 0! important'>"+result[key]["org_category"]+"</p>"+

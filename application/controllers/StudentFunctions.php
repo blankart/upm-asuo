@@ -37,9 +37,11 @@
 
 					if ( !$student_id )
 						echo "This student is imaginary, darlin'! ";
-					else				
-						echo "Since you are an org and an admin, you can view anything that you like. How's that?";		// user is an org or an admin		
-					
+					else{	
+
+						$this->loadStudentProfileByOthers($student_id);		
+						echo "Since you are an org and an admin, you can view anything that you like. How's that?";	// user is an org or an admin		
+					}
 				}
 				else if($action  == $this->session->userdata['username']){
 
@@ -90,8 +92,8 @@
 
 			$student_id = $this->session->userdata['user_id'];
 			$this->load->model('StudentModel');
-			$result = $this->StudentModel->getStudentProfileDetails($student_id);
-			$data = $result;
+			$data = $this->StudentModel->getStudentProfileDetails($student_id);
+			
 			/*echo '<pre>';
 			print_r($result);
 			echo '</pre>';*/
@@ -102,6 +104,16 @@
 			$this->load->view('student/search');
 			$this->load->view('footer');
 			$this->load->view('student/changepassword');
+		}
+
+		private function loadStudentProfileByOthers($student_id){
+			
+			$this->load->model('StudentModel');
+			$data = $this->StudentModel->getStudentProfileDetailsByOthers($student_id);
+
+			$this->load->view('header');
+			$this->load->view('student/student.php', $data);
+			$this->load->view('footer');
 		}
 
 		private function editStudentProfile(){
