@@ -384,13 +384,14 @@
 		}
 
 
+
 //-------------------------------FORMS FOR ACCREDITATION---------------------------------------
 		private function generateFormA()
-		{
-			$this->load->model('OrgModel');
-			
+		{	
 			//get org id
 			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
 			
 			//get user input form a details
 			$result = $this->OrgModel->input_formA_details($org_id);
@@ -402,10 +403,13 @@
 			$result['org_category'] = $pre_def_details['org_category'];
 			$result['description'] = $pre_def_details['description'];
 			$result['objectives'] = $pre_def_details['objectives'];
+			$result['org_status'] = $pre_def_details['org_status'];
 			//var_dump($result);
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formA', $result);
 			$this->load->view('footer');
+
+
 
 		}
 
