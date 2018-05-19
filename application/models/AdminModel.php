@@ -16,7 +16,7 @@
 		public function viewStudentInfo($id){
 			$condition = "sa.student_id = sp.student_id AND sa.student_id = " .$id;
 
-			$this->db->select('sa.student_id, sa.up_mail, sa.up_id, sp.first_name, sp.middle_name, sp.last_name, sp.course, sp.contact_num');
+			$this->db->select('sa.student_id, sa.up_mail, sa.up_id, sp.first_name, sp.middle_name, sp.last_name, sp.course, sp.contact_num, sp.year_level');
 			$this->db->from('studentaccount sa, studentprofile sp');
 			$this->db->order_by('sa.student_id');
 			$this->db->where ($condition);
@@ -51,7 +51,7 @@
 		public function viewOrgInfo($id){
 			$condition = "oa.org_id = op.org_id AND oa.org_id = " .$id;
 
-			$this->db->select('oa.org_id, op.org_name, op.acronym, op.org_category, op.description, op.objectives, op.org_website, op.mailing_address, op.date_established');
+			$this->db->select('oa.org_id, op.org_name, op.acronym, op.org_category, op.description, op.objectives, op.org_website, op.mailing_address, op.date_established, oa.org_email, op.org_college');
 			$this->db->from('organizationaccount oa, organizationprofile op');
 			$this->db->order_by('oa.org_id');
 			$this->db->where ($condition);
@@ -74,7 +74,7 @@
 		public function searchAllStudents($string){
 			$condition = "sa.student_id = sp.student_id AND (sp.last_name LIKE '%".$string."%' OR sp.first_name LIKE '%".$string."%' OR sa.up_id LIKE '%".$string."%')"; 
 			
-			$this->db->select('sa.student_id, sa.up_mail, sa.up_id, sp.first_name, sp.last_name, sp.middle_name');
+			$this->db->select('sa.student_id, sa.up_mail, sa.up_id, sp.first_name, sp.last_name, sp.middle_name, sa.archived');
 			$this->db->from('studentaccount sa, studentprofile sp');
 			$this->db->order_by('sp.last_name');
 			$this->db->where ($condition);

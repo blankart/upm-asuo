@@ -111,6 +111,9 @@ ALTER TABLE `accreditationapplication`
   ADD PRIMARY KEY (`app_id`);
 
 ALTER TABLE `accreditationapplication`
+  MODIFY `app_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+ALTER TABLE `accreditationapplication`
   ADD KEY `org_id` (`org_id`);
 
 ALTER TABLE `accreditationapplication`
@@ -122,11 +125,11 @@ CREATE TABLE `form_a_details` (
   `app_id` int(11) UNSIGNED NOT NULL,
   `stay` varchar (3) NOT NULL,
   `experience` int(11) UNSIGNED NOT NULL,
-  `adviser` varchar (100) NOT NULL,
-  `adviser_position` varchar (100) NOT NULL,
-  `adviser_college` varchar (100) NOT NULL,
+  `adviser` varchar (50) NOT NULL,
+  `adviser_position` varchar (50) NOT NULL,
+  `adviser_college` varchar (30) NOT NULL,
   `contact_person` varchar (100) NOT NULL,
-  `contact_position` varchar (100) NOT NULL,
+  `contact_position` varchar (50) NOT NULL,
   `contact_email` varchar (50) NOT NULL,
   `contact_address` varchar(100) NOT NULL,
   `contact_tel` varchar(11) NOT NULL,

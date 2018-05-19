@@ -228,7 +228,7 @@
 			);
 
 			$this->db->where($condition);
-			$this->db->where('verificationcode', $changes);
+			$this->db->update('verificationcode', $changes);
 		}
 		// end of VERIFICATION FUNCTIONS
 

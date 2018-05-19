@@ -87,8 +87,11 @@
 					
 					 $this->load->model('OrgModel');
 					 $org_id = $this->OrgModel->getOrgId($action);
+					 $isArchived = $this->OrgModel->isOrgArchived($org_id);
+					 $isVerified = $this->OrgModel->isOrgVerified($org_id);
 
-					if ( !$org_id )
+
+					if ( !$org_id || $isArchived || !$isVerified)
 						echo "That org does not exist, darlin'! ";
 					else{
 
@@ -413,6 +416,10 @@
 				$this->load->model('OrgModel');
 				$this->OrgModel->editMembershipPosition($org_id, $student_id, $position);
 
+				$org_name = $this->OrgModel->getOrgName($org_id);
+				$up_mail = $this->OrgModel->getStudentUPMail($student_id);
+				$this->sendChangePositionNotification($org_name, $up_mail, $position);
+
 				echo json_encode($position);
 				exit();
 			}
@@ -433,81 +440,147 @@
 				$this->load->model('OrgModel');
 				$this->OrgModel->removeMember($org_id, $student_id, $reason);
 
-				echo json_encode(true);
+				$org_name = $this->OrgModel->getOrgName($org_id);
+				$up_mail = $this->OrgModel->getStudentUPMail($student_id);
+				$this->sendRemoveMembershipNotification($org_name, $up_mail, $reason);
+
+				echo json_encode($org_name.' '.$up_mail);
 				exit();
 			}
 			else
 				show_404();
 		}
 
+		private function sendRemoveMembershipNotification($org_name, $up_mail, $reason){
+		
+				$config = array(
+					'useragent' => "CodeIgniter",
+		        	'mailpath'  => "/usr/bin/sendmail",
+					'protocol'  => 'smtp' , 
+			        'smtp_host' => 'ssl://smtp.gmail.com' , 
+			        'smtp_port' => 465 , 
+			        'smtp_user' => 'asuodevelopers@gmail.com' ,
+			        'smtp_pass' => 'cmsc128.1',
+			        'mailtype'  => 'html', 
+			        'charset'   => 'utf-8', 
+			        'newline'   => "\r\n",  
+			        'wordwrap'  => TRUE 
+				);
+
+			    //load email library
+			  	$this->email->initialize($config);
+
+			    $this->email->set_mailtype('html');
+			    $this->email->from($up_mail, 'ASUO Team');
+
+			    $this->email->to($up_mail);
+			    $this->email->subject('Membership Removal');
+
+			    $message = '<html><body>';
+			    $message .= '<p> Notification from ASUO:</p>';
+			    $message .= '<p>Your membership from '. $org_name.' has been removed.</p>';
+			    $message .= "<p>The reason indicated was '".$reason."'.</p>";
+			    $message .= '<p>For more details, please communicate with your organization.</p>';
+			    $message .= '<p>ASUO Administrator</p>';
+			    $message .= '</body></html>';
+
+			    $this->email->message($message);
+			
+				if ($this->email->send()){
+				      $result['success'] = 'Yes';
+				}
+				else{
+				    $result['success'] = 'No';
+				    $result['error'] = $this->email->print_debugger(array('headers'));
+				   }
+		}
+
+		private function sendChangePositionNotification($org_name, $up_mail, $position){
+		
+				$config = array(
+					'useragent' => "CodeIgniter",
+		        	'mailpath'  => "/usr/bin/sendmail",
+					'protocol'  => 'smtp' , 
+			        'smtp_host' => 'ssl://smtp.gmail.com' , 
+			        'smtp_port' => 465 , 
+			        'smtp_user' => 'asuodevelopers@gmail.com' ,
+			        'smtp_pass' => 'cmsc128.1',
+			        'mailtype'  => 'html', 
+			        'charset'   => 'utf-8', 
+			        'newline'   => "\r\n",  
+			        'wordwrap'  => TRUE 
+				);
+
+			    //load email library
+			  	$this->email->initialize($config);
+
+			    $this->email->set_mailtype('html');
+			    $this->email->from($up_mail, 'ASUO Team');
+
+			    $this->email->to($up_mail);
+			    $this->email->subject('Change in Membership Position');
+
+			    $message = '<html><body>';
+			    $message .= '<p> Notification from ASUO:</p>';
+			    $message .= '<p>Your membership position in '. $org_name.' has been changed.</p>';
+			    $message .= "<p>Your new position is now '".$position."'.</p>";
+			    $message .= '<p>For more details, please communicate with your organization.</p>';
+			    $message .= '<p>ASUO Administrator</p>';
+			    $message .= '</body></html>';
+
+			    $this->email->message($message);
+			
+				if ($this->email->send()){
+				      $result['success'] = 'Yes';
+				}
+				else{
+				    $result['success'] = 'No';
+				    $result['error'] = $this->email->print_debugger(array('headers'));
+				   }
+		}
+
+
+
 
 //-------------------------------FORMS FOR ACCREDITATION---------------------------------------
 		private function generateFormA()
-		{
-				$this->load->model('OrgModel');
-				$org_id = $this->session->userdata['user_id'];
-				$result = $this->OrgModel->getPartialFormA($org_id);
-				$org_det = $this->OrgModel->getOrgDetails($org_id);
+		{	
+			//get org id
+			$org_id = $this->session->userdata['user_id'];
 
-				if($result['formAempty'])
-				{
-					if($result['org_app_empty'])
-					{
-
-						$result['org_name'] = $org_det['org_name'];
-						$result['org_category'] = $org_det['org_category'];
-						$result['description'] = $org_det['description'];
-						$result['objectives'] = $org_det['objectives'];
-						$result['app_id'] = "";
-						$result['stay'] = "";
-						$result['experience'] = "";
-						$result['adviser'] = "";
-						$result['adviser_position'] = "";
-						$result['adviser_college'] = "";
-						$result['contact_person'] = "";
-						$result['contact_position'] = "";
-						$result['contact_email'] = "";
-						$result['contact_address'] = "";
-						$result['contact_tel'] = "";
-						$result['contact_mobile'] = "";
-						$result['contact_other_details'] = "";
-						//var_dump($result);
-					}
-					else
-					{
-						$result['stay'] = "";
-						$result['experience'] = "";
-						$result['adviser'] = "";
-						$result['adviser_position'] = "";
-						$result['adviser_college'] = "";
-						$result['contact_person'] = "";
-						$result['contact_position'] = "";
-						$result['contact_email'] = "";
-						$result['contact_address'] = "";
-						$result['contact_tel'] = "";
-						$result['contact_mobile'] = "";
-						$result['contact_other_details'] = "";
-					
-					}
-				}
-						var_dump($result);
-						$this->load->view('header');
-						$this->load->view('org/applyforaccreditation/formA', $result);
-						$this->load->view('footer');	
-				//
+			$this->load->model('OrgModel');
+			
+			//get user input form a details
+			$result = $this->OrgModel->input_formA_details($org_id);
+			
+			//get predefined form a details
+			$pre_def_details = $this->OrgModel->getOrgDetails($org_id);
 				
+			$result['org_name'] = $pre_def_details['org_name'];
+			$result['org_category'] = $pre_def_details['org_category'];
+			$result['description'] = $pre_def_details['description'];
+			$result['objectives'] = $pre_def_details['objectives'];
+			$result['org_status'] = $pre_def_details['org_status'];
+			//var_dump($result);
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/formA', $result);
+			$this->load->view('footer');
+
+
+
 		}
 
 		//saving data from form a accreditation
 		private function saveFormA()
 		{
 			 
-			 $form_details = $this->input->post('data');
-			// var_dump($form_details);
-			 $this->load->model('OrgModel');
-			 $temp = $this->OrgModel->insertFormAdetails($form_details);
-			// var_dump($temp);
-			 redirect(base_url().'org/formA');
+			$form_details = $this->input->post('data');
+			$org_id = $this->session->userdata['user_id']; 
+			//var_dump("org id ".$org_id);
+			$this->load->model('OrgModel');
+			$temp = $this->OrgModel->insertFormAdetails($form_details,$org_id);
+			//var_dump($temp);
+			redirect(base_url().'org/formA');
 		}
 
 		private function loadAccreditationHome(){

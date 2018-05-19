@@ -135,9 +135,9 @@ padding:7px 14px;
 }
 
 .hovereffect:hover img {
--ms-transform:scale(2);
--webkit-transform:scale(2);
-transform:scale(2);
+-ms-transform:scale(1.2);
+-webkit-transform:scale(1.2);
+transform:scale(1.2);
 }
 
 .hovereffect:hover .overlay {
@@ -156,4 +156,25 @@ transform:translatey(0);
 .hovereffect:hover a.info {
 -webkit-transition-delay:.2s;
 transition-delay:.2s;
+}
+
+#studentProfile .card-header{
+    background-color: rgb(123, 17, 19);
+    text-align: center;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profileicon{
+    border-radius: 50%;
+    border-style: solid;
+    border-width: medium;
+    border-color: white;
+    box-shadow: 0 0 40px rgba(0,0,0,.2);
+    align-items: center;
+    width: 150px;
 }

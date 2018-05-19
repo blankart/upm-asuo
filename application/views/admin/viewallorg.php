@@ -233,6 +233,50 @@
        });
        });
        }
+
+       function viewOrgInfo(orgID)
+       {
+           $.ajax({
+        type:"post",
+        url:"<?php echo base_url(); ?>admin/viewOrgInfo",
+        cache: false,
+        data:{id: orgID},
+        dataType: 'json',
+        async: false,
+        success:function(result){
+          swal({
+       imageUrl: "<?php echo base_url();?>"+"img/logo.jpg",
+       html: true,
+       title: "<h4>"+result['org_name']+"</h4>",
+       text: "<div class='container' style='margin-top: 20px;'>"+
+                "<div class='row' style='text-align: left;'>"+
+                   "<div class='col'>"+
+                      "<h4 style='font-size: 18px'><strong>Org Acronym</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>Org Category</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>College</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>Mailing Address</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>Org Website</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>Email Address</strong></h4>"+
+                      "</div>"+
+                    "<div class='col'>"+
+                      "<h4 style='font-size: 18px'>"+result['acronym']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['org_category']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['org_college']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['mailing_address']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['org_website']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['org_email']+"</h4>"+
+                      "</div>"+
+                   "</div>"+
+                   "<button type='button' class='btn btn-info'>View Org Profile</button>"+
+                "</div>"
+       },
+       function(){
+       
+       
+       });
+       }
+       });
+       }
 </script>
 <div class="modal animated bounceInUp" id="viewallorg" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" style="min-width: 1200px;">
