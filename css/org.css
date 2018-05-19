@@ -307,3 +307,17 @@
 .table-stats .table-line-plus .status-social-icon {
 	color: #a75d54;
 }
+
+#orgLogo, #consti{
+    margin-left: 20em; 
+    padding: 10px; 
+    background: #cc0000; 
+    display: table; 
+    color: white; 
+    font-family: Lato; 
+    border-radius: 5%;
+}
+
+#consti{
+    margin-left: 1em; 
+}

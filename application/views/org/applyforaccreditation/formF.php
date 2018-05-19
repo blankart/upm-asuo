@@ -1,14 +1,3 @@
-<?php
-	$dbhandle = new mysqli('localhost','root','','asuo');
-	echo $dbhandle->connect_error;
-
-	$query = "SELECT * FROM organizationaccount";
-	$res = $dbhandle->query($query);
-
-	$row=$res->fetch_assoc();
-
-?>
-
 <!DOCTYPE html>
 <html class="no-js">
 	<head>
@@ -19,7 +8,7 @@
 	</head>
 
 	<body>
-   		<div class="animated fadeIn" style="background-color: rgb(255,255,255); margin-top: 110px; margin-left: 22%; margin-right: 1%; padding-top: 10px; box-shadow: 0 0 40px rgba(0,0,0,.50); padding-bottom: 35px; border-radius: 10px;">
+   		<div class="animated fadeIn" id="panel">
             <div class="col-4">
                 <!-- insert sidenav -->
                 <div class="sidenav">
@@ -48,7 +37,7 @@
             <!-- Page Content -->
 			<div class="main">
 				<?php 
-					if($row['org_status'] == "Unaccredited"){
+					if($org_status == "Unaccredited"){
 						echo "<h1>Form F: Plans for the Academic Year</h1>";
 					}
 					else{
