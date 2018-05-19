@@ -47,13 +47,22 @@
 						$this->loadStudentProfile();
 					
 					if($account_type == 'unverifiedStudent')
-						echo  'verify your email using ' .$this->session->userdata['email']. "."; //load view here note: redirect
+						//echo  'verify your email using ' .$this->session->userdata['email']. "."; //load view here note: redirect
+						$this->load->view('header'); 
+						$this->load->view('errors/html/unverified'); 
+						$this->load->view('footer');
 				
 					if($account_type == 'unactivatedStudent')
-						echo 'You account is not yet activated. Procced to OSA.'; //load view here note: redirect
+						//echo 'You account is not yet activated. Procced to OSA.'; //load view here note: redirect
+						$this->load->view('header'); 
+						$this->load->view('errors/html/unactivated'); 
+						$this->load->view('footer');
 				
 					if($account_type == 'archivedStudent')
-						echo 'You account is blocked. Procced to OSA.'; //load view here note: redirect
+						//echo 'You account is blocked. Procced to OSA.'; //load view here note: redirect
+						$this->load->view('header'); 
+						$this->load->view('errors/html/blocked'); 
+						$this->load->view('footer');
 				}
 				else
 					redirect(base_url().'login');

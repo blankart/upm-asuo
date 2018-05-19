@@ -27,7 +27,9 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/sweetalert.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/stylesheet.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/animate.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/animations.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/org.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/stud.css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
         <style type="text/css">
             body {

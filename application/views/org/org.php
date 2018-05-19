@@ -246,7 +246,7 @@
             <div class="row">
                 <div class="col-4">
                     <div class="card" id="ProfileDetails">
-                        <div class="card-header">
+                        <div class="card-header" id="myCard">
                             <h4 id="pd">Profile Details</h4>
                         </div>
                         <div class="card-body">
@@ -265,7 +265,7 @@
                 </div>
                 
                 <div class="col-8">
-                    <div class="card" style="box-shadow: 0 0 40px rgba(0,0,0,.2)">
+                    <div class="card" style="box-shadow: 0 0 40px rgba(0,0,0,.2); height: 600px; overflow-y: scroll;">
                         <div class="card-body">
                             <?php if($account_type!="org"){ ?> 
                               <button class="btn btn-light btn-lg active" id="orgProfileBTN" type="button">About <?php echo $profile['acronym']; ?> </button> 
