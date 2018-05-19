@@ -15,7 +15,7 @@
             <div class="col">
                <div class="card" style="width: 25rem; padding-bottom: 10px; box-shadow: 0 0 40px rgba(0,0,0,.05);">
                   <div class="card-header">
-                     Manage All Acounts
+                     Manage All Accounts
                   </div>
                   <div class="card-body" style="padding-top: 0px;">
                      <br><button type="button" onclick="validatestudactSearch()" class="btn btn-danger admin-button" data-toggle="modal" data-target="#validatestudact">Validate Student Account</button></br>
