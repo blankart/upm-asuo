@@ -60,26 +60,27 @@
 				<!-- sidenav -->
                 <div class="sidenav">
                 	<?php if($org_status == "Accredited"){ ?>
-                    <ul class="menu">
-                    	<li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
-                    	<li class="active"><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formG">Financial Report</a></li>
+                	<ul class="menu">
+                        <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
+                        <li class="active"><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
+                      	<li><a href="<?php echo base_url(); ?>org/formF">Activity Report</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formG">Financial Report</a></li>
+                      	<li><a href="<?php echo base_url(); ?>org/plans">Plans</a></li>
                     </ul>
 
                     <?php } else{ ?>
                     <ul class="menu">
-                    	<li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
-                    	<li class="active"><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
-                    	<li><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
+                        <li class="active"><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/plans">Plans</a></li>
                     </ul>
                     <?php } ?>
                     
@@ -123,10 +124,10 @@
 					<div id="phase4">
 						Name of Adviser:&nbsp;&nbsp;<input type="text" id="adviser" name="data[adviser]" value="<?php echo $adviser ?>" onkeyup="nameFormatCheck(this)" required>
 						Position/Designation:&nbsp;&nbsp;<input type="text" id="adviserPos" name="data[adviser_position]" value="<?php echo $adviser_position ?>" required>&nbsp;&nbsp;
-						College/Unit:&nbsp;&nbsp;<input type="text" id="adviserUnit" name="data[adviser_college]" value="<?php echo $adviser_college ?>" required>
+						College/Unit:&nbsp;&nbsp;<input type="text" id="adviserUnit" onkeyup="incomplete1()" name="data[adviser_college]" value="<?php echo $adviser_college ?>" required>
 						<br><br>
 
-						<button class="button" type="submit" onclick="processPhase4()">Continue</button>
+						<button class="button" id="phase4but" onclick="processPhase4()" disabled>Continue</button>
 						<button class="button" onclick="back3()">Back</button>
 					</div>
 
@@ -135,12 +136,12 @@
 						Position in Organization:&nbsp;&nbsp;<input type="text" id="contactPos" name="data[contact_position]" value="<?php echo $contact_position ?>" required>&nbsp;&nbsp;
 						Email:&nbsp;&nbsp;<input type="email" id="contactMail" name="data[contact_email]"  value="<?php echo $contact_email ?>" required>
 						Address:&nbsp;&nbsp;<input type="text" id="contactAddress" name="data[contact_address]"  value="<?php echo $contact_address ?>" required>
-						Telephone No.:&nbsp;&nbsp;<input type="text" id="contactPhone" name="data[contact_tel]"  value="<?php echo $contact_tel ?>">&nbsp;&nbsp;
-						Mobile No.:&nbsp;&nbsp;<input type="text" id="contactMobile" name="data[contact_mobile]"  value="<?php echo $contact_mobile ?>" required>&nbsp;&nbsp;
-						Other Contact Details:&nbsp;&nbsp;<input type="text" id="contactOthers" name="data[contact_other_details]" value="<?php echo $contact_other_details ?>" required>
+						Telephone No.:&nbsp;&nbsp;<input type="text" id="contactPhone" name="data[contact_tel]"  value="<?php echo $contact_tel ?>" required>&nbsp;&nbsp;
+						Mobile No.:&nbsp;&nbsp;<input type="text" id="contactMobile" onkeyup="incomplete2()" name="data[contact_mobile]"  value="<?php echo $contact_mobile ?>" required>&nbsp;&nbsp;
+						Other Contact Details:&nbsp;&nbsp;<input type="text" id="contactOthers" name="data[contact_other_details]" value="<?php echo $contact_other_details ?>">
 						<br><br>
 
-						<button class="button" onclick="processPhase5()">Continue</button>
+						<button class="button" id="phase5but" onclick="processPhase5()" disabled>Continue</button>
 						<button class="button" onclick="back4()">Back</button>
 					</div>
 

@@ -8,6 +8,13 @@
         $isMember = $isMember;
         $isApplicant = $isApplicant;
         $isOrg = false;
+
+        echo "admin: ".$isAdmin;
+        echo "officer: ".$isOfficer;
+        echo "member: ".$isMember;
+        echo "applicant: ".$isApplicant;
+        echo "org: ".$isOrg;
+
     }else{
         $isAdmin = false;
         $isOfficer = false;
@@ -29,7 +36,11 @@
 <body>
     <script>
                $(document).ready(function(){
+                <?php if(!$isOrg ){?>
+                   dispOrgProfile();
+                <?php } else{ ?>
                    dispAdminAnnouncements();
+                <?php } ?>
                    $("#orgPostsBut").click(function(){
                       dispOrgPosts();
                    })
@@ -236,7 +247,39 @@
                       }
                     });
                 });
-              }              
+              } 
+
+              function applyToOrg(org_id){
+                swal({
+                  title: "Are you sure you want to apply?",
+                  text: "You will not be able to cancel this.",
+                  type: "warning",
+                  showCancelButton: true,
+                  confirmButtonClass: "btn-danger",
+                  confirmButtonText: "Yes, I want to apply!",
+                  closeOnConfirm: false
+                },
+                function(){
+
+                   $.ajax({
+                      type: "post",
+                      url: "<?php echo base_url();?>org/applyToOrg",
+                      data: {org_id: org_id},
+                      dataType: "JSON",
+                      async: false,
+                      cache: false,
+                      success: function(result){
+                        //alert(result);
+                        if(result){
+                          swal({title: "Sent!", text: "Your application has been sent.", type: "success"},
+                             function(){ 
+                                 location.reload();
+                             });
+                        }
+                      }
+                    });
+                });
+              }             
     </script>
     <div class="orgheader">
          <?php if($account_type=="org"){ ?>  <h1>Hi <?php echo $profile['acronym']; ?>!</h1> <?php } ?> 
@@ -260,8 +303,16 @@
 
                             <?php if($account_type == 'org') {?>
                             <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#editprofile">Edit Profile</button> <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" onclick="location.href = '<?php echo base_url(); ?>org/applyforaccreditation';">Apply for Accreditation</button><button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#createposts">Create Post</button>
-
                             <?php } ?>
+
+                            <?php if(!$isAdmin && !$isOfficer && !$isMember && !$isOrg && !$isApplicant ){?>
+                            <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="applyToOrg(<?php echo $org_id;?>)">Apply for Membership</button>
+                              <?php } ?>
+
+                            <?php if(!$isAdmin && !$isOfficer && !$isMember && !$isOrg && $isApplicant ){?>
+                            <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="applyToOrg()" disabled>Apply for Membership</button>
+                              <?php } ?>
+
                         </div>
                     </div>
                 </div>

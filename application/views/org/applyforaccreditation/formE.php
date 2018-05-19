@@ -25,10 +25,11 @@
                         <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
                         <li class="active"><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/formF">Activity Report</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formG">Financial Report</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/plans">Plans</a></li>
                     </ul>
-                    
+
                     <?php } else{ ?>
                     <ul class="menu">
                         <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
@@ -37,7 +38,7 @@
                         <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
                         <li class="active"><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formF">Projects</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/plans">Plans</a></li>
                     </ul>
                     <?php } ?>
 
@@ -47,7 +48,7 @@
 			<div class="main">
 			<h1>Form E: Members' Profile</h1>
                 <object data="<?php echo base_url(); ?>org/viewFormE" type="pdf" width="100%" height="400">
-                    <iframe src="<?php echo base_url(); ?>org/viewFormE" style="border: none;" width="100%" height="400">This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo base_url(); ?>org/formDpdf">Download PDF</a>
+                    <iframe src="<?php echo base_url(); ?>org/viewFormE" style="border: none;" width="100%" height="400">This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo base_url(); ?>org/formEpdf">Download PDF</a>
                     </iframe>
                 </object>
 

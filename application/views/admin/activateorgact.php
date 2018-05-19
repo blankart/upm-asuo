@@ -23,7 +23,7 @@
        output+="<tr>"+
               "<td>"+result[key]['org_name']+"</td>"+
               "<td>"+result[key]['org_email']+"</td>"+
-              "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'> View Organization</button><button onclick='approveOrg("+result[key]['org_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Validate</button></td>"+
+              "<td class='text-center'><button class='btn btn-info btn-xs' onclick='vOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'> View Organization</button><button onclick='approveOrg("+result[key]['org_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Validate</button></td>"+
            "</tr>";
        }
        }
@@ -33,6 +33,48 @@
        
        
   }
+  function vOrgInfo(orgID)
+       {
+           $.ajax({
+        type:"post",
+        url:"<?php echo base_url(); ?>admin/viewOrgInfo",
+        cache: false,
+        data:{id: orgID},
+        dataType: 'json',
+        async: false,
+        success:function(result){
+          swal({
+       imageUrl: "<?php echo base_url();?>"+"img/logo.jpg",
+       html: true,
+       title: "<h4>"+result['org_name']+"</h4>",
+       text: "<div class='container' style='margin-top: 20px;'>"+
+                "<div class='row' style='text-align: left;'>"+
+                   "<div class='col'>"+
+                      "<h4 style='font-size: 18px'><strong>Org Acronym</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>Org Category</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>College</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>Mailing Address</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>Org Website</strong></h4>"+
+                      "<h4 style='font-size: 18px'><strong>Email Address</strong></h4>"+
+                      "</div>"+
+                    "<div class='col'>"+
+                      "<h4 style='font-size: 18px'>"+result['acronym']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['org_category']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['org_college']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['mailing_address']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['org_website']+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['org_email']+"</h4>"+
+                      "</div>"+
+                   "</div>"+
+                "</div>"
+       },
+       function(){
+       
+       
+       });
+       }
+       });
+       }
     function _(x){
           return document.getElementById(x);
        }
@@ -83,7 +125,7 @@
               output+="<tr>"+
                        "<td>"+result[key]['org_name']+"</td>"+
                        "<td>"+result[key]['org_email']+"</td>"+
-                       "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'> View Organization</button><button onclick='approveOrg("+result[key]['org_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Validate</button></td>"+
+                       "<td class='text-center'><button class='btn btn-info btn-xs' onclick='vOrgInfo("+result[key]['org_id']+")' style='margin-left: 10px;'> View Organization</button><button onclick='approveOrg("+result[key]['org_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Validate</button></td>"+
                     "</tr>";
            }
         }
@@ -92,49 +134,6 @@
        });
        }
        });
-       });
-       }
-    
-       function viewOrgInfo(orgID)
-       {
-           $.ajax({
-        type:"post",
-        url:"<?php echo base_url(); ?>admin/viewOrgInfo",
-        cache: false,
-        data:{id: orgID},
-        dataType: 'json',
-        async: false,
-        success:function(result){
-          swal({
-       imageUrl: "<?php echo base_url();?>"+"img/logo.jpg",
-       html: true,
-       title: "<h4>"+result['org_name']+"</h4>",
-       text: "<div class='container' style='margin-top: 20px;'>"+
-                "<div class='row' style='text-align: left;'>"+
-                   "<div class='col'>"+
-                      "<h4 style='font-size: 18px'><strong>Org Acronym</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Org Category</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>College</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Mailing Address</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Org Website</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Email Address</strong></h4>"+
-                      "</div>"+
-                    "<div class='col'>"+
-                      "<h4 style='font-size: 18px'>"+result['acronym']+"</h4>"+
-                      "<h4 style='font-size: 18px'>"+result['org_category']+"</h4>"+
-                      "<h4 style='font-size: 18px'>"+result['org_college']+"</h4>"+
-                      "<h4 style='font-size: 18px'>"+result['mailing_address']+"</h4>"+
-                      "<h4 style='font-size: 18px'>"+result['org_website']+"</h4>"+
-                      "<h4 style='font-size: 18px'>"+result['org_email']+"</h4>"+
-                      "</div>"+
-                   "</div>"+
-                "</div>"
-       },
-       function(){
-       
-       
-       });
-       }
        });
        }
 </script>
