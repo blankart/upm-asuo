@@ -18,7 +18,7 @@
 			return $result;
 		}
 
-		private function getStudentDetails($student_id){
+		public function getStudentDetails($student_id){
 			$condition = "sa.student_id = sp.student_id AND sp.student_id = " .$student_id;
 
 			$this->db->select("sp.*, sa.up_id, sa.username, sa.up_mail");
@@ -133,7 +133,7 @@
 
 		// SEARCH FUNCTIONS
 		public function search($searchItem){
-			$condition = "(op.org_name LIKE '%" .$searchItem. "%' OR op.acronym LIKE '%" .$searchItem. "%' OR oa.org_email LIKE '%" .$searchItem. "%') AND oa.archived = 0 AND op.org_id = oa.org_id";
+			$condition = "(op.org_name LIKE '%" .$searchItem. "%' OR op.acronym LIKE '%" .$searchItem. "%' OR oa.org_email LIKE '%" .$searchItem. "%') AND op.org_id = oa.org_id AND oa.archived = 0  AND oa.isVerified = 1  AND oa.isActivated = 1 ";
 
 			$this->db->select("op.org_id, op.org_name, op.acronym, oa.org_email, op.org_category, op.description, op.org_logo");
 			$this->db->distinct();

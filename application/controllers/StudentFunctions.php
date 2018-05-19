@@ -10,8 +10,8 @@
 
 			else if($action == 'editStudentProfile')
 				$this->editStudentProfile();
-			else if($action == 'changePicture')
-				$this->changePicture();
+			else if($action == 'uploadProfilePicture')
+				$this->uploadProfilePicture();
 			else if($action == 'uploadForm5')
 				$this->uploadForm5();
 
@@ -39,7 +39,7 @@
 						echo "This student is imaginary, darlin'! ";
 					else{	
 
-						$this->loadStudentProfileByOthers($student_id);		
+						$this->loadStudentProfileByOthers($student_id, $account_type);		
 						echo "Since you are an org and an admin, you can view anything that you like. How's that?";	// user is an org or an admin		
 					}
 				}
@@ -93,6 +93,8 @@
 			$student_id = $this->session->userdata['user_id'];
 			$this->load->model('StudentModel');
 			$data = $this->StudentModel->getStudentProfileDetails($student_id);
+			$data2 = $this->StudentModel->getStudentDetails($student_id);
+
 			
 			/*echo '<pre>';
 			print_r($result);
@@ -100,13 +102,13 @@
 
 			$this->load->view('header');
 			$this->load->view('student/student.php', $data);
-			$this->load->view('student/editProfile');
+			$this->load->view('student/editProfile', $data2);
 			$this->load->view('student/search');
 			$this->load->view('footer');
 			$this->load->view('student/changepassword');
 		}
 
-		private function loadStudentProfileByOthers($student_id){
+		private function loadStudentProfileByOthers($student_id, $account_type){
 			
 			$this->load->model('StudentModel');
 			$data = $this->StudentModel->getStudentProfileDetailsByOthers($student_id);
@@ -114,6 +116,11 @@
 			$this->load->view('header');
 			$this->load->view('student/student.php', $data);
 			$this->load->view('footer');
+
+			if($account_type == 'org')
+				$this->load->view('org/changepassword');
+			if($account_type == 'admin')
+				$this->load->view('admin/changepassword');
 		}
 
 		private function editStudentProfile(){
@@ -130,7 +137,7 @@
 				show_404();
 		}
 
-		private function changePicture(){
+		private function uploadProfilePicture(){
 
 			$id = $this->session->userdata['user_id'];
 			$file_name = md5('studentProfilePic'.$id);

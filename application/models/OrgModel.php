@@ -49,7 +49,7 @@
 		public function getMembers($org_id){
 			$condition = "op.org_id = om. org_id AND om.org_id = " .$org_id. " AND om.student_id = sa.student_id AND sa.student_id = sp.student_id AND om.isRemoved = 0 AND sa.archived = 0";
 
-			$this->db->select("sp.*, op.org_name, op.acronym, sa.up_mail, om.position");
+			$this->db->select("sp.*, op.org_name, op.acronym, sa.up_mail, sa.username, om.position");
 			$this->db->from("orgmember om, organizationprofile op, studentaccount sa, studentprofile sp");
 			$this->db->where($condition);
 			$this->db->order_by("sp.last_name");
@@ -72,7 +72,7 @@
 		private function getOrgApplications($org_id){
 			$condition = "oap.student_id = sp.student_id AND oap.student_id = sa.student_id AND op.org_id = oap.org_id AND oap.org_id = ".$org_id. " AND oap.status = 'Pending' AND sa.archived = 0";
 
-			$this->db->select("oap.*, op.org_name, op.acronym, sp.first_name, sp.middle_name, sp.last_name, sp.profile_pic, op.org_logo");
+			$this->db->select("oap.*, op.org_name, op.acronym, sa.username, sp.first_name, sp.middle_name, sp.last_name, sp.profile_pic, op.org_logo");
 			$this->db->from("orgapplication oap, organizationprofile op, studentprofile sp, studentaccount sa");
 			$this->db->order_by('sp.last_name');
 			$this->db->where($condition);

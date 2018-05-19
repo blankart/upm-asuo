@@ -1,4 +1,32 @@
 <script>
+
+     $(document).ready(function(){
+        $('#uploadProfilePicture').on("submit",function(e){
+               e.preventDefault();
+               $.ajax({
+                  type: "post",
+                  url :"<?php echo base_url(); ?>student/uploadProfilePicture", 
+                  async: false,
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  data: new FormData(this),
+                  success : function (data){
+                      swal({title: "Success!", text: "You have successfully changed your profile picture!", type: "success"},
+                        function(){ 
+                           location.reload();
+                        }
+                     );
+                  },
+                  error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                     //alert("Status: " + textStatus + " | Error: " + errorThrown); 
+                     swal("Error!", "Your image may be too large or not of valid type! (JPG only)", "error");
+                  }   
+            });
+          });
+      });
+
+
    function showPreview() {
       var preview = document.querySelector('img[alt=avatar]');
       var file    = document.querySelector('input[type=file]').files[0];
@@ -37,51 +65,54 @@
          <!-- Modal body -->
          <div class="modal-body" style="height: 450px; overflow-y: auto;">
             <form class="form-horizontal" role="form" name="profileForm">
+
             <div class="text-center">
-               <img src="" class="avatar img-thumbnail" alt="avatar" height="200px">
-               <h6>Upload profile picture.</h6>
-               <input type="file" style="text-align: center;" onchange="showPreview()" class="form-control text-center" style="width: 250px" id="dp" required>
+               <form enctype="multipart/form-data" method="POST" id="uploadProfilePicture">
+                  <img src="<?php echo base_url().'assets/student/profile_pic/'.$profile_pic.'?'.rand(1, 100); ?>" class="avatar img-thumbnail" alt="avatar" height="500px"  width="500px">
+
+                  <br><br>
+                  <label id="prof_pic" style="margin-left: 20em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Change Profile Picture
+                  <input type="file" style="display: none;" onchange="document.getElementById('submitProfilePic').click();" class="form-control" id = 'profile_pic' name = 'profile_pic'>
+                   </label>
+
+                  <button type="submit" style="display: none;" id = 'submitProfilePic'> </button>
+               </form>
             </div>
+
                <div class="form-group">
                   <label class="col-lg control-label">Name</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" name="name" readonly required>
+                     <input class="form-control" type="text" name="name" value = "<?php echo $first_name.' '.$middle_name.' '.$last_name; ?>" readonly required>
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">Year</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" name="Year" readonly required>
+                     <input class="form-control" type="text" name="Year" value = "<?php echo $year_level; ?>" readonly required>
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">Course</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" name="course" required>
+                     <input class="form-control" type="text" name="course" value = "<?php echo $course; ?>" required>
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">Address</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" name="add" required>
+                     <input class="form-control" type="text" name="address" value = "<?php echo $address; ?>" required>
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">Phone</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" name="phone" required>
+                     <input class="form-control" type="text" name="phone" value = "<?php echo $contact_num; ?>" required>
                   </div>
                </div>
                <div class="form-group">
                   <label class="col-lg control-label">Email</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" name="est" required readonly>
-                  </div>
-               </div>
-               <div class="form-group">
-                  <label class="col-lg control-label">Upload Form5</label>
-                  <div class="col-lg">
-                     <input type="file" class="form-control" name="form5" style="width: 250px" required>
+                     <input class="form-control" type="text" name="est" value = "<?php echo $up_mail; ?>"  required readonly>
                   </div>
                </div>
          </div>

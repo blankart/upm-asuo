@@ -325,7 +325,7 @@
                             <?php } ?>
 
                             <?php if($account_type=="org"){ ?> 
-                            <button class="btn btn-light btn-lg" id="orgAdminAnnouncementsBut" style="margin-left: 15px;" type="button">Admin Announcements</button> 
+                            <button class="btn btn-light btn-lg" id="orgAdminAnnouncementsBut"  style="margin-left: 15px;" type="button">Admin Announcements</button> 
                              <?php } ?>
 
                             <?php if($isAdmin || $isOfficer || $isMember || $isOrg){ ?>
@@ -336,7 +336,7 @@
                             <button class="btn btn-light btn-lg" id="orgApplicationsBut" style="margin-left: 15px;" type="button">Applications</button> 
                              <?php } ?>
 
-                            <button class="btn btn-light btn-lg active" id="orgPostsBut" type="button">Posts</button> 
+                            <button class="btn btn-light btn-lg active" id="orgPostsBut" style="margin-left: 15px;" type="button">Posts</button> 
 
                             
                             <hr>
@@ -406,12 +406,12 @@
                                                       ?>
                                                 <tr>
                                                     <td>
-                                                     <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$member['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="#"><?php echo $member['first_name']." ".$member['middle_name']." ".$member['last_name']; ?></a>
+                                                     <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$member['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="<?php echo base_url().'student/'.$member['username'];?>"><?php echo $member['first_name']." ".$member['middle_name']." ".$member['last_name']; ?></a>
                                                     </td>
                                                     <td class="text-center">
                                                       <span class="badge badge-success"><?php echo $member['position']; ?></span></td>
                                                     <td>
-                                                      <a href="#"><?php echo $member['up_mail']; ?></a>
+                                                      <?php echo $member['up_mail']; ?>
                                                     </td>
                                                      <?php if($account_type == 'org') {?>
                                                     <td>
@@ -425,12 +425,12 @@
                                                   if($member['position'] == "Member"){ ?>
                                                 <tr>
                                                     <td>
-                                                     <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$member['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="#"><?php echo $member['first_name']." ".$member['middle_name']." ".$member['last_name']; ?></a>
+                                                     <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$member['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="<?php echo base_url().'student/'.$member['username'];?>"><?php echo $member['first_name']." ".$member['middle_name']." ".$member['last_name']; ?></a>
                                                     </td>
                                                     <td class="text-center">
                                                       <span class="badge badge-success"><?php echo $member['position']; ?></span></td>
                                                     <td>
-                                                      <a href="#"><?php echo $member['up_mail']; ?></a>
+                                                     <?php echo $member['up_mail']; ?>
                                                     </td>
                                                      <?php if($account_type == 'org') {?>
                                                       <td>
@@ -462,7 +462,7 @@
                                       <tbody>
                                         <tr>
                                           <td>
-                                            <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$applicant['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="#"><?php echo $applicant['first_name']." ".$applicant['middle_name']." ".$applicant['last_name']; ?></a>
+                                            <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$applicant['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="<?php echo base_url().'student/'.$applicant['username'];?>"><?php echo $applicant['first_name']." ".$applicant['middle_name']." ".$applicant['last_name']; ?></a>
                                           </td>
                                           <td align=right>
                                              <button class="btn btn-success" onclick="studApproved(' <?php echo $applicant['first_name'].' '.$applicant['middle_name'].' '.$applicant['last_name']; ?> ', '<?php echo $applicant['acronym']; ?>', '<?php echo $applicant['student_id']; ?>')" type="button" id="approveBTN">Approve</button>

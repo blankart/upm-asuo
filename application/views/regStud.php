@@ -31,7 +31,7 @@
                    },
                    error: function(XMLHttpRequest, textStatus, errorThrown) { 
                       //alert("Status: " + textStatus + " | Error: " + errorThrown); 
-                       swal("Error!", "Your file may be too large or not of valid type!\nPDF files only!", "error");
+                       swal("Error!", "Error in creating your account", "error");
                    }   
                 });
             }

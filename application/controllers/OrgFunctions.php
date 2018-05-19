@@ -125,7 +125,7 @@
 						//echo "<pre>";
 						//print_r($data);
 						//echo "</pre>";
-						$this->loadOrgProfileByOthers($org_id, $data);		
+						$this->loadOrgProfileByOthers($org_id, $data, $account_type);		
 					}
 				}
 				else if($action == $this->session->userdata['nsacronym']){
@@ -198,7 +198,7 @@
 			$this->load->view('org/changepassword');
 		}
 
-		private function loadOrgProfileByOthers($org_id, $data){
+		private function loadOrgProfileByOthers($org_id, $data, $account_type){
 
 			$this->load->model('OrgModel');
 			$result = $this->OrgModel->getOrgProfileDetailsByOthers($org_id);
@@ -211,6 +211,11 @@
 			$this->load->view('header');
 			$this->load->view('org/org', $result);
 			$this->load->view('footer');
+
+			if($account_type == 'student')
+				$this->load->view('student/changepassword');
+			if($account_type == 'admin')
+				$this->load->view('admin/changepassword');
 		}
 
 		private function checkOrgPassword(){
