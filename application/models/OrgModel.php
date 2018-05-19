@@ -457,6 +457,51 @@
 
 		// STUDENT-VIEWS-ORG FUNCTIONS
 
+		public function isOrgArchived($org_id){
+
+			$condition = "org_id = " .$org_id. " AND archived = 1";
+
+			$this->db->select('org_id');
+			$this->db->from('organizationaccount');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if ($query->num_rows() == 1)
+				return true;
+			else 
+				return false;	
+		}
+
+		public function isOrgVerified($org_id){
+
+			$condition = "org_id = " .$org_id. " AND isVerified = 1";
+
+			$this->db->select('org_id');
+			$this->db->from('organizationaccount');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if ($query->num_rows() == 1)
+				return true;
+			else 
+				return false;	
+		}
+
+		public function isOrgActivated($org_id){
+
+			$condition = "org_id = " .$org_id. " AND isActivated = 1";
+
+			$this->db->select('org_id');
+			$this->db->from('organizationaccount');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if ($query->num_rows() == 1)
+				return true;
+			else 
+				return false;	
+		}
+
 		public function getOrgId($input){
 			$this->db->select('org_id, acronym');
 			$this->db->from('OrganizationProfile');
