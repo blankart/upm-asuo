@@ -14,6 +14,8 @@
 				$this->viewStudentInfo();
 			else if ($action == 'validateStudentAccount')
 				$this->validateStudentAccount();
+			else if ($action == 'rejectStudent')
+				$this->rejectStudent();
 
 			else if ($action == 'searchOrganizations')
 				$this->searchOrganizations();
@@ -136,6 +138,26 @@
 			}
 			else
 				show_404();
+		}
+
+		private function rejectStudent()
+		{
+			$student_id = $this->input->post('student_id');			
+			//$org_id = $source;
+			//$org_id = 6;
+			if($student_id != NULL)
+			{
+				//$student_id = $this->session->userdata['user_id'];
+				$this->load->model('AdminModel');
+				$this->AdminModel->rejectStud($student_id);
+				//var_dump($result);
+				echo json_encode("true");
+				exit(); 
+			}
+			else
+			{
+				show_404();
+			}
 		}
 
 		private function searchOrganizations(){

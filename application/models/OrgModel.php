@@ -152,7 +152,7 @@
 			$toInsert['org_id'] = $org_id;
 			$toInsert['status'] = "Pending";
 			$this->db->insert('orgapplication',$toInsert);
-			return "success";
+			//return "success";
 		}
 
 		public function rejectMembership($org_id, $student_id){
