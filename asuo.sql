@@ -111,6 +111,9 @@ ALTER TABLE `accreditationapplication`
   ADD PRIMARY KEY (`app_id`);
 
 ALTER TABLE `accreditationapplication`
+  MODIFY `app_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+ALTER TABLE `accreditationapplication`
   ADD KEY `org_id` (`org_id`);
 
 ALTER TABLE `accreditationapplication`
@@ -136,6 +139,9 @@ CREATE TABLE `form_a_details` (
 
 ALTER TABLE `form_a_details`
   ADD PRIMARY KEY (`app_id`);
+
+ALTER TABLE `form_a_details`
+  MODIFY `app_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `form_a_details`
   ADD CONSTRAINT `form_a_details_ibfk_1` FOREIGN KEY (`app_id`) REFERENCES `accreditationapplication` (`app_id`);

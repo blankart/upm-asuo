@@ -290,54 +290,16 @@
 		{
 				$this->load->model('OrgModel');
 				$org_id = $this->session->userdata['user_id'];
-				$result = $this->OrgModel->getPartialFormA($org_id);
-				$org_det = $this->OrgModel->getOrgDetails($org_id);
+				$result = $this->OrgModel->input_formA_details($org_id);
+				var_dump($result);
+				//may laman siyang nakuha
 
-				if($result['formAempty'])
-				{
-					if($result['org_app_empty'])
-					{
-
-						$result['org_name'] = $org_det['org_name'];
-						$result['org_category'] = $org_det['org_category'];
-						$result['description'] = $org_det['description'];
-						$result['objectives'] = $org_det['objectives'];
-						$result['app_id'] = "";
-						$result['stay'] = "";
-						$result['experience'] = "";
-						$result['adviser'] = "";
-						$result['adviser_position'] = "";
-						$result['adviser_college'] = "";
-						$result['contact_person'] = "";
-						$result['contact_position'] = "";
-						$result['contact_email'] = "";
-						$result['contact_address'] = "";
-						$result['contact_tel'] = "";
-						$result['contact_mobile'] = "";
-						$result['contact_other_details'] = "";
 						//var_dump($result);
-					}
-					else
-					{
-						$result['stay'] = "";
-						$result['experience'] = "";
-						$result['adviser'] = "";
-						$result['adviser_position'] = "";
-						$result['adviser_college'] = "";
-						$result['contact_person'] = "";
-						$result['contact_position'] = "";
-						$result['contact_email'] = "";
-						$result['contact_address'] = "";
-						$result['contact_tel'] = "";
-						$result['contact_mobile'] = "";
-						$result['contact_other_details'] = "";
+						//$this->load->view('header');
+						//$this->load->view('org/applyforaccreditation/formA', $result);
+						//$this->load->view('footer');
 					
-					}
-				}
-						var_dump($result);
-						$this->load->view('header');
-						$this->load->view('org/applyforaccreditation/formA', $result);
-						$this->load->view('footer');	
+							
 				//
 				
 		}
@@ -346,12 +308,14 @@
 		private function saveFormA()
 		{
 			 
-			 $form_details = $this->input->post('data');
-			// var_dump($form_details);
+			$form_details = $this->input->post('data');
+			$org_id = $this->session->userdata['user_id']; 
+			 //unset($form_details['app_id']);
+			 //var_dump($form_details);
 			 $this->load->model('OrgModel');
-			 $temp = $this->OrgModel->insertFormAdetails($form_details);
-			// var_dump($temp);
-			 redirect(base_url().'org/formA');
+			 $temp = $this->OrgModel->insertFormAdetails($form_details,$org_id);
+			 var_dump($temp);
+			 //redirect(base_url().'org/formA');
 		}
 
 		private function loadAccreditationHome(){
