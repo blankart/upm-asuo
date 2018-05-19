@@ -247,7 +247,7 @@
                 <div class="col-4">
                     <div class="card" id="ProfileDetails">
                         <div class="card-header">
-                            <h4>Profile Details</h4>
+                            <h4 id="pd">Profile Details</h4>
                         </div>
                         <div class="card-body">
                             <img id="logo" src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo'].'?'.rand(1, 100); ?>" width="150">
