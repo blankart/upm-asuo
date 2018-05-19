@@ -22,7 +22,7 @@ CREATE TABLE `studentprofile` (
   `contact_num` varchar(11) NOT NULL,
   `address` varchar(100) NOT NULL DEFAULT 'N/A',
   `profile_pic` varchar(40) NOT NULL DEFAULT 'default_male.jpg',
-  `form5` varchar(40) NOT NULL DEFAULT 'form5_default.jpg'
+  `form5` varchar(40) NOT NULL DEFAULT 'None'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `studentaccount`

@@ -178,7 +178,8 @@
 
 			$this->upload->initialize($config);
 
-			if ( ! $this->upload->do_upload('form_5')){
+
+			if ( ! $this->upload->do_upload('form5')){
 	            show_404();
                 $error = array('msg' => $this->upload->display_errors());
                 echo json_encode($error);

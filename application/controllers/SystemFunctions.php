@@ -348,17 +348,38 @@
 			if($type == 't'){
 				$result = $this->SystemModel->verifyStudentAccount($code);
 
-				if($result)
-					echo 'Successfully verified your account. try logging in';
-				//redirect to which page?
+				if($result){
+					//echo 'Successfully verified your account. try logging in';
+
+					$this->load->view('header');
+					$this->load->view('verified');
+					$this->load->view('footer');
+
+				}
+				else{
+					$this->load->view('header');
+					$this->load->view('activated');
+					$this->load->view('footer');
+				}
 			}
 
 			//org
 			if($type == 'g'){
 				$result = $this->SystemModel->verifyOrgAccount($code);
 
-				if($result)
-					echo 'Successfully verified your account. try logging in';
+				if($result){
+					//echo 'Successfully verified your account. try logging in';
+
+					$this->load->view('header');
+					$this->load->view('verified');
+					$this->load->view('footer');
+
+				}
+				else{
+					$this->load->view('header');
+					$this->load->view('activated');
+					$this->load->view('footer');
+				}
 			}
 		}
 
@@ -419,7 +440,7 @@
 
 			    $message = '<html><body>';
 			    $message .= '<p> Thanks for registering on ASUO!</p>';
-			    $message .= '<p>Please click the link below ' .$link. ' to verify your email address.</p>';
+			    $message .= '<p>Please click this link ' .$link. ' to verify your email address.</p>';
 			    $message .= '<p>Thank you!</p>';
 			    $message .= '<p>ASUO Administrator</p>';
 			    $message .= '</body></html>';
