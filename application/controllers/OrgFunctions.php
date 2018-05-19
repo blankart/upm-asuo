@@ -20,6 +20,15 @@
 				$this->changeLogo();
 			else if ($action == 'uploadConstitution')
 				$this->uploadConstitution();
+
+			else if ($action == 'rejectMembership')
+				$this->rejectMembership();
+			else if ($action == 'approveMembership')
+				$this->approveMembership();
+			else if ($action == 'editMembershipPosition')
+				$this->editMembershipPosition();
+			else if ($action == 'removeMember')
+				$this->removeMember();
 					
 			else if ($action == 'applyforaccreditation'){
 				$this->loadAccreditationHome();
@@ -80,22 +89,27 @@
 						echo "That org does not exist, darlin'! ";
 					else{
 
-						if ( $this->session->userdata['account_type'] == 'admin')
-					 		$isAdmin = true;
+						if ( $this->session->userdata['account_type'] == 'admin'){
+							$data['isAdmin'] = true;
+							$data['isOfficer'] = false;
+					 		$data['isMember'] = false;
+						 	$data['isApplicant'] = false;						 	
+						}
 						else{
-							$isAdmin = false;
 						 	$student_id = $this->session->userdata['user_id'];
+						 	$isOfficer = $this->OrgModel->isOfficer($org_id, $student_id);
 						 	$isMember = $this->OrgModel->isMember($org_id, $student_id);
 						 	$isApplicant = $this->OrgModel->isApplicant($org_id, $student_id);
-						}
 
-						if ($isAdmin){
-							$this->loadOrgProfileByAdmin($org_id);
+							$data['isAdmin'] = false;
+							$data['isOfficer'] = $isOfficer;
+						 	$data['isMember'] = $isMember;
+						 	$data['isApplicant'] = $isApplicant;
 						}
-						else if($isMember)
-							echo "Since you are a member, feel priviliged. Don't take it for granted ;)"; //user is a member
-						else
-						 	echo 'You can only view limited stuff, puny human. HA-HA';		// user is not a member of the org		
+						//echo "<pre>";
+						//print_r($data);
+						//echo "</pre>";
+						$this->loadOrgProfileByOthers($org_id, $data);		
 					}
 				}
 				else if($action == $this->session->userdata['nsacronym']){
@@ -154,11 +168,15 @@
 			$this->load->view('org/changepassword');
 		}
 
-		private function loadOrgProfileByAdmin($org_id){
-			echo "All hail the almighty admin! We present you with everything!"; //user is an admin
+		private function loadOrgProfileByOthers($org_id, $data){
 
 			$this->load->model('OrgModel');
-			$result = $this->OrgModel->getOrgProfileDetailsByAdmin($org_id);
+			$result = $this->OrgModel->getOrgProfileDetailsByOthers($org_id);
+
+			$result['isAdmin'] = $data['isAdmin'];
+			$result['isOfficer'] = $data['isOfficer'];
+			$result['isMember'] = $data['isMember'];
+			$result['isApplicant'] = $data['isApplicant'];
 
 			$this->load->view('header');
 			$this->load->view('org/org', $result);
@@ -220,8 +238,9 @@
 		private function editOrgProfile(){
 			$data = $this->input->post('data');
 			$org_id = $this->input->post('org_id');
+			$account_type = $this->session->userdata['account_type'];
 		
-			if($org_id != NULL && $data != NULL){
+			if($org_id != NULL && $data != NULL && $account_type == 'org'){
 				$this->load->model('OrgModel');
 				$this->OrgModel->editOrgProfile($org_id, $data);
 				echo json_encode(true);
@@ -285,6 +304,86 @@
 				exit();     
             }
 		}
+
+		private function rejectMembership(){
+
+			$student_id = $this->input->post('student_id');
+			$account_type = $this->session->userdata['account_type'];
+
+			if($student_id != NULL && $account_type == 'org'){
+
+				$org_id = $this->session->userdata['user_id'];
+
+				$this->load->model('OrgModel');
+				$this->OrgModel->rejectMembership($org_id, $student_id);
+
+				echo json_encode(true);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function approveMembership(){
+
+			$student_id = $this->input->post('student_id');
+			$account_type = $this->session->userdata['account_type'];
+
+			if($student_id != NULL && $account_type == 'org'){
+
+				$org_id = $this->session->userdata['user_id'];
+
+				$this->load->model('OrgModel');
+				$this->OrgModel->approveMembership($org_id, $student_id);
+
+				echo json_encode(true);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function editMembershipPosition(){
+
+			$student_id = $this->input->post('student_id');
+			$position = $this->input->post('position');
+			$account_type = $this->session->userdata['account_type'];
+
+			if($student_id != NULL && $position != NULL && $account_type == 'org'){
+
+				$org_id = $this->session->userdata['user_id'];
+
+				$this->load->model('OrgModel');
+				$this->OrgModel->editMembershipPosition($org_id, $student_id, $position);
+
+				echo json_encode($position);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function removeMember(){
+
+			$student_id = $this->input->post('student_id');
+			$reason = $this->input->post('reason');
+			$account_type = $this->session->userdata['account_type'];
+
+			if($student_id != NULL && $reason != NULL && $account_type == 'org'){
+
+				$org_id = $this->session->userdata['user_id'];
+
+				$this->load->model('OrgModel');
+				$this->OrgModel->removeMember($org_id, $student_id, $reason);
+
+				echo json_encode(true);
+				exit();
+			}
+			else
+				show_404();
+		}
+
+
 //-------------------------------FORMS FOR ACCREDITATION---------------------------------------
 		private function generateFormA()
 		{

@@ -28,8 +28,8 @@
 
 			else if($action == 'verify')
 				$this->verify($type, $code);
-			else if($action == 'sendVerificationMail')
-				$this->sendVerificationMail();
+			//else if($action == 'sendVerificationMail')
+			//	$this->sendVerificationMail();
 
 			else if($action == 'checkLogin')
 				$this->checkLogin();
@@ -139,6 +139,9 @@
 					'sec_years' => 0
 				);
 
+				//send verification email
+				$this->sendVerificationMail('org', $org_id, strtolower( $result['org_email'] ));
+
 				$org_session = $this->SystemModel->createOrgProfile($profile_details);
 				$org_session['account_type'] = 'unverifiedOrg';
 				$this->setSessions($org_session);
@@ -171,7 +174,6 @@
 			$result = $this->input->post('data');
 			
 			if($result != NULL){
-
 
 				//uploads form 5
 				$file_name = md5('studentForm5'.$student_id);
@@ -230,6 +232,10 @@
 
 					$this->load->model('StudentModel');
 					$this->StudentModel->uploadForm5($student_id, $file_name.".jpg"); 
+
+					//send verification email
+					$this->sendVerificationMail('student', $student_id, strtolower( $result['up_mail'] ));
+					//$this->sendVerificationMail();
 
 					$this->setSessions($student_session);
          			echo json_encode(true);
@@ -323,65 +329,106 @@
 		}
 
 		private function verify($type, $code){
-			echo $type . " " .$code;
+
+			$this->load->model('SystemModel');
+
+			//student
+			if($type == 't'){
+				$result = $this->SystemModel->verifyStudentAccount($code);
+
+				if($result)
+					echo 'Successfully verified your account. try logging in';
+				//redirect to which page?
+			}
+
+			//org
+			if($type == 'g'){
+				$result = $this->SystemModel->verifyOrgAccount($code);
+
+				if($result)
+					echo 'Successfully verified your account. try logging in';
+			}
 		}
 
-		private function sendVerificationMail(){
+		//private function sendVerificationMail(){
+		private function sendVerificationMail($account_type, $user_id, $email_address ){
 
-			//set email library configuration
-			$config = array(
-				'useragent' => "CodeIgniter",
-	        	'mailpath'  => "/usr/bin/sendmail",
-				'protocol'  => 'smtp' , 
-		        'smtp_host' => 'ssl://smtp.gmail.com' , 
-		        'smtp_port' => 465 , 
-		        'smtp_user' => 'asuodevelopers@gmail.com' ,
-		        'smtp_pass' => 'cmsc128.1',
-		        'mailtype'  => 'html', 
-		        'charset'   => 'utf-8', 
-		        'newline'   => "\r\n",  
-		        'wordwrap'  => TRUE 
-			);
+			//$account_type = 'org';
+			//$user_id = 10;
+			//$activation_code = md5('orgVerification'.$user_id);
 
-		    //load email library
-		  	$this->email->initialize($config);
+			//$email = 'mjfernando@up.edu.ph'; //input email
+			//$link = base_url().'verify/g/'.$activation_code;
 
-
-		    $email = 'avsanguenza@up.edu.ph'; //
-
-		    $email = 'avsanguenza@up.edu.ph'; //input email
-				// 58d598d1bf5cbdc6d75cb90c256c2f074c8d1c58
-		    $activation_code = 'This is my activation code';
-		    $link = base_url().'verify/org/this';
-
-		    $this->email->set_mailtype('html');
-		    $this->email->from($email, 'ASUO Team');
-
-		    $this->email->to($email);
-
-		    $this->email->to('avsanguenza@up.edu.ph');
-// 58d598d1bf5cbdc6d75cb90c256c2f074c8d1c58
-		    $this->email->subject('Please verify your email address');
-
-		    $message = '<html><body>';
-		    $message .= '<p> Thanks for registering on ASUO! Please click the link below ' .$link. ' to verify your email address.</p>';
-		    $message .= '<p>Thank you!</p>';
-		    $message .= '<p>ASUO Administrator</p>';
-		    $message .= '</body></html>';
-
-		    $this->email->message($message);
-		
-			if ($this->email->send()){
-			      $data['success'] = 'Yes';
+			$email = $email_address;
+			if($account_type == 'student'){
+		   		$activation_code = md5('studentVerification'.$user_id);
+		   		$link = base_url().'verify/t/'.$activation_code;
+		   	}
+		   	
+		   	if($account_type == 'org'){
+		   		$activation_code = md5('orgVerification'.$user_id);
+		   		$link = base_url().'verify/g/'.$activation_code;
 			}
-			else{
-			    $data['success'] = 'No';
-			    $data['error'] = $this->email->print_debugger(array('headers'));
-			   }
+			
 
-			echo "<pre>";
-			print_r($data);
-			echo "</pre>";
+			$data['type'] = $account_type; 
+			$data['user_id'] = $user_id;
+			$data['code'] = $activation_code;
+			$data['status'] = 'Pending';
+
+			$this->load->model('SystemModel');
+			$id  = $this->SystemModel->createVerificationCode($data);
+			
+			if($id){
+				//set email library configuration
+				$config = array(
+					'useragent' => "CodeIgniter",
+		        	'mailpath'  => "/usr/bin/sendmail",
+					'protocol'  => 'smtp' , 
+			        'smtp_host' => 'ssl://smtp.gmail.com' , 
+			        'smtp_port' => 465 , 
+			        'smtp_user' => 'asuodevelopers@gmail.com' ,
+			        'smtp_pass' => 'cmsc128.1',
+			        'mailtype'  => 'html', 
+			        'charset'   => 'utf-8', 
+			        'newline'   => "\r\n",  
+			        'wordwrap'  => TRUE 
+				);
+
+			    //load email library
+			  	$this->email->initialize($config);
+
+			    $this->email->set_mailtype('html');
+			    $this->email->from($email, 'ASUO Team');
+
+			    $this->email->to($email);
+			    $this->email->subject('Please verify your email address');
+
+			    $message = '<html><body>';
+			    $message .= '<p> Thanks for registering on ASUO!</p>';
+			    $message .= '<p>Please click the link below ' .$link. ' to verify your email address.</p>';
+			    $message .= '<p>Thank you!</p>';
+			    $message .= '<p>ASUO Administrator</p>';
+			    $message .= '</body></html>';
+
+			    $this->email->message($message);
+			
+				if ($this->email->send()){
+				      $result['success'] = 'Yes';
+				}
+				else{
+				    $result['success'] = 'No';
+				    $result['error'] = $this->email->print_debugger(array('headers'));
+				   }
+
+				//echo "<pre>";
+				//print_r($result);
+				//echo "</pre>";
+			}
+			else
+				echo 'There was a problem creating a verification code. Please try again later.';
+
 		}
 	}
 ?>

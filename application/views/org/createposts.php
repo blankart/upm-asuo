@@ -18,16 +18,20 @@
 
     function changeID() {
         $("#tableMenu a").click(function(e) {
-            e.preventDefault();
-            var selText = $(this).text();
-            $("#tableButton").text(selText);
+          e.preventDefault();
+          var selText = $(this).text();
+          $("#tableButton").text(selText);
         });
     }
 
     function swalSuccPost(){
-      swal("Success!", "You have successfully created a post!", "success");
-      resetCreatePostFields();
-    }
+  
+       swal({title: "Success!", text: "You have successfully created a post!", type: "success"},
+        function(){ 
+          location.reload();
+        }
+      );
+    }  
 
     function swalFailPost(){
       swal("Error!", "Failed to create a post!", "error");

@@ -79,12 +79,12 @@
 			$this->load->model('StudentModel');
 			$result = $this->StudentModel->getStudentProfileDetails($student_id);
 			$data['info'] = $result;
-			//echo '<pre>';
-			//print_r($result);
-			//echo '</pre>';
+			echo '<pre>';
+			print_r($result);
+			echo '</pre>';
 
 			$this->load->view('header');
-			$this->load->view('student/student.php', $data);
+			//$this->load->view('student/student.php', $data);
 			$this->load->view('footer');
 			$this->load->view('student/changepassword');
 		}

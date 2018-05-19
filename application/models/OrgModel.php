@@ -14,14 +14,14 @@
 			return $result;
 		}
 
-		//by admin
-		public function getOrgProfileDetailsByAdmin($org_id){
+		//viewed by admin
+		public function getOrgProfileDetailsByOthers($org_id){
 			$result['profile']= $this->getOrgDetails($org_id);
 			$result['members']= $this->getMembers($org_id);
 			$result['posts']= $this->getOrgPosts($org_id);
 
 			return $result;
-					}
+		}
 
 		public function getOrgDetails($org_id){
 			$condition = "oa.org_id = op.org_id AND op.org_id = " .$org_id;
@@ -34,12 +34,12 @@
 			return $org_details->result_array()[0];
 		}
 
-
 		private function getAnnouncements($org_id){
 			$condition = "r.org_id = " .$org_id. " AND a.notice_ID = r.notice_ID AND op.org_id = r.org_id AND a.sender = ad.admin_id AND a.archived = 0";
 
 			$this->db->select("a.*, ad.username, ad.admin_name, op.org_name");
 			$this->db->from("announcement a, organizationprofile op, recipient r, admin ad");
+			$this->db->order_by('a.notice_id', 'DESC');
 			$this->db->where($condition);
 			$announcements = $this->db->get();
 
@@ -47,12 +47,12 @@
 		}
 
 		public function getMembers($org_id){
-			$condition = "om.org_id = " .$org_id. " AND om.student_id = sa.student_id AND sa.student_id = sp.student_id AND om.isRemoved = 0";
+			$condition = "op.org_id = om. org_id AND om.org_id = " .$org_id. " AND om.student_id = sa.student_id AND sa.student_id = sp.student_id AND om.isRemoved = 0 AND sa.archived = 0";
 
-			$this->db->select("sp.*, sa.up_mail, om.position");
-			$this->db->from("orgmember om, studentaccount sa, studentprofile sp");
-			$this->db->order_by("sp.last_name");
+			$this->db->select("sp.*, op.org_name, op.acronym, sa.up_mail, om.position");
+			$this->db->from("orgmember om, organizationprofile op, studentaccount sa, studentprofile sp");
 			$this->db->where($condition);
+			$this->db->order_by("sp.last_name");
 			$members = $this->db->get();
 
 			return $members->result_array();
@@ -64,15 +64,17 @@
 			$this->db->select("opt.*, op.org_name");
 			$this->db->from("orgpost opt, organizationprofile op");
 			$this->db->where($condition);
+			$this->db->order_by('opt.post_id', 'DESC');
 			$posts = $this->db->get();
 			return $posts->result_array();
 		}
 
 		private function getOrgApplications($org_id){
-			$condition = "oap.student_id = sp.student_id AND op.org_id = oap.org_id AND oap.org_id = ".$org_id. " AND oap.status <> 'Approved'";
+			$condition = "oap.student_id = sp.student_id AND oap.student_id = sa.student_id AND op.org_id = oap.org_id AND oap.org_id = ".$org_id. " AND oap.status = 'Pending' AND sa.archived = 0";
 
-			$this->db->select("oap.*, op.org_name, sp.first_name, sp.middle_name, sp.last_name, sp.profile_pic");
-			$this->db->from("orgapplication oap, organizationprofile op, studentprofile sp");
+			$this->db->select("oap.*, op.org_name, op.acronym, sp.first_name, sp.middle_name, sp.last_name, sp.profile_pic");
+			$this->db->from("orgapplication oap, organizationprofile op, studentprofile sp, studentaccount sa");
+			$this->db->order_by('sp.last_name');
 			$this->db->where($condition);
 			$orgapps = $this->db->get();
 			return $orgapps->result_array();
@@ -110,10 +112,10 @@
 		}
 
 		public function getTally($org_id, $sex, $year){
-				$condition = "om.org_id  = " .$org_id. " AND om.student_id = sp.student_id AND om.isRemoved = 0 AND sp.sex = '".$sex."' AND sp.year_level = '". $year. "'";
+				$condition = "om.org_id  = " .$org_id. " AND om.student_id = sp.student_id AND om.student_id = sa.student_id AND om.isRemoved = 0 AND sp.sex = '".$sex."' AND sp.year_level = '". $year. "' AND sa.archived = 0";
 
 				$this->db->select('sp.student_id');
-				$this->db->from('orgmember om, studentprofile sp');
+				$this->db->from('orgmember om, studentprofile sp, studentaccount sa');
 				$this->db->where($condition);
 				$result = $this->db->get();
 				return $result->num_rows();
@@ -121,25 +123,68 @@
 		//end of VIEW PROFILE FUNCTIONS
 
 		//MEMBERSHIP-RELATED FUNCTIONS
-		public function approveMembership($org_id, $student_id)
-		{
+		public function approveMembership($org_id, $student_id){
 			//tables: orgmember, orgapplication
+
+			$condition = 'org_id = ' .$org_id. ' AND student_id = ' .$student_id ;
+
+			$changes = array(
+				'status' => 'Approved'
+			);
+
+			$this->db->where($condition);
+			$this->db->update('orgapplication', $changes);
+			
+			//insert
+			$data = array(
+				'org_id' => $org_id,
+				'student_id' => $student_id,
+				'position' => 'Member',
+				'isRemoved' => 0
+			);
+
+			$this->db->insert('orgmember', $data);
 		}
 
-		public function disapproveMembership($org_id, $student_id)
-		{
-			//tables: orgmember, orgapplicaton
+		public function rejectMembership($org_id, $student_id){
+			//tables: orgapplicaton
+
+			$condition = 'org_id = ' .$org_id. ' AND student_id = ' .$student_id ;
+
+			$changes = array(
+				'status' => 'Rejected'
+			);
+
+			$this->db->where($condition);
+			$this->db->update('orgapplication', $changes);			
 		}
 
-		public function editMembership($org_id, $student_id, $positon)
-		{
+		public function editMembershipPosition($org_id, $student_id, $position){
 			//tables: orgmember
+
+			$condition = 'org_id = ' .$org_id. ' AND student_id = ' .$student_id ;
+		
+			$changes = array(
+				'position' => $position
+			);
+
+			$this->db->where($condition);
+			$this->db->update('orgmember', $changes);	
+			
 		}
 
-		public function removeMembership($org_id, $student_id)
-		{
-			//tables: org member
-			//note: change position to 'Member' too
+		public function removeMember($org_id, $student_id, $reason){
+			//tables: org member, change reason
+
+			$condition = 'org_id = ' .$org_id. ' AND student_id = ' .$student_id. ' AND isRemoved = 0';
+		
+			$changes = array(
+				'isRemoved' => 1,
+				'removal_reason' => $reason
+			);
+
+			$this->db->where($condition);
+			$this->db->update('orgmember', $changes);	
 		}
 
 		public function getApplicationStatus($org_id, $student_id)
@@ -183,7 +228,7 @@
 		//ORG ACCREDITATION FUNCTIONS
 		public function getOrgOfficer($org_id)
 		{
-			$condition = "om.org_id = ".$org_id." AND om.org_id = op.org_id AND om.student_id = sp.student_id AND om.student_id = sa.student_id AND om.isRemoved = 0 AND om.position <> 'Member'";
+			$condition = "om.org_id = ".$org_id." AND om.org_id = op.org_id AND om.student_id = sp.student_id AND om.student_id = sa.student_id AND om.isRemoved = 0 AND om.position <> 'Member' AND sa.archived = 0";
 			$this->db->select("op.org_name, sp.*, om.*,sa.up_mail");
 			$this->db->from("organizationprofile op, studentprofile sp, orgmember om, studentaccount sa");
 			$this->db->where($condition);
@@ -194,7 +239,7 @@
 
 		public function getOrgMembers($org_id)
 		{
-			$condition = "om.org_id = ".$org_id." AND om.org_id = op.org_id AND om.student_id = sp.student_id AND om.student_id = sa.student_id AND om.isRemoved = 0";
+			$condition = "om.org_id = ".$org_id." AND om.org_id = op.org_id AND om.student_id = sp.student_id AND om.student_id = sa.student_id AND om.isRemoved = 0 AND sa.archived = 0";
 			$this->db->select("op.org_name, sp.*, om.*,sa.up_mail");
 			$this->db->from("organizationprofile op, studentprofile sp, orgmember om, studentaccount sa");
 			$this->db->where($condition);
@@ -416,7 +461,21 @@
 		}
 
 		public function isMember($org_id, $student_id){
-			$condition = "org_id = " .$org_id. " AND student_id = " .$student_id. " AND isRemoved = 0";
+			$condition = "org_id = " .$org_id. " AND student_id = " .$student_id. " AND position = 'Member' AND isRemoved = 0";
+
+			$this->db->select('org_id');
+			$this->db->from('orgmember');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if ($query->num_rows() == 1)
+				return true;
+			else 
+				return false;
+		}
+
+		public function isOfficer($org_id, $student_id){
+			$condition = "org_id = " .$org_id. " AND student_id = " .$student_id. " AND position <> 'Member' AND isRemoved = 0";
 
 			$this->db->select('org_id');
 			$this->db->from('orgmember');
@@ -430,7 +489,7 @@
 		}
 
 		public function isApplicant($org_id, $student_id){
-			$condition = "org_id = " .$org_id. " AND student_id = " .$student_id. " AND isRemoved = 0";
+			$condition = "org_id = " .$org_id. " AND student_id = " .$student_id. " AND status = 'Pending'";
 
 			$this->db->select('org_id');
 			$this->db->from('orgapplication');
