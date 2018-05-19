@@ -72,7 +72,7 @@
 		private function getOrgApplications($org_id){
 			$condition = "oap.student_id = sp.student_id AND oap.student_id = sa.student_id AND op.org_id = oap.org_id AND oap.org_id = ".$org_id. " AND oap.status = 'Pending' AND sa.archived = 0";
 
-			$this->db->select("oap.*, op.org_name, op.acronym, sp.first_name, sp.middle_name, sp.last_name, sp.profile_pic");
+			$this->db->select("oap.*, op.org_name, op.acronym, sp.first_name, sp.middle_name, sp.last_name, sp.profile_pic, op.org_logo");
 			$this->db->from("orgapplication oap, organizationprofile op, studentprofile sp, studentaccount sa");
 			$this->db->order_by('sp.last_name');
 			$this->db->where($condition);
