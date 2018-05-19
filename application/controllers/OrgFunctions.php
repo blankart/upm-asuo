@@ -20,7 +20,10 @@
 				$this->changeLogo();
 			else if ($action == 'uploadConstitution')
 				$this->uploadConstitution();
-
+			else if($action == 'uploadFormB')
+				$this->uploadFormB();
+			else if($action == 'uploadFormF')
+				$this->uploadFormF();
 			else if ($action == 'rejectMembership')
 				$this->rejectMembership();
 			else if ($action == 'approveMembership')
@@ -320,6 +323,60 @@
 				echo json_encode($data);
 				exit();     
             }
+		}
+
+		private function uploadFormB(){
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('formB'.$id);
+
+			$config['upload_path'] = './assets/org/accreditation/form_b';
+			$config['allowed_types'] = 'pdf';
+			$config['overwrite'] = TRUE;
+			$config['max_size']     = '2048';
+			$config['file_name'] = $file_name.'.pdf';
+
+			$this->upload->initialize($config);
+
+			if ( ! $this->upload->do_upload('formB')){
+		        show_404();
+                $error = array('msg' => $this->upload->display_errors());
+                echo json_encode($error);
+                exit();
+            }
+            else {                
+                $this->load->model('OrgModel');
+				$this->OrgModel->uploadFormB($id, $file_name);  
+				$data = array('msg' => $this->upload->data());  
+				echo json_encode($data);
+				exit();     
+            }	
+		}
+
+		private function uploadFormF(){
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('formF'.$id);
+
+			$config['upload_path'] = './assets/org/accreditation/form_f';
+			$config['allowed_types'] = 'pdf';
+			$config['overwrite'] = TRUE;
+			$config['max_size']     = '2048';
+			$config['file_name'] = $file_name.'.pdf';
+
+			$this->upload->initialize($config);
+
+			if ( ! $this->upload->do_upload('formF')){//filename sa previous code
+		        show_404();
+                $error = array('msg' => $this->upload->display_errors());
+                echo json_encode($error);
+                exit();
+            }
+            else {                
+                $this->load->model('OrgModel');
+				$this->OrgModel->uploadFormF($id, $file_name);  
+				$data = array('msg' => $this->upload->data());  
+				echo json_encode($data);
+				exit();     
+            }	
 		}
 
 		private function rejectMembership(){

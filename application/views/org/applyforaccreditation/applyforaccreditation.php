@@ -10,7 +10,7 @@
     </head>
 
     <body>
-        <div class="animated fadeIn" id="panel">
+        <div id="panel">
             <div class="col-4">
                 <!-- insert sidenav -->
                 <div class="sidenav">
