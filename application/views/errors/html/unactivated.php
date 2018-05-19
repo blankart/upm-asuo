@@ -18,7 +18,7 @@
 				<h3 class="display-1"><center><i class="fa fa-frown-o fa-3x"></i></h3>
 				<h3 class="display-3"><center>Unactivated Account</h3>
 				<p class="lower-case"><center>Your account's activation is on process. For inquiries, please proceed to OSA.</p>
-				<button type="button" class="btn btn-danger">Go Back</button>
+					<a  href="<?php echo base_url().'logout'; ?>"><button type="button" class="btn btn-danger">Go Back</button></a>
 				</div>	
  			</div>
 		</div>

@@ -17,8 +17,8 @@
 				<div class="jumbotron">
 				<h3 class="display-1"><center><i class="fa fa-frown-o fa-3x"></i></h3>
 				<h3 class="display-3"><center>Unverified Account</h3>
-				<p class="lower-case"><center>To verify your account, please follow the link sent to your email.</p>
-				<button type="button" class="btn btn-danger">Go Back</button>
+				<p class="lower-case"><center>To verify your account, please follow the link sent to <?php echo $org_email; ?>.</p>
+				<a  href="<?php echo base_url().'logout'; ?>"><button type="button" class="btn btn-danger">Go Back</button></a>
 				</div>	
  			</div>
 		</div>
