@@ -79,9 +79,9 @@
 			$this->load->model('StudentModel');
 			$result = $this->StudentModel->getStudentProfileDetails($student_id);
 			$data = $result;
-			echo '<pre>';
+			/*echo '<pre>';
 			print_r($data);
-			echo '</pre>';
+			echo '</pre>';*/
 
 			$this->load->view('header');
 			$this->load->view('student/student.php', $data);
