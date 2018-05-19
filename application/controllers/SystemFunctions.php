@@ -176,7 +176,8 @@
 			if($result != NULL){
 
 				//uploads form 5
-				$file_name = md5('studentForm5'.$student_id);
+				
+				$file_name = md5('studentForm5');
 
 				$config['upload_path'] = './assets/student/form_5/';
 				$config['allowed_types'] = 'jpg';
@@ -208,10 +209,21 @@
 					$this->load->model('SystemModel');
 					$student_id = $this->SystemModel->createStudentAccount($account_data);
 
+					$file_name = md5('studentForm5'.$student_id);
+
+					$config['upload_path'] = './assets/student/form_5/';
+					$config['allowed_types'] = 'jpg';
+					$config['overwrite'] = TRUE;
+					$config['max_size'] = '500';
+					$config['file_name'] = $file_name;
+					$this->upload->initialize($config);
+
+					$this->upload->do_upload('form5');
+
 					if($result['sex'] == 'Female')
-						$profile_pic = 'default_female.jpg';
+						$profile_pic = 'F9DD6FB6CEE7384F39E82CB89C3EDAD1.jpg';
 					else
-						$profile_pic = 'default_male.jpg';
+						$profile_pic = '99EFC599E37B8AEE206E208117F95277.jpg';
 
 					$profile_details = array(
 						'student_id' => $student_id,

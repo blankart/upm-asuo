@@ -1,7 +1,9 @@
 <script>
 
      $(document).ready(function(){
+
         $('#uploadProfilePicture').on("submit",function(e){
+
                e.preventDefault();
                $.ajax({
                   type: "post",
@@ -64,7 +66,6 @@
          </div>
          <!-- Modal body -->
          <div class="modal-body" style="height: 450px; overflow-y: auto;">
-            <form class="form-horizontal" role="form" name="profileForm">
 
             <div class="text-center">
                <form enctype="multipart/form-data" method="POST" id="uploadProfilePicture">
@@ -121,7 +122,6 @@
          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
          <button type="submit" onclick="validateForm()" class="btn btn-danger">Save</button>
          </div>
-         </form>
 			<div class="form-group">
                   <label id="form5" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Form 5<input type="file" style="display: none;" class="form-control" id = 'form5' name = 'formFive' onchange="document.getElementById('submitForm5').click();"></label>
                   <button type="button" class="btn btn-info" style="margin-left: 1em"; id='previewForm5'>Preview File</button>

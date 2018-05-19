@@ -4,7 +4,6 @@
       $('#regStudentForm').on("submit",function(e){
           
              e.preventDefault();
-
              if ($('[name=form5]').val() == ""){
                 $("#fileCheckerNote").removeClass();
                 $("#fileCheckerNote").html('');
@@ -23,6 +22,7 @@
                    processData: false,
                    data: new FormData(this),
                    success : function (data){
+                    alert(data);
                       swal({title: "Success!", text: "You have successfully created an account!", type: "success"},
                             function(){ 
                                location.reload();
@@ -30,7 +30,7 @@
                        );
                    },
                    error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                      //alert("Status: " + textStatus + " | Error: " + errorThrown); 
+                      alert("Status: " + textStatus + " | Error: " + errorThrown); 
                        swal("Error!", "Error in creating your account", "error");
                    }   
                 });
@@ -340,7 +340,7 @@
                            <div id="studPwChecker" class="notice notice-sm notice-danger" style="display: none;">
                            </div>
                            <div class="form-group">
-                              <label id="form5" style="padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Form5
+                              <label id="form5label" style="padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Form5
 
                               <input type="file" style="display: none;" class="form-control" id="form5" name="form5" onchange="loadFile(event)"></label>  
                               <img id="output"/>
