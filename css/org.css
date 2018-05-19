@@ -308,8 +308,7 @@
 	color: #a75d54;
 }
 
-/** for org.php **/
-#orgLogo, #consti{
+#orgLogo{
     margin-left: 20em; 
     padding: 10px; 
     background: #cc0000; 
