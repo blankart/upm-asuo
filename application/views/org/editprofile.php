@@ -181,13 +181,10 @@
                <form enctype="multipart/form-data"  method="POST" id="changeLogoForm">
                   <img src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo'].'?'.rand(1, 100); ?>" class="avatar img-thumbnail" alt="avatar" height="500px"  width="500px">
                   <br><br>
-<<<<<<< HEAD
                   <label id="orgLogo" style="margin-left: 20em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Logo
                         <input type="file" style="display: none;" onchange="document.getElementById('submitLogo').click();" class="form-control" id = 'logo' name = 'logo'>
                   </label>
-=======
-                  <label id="orgLogo">Upload Logo<input type="file" style="display: none;" onchange="document.getElementById('submitLogo').click();" class="form-control" id = 'logo' name = 'logo'></label>
->>>>>>> 52d462d2476cc5d9cbc0c84289bd98d164c15d0b
+
                   <button type="submit" style="display: none;" id = 'submitLogo'> </button>
               </form>
             </div>
@@ -324,11 +321,11 @@
                <div class="form-group">
                   <label class="col-lg control-label"><b>Is your organization incorporated with the Securities and Exchange Commission(SEC)?</b></label>
                   <div class="col-lg" value ='yes'>
-                     <input type="radio" id="yes" value="yes" name ="incSEC" onclick="activateText(this.value)">Yes  
+                     <input type="radio" id="yes" value="yes" name ="incSEC" onclick="activateText(this.value)">  Yes  
                      <label class="col-lg control-label">Input number of years</label>
                      <input class="form-control" type="number" min =0 max = 100 value ="<?php echo $profile['sec_years']; ?>" id="secYrs" name="sec_years">
                      <br>
-                     <input type="radio" id="no" value="no" name ="incSEC" onclick="activateText(this.value)">No
+                     <input type="radio" id="no" value="no" name ="incSEC" onclick="activateText(this.value)">  No
                   </div>
                </div>
         
@@ -342,12 +339,9 @@
 
               <form enctype="multipart/form-data" id= 'uploadConstitutionForm' method="POST">
                  <div class="form-group">
-<<<<<<< HEAD
                   <label id="consti" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Constitution
                      <input type="file" style="display: none;" class="form-control" id = 'consti' name = 'constitution' onchange="document.getElementById('submitCons').click();"></label>
-=======
-                  <label id="consti">Upload Constitution<input type="file" style="display: none;" class="form-control" id = 'consti' name = 'constitution' onchange="document.getElementById('submitCons').click();"></label>
->>>>>>> 52d462d2476cc5d9cbc0c84289bd98d164c15d0b
+
                   <button type="button" class="btn btn-primary" style="margin-left: 1em" onclick="
                   <?php if ($profile["constitution"] != "No uploads yet"){ ?>
                      window.open('<?php echo base_url()."assets/org/constitution/".$profile["constitution"].".pdf"; ?>') 
