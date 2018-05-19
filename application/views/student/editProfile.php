@@ -99,8 +99,3 @@
       </div>
    </div>
 </div>
-
-<script src="../js/jquery.min.js"></script>
-<script src="../bootstrap/js/bootstrap.min.js"></script>
-<script src="../js/my-login.js"></script>
-<script src="../js/jquery-3.3.1.js"></script>

@@ -5,7 +5,6 @@
 	<meta charset="utf-8">
     <meta content="UPCS" name="author">
     <title>UP Organizations</title>
-	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css"> 
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet"> 
 </head>
 <body>
@@ -23,7 +22,6 @@
  			</div>
 		</div>
 	</div>
-	<script src="bootstrap/js/bootstrap.min.js"></script> 
 </body>
 </html>
 	

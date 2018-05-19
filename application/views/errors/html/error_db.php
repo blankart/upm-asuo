@@ -36,30 +36,13 @@ $CI->load->helper('url');
 	<!------------start head  scripts and link src------------>
 	<head>
 	
-	
 		<script src="<?php echo base_url(); ?>js/jq.js"></script>
 		<!---- for moving objects make this first always after boootstrap.css ----->
-	
-		<link rel="stylesheet" href="css/bootstrap.css">
-		<!---- Bootstrap.min link local project skeleton ----->
-	
-		<link rel="stylesheet" href="css/w3.css">
-		<!--- This is the local w3css extended --->
-		
-		<link rel="stylesheet" href="css/animate.css">
-		
-		<link rel="stylesheet" href="css/style.css">
-		<!---- my own link local for customizing ----->
-	
-		<script src="js/bootstrap.min.js"></script>
-		<!---- Bootstrap js link local for well and modal + panels ----->
-		
-		<link rel="icon" href="images/a.png" type="images/water.png" />
-		<!---- Icon link local ----->
 		
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 		<!-------    font awesome online plug --------------->
  		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	
 
 	</head>
 	<!-------------end head scripts and link src ------------->

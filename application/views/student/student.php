@@ -120,7 +120,7 @@
 							<h6 style="text-align: center; margin-bottom: 30px;"><strong><?php echo $profile['course']; ?>, <?php echo $profile['year_level']; ?></strong></h6>
 							<p style="text-align: center;">E-mail</p>
 							<hr>
-							<button class="btn btn-danger btn-block" data-target="#editProfile" data-toggle="modal" style="margin-top: 10px;" type="button">Edit Profile</button><a class="btn btn-danger btn-block" href="#search" style="margin-top: 10px;" type="button">Apply to Organizations</a>
+							<button class="btn btn-danger btn-block" data-target="#editProfile" data-toggle="modal" style="margin-top: 10px;" type="button">Edit Profile</button><a href="#search"><button style="margin-top: 10px;" class="btn btn-danger btn-block" type='button'>Apply to Organizations</button></a>
 						</div>
 					</div>
 				</div>

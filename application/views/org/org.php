@@ -238,10 +238,10 @@
                 });
               }              
     </script>
-    <div class="header">
+    <div class="orgheader">
          <?php if($account_type=="org"){ ?>  <h1>Hi <?php echo $profile['acronym']; ?>!</h1> <?php } ?> 
     </div>
-    <div class="animated fadeIn" id="panel">
+    <div id="panel">
         <div class="container">
             <div class="row">
                 <div class="col-4">
@@ -250,8 +250,10 @@
                             <h4 id="pd">Profile Details</h4>
                         </div>
                         <div class="card-body">
-                            <img id="logo" src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo'].'?'.rand(1, 100); ?>" width="150">
-                            <h3><strong><?php echo $profile['org_name']; ?></strong></h3>
+                            <div class='wrapper'>
+                              <img class='profileicon' src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo'].'?'.rand(1, 100); ?>" width="150">
+                            </div>
+                            <h3 style="text-align: center; margin-bottom: 5 px; margin-top: 30px;"><strong><?php echo $profile['org_name']; ?></strong></h3>
                             <h6 style="text-align: center; margin-bottom: 30px;"><strong><?php echo $profile['acronym']; ?></strong></h6>
                             <p style="text-align: center;"><?php echo $profile['org_category']; ?></p>
                             <hr>
