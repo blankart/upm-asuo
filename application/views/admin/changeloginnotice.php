@@ -1,5 +1,5 @@
 <div class="modal animated bounceInUp" id="changeloginnotice" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered" style="min-width: 1200px;">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 700px;">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
@@ -7,6 +7,9 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
+				<div>
+					<center><h5>Compose Message</h5>
+				</div>
 				<div class="form-group">
 					<input type="text" minlength="1" maxlength="50" class="form-control" id="sendNoticeTitle" name="subject" placeholder="Title" required>
 				</div>   

@@ -118,7 +118,7 @@
 							<div class='wrapper'><img class='profileicon' src="<?php echo base_url().'assets/student/profile_pic/'.$profile['profile_pic'];?>"></div>
 							<h3 style="text-align: center; margin-bottom: 5 px; margin-top: 30px;"><strong><?php echo $profile['first_name']; ?> <?php echo $profile['last_name']; ?></strong></h3>
 							<h6 style="text-align: center; margin-bottom: 30px;"><strong><?php echo $profile['course']; ?>, <?php echo $profile['year_level']; ?></strong></h6>
-							<p style="text-align: center;">E-mail</p>
+							<p style="text-align: center;"><?php echo $profile['up_mail']; ?></p>
 							<hr>
 							<button class="btn btn-danger btn-block" data-target="#editProfile" data-toggle="modal" style="margin-top: 10px;" type="button">Edit Profile</button><a href="#search"><button style="margin-top: 10px;" class="btn btn-danger btn-block" type='button'>Apply to Organizations</button></a>
 						</div>
@@ -211,12 +211,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div id="search">
-			<button class="close" type="button">x</button>
-			<form>
-				<input placeholder="type organization name here" type="search" value=""> <button class="btn btn-primary" type="submit">Search</button>
-			</form>
 		</div>
 	</div>
 </body>
