@@ -147,7 +147,7 @@ opacity:0;
 filter:alpha(opacity=0);
 -webkit-transition:all .2s ease-in-out;
 transition:all .2s ease-in-out;
-margin:50px 0 0;
+margin:10px 0 0;
 padding:7px 14px;
 }
 
@@ -164,7 +164,6 @@ filter:alpha(opacity=100);
 
 .hovereffect:hover h2,.hovereffect:hover a.info {
 opacity:1;
-filter:alpha(opacity=100);
 -ms-transform:translatey(0);
 -webkit-transform:translatey(0);
 transform:translatey(0);

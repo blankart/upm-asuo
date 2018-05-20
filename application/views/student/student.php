@@ -33,7 +33,7 @@
         async: false,
         success:function(result){
           swal({
-       imageUrl: "<?php echo base_url();?>"+"img/logo.jpg",
+       imageUrl: "<?php echo base_url();?>assets/org/logo/"+result['org_logo'],
        html: true,
        title: "<h4>"+result['org_name']+"</h4>",
        text: "<div class='container' style='margin-top: 20px;'>"+
@@ -268,7 +268,8 @@
 												<div class="hovereffect">
 													<img alt="orgLogo" class="img-responsive" src="<?php echo base_url().'assets/org/logo/'.$application['org_logo'].'?'.rand(1, 100); ?>" style="max-height:170px; overflow:auto;">
 													<div class="overlay">
-														<h2><?php echo $application['acronym'];?></h2><a class="info" onclick="viewOrgInfo(<?php echo $application['org_id'];?>)">Details</a>
+														<h2><?php echo $application['acronym'];?></h2><a class="info" href='#' onclick="viewOrgInfo(<?php echo $application['org_id'];?>)">Details</a>
+														<a href='<?php echo base_url() ."org/" .str_replace(" ", "", $application["acronym"]);?>' class="info">View Profile</a>
 													</div>
 												</div>
 											</td>

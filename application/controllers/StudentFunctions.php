@@ -53,7 +53,7 @@
 						else{	
 
 							$this->loadStudentProfileByOthers($student_id, $account_type);		
-							echo "Since you are an org and an admin, you can view anything that you like. How's that?";	// user is an org or an admin		
+							//echo "Since you are an org and an admin, you can view anything that you like. How's that?";	// user is an org or an admin		
 						}
 					}
 				}
@@ -219,12 +219,16 @@
 		}
 
 		private function search(){
-			//echo $searchItem . "'+'";
 			$searchItem = $this->input->post('query');
-			$this->load->model("StudentModel");
-			$result = $this->StudentModel->search($searchItem);
-			echo json_encode($result);
-			exit();
+
+			if($searchItem != NULL){
+				$this->load->model("StudentModel");
+				$result = $this->StudentModel->search($searchItem);
+				echo json_encode($result);
+				exit();
+			}
+			else
+				show_404();
 		}
 
 		private function checkStudentPassword(){
