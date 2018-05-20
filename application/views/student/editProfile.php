@@ -86,7 +86,7 @@
    }
 </script>
 
-<div class="modal animated bounceInUp" id="editProfile" data-backdrop="false" data-keyboard="false">
+<div class="modal animated bounceInUp" id="editStudentProfile" data-backdrop="false" data-keyboard="false">
    <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
          <!-- Modal Header -->
