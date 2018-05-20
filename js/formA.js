@@ -1,3 +1,6 @@
+//form validation
+
+
 	function nameFormatCheck(input) {  
     var regex_num = new RegExp('^[0-9]*$');
     var regex = new RegExp("^[a-zA-Z]+( [a-zA-Z]+)*$");

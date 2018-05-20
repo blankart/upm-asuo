@@ -1,9 +1,3 @@
-var dateFiled, orgName, stay, years, category, adviserName, pos, college, 
-	contactPreson, contactPos, address, tel, mob, email, other, obj, desc;
-
-var buttonStatus = document.getElementById('phase4but').disabled;
-
-
 function _(x){
 	return document.getElementById(x);
 }
@@ -39,16 +33,34 @@ function back2(){
 }
 ////////////////////////////////////////////
 function incomplete1() {
-	if(document.getElementById("adviserUnit").value==="") { 
-        document.getElementById('phase4but').disabled = true; 
-    } else if (document.getElementById("adviser").value===""){
-    	document.getElementById('phase4but').disabled = true; 
+	if (document.getElementById("adviser").value===""){
+    	document.getElementById('phase4but').disabled = true;
     } else if (document.getElementById("adviserPos").value===""){
     	document.getElementById('phase4but').disabled = true;
-    }
-    else { 
+    } else if(document.getElementById("adviserUnit").value==="") { 
+        document.getElementById('phase4but').disabled = true; 
+    } else { 
         document.getElementById('phase4but').disabled = false;
     }
+}
+
+///////////////////////////////////////////
+function processPhase4(){
+	if (document.getElementById('phase4but').disabled == false){
+		_("progressBar").value = 66.68;
+		_("phase4").style.display = "none";
+		_("phase5").style.display = "block";
+	} else {
+		_("progressBar").value = 50.01;
+		_("phase3").style.display = "none";
+		_("phase4").style.display = "block";
+	}
+}
+
+function back3(){
+	_("phase3").style.display = "block";
+	_("phase4").style.display = "none";
+	_("progressBar").value = 33.34;
 }
 
 function incomplete2() {
@@ -69,24 +81,18 @@ function incomplete2() {
         document.getElementById('phase5but').disabled = false;
     }
 }
-
-///////////////////////////////////////////
-function processPhase4(){
-	_("progressBar").value = 66.68;
-	_("phase4").style.display = "none";
-	_("phase5").style.display = "block";
-}
-
-function back3(){
-	_("phase3").style.display = "block";
-	_("phase4").style.display = "none";
-	_("progressBar").value = 33.34;
-}
+/////////////////////////////////////////////////////////////////////
 
 function processPhase5(){
-	_("progressBar").value = 83.35;
-	_("phase5").style.display = "none";
-	_("phase6").style.display = "block";
+	if (document.getElementById('phase5but').disabled == false){
+		_("progressBar").value = 83.35;
+		_("phase5").style.display = "none";
+		_("phase6").style.display = "block";
+	} else {
+		_("progressBar").value = 66.68;
+		_("phase4").style.display = "none";
+		_("phase5").style.display = "block";		
+	}
 }
 
 function back4(){

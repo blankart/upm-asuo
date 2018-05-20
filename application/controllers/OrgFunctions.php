@@ -642,18 +642,7 @@
 			$this->load->view('org/applyforaccreditation/applyforaccreditation', $data);
 			$this->load->view('footer');
 		}
-
-		private function loadFormA(){
-			$org_id = $this->session->userdata['user_id'];
-
-			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
-
-			$this->load->view('header');
-			$this->load->view('org/applyforaccreditation/formA', $data);
-			$this->load->view('footer');
-		}
-				
+		
 		private function loadFormB(){
 			$org_id = $this->session->userdata['user_id'];
 
