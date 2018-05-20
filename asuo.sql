@@ -106,7 +106,11 @@ CREATE TABLE `accreditationapplication` (
   `app_status` varchar (15) NOT NULL DEFAULT 'Rejected',
   `form_A` varchar(40) NOT NULL DEFAULT 'None',
   `form_B` varchar(40) NOT NULL DEFAULT 'None',
-  `form_F` varchar(40) NOT NULL DEFAULT 'None'
+  `form_C` varchar(40) NOT NULL DEFAULT 'None',
+  `form_D` varchar(40) NOT NULL DEFAULT 'None',
+  `form_E` varchar(40) NOT NULL DEFAULT 'None',
+  `form_F` varchar(40) NOT NULL DEFAULT 'None',
+  `plans` varchar(40) NOT NULL DEFAULT 'None'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 ALTER TABLE `accreditationapplication`

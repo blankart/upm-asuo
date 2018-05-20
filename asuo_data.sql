@@ -46,7 +46,7 @@ fde3d4614bf1c82bc47b252875ef97b2.jpg', 'No uploads yet', 0, 0),
 (4, 'UP Manila Musical Organization', 'UPMorg', 'Special Interest', 'College of  Arts and Sciences', 'org of music', 'to something', 'upmorg.com', 'herewhere', '1991', '	
 a765743b36d83a8681cd018ac0edb17f.jpg', 'No uploads yet', 1, 4),
 (5, 'UP Beau', 'UPB', 'Sorority', 'College of  Arts and Sciences', 'org of females', 'to something', 'upbeau.com', 'wherewhere', '1992', '087ddd17c41558a3a29ae44b5bba8016.jpg', 'No uploads yet', 0, 0),
-(6, 'UP Society of Computer Scientists', 'UP SoComSci', 'Academic', 'College of  Arts and Sciences', 'org of computer enthusiasts', 'to something', 'upsocomsci.com', 'hello world', '1993', 'c31944ef461eb828d715940a0f3b8cab.jpg', 'No uploads yet', 1, 5),
+(6, 'UP Society of Computer Scientists', 'UP SoComSci', 'Academic', 'College of  Arts and Sciences', 'org of computer enthusiasts', 'to something', 'upsocomsci.com', 'hello world', '1993', 'c31944ef461eb828d715940a0f3b8cab.jpg', '39D4602FC8BB93E619B33D0213724720.pdf', 1, 5),
 (7, 'Organizational Communications Society', 'OrComSoc', 'Academic', 'College of  Arts and Sciences', 'org of orcom students', 'to something', 'uporcomsoc.com', 'therethere', '1993', '3fc1026fb5f2f3665e2dd2029907cbb4.jpg', 'No uploads yet', 0,0 ),
 (8, 'UP Vector', 'UP Vector', 'Academic', 'College of  Arts and Sciences', 'org of vectors', 'to something', 'upvector.com', 'somewhere', '1994', '4cb09dcfea87b60898b8f86d9d99f149.jpg', 'No uploads yet', 0, 0),
 (9, 'Organization of Area Studies Majors', 'OrgASM', 'Academic', 'College of  Arts and Sciences', 'org of asm', 'to something', 'orgasm.com', 'over', '1995', '33de90baee9dfac8afad381a9a679782.jpg', 'No uploads yet', 1, 6),
@@ -55,24 +55,24 @@ a765743b36d83a8681cd018ac0edb17f.jpg', 'No uploads yet', 1, 4),
 -- -------------------------------------------------------------------
 
 INSERT INTO `announcement` (`notice_id`, `sender`, `title`, `content`,  `date_posted`, `archived`) VALUES
-(1, 1,'Test Announcement', 'Hello. This is a test announcement. :D', '2018-09-04 13:23:48', 0),
-(2, 1, 'wala akong title :<', 'wala na akong maisip na ilalagay :((', '2018-09-04 13:23:49', 0),
-(3, 1, 'HAPPY BIRTHDAY ALDRIN!!!', 'BIRTHDAY NI ALDRIN XD', '2018-09-04 13:23:50', 0),
-(4, 2, 'Accredited ORganization', 'Listed below are the accredited orgs:\r\n.\r\n.\r\n.\r\n..\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n.\r\n', '2018-09-04 13:23:51', 0),
-(5, 1, 'Welcome Message', 'Welcome to the Accreditation for University-wide Orgs',  '2018-09-04 13:23:52', 0),
-(6, 1, 'Exam sa stat121', 'friday this week:<', '2018-09-04 13:23:53', 0),
-(7, 2, 'Accreditation Period', 'Accreditation period will start on ...',  '2018-09-04 13:23:54', 0),
-(8, 1, 'General Assembly for Univ-wide Orgs', 'A general assembly will be conducted on ...',  '2018-09-04 13:23:55', 0),
-(9, 1, 'Orgs with pending accreditation app\r\n', 'Listed below are the orgs with pending application:\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n...\r\n.\r\n.\r\n\r\n\r\n.', '2018-09-04 13:23:56', 0),
-(10, 1, 'Requirements for Accreditaitoin', 'Listed below are the requirements for accreditation:\r\n.\r\n.\r\n.', '2018-09-04 13:23:57', 0),
-(11, 1, 'hey', 'hey', '2018-09-04 13:23:58', 0),
-(12, 2, 'This is Zero', 'sample message', '2018-09-04 13:23:59', 0),
-(13, 1, 'Hey', 'Musta niggas',  '2018-09-04 13:24:48', 0),
-(14, 1, 'something', 'something',  '2018-09-04 13:24:49', 0),
-(15, 1, 'The quick brown fox jumps over the lazy dog', 'The quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps o', '2018-09-04 13:24:50', 0),
-(16, 2, 'jello', 'jello', '2018-09-04 13:24:51', 0),
-(17, 1, 'sdasdasd', 'asdasdasd', '2018-09-04 13:24:52', 0),
-(18, 2, 'final something', 'final something', '2018-09-04 13:24:53', 0);
+(1, 1,'Test Announcement', 'Hello. This is a test announcement. :D', '2018-01-04 13:23:48', 0),
+(2, 1, 'wala akong title :<', 'wala na akong maisip na ilalagay :((', '2018-01-04 13:23:49', 0),
+(3, 1, 'HAPPY BIRTHDAY ALDRIN!!!', 'BIRTHDAY NI ALDRIN XD', '2018-01-04 13:23:50', 0),
+(4, 2, 'Accredited ORganization', 'Listed below are the accredited orgs:\r\n.\r\n.\r\n.\r\n..\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n.\r\n', '2018-01-04 13:23:51', 0),
+(5, 1, 'Welcome Message', 'Welcome to the Accreditation for University-wide Orgs',  '2018-01-04 13:23:52', 0),
+(6, 1, 'Exam sa stat121', 'friday this week:<', '2018-01-04 13:23:53', 0),
+(7, 2, 'Accreditation Period', 'Accreditation period will start on ...',  '2018-01-04 13:23:54', 0),
+(8, 1, 'General Assembly for Univ-wide Orgs', 'A general assembly will be conducted on ...',  '2018-01-04 13:23:55', 0),
+(9, 1, 'Orgs with pending accreditation app\r\n', 'Listed below are the orgs with pending application:\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n...\r\n.\r\n.\r\n\r\n\r\n.', '2018-01-04 13:23:56', 0),
+(10, 1, 'Requirements for Accreditaitoin', 'Listed below are the requirements for accreditation:\r\n.\r\n.\r\n.', '2018-01-04 13:23:57', 0),
+(11, 1, 'hey', 'hey', '2018-01-04 13:23:58', 0),
+(12, 2, 'This is Zero', 'sample message', '2018-01-04 13:23:59', 0),
+(13, 1, 'Hey', 'Musta niggas',  '2018-01-04 13:24:48', 0),
+(14, 1, 'something', 'something',  '2018-01-04 13:24:49', 0),
+(15, 1, 'The quick brown fox jumps over the lazy dog', 'The quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps o', '2018-01-04 13:24:50', 0),
+(16, 2, 'jello', 'jello', '2018-01-04 13:24:51', 0),
+(17, 1, 'sdasdasd', 'asdasdasd', '2018-01-04 13:24:52', 0),
+(18, 2, 'final something', 'final something', '2018-01-04 13:24:53', 0);
 
 
 -- -------------------------------------------------------------------
@@ -108,10 +108,9 @@ INSERT INTO `recipient` (`recipient_id`, `notice_id`, `org_id`) VALUES
 
 -- -------------------------------------------------------------------
 
-INSERT INTO `accreditationapplication` (`app_id`, `org_id`, `app_status` ,`form_A` ,`form_B`, `form_F`) VALUES
-(1, 6, 'Pending', 'This is form A', 'This is form B', 'This is form F'),
-(2, 7, 'Accredited','This is form A',  'This is form B', 'This is form F'),
-(3, 8, 'Unaccredited', 'This is form A', 'This is form B', 'This is form F');
+INSERT INTO `accreditationapplication` (`app_id`, `org_id`, `app_status`, `form_A`, `form_B`, `form_C`, `form_D`, `form_E`, `form_F`, `plans`) VALUES
+(1, 6, 'Pending', 'E0DF1C144280F4E36E638DCF95CED92C.pdf', '6581085DAAFDB45D90322F986D96B670.pdf', 'FEE06AFE1E48B092C726EA711D3ABE73.pdf', '3B7501A8C9CDE3A7B1EA381057BADA10.pdf', '1DB1EA57A537AE0B81576B66E9277161.pdf', 'D2A02B6233821B11D388957DEA0FE989.pdf', 'EFDAEADEA97149177948B2685C2F162F.pdf')
+;
 
 
 -- -------------------------------------------------------------------------
@@ -135,19 +134,19 @@ INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`, `i
 -- -------------------------------------------------------------------------
 
 INSERT INTO `orgpost` (`post_id`, `org_id`, `title`, `content`, `date_posted`, `privacy`, `archived`) VALUES
-(1, 6, "Untitled", "This is content 1", '2018-11-11 13:23:44', 'Public', 1),
-(2, 6, "Title of 2", "This is content 2", '2018-11-11 13:23:45', 'Members', 0),
-(3, 6, "Title 3", "This is content 3", '2018-11-11 13:23:46', 'Officers', 1),
-(4, 6, "4th Title", "This is content 4", '2018-11-11 13:23:47', 'Members', 1),
-(5, 6, "Title of 5th Post", "This is content 5", '2018-11-11 13:23:48', 'Officers', 0),
-(6, 6, "6 out of 6 Title", "This is content 6", '2018-11-11 13:23:49', 'Public', 0),
+(1, 6, "Untitled", "This is content 1", '2018-01-11 13:23:44', 'Public', 1),
+(2, 6, "Title of 2", "This is content 2", '2018-01-11 13:23:45', 'Members', 0),
+(3, 6, "Title 3", "This is content 3", '2018-01-11 13:23:46', 'Officers', 1),
+(4, 6, "4th Title", "This is content 4", '2018-01-11 13:23:47', 'Members', 1),
+(5, 6, "Title of 5th Post", "This is content 5", '2018-01-11 13:23:48', 'Officers', 0),
+(6, 6, "6 out of 6 Title", "This is content 6", '2018-01-11 13:23:49', 'Public', 0),
 
-(7, 1, "Untitled", "This is content 7", '2018-11-11 13:24:44', 'Public', 0),
-(8, 1, "Title of 8", "This is content 8", '2018-11-11 13:25:45', 'Members', 0),
-(9, 1, "Title 9", "This is content 9", '2018-11-11 13:26:46', 'Officers', 0),
-(10, 3, "10th Title", "This is content 10", '2018-11-11 13:27:47', 'Members', 0),
-(11, 3, "Title of 11th Post", "This is content 11", '2018-11-11 13:28:48', 'Officers', 0),
-(12, 3, "12 out of 12 Title", "This is content 12", '2018-11-11 13:29:49', 'Public', 0);
+(7, 1, "Untitled", "This is content 7", '2018-01-11 13:24:44', 'Public', 0),
+(8, 1, "Title of 8", "This is content 8", '2018-01-11 13:25:45', 'Members', 0),
+(9, 1, "Title 9", "This is content 9", '2018-01-11 13:26:46', 'Officers', 0),
+(10, 3, "10th Title", "This is content 10", '2018-01-11 13:27:47', 'Members', 0),
+(11, 3, "Title of 11th Post", "This is content 11", '2018-01-11 13:28:48', 'Officers', 0),
+(12, 3, "12 out of 12 Title", "This is content 12", '2018-01-11 13:29:49', 'Public', 0);
 
 -- -------------------------------------------------------------------------
 
