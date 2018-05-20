@@ -102,7 +102,6 @@
 			$data = $this->StudentModel->getStudentProfileDetails($student_id);
 			$data2 = $this->StudentModel->getStudentDetails($student_id);
 
-			
 			/*echo '<pre>';
 			print_r($result);
 			echo '</pre>';*/
@@ -132,11 +131,22 @@
 
 		private function editStudentProfile(){
 			$data = $this->input->post('data');
-			$student_id = $this->input->post('student_id');
 		
-			if($student_id != NULL && $data != NULL){
+			if($data != NULL){
+				$student_id = $this->session->userdata['user_id'];
+
+				$profile['course'] = $data['course'];
+				$profile['year_level'] = $data['year_level'];
+				$profile['sex'] = $data['sex'];
+				$profile['birthday'] = $data['birthday'];
+				$profile['address'] = $data['address'];
+				$profile['contact_num'] = $data['contact_num'];
+
+				$account['up_id'] = $data['up_id'];
+
 				$this->load->model('StudentModel');
-				$this->StudentModel->editStudentProfile($student_id, $data);
+				$this->StudentModel->editStudentProfile($student_id, $profile);
+				$this->StudentModel->editStudentAccount($student_id, $account);
 				echo json_encode(true);
 				exit();
 			}

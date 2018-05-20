@@ -373,7 +373,7 @@
                                     <div class="sp-content">
                                       <div class="sp-info">
                                         <h6 style="color: #3f3f3f; font-size: 18px; font-weight: bold;"><?php echo $mypost['title']; ?></h6>
-                                              <?php echo date("F j, Y, g:i:s a", strtotime($mypost['date_posted'])). ' | ' .$mypost['privacy']; ?>
+                                              <?php echo date("g:i:s a |  F j, Y", strtotime($mypost['date_posted'])). ' | ' .$mypost['privacy']; ?>
                                       </div>
                                             
                                       <p class="sp-paragraph mb-0">
@@ -490,7 +490,7 @@
                                     <div class="sp-content">
                                         <div class="sp-info">
                                           <h6 style="color: #3f3f3f; font-size: 18px; font-weight: bold;"><?php echo $announcement['title']; ?></h6>
-                                              <?php echo date("F j, Y, g:i:s a", strtotime($announcement['date_posted'])); ?>
+                                              <?php echo date("g:i:s a |  F j, Y", strtotime($announcement['date_posted'])); ?>
                                         </div>
                                         <p class="sp-paragraph mb-0">  <?php echo $announcement['content']; ?></p>
                                     </div>
