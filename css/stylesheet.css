@@ -215,4 +215,36 @@
 .notice-danger>strong {
     color: #d73814;
 }
+.swal-wide{
+	transform: translateX(-50%);
+	width: 950px !important;
+	margin: auto;
+}
 
+.containerbutton{
+        	margin: 10px;
+            color: white;
+            font-size: 20px;
+            text-align: center;
+            background-color: rgba(117, 21, 24, 1);
+            border-radius: 5px;
+            -webkit-transition: all .2s ease-in;
+            -moz-transition: all .2s ease-in;
+            -o-transition: all .2s ease-in;
+            -ms-transition: all .2s ease-in;
+            transition: all .2s ease-in;
+        }
+
+        .containerbutton:hover{
+        	background-color: transparent;
+        	color: rgba(117, 21, 24, 1);
+        }
+
+        .containerbutton:hover a{
+        	color: rgba(117, 21, 24, 1);
+        }
+        
+        .containerbutton a{
+            text-decoration: none !important;
+            color: white;
+        }
