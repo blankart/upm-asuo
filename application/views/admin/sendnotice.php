@@ -317,7 +317,7 @@
               <div class="mail-box">
                 <aside class="lg-side">
                   <div class="inbox-head">
-                    <form class="pull-right position" onsubmit="return false">
+                    <form class="position" onsubmit="return false">
                       <div class="mat-input" style="margin-top: 30px;">
                         <div class="mat-input-outer">
                           <input autocomplete="off" class="form-control" id="sendNoticeInput" type="username"> <label class="">Enter Org Email/Name</label>

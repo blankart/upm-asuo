@@ -10,7 +10,7 @@
    </head>
    <body>
       <div class="container animated fadeIn">
-         <div class="row" style="margin-top: 80px; margin-left: 80px;">
+         <div class="row" style="margin-top: 150px; margin-left: 80px;">
             <div class="col">
                <div class="card" style="width: 25rem; padding-bottom: 10px; box-shadow: 0 0 40px rgba(0,0,0,.05);">
                   <div class="card-header">

@@ -212,10 +212,13 @@
             <div class="modal-body">
                 <div id="studSearch">
                     <div class="container">
+
+                      <small class="form-text text-muted">Activate Student Accounts with valid UP mail and valid details.</small>
+
                         <div class="mail-box">
                             <aside class="lg-side">
                                 <div class="inbox-head">
-                                    <form class="pull-right position needs-validation" onsubmit="return false">
+                                    <form class="position needs-validation" onsubmit="return false">
                                         <table class="table table-inbox table-hover">
                                             <tbody>
                                                 <div class="mat-input" style="margin-top: 30px;">

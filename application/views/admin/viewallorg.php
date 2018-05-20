@@ -326,7 +326,7 @@
                         <div class="mail-box">
                             <aside class="lg-side">
                                 <div class="inbox-head">
-                                    <form class="pull-right position needs-validation" onsubmit="return false">
+                                    <form class="position needs-validation" onsubmit="return false">
                                         <table class="table table-inbox table-hover">
                                             <tbody>
                                                 <div class="mat-input" style="margin-top: 30px;">
