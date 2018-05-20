@@ -212,6 +212,9 @@
             <div class="modal-body">
                 <div id="studSearch">
                     <div class="container">
+
+                      <small class="form-text text-muted">Activate Student Accounts with valid UP mail and valid details.</small>
+
                         <div class="mail-box">
                             <aside class="lg-side">
                                 <div class="inbox-head">
