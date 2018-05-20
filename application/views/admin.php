@@ -40,7 +40,7 @@
                  <br><button type="button" onclick="searchBox('Pending')" class="btn btn-danger admin-button" data-toggle="modal" data-target="#viewaccreditapp">
 					<span class="btn-label"><i class="fa fa-folder-open fa-2x pull-left"></i></span>View Accreditation Applications</button></br>
                  <br><button type="button" class="btn btn-danger admin-button" data-toggle="modal" data-target="#openaccreditperiod">
-					<span class="btn-label"><i class="fa fa-calendar fa-2x pull-left"></i></span>Open Accreditation Period</button></br>
+					<a><i class="fa fa-calendar" style='margin-right: 20px;'></i>Open Accreditation Period</a></button></br>
                   </div>
                </div>
                <div class="card" style="margin-top: 30px; width: 25rem;">
