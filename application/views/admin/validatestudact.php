@@ -213,7 +213,7 @@
                 <div id="studSearch">
                     <div class="container">
 
-                      <small class="form-text text-muted">Activate Student Accounts with valid UP mail and valid details.</small>
+                      <p class="form-text text-muted">Activate or reject student accounts with valid UP mail and complete details.</p>
 
                         <div class="mail-box">
                             <aside class="lg-side">
