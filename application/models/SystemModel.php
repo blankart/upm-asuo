@@ -292,6 +292,46 @@
 		}
 		// end of VERIFICATION FUNCTIONS
 
+		// FORGOT PASSWORD FUNCTIONS
+
+		public function updateNewPassword($email, $password){
+
+			$changes = array(
+				'password' => $password
+			);
+
+			$condition = "up_mail = '" .$email. "' AND up_mail = '" .$email. "'";
+
+			$this->db->select('student_id');
+			$this->db->from('studentaccount');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if($query->num_rows() == 1){
+				$this->db->where($condition);
+				$this->db->update('studentaccount', $changes);
+				return true;
+			}
+			else{
+
+				$condition = "org_email = '" .$email. "' AND org_email = '" .$email. "'";
+				$this->db->select('org_id');
+				$this->db->from('OrganizationAccount');
+				$this->db->where($condition);
+				$query = $this->db->get();
+
+				if($query->num_rows() == 1){
+					$this->db->where($condition);
+					$this->db->update('OrganizationAccount', $changes);
+					return true;
+				}
+				else
+					return false;
+			}
+		}
+
+		// end of FORGOT PASSWORD FUNCTIONS
+
 	    // LOGIN FUNCTIONS
 		public function login($credentials){
 			

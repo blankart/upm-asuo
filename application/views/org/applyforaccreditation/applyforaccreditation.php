@@ -39,6 +39,7 @@
                     </ul>
                     <?php } ?>
 
+                <button class="submitAll">Submit All</button>
                 </div>
             </div>
             <!-- Page Content -->

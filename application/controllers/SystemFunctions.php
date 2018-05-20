@@ -33,8 +33,11 @@
 
 			else if($action == 'checkLogin')
 				$this->checkLogin();
+			else if($action == 'resetPassword')
+				$this->resetPassword();
 			else if($action == 'logout')
 				$this->logOut();
+
 			else
 				show_404();
 		}
@@ -254,7 +257,7 @@
          			exit();
           		}			
 			}
-			else 
+			else
 				show_404();
 		}
 	
@@ -383,6 +386,82 @@
 				}
 			}
 		}
+
+		private function resetPassword(){
+			$email = $this->input->post('email');
+			//$email = 'mrfernando@up.edu.ph';
+
+			if($email != NULL){
+
+				$random_string = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"), 0, rand(8,8));
+
+				$password = md5($random_string);
+
+				$this->load->model('SystemModel');
+				$result = $this->SystemModel->updateNewPassword($email, $password);
+				if($result){
+					$result2 = $this->sendNewPasswordMail($email, $random_string);
+
+					if($result2)
+						echo json_encode(true);
+					else
+						echo json_encode(false);
+				}
+				else
+					echo json_encode(false);
+				
+
+				exit();
+			}
+			else
+				$this->load->view('forgot');
+
+		}
+
+		private function sendNewPasswordMail($email, $password){
+
+			$config = array(
+					'useragent' => "CodeIgniter",
+		        	'mailpath'  => "/usr/bin/sendmail",
+					'protocol'  => 'smtp' , 
+			        'smtp_host' => 'ssl://smtp.gmail.com' , 
+			        'smtp_port' => 465 , 
+			        'smtp_user' => 'asuodevelopers@gmail.com' ,
+			        'smtp_pass' => 'cmsc128.1',
+			        'mailtype'  => 'html', 
+			        'charset'   => 'utf-8', 
+			        'newline'   => "\r\n",  
+			        'wordwrap'  => TRUE 
+				);
+
+			    //load email library
+			  	$this->email->initialize($config);
+
+			    $this->email->set_mailtype('html');
+			    $this->email->from($email, 'ASUO Team');
+
+			    $this->email->to($email);
+			    $this->email->subject('Request for Account Password Reset');
+
+			    $message = '<html><body>';
+			    $message .= '<p>Your new password is now <b>' .$password. '</b>.</p>';
+			    $message .= '<p>Thank you!</p>';
+			    $message .= '<p>ASUO Administrator</p>';
+			    $message .= '</body></html>';
+
+			    $this->email->message($message);
+			
+				if ($this->email->send()){
+				      $result['success'] = 'Yes';
+				      return true;
+				}
+				else{
+				    $result['success'] = 'No';
+				    $result['error'] = $this->email->print_debugger(array('headers'));
+				    return false;
+				}
+		}
+
 
 		private function resendVerificationMail(){
 

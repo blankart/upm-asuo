@@ -67,6 +67,7 @@
                     	<li class="active"><a href="<?php echo base_url(); ?>org/formG">Financial Report</a></li>
                     	<li><a href="<?php echo base_url(); ?>org/plans">Plans</a></li>
                     </ul>
+                <button class="submitAll">Submit All</button>
                 </div>
             </div>
 

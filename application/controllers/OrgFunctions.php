@@ -97,9 +97,11 @@
 					 $isActivated = $this->OrgModel->isOrgActivated($org_id);
 					 $isVerified = $this->OrgModel->isOrgVerified($org_id);
 
-
-					if ( !$org_id || $isArchived || !$isVerified || ($account_type == 'student' && !$isActivated) )
-						echo "That org does not exist, darlin'! ";
+					if ( !$org_id || $isArchived || !$isVerified || ($account_type == 'student' && !$isActivated) ){
+						$this->load->view('header'); 
+						$this->load->view('errors/html/dne_org'); 
+						$this->load->view('footer');
+					}
 					else{
 
 						if ( $this->session->userdata['account_type'] == 'admin'){
