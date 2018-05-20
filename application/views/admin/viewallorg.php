@@ -249,7 +249,7 @@
           var nsacronym = acronym.replace(/\s/g, '');
 
           swal({
-       imageUrl: "<?php echo base_url();?>"+"img/logo.jpg",
+       imageUrl: "<?php echo base_url();?>assets/org/logo/"+result['org_logo'],
        html: true,
        title: "<h4>"+result['org_name']+"</h4>",
        text: "<div class='container' style='margin-top: 20px;'>"+
