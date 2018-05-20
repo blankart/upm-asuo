@@ -68,6 +68,10 @@
 				$this->loadPlans();
 			}
 
+			else if ($action == 'submitAll'){
+				$this->loadSubmitAll();
+			}
+
 			else if ($action == 'saveFormA') {
 				$this->saveFormA();
 			}
@@ -716,6 +720,17 @@
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/plans', $data);
 			$this->load->view('footer');
+		}
+
+		function loadSubmitAll(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/submitAll', $data);
+			$this->load->view('footer');			
 		}
 
 
