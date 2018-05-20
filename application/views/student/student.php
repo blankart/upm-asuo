@@ -123,7 +123,7 @@
 	<div class="header" style="padding-top: 80px; text-align: center; color: white;">
 		<?php if($isStudent){ ?> <h1 style="font-size: 40px; font-family: Lato; color: white">Hi <?php echo $profile['first_name']; ?>!</h1> <?php } ?>
 	</div><br>
-	<div style="background-color: rgb(255,255,255); margin-top: 40px; padding-top: 50px; box-shadow: 0 0 40px rgba(0,0,0,.50); padding-bottom: 50px;">
+	<div style="background-color: rgba(255,255,255, 1); margin-top: 40px; padding-top: 50px; box-shadow: 0 0 40px rgba(0,0,0,.50); padding-bottom: 50px;">
 		<div class="container animated fadeIn">
 			<div class="row">
 				<div class="col-3">
