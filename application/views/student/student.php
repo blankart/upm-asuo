@@ -242,7 +242,8 @@
 												<div class="hovereffect">
 													<img alt="orgLogo" class="img-responsive" src="<?php echo base_url().'assets/org/logo/'.$application['org_logo'].'?'.rand(1, 100); ?>" style="max-height:170px; overflow:auto;">
 													<div class="overlay">
-														<h2><?php echo $application['acronym'];?></h2><a class="info" onclick="viewOrgInfo(<?php echo $application['org_id'];?>)">Details</a>
+														<h2><?php echo $application['acronym'];?></h2><a class="info" href='#' onclick="viewOrgInfo(<?php echo $application['org_id'];?>)">Details</a>
+														<a href='<?php echo base_url() ."org/" .str_replace(" ", "", $application["acronym"]);?>' class="info">View Profile</a>
 													</div>
 												</div>
 											</td>
