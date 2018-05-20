@@ -38,26 +38,54 @@
        title: "<h4>"+result['org_name']+"</h4>",
        text: "<div class='container' style='margin-top: 20px;'>"+
                 "<div class='row' style='text-align: left;'>"+
-                   "<div class='col'>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'><strong>Date Established</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Org Acronym</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Org Category</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Description</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Objectives</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Organization Website</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Mailing Address</strong></h4>"+
-                      "</div>"+
-                   "<div class='col'>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['date_established']+"</h4>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='row' style='text-align: left;'>"+
+                    "<div class='col'>"+
+                      "<h4 style='font-size: 18px'><strong>Org Acronym</strong></h4>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['acronym']+"</h4>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='row' style='text-align: left;'>"+
+                    "<div class='col'>"+
+                      "<h4 style='font-size: 18px'><strong>Org Category</strong></h4>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['org_category']+"</h4>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='row' style='text-align: left;'>"+
+                    "<div class='col'>"+
+                      "<h4 style='font-size: 18px'><strong>Description</strong></h4>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['description']+"</h4>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='row' style='text-align: left;'>"+
+                    "<div class='col'>"+
+                      "<h4 style='font-size: 18px'><strong>Objectives</strong></h4>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['objectives']+"</h4>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='row' style='text-align: left;'>"+
+                    "<div class='col'>"+
+                      "<h4 style='font-size: 18px'><strong>Organization Website</strong></h4>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['org_website']+"</h4>"+
-                      "<h4 style='font-size: 18px'>"+result['mailing_address']+"</h4>"+
-                      "</div>"+
-                   "</div>"+
-                "</div>"
+                    "</div>"+
+                "</div>"+                
+              "</div>"
        },
        function(){
        
@@ -135,7 +163,6 @@
 							<div class='wrapper'><img class='profileicon' src="<?php echo base_url().'assets/student/profile_pic/'.$profile['profile_pic'].'?'.rand(1, 1000);?>"></div>
 							<h3 style="text-align: center; margin-bottom: 5 px; margin-top: 30px;"><strong><?php echo $profile['first_name']; ?> <?php echo $profile['last_name']; ?></strong></h3>
 							<h6 style="text-align: center; margin-bottom: 30px;"><strong><?php echo $profile['course']; ?>, <?php echo $profile['year_level']; ?></strong></h6>
-							<p style="text-align: center;"><?php echo $profile['up_mail']; ?></p>
 							<hr>
 							<?php if($isStudent){ ?>
 							<button class="btn btn-danger btn-block" data-target="#editStudentProfile" data-toggle="modal" style="margin-top: 10px;" type="button">Edit Profile</button>
@@ -190,11 +217,10 @@
 
 							<div id="studProfile" style="display:none;">
 								<div class="well profile text-center">
-									<img alt="avatar" class="avatar img-thumbnail" height="250px" src="<?php echo base_url().'assets/student/profile_pic/'.$profile['profile_pic'];?>" width="250px"><br>
 									<br>
-									<h2><?php echo $profile['first_name']; ?> <?php echo $profile['last_name']; ?></h2>
+									<h2><?php echo $profile['last_name']; ?>, <?php echo $profile['first_name']; ?> <?php echo $profile['middle_name']; ?></h2>
 									<p><strong><?php echo $profile['course']; ?>, <?php echo $profile['year_level']; ?></strong></p>
-									<p><a href=""><?php echo $profile['up_mail']; ?></a> || <?php echo $profile['contact_num']; ?></p>
+									<i class="fas fa-envelope"></i>  <a href=""><?php echo $profile['up_mail']; ?></a>&emsp;<i class="fas fa-phone-square"></i>  <?php echo $profile['contact_num']; ?></p>
 								</div>
 							</div>
 
