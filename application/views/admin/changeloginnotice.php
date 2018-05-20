@@ -8,6 +8,7 @@
             <!-- Modal body -->
             <div class="modal-body">
 				<div>
+                    <p class="form-text text-muted">Message entered will appear on the login page and can be viewed by all.</p><br>
 					<center><h5>Compose Message</h5>
 				</div>
 				<div class="form-group">
