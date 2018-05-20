@@ -277,7 +277,7 @@
      "<\/div>"+
      "<\/div>";
               swal({
-                     title: '<h3>Accreditation Documents</h3>',
+                     title: '<h3>Accreditation Documents: </h3>'+result['acronym'],
                      text: output,
                      html: true,
                      customClass: 'swal-wide animated fadeIn',

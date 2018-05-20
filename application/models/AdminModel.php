@@ -174,7 +174,7 @@
 		public function getAccreditationDocuments($org_id){
 			$condition = "aa.org_id = " .$org_id. " AND aa.org_id = op.org_id AND aa.app_status = 'Pending'";
 
-			$this->db->select('aa.*, op.constitution');
+			$this->db->select('aa.*, op.*');
 			$this->db->from('accreditationapplication aa, organizationprofile op');
 			$this->db->where($condition);
 			$query = $this->db->get();

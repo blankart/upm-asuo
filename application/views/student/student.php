@@ -138,7 +138,6 @@
 							<hr>
 							<?php if($isStudent){ ?>
 							<button class="btn btn-danger btn-block" data-target="#editStudentProfile" data-toggle="modal" style="margin-top: 10px;" type="button">Edit Profile</button>
-							<a href="#search"><button style="margin-top: 10px;" class="btn btn-danger btn-block" type='button'>Apply to Organizations</button></a>
 							<?php } ?>
 
 						</div>
