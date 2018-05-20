@@ -44,8 +44,9 @@
     </head>
 
     <body>
+    	
 
-        <nav class="navbar fixed-top navbar-expand-xl navbar-dark" style="background-color: rgb(123,17,19, .8);">
+        <nav class="navbar fixed-top navbar-expand-xl navbar-dark" id='nav-bar'>
         	<img src="<?php echo base_url();?>img/UP Logo.png" width="35px" class="img-fluid">
             <a class="navbar-brand" href="<?php echo base_url();?>login">
             	<?php if (!isset($this->session->userdata['logged_in'])) 
@@ -111,6 +112,7 @@
 		 ?>
                 </ul>
         </nav>
+
          <script src="<?php echo base_url();?>js/jquery.min.js"></script>
         <script src="<?php echo base_url();?>js/my-login.js"></script>
         <script src="<?php echo base_url();?>js/jquery-3.3.1.js"></script>
@@ -121,6 +123,16 @@
 	        <script src="<?php echo base_url();?>js/registerOrg.js"></script>
 	        <script src="<?php echo base_url();?>js/popper.min.js"></script>
 	        <script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
+	        <script>
+    		$(window).scroll(function(){
+    			if ($(this).scrollTop() > 50){
+    				$('#nav-bar').addClass('opaque');
+    			}
+    			else{
+    				$('#nav-bar').removeClass('opaque');
+    			}
+    		});
+    	</script>
     </body>
 
     </html>

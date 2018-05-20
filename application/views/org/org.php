@@ -8,13 +8,6 @@
         $isMember = $isMember;
         $isApplicant = $isApplicant;
         $isOrg = false;
-
-        echo "admin: ".$isAdmin;
-        echo "officer: ".$isOfficer;
-        echo "member: ".$isMember;
-        echo "applicant: ".$isApplicant;
-        echo "org: ".$isOrg;
-
     }else{
         $isAdmin = false;
         $isOfficer = false;

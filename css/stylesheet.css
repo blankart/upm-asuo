@@ -1,3 +1,11 @@
+.navbar{
+    background-color: transparent;
+    -webkit-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -ms-transition: all .2s ease-in;
+    transition: all .2s ease-in;
+}
 .navbar.fixed-top.navbar-expand-xl.navbar-dark .navbar-brand {
     color: #FFFFFF;
     font-size: large;
@@ -307,4 +315,8 @@
 
 #loggedInAs a{
     font-style: italic;
+}
+
+.opaque{
+    background-color: rgb(123,17,19);
 }

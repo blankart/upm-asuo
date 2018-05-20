@@ -21,6 +21,16 @@
 </head>
 <body>
 	<script>
+    		$(window).scroll(function(){
+    			if ($(this).scrollTop() > 50){
+    				$('#nav-bar').addClass('opaque');
+    			}
+    			else{
+    				$('#nav-bar').removeClass('opaque');
+    			}
+    		});
+    	</script>
+	<script>
 		function viewOrgInfo(orgID)
        {
            $.ajax({
