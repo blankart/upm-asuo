@@ -4,7 +4,7 @@
 
   <script>
 
-    function sendNotice(orgID)
+    /*function sendNotice(orgID)
     {
       var date = "<?php echo date('Y-m-d'); ?>";
       if ($("#sendNoticeTitle").val().length > 0 && $("#sendNoticeTitle").val().length < 51 && $("#sendNoticeMessage").val().length > 0 && $("#sendNoticeMessage").val().length < 501 ){
@@ -33,7 +33,7 @@
        });
        });
       }
-    }
+    }*/
     
     function _(x){
       return document.getElementById(x);

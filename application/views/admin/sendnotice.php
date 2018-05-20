@@ -5,10 +5,10 @@
   <script>
        var dataArray = [];
        var checkedDataArray = [];
-       function sendNotice(orgIDs){
-
+       function sendNotice(){
+        alert(checkedDataArray);
        }
-       
+
        function addCheckedData(orgID){
          if (checkedDataArray.indexOf(orgID)==-1){
            checkedDataArray[checkedDataArray.length]=orgID;
@@ -140,7 +140,7 @@
                                          '<span id="textcounter">500 characters remaining<\/span>'+
                                      '<\/div>'+
                                      '<a onclick="sendNoticeReset()" class="btn btn-info pull-right" style="color: white;">Back<\/a>'+
-                                     '<button type="submit" onclick="sendNotice('+checkedDataArray+')" class="btn btn-danger" style="margin-left: 10px;">Send Notice<\/button>'+
+                                     '<button type="submit" onclick="sendNotice()" class="btn btn-danger" style="margin-left: 10px;">Send Notice<\/button>'+
                                  '<\/form>'+
                              '<\/div>'+
                          '<\/div>';
@@ -166,7 +166,7 @@
                                          '<span id="textcounter">500 characters remaining<\/span>'+
                                      '<\/div>'+
                                      '<a onclick="sendNoticeReset()" class="btn btn-info pull-right" style="color: white;">Back<\/a>'+
-                                     '<button type="submit" onclick="sendNotice('+checkedDataArray+')" class="btn btn-danger" style="margin-left: 10px;">Send Notice<\/button>'+
+                                     '<button type="submit" onclick="sendNotice()" class="btn btn-danger" style="margin-left: 10px;">Send Notice<\/button>'+
                                  '<\/form>'+
                              '<\/div>'+
                          '<\/div>';
