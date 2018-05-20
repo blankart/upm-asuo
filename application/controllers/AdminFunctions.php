@@ -345,18 +345,19 @@
 		private function viewDocuments(){
 
 			$org_id = $this->input->post('org_id');
-			//$org_id = 6;
-
+			
+			
 			if($org_id != NULL){
 
 
 				$this->load->model('AdminModel');
 				$documents = $this->AdminModel->getAccreditationDocuments($org_id);
 
-				//echo "<pre>";
-				//print_r($documents);
-				//echo "</pre>";
-				if(!$documents){
+				/*echo "<pre>";
+				print_r($documents);
+				echo "</pre>";*/
+				
+				if($documents){
 					echo json_encode($documents);
 					exit();
 				}

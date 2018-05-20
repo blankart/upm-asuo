@@ -149,7 +149,7 @@ function backc1(){
 
 function processcPhase3(){
 	_("progressBar").value = 100;
-	_("cphase3").style.display = "none";
+	_("multiphase2").style.display = "none";
 	_("show_all_data").style.display = "block";
 }
 

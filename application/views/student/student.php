@@ -66,7 +66,11 @@
        });
        }
 	   $(document).ready(function(){
+	   	<?php if(!$isStudent){?>
+	   		dispStudProfile();
+	   	<?php } else{ ?>
 	     dispAnnouncements();
+	    <?php } ?>
 	       $("#announcementsBTN").click(function(){
 	         dispAnnouncements();
 	       });
