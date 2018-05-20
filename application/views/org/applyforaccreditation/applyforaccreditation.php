@@ -15,7 +15,7 @@
                 <!-- insert sidenav -->
                 <div class="sidenav">
                     <?php if($org_status == "Accredited"){ ?>
-                    <ul clas="menu">
+                    <ul class="menu">
                         <li class="active"><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
