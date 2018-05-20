@@ -36,11 +36,18 @@
 					//print_r($student_id);
 
 					if ( !$student_id )
-						echo "This student is imaginary, darlin'! ";
-					else{	
+						show_404(); //no student account found
+					else  {
+						$isVerified = $this->StudentModel->isStudentVerified($student_id);
+						$isArchived = $this->StudentModel->isStudentArchived($student_id);
 
-						$this->loadStudentProfileByOthers($student_id, $account_type);		
-						echo "Since you are an org and an admin, you can view anything that you like. How's that?";	// user is an org or an admin		
+						if (!$isVerified || $isArchived)
+							show_404(); //student is either not verified or is blocked by admin
+						else{	
+
+							$this->loadStudentProfileByOthers($student_id, $account_type);		
+							echo "Since you are an org and an admin, you can view anything that you like. How's that?";	// user is an org or an admin		
+						}
 					}
 				}
 				else if($action  == $this->session->userdata['username']){

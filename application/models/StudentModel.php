@@ -186,6 +186,51 @@
 			else 
 				return false;
 		}
+
+		public function isStudentVerified($student_id){
+				
+			$condition = "student_id = " .$student_id. " AND isVerified = 1";
+
+			$this->db->select('student_id');
+			$this->db->from('studentaccount');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if ($query->num_rows() == 1)
+				return true;
+			else 
+				return false;
+		}
+
+		public function isStudentActivated($student_id){
+
+			$condition = "student_id = " .$student_id. " AND isActivated = 1";
+
+			$this->db->select('student_id');
+			$this->db->from('studentaccount');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if ($query->num_rows() == 1)
+				return true;
+			else 
+				return false;
+		}
+
+		public function isStudentArchived($student_id){
+
+			$condition = "student_id = " .$student_id. " AND archived = 1";
+
+			$this->db->select('student_id');
+			$this->db->from('studentaccount');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if ($query->num_rows() == 1)
+				return true;
+			else 
+				return false;
+		}
 		// end of ORG-VIEWS-STUDENT FUNCTIONS
 	}
 ?>

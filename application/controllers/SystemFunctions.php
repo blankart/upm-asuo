@@ -358,8 +358,9 @@
 				}
 				else{
 					$this->load->view('header');
-					$this->load->view('activated');
+					show_404();
 					$this->load->view('footer');
+
 				}
 			}
 
@@ -377,7 +378,7 @@
 				}
 				else{
 					$this->load->view('header');
-					$this->load->view('activated');
+					show_404();
 					$this->load->view('footer');
 				}
 			}
