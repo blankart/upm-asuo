@@ -16,7 +16,7 @@
                 <div class="sidenav">
                     <?php if($org_status == "Accredited"){ ?>
                     <ul class="menu">
-                        <li class="active"><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
@@ -29,7 +29,7 @@
 
                     <?php } else{ ?>
                     <ul class="menu">
-                        <li class="active"><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
+                        <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
