@@ -108,10 +108,9 @@ INSERT INTO `recipient` (`recipient_id`, `notice_id`, `org_id`) VALUES
 
 -- -------------------------------------------------------------------
 
-INSERT INTO `accreditationapplication` (`app_id`, `org_id`, `app_status` ,`form_A` ,`form_B`, `form_F`) VALUES
-(1, 6, 'Pending', 'This is form A', 'This is form B', 'This is form F'),
-(2, 7, 'Accredited','This is form A',  'This is form B', 'This is form F'),
-(3, 8, 'Unaccredited', 'This is form A', 'This is form B', 'This is form F');
+INSERT INTO `accreditationapplication` (`app_id`, `org_id`, `app_status`, `form_A`, `form_B`, `form_C`, `form_D`, `form_E`, `form_F`, `plans`) VALUES
+(1, 6, 'Pending', 'E0DF1C144280F4E36E638DCF95CED92C.pdf', '6581085DAAFDB45D90322F986D96B670.pdf', 'FEE06AFE1E48B092C726EA711D3ABE73.pdf', '3B7501A8C9CDE3A7B1EA381057BADA10.pdf', '1DB1EA57A537AE0B81576B66E9277161.pdf', 'D2A02B6233821B11D388957DEA0FE989.pdf', 'EFDAEADEA97149177948B2685C2F162F.pdf')
+;
 
 
 -- -------------------------------------------------------------------------
