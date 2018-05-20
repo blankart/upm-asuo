@@ -18,15 +18,15 @@
                   </div>
                   <div class="card-body" style="padding-top: 0px;">
                      <br><button type="button" onclick="validatestudactSearch()" class="btn btn-danger admin-button" data-toggle="modal" data-target="#validatestudact">
-						<i class="fa fa-check-circle-o fa-2x pull-left"></i>Validate Student Account</button></br>
+						<a><i class="fa fa-check-circle-o fa-2x pull-left" style='margin-right: 20px;'></i>Validate Student Account</a></button></br>
                      <br><button type="button" onclick="activateorgactSearch()" class="btn btn-danger admin-button" data-toggle="modal" data-target="#activateorgact">
-						<i class="fa fa-check-circle fa-2x pull-left"></i>Activate Organization Account</button></br>
+						<a><i class="fa fa-check-circle fa-2x pull-left" style='margin-right: 20px;'></i>Activate Organization Account</a></button></br>
                      <br><button type="button" onclick="livesearchallstud()" class="btn btn-danger admin-button" data-toggle="modal" data-target="#viewallstudents">
-						<i class="fa fa-user fa-2x pull-left"></i>View All Student Accounts</button></br>
+						<a><i class="fa fa-user fa-2x pull-left" style='margin-right: 20px;'></i>View All Student Accounts</button></br>
                      <br><button type="button" onclick="livesearchallorg()" class="btn btn-danger admin-button" data-toggle="modal" data-target="#viewallorg">
-						<i class="fa fa-users fa-2x pull-left"></i>View All Organization Accounts</button></br>
+						<a><i class="fa fa-users fa-2x pull-left" style='margin-right: 20px;'></i>View All Organization Accounts</a></button></br>
                      <br><button type="button" onclick="" class="btn btn-danger admin-button" data-toggle="modal" data-target="#changeloginnotice">
-						<i class="fa fa-edit fa-2x pull-left"></i>Change Login Notice</button></br>
+						<a><i class="fa fa-edit fa-2x pull-left" style='margin-right: 20px;'></i>Change Login Notice</a></button></br>
                
                   </div>
                </div>
@@ -40,11 +40,7 @@
                  <br><button type="button" onclick="searchBox('Pending')" class="btn btn-danger admin-button" data-toggle="modal" data-target="#viewaccreditapp">
 					<i class="fa fa-folder-open fa-2x pull-left"></i>View Accreditation Applications</button></br>
                  <br><button type="button" class="btn btn-danger admin-button" data-toggle="modal" data-target="#openaccreditperiod">
-<<<<<<< Updated upstream
-					<a><i class="fa fa-calendar" style='margin-right: 20px;'></i>Open Accreditation Period</a></button></br>
-=======
-					<i class="fa fa-calendar fa-2x pull-left"></i>Open Accreditation Period</button></br>
->>>>>>> Stashed changes
+					<a><i class="fa fa-calendar fa-2x pull-left" style='margin-right: 20px;'></i>Open Accreditation Period</a></button></br>
                   </div>
                </div>
                <div class="card" style="margin-top: 30px; width: 25rem;">
@@ -53,9 +49,9 @@
                </div>
                   <div class="card-body" style="padding-top: 0px;">
                  <br><button type="button" onclick="searchSendNotice()" class="btn btn-danger admin-button" data-toggle="modal" data-target="#sendnotice">
-						<i class="fas fa-paper-plane pull-left"></i>Send Announcement</button></br>
+						<a><i class="fas fa-paper-plane fa-2x pull-left" style='margin-right: 20px;'></i>Send Announcement</a></button></br>
                     <br><button type="button" onclick="viewAllNotices()" class="btn btn-danger admin-button" data-toggle="modal" data-target="#viewallnotices">
-						<i class="fa fa-envelope-o fa-2x pull-left"></i>View All Announcements</button></br>
+						<a><i class="fa fa-envelope-o fa-2x pull-left" style='margin-right: 20px;'></i>View All Announcements</a></button></br>
                   </div>
                </div>
             </div>
