@@ -171,8 +171,22 @@
 			$this->db->update('organizationaccount', $changes);
 		}
 
+		public function getAccreditationDocuments($org_id){
+			$condition = "aa.org_id = " .$org_id. " AND aa.org_id = op.org_id AND aa.app_status = 'Pending'";
+
+			$this->db->select('aa.*, op.constitution');
+			$this->db->from('accreditationapplication aa, organizationprofile op');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if($query->num_rows() == 1)
+				return $query->result_array()[0];
+			else
+				return false;
+		}
+
 		public function searchAccredApp($string){
-			$condition = "aa.org_id = oa.org_id AND aa.org_id = op.org_id AND op.org_name LIKE '%".$string."%'";
+			$condition = "aa.org_id = oa.org_id AND aa.org_id = op.org_id AND op.org_name LIKE '%".$string."%' AND oa.archived = 0";
 
 			$this->db->select('oa.org_id, op.org_name, oa.org_status');
 			$this->db->from('organizationprofile op, organizationaccount oa, accreditationapplication aa');

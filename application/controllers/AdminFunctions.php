@@ -43,6 +43,8 @@
 				$this->unblockOrgAccount();
 
 			//
+			else if($action == 'viewDocuments')
+				$this->viewDocuments();
 			else if($action == 'searchAccredApp')
 				$this->searchAccredApp();
 			else if($action == 'accreditOrg')
@@ -339,6 +341,34 @@
 		}
 
 		//
+
+		private function viewDocuments(){
+
+			$org_id = $this->input->post('org_id');
+			//$org_id = 6;
+
+			if($org_id != NULL){
+
+
+				$this->load->model('AdminModel');
+				$documents = $this->AdminModel->getAccreditationDocuments($org_id);
+
+				echo "<pre>";
+				print_r($documents)
+				echo "</pre>";
+				if(!$documents){
+					echo json_encode($doduments);
+					exit();
+				}
+				else{
+					echo json_encode(false);
+					exit();
+				}
+			}
+			else
+				show_404();
+		}
+
 		private function searchAccredApp(){
 			$query =  $this->input->post('query');
 			$source = $this->input->post('source');

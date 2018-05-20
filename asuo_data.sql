@@ -46,7 +46,7 @@ fde3d4614bf1c82bc47b252875ef97b2.jpg', 'No uploads yet', 0, 0),
 (4, 'UP Manila Musical Organization', 'UPMorg', 'Special Interest', 'College of  Arts and Sciences', 'org of music', 'to something', 'upmorg.com', 'herewhere', '1991', '	
 a765743b36d83a8681cd018ac0edb17f.jpg', 'No uploads yet', 1, 4),
 (5, 'UP Beau', 'UPB', 'Sorority', 'College of  Arts and Sciences', 'org of females', 'to something', 'upbeau.com', 'wherewhere', '1992', '087ddd17c41558a3a29ae44b5bba8016.jpg', 'No uploads yet', 0, 0),
-(6, 'UP Society of Computer Scientists', 'UP SoComSci', 'Academic', 'College of  Arts and Sciences', 'org of computer enthusiasts', 'to something', 'upsocomsci.com', 'hello world', '1993', 'c31944ef461eb828d715940a0f3b8cab.jpg', 'No uploads yet', 1, 5),
+(6, 'UP Society of Computer Scientists', 'UP SoComSci', 'Academic', 'College of  Arts and Sciences', 'org of computer enthusiasts', 'to something', 'upsocomsci.com', 'hello world', '1993', 'c31944ef461eb828d715940a0f3b8cab.jpg', '39D4602FC8BB93E619B33D0213724720.pdf', 1, 5),
 (7, 'Organizational Communications Society', 'OrComSoc', 'Academic', 'College of  Arts and Sciences', 'org of orcom students', 'to something', 'uporcomsoc.com', 'therethere', '1993', '3fc1026fb5f2f3665e2dd2029907cbb4.jpg', 'No uploads yet', 0,0 ),
 (8, 'UP Vector', 'UP Vector', 'Academic', 'College of  Arts and Sciences', 'org of vectors', 'to something', 'upvector.com', 'somewhere', '1994', '4cb09dcfea87b60898b8f86d9d99f149.jpg', 'No uploads yet', 0, 0),
 (9, 'Organization of Area Studies Majors', 'OrgASM', 'Academic', 'College of  Arts and Sciences', 'org of asm', 'to something', 'orgasm.com', 'over', '1995', '33de90baee9dfac8afad381a9a679782.jpg', 'No uploads yet', 1, 6),
