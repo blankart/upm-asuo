@@ -174,7 +174,7 @@
 									</div>
 									<div class="sp-content">
 										<div class="sp-info">
-											<h6><?php echo $orgpost['title']; ?></h6><?php echo $orgpost['date_posted']; ?>
+											<h6><?php echo $orgpost['title']; ?></h6><?php echo date("g:i:s a |  F j, Y", strtotime($orgpost['date_posted'])) ?>
 										</div>
 										<p class="sp-paragraph mb-0"><?php echo $orgpost['content']; ?></p>
 									</div>

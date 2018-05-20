@@ -108,6 +108,13 @@
 			$this->db->update('studentprofile', $changes);
 		}
 
+		public function editStudentAccount($id, $changes){
+			$condition = 'student_id = ' .$id. ' AND student_id = '.$id;
+
+			$this->db->where($condition);
+			$this->db->update('studentaccount', $changes);
+		}
+
 		public function changePicture($id, $picturename){
 			$condition = 'student_id = ' .$id. ' AND student_id = '.$id;
 
