@@ -94,10 +94,11 @@
 					 $this->load->model('OrgModel');
 					 $org_id = $this->OrgModel->getOrgId($action);
 					 $isArchived = $this->OrgModel->isOrgArchived($org_id);
+					 $isActivated = $this->OrgModel->isOrgActivated($org_id);
 					 $isVerified = $this->OrgModel->isOrgVerified($org_id);
 
 
-					if ( !$org_id || $isArchived || !$isVerified)
+					if ( !$org_id || $isArchived || !$isVerified || ($account_type == 'student' && !$isActivated) )
 						echo "That org does not exist, darlin'! ";
 					else{
 
