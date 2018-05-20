@@ -10,7 +10,7 @@
    </head>
    <body>
       <div class="container animated fadeIn">
-         <div class="row" style="margin-top: 80px; margin-left: 80px;">
+         <div class="row" style="margin-top: 150px; margin-left: 80px;">
             <div class="col">
                <div class="card" style="width: 25rem; padding-bottom: 10px; box-shadow: 0 0 40px rgba(0,0,0,.05);">
                   <div class="card-header">
@@ -40,7 +40,7 @@
                  <br><button type="button" onclick="searchBox('Pending')" class="btn btn-danger admin-button" data-toggle="modal" data-target="#viewaccreditapp">
 					<span class="btn-label"><i class="fa fa-folder-open fa-2x pull-left"></i></span>View Accreditation Applications</button></br>
                  <br><button type="button" class="btn btn-danger admin-button" data-toggle="modal" data-target="#openaccreditperiod">
-					<span class="btn-label"><i class="fa fa-calendar fa-2x pull-left"></i></span>Open Accreditation Period</button></br>
+					<a><i class="fa fa-calendar" style='margin-right: 20px;'></i>Open Accreditation Period</a></button></br>
                   </div>
                </div>
                <div class="card" style="margin-top: 30px; width: 25rem;">
