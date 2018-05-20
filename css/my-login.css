@@ -1,7 +1,3 @@
-html,body {
-	height: 100%;
-}
-
 body.my-login-page {
 	background-color: #FF8893;
 	font-size: 14px;
@@ -65,7 +61,6 @@ body.my-login-page {
 
 
 .footer {
-	margin: 40px 0;
 	color: #888;
 	text-align: center;}
 

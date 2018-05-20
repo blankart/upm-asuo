@@ -208,11 +208,14 @@
 			$this->load->view('header');
 			$this->load->view('org/org', $result);
 			$this->load->view('footer');
-
-			if($account_type == 'student')
+			if($account_type == 'student'){	
 				$this->load->view('student/changepassword');
+				$this->load->view('student/search');
+			}
 			if($account_type == 'admin')
 				$this->load->view('admin/changepassword');
+
+
 		}
 
 		private function checkOrgPassword(){
