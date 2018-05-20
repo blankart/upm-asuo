@@ -3,6 +3,7 @@
 		if($this->session->userdata['account_type'] == 'student'){
 			$first_name = ($this->session->userdata['first_name']);
 			$username = ($this->session->userdata['username']);
+			$email = ($this->session->userdata['email']);
 		}
 		if($this->session->userdata['account_type'] == 'admin'){
 			$username = ($this->session->userdata['username']);
@@ -11,6 +12,7 @@
 		if($this->session->userdata['account_type'] == 'org'){
 			$nsacronym = ($this->session->userdata['nsacronym']);
 			$acronym = ($this->session->userdata['acronym']);
+			$email = ($this->session->userdata['email']);
 		}
 	}
 ?>
@@ -42,9 +44,16 @@
     </head>
 
     <body>
+    	
 
-        <nav class="navbar fixed-top navbar-expand-xl navbar-dark" style="background-color: rgb(123,17,19, .8);">
-            <a class="navbar-brand" href="<?php echo base_url();?>login"><img src="<?php echo base_url();?>img/UP Logo.png" width="35px" class="img-fluid">University of the Philippines Manila</a>
+        <nav class="navbar fixed-top navbar-expand-xl navbar-dark" id='nav-bar'>
+        	<img src="<?php echo base_url();?>img/UP Logo.png" width="35px" class="img-fluid">
+            <a class="navbar-brand" href="<?php echo base_url();?>login">
+            	<?php if (!isset($this->session->userdata['logged_in'])) 
+            	echo "University of the Philippines Manila";
+            	else echo "<strong>ASUO</strong>";
+             	?>
+        </a>
 
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="nav-content">
@@ -52,7 +61,13 @@
                     <?php
 		 if(isset($_SESSION['logged_in']) == TRUE){ 
 		 	if($this->session->userdata['account_type'] == 'student'){
-				echo "<li class='nav-item'>
+				echo "<div id='loggedInAs'>
+				logged in as: <a>".$email."</a>
+				</div>
+				<div id='searchButton'>
+				<a href='#search'><i class='fas fa-search'></i>Search for Organizations</a>
+				</div>
+				<li class='nav-item'>
 				<a class='nav-link' href='".base_url()."student/".$username."'>".$first_name."</a>
 		  		</li>
 		  		<li class='nav-item'>
@@ -63,7 +78,10 @@
 		  		</li>";
 		  	}
 		  	if($this->session->userdata['account_type'] == 'org'){
-				echo "<li class='nav-item'>
+				echo "<div id='loggedInAs'>
+				logged in as: <a>".$email."</a>
+				</div>
+				<li class='nav-item'>
 				<a class='nav-link' href='".base_url()."org/".$nsacronym."'>".$acronym."</a>
 		  		</li>
 		  		<li class='nav-item'>
@@ -75,7 +93,6 @@
 		  	}
 		  	if($this->session->userdata['account_type'] == 'admin'){
 				echo "<li class='nav-item'>
-                
                 </li>
 				<a class='nav-link' href='".base_url()."admin/".$username."'>".$admin_name."</a>
 		  		</li>
@@ -95,6 +112,7 @@
 		 ?>
                 </ul>
         </nav>
+
          <script src="<?php echo base_url();?>js/jquery.min.js"></script>
         <script src="<?php echo base_url();?>js/my-login.js"></script>
         <script src="<?php echo base_url();?>js/jquery-3.3.1.js"></script>
@@ -105,6 +123,16 @@
 	        <script src="<?php echo base_url();?>js/registerOrg.js"></script>
 	        <script src="<?php echo base_url();?>js/popper.min.js"></script>
 	        <script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
+	        <script>
+    		$(window).scroll(function(){
+    			if ($(this).scrollTop() > 50){
+    				$('#nav-bar').addClass('opaque');
+    			}
+    			else{
+    				$('#nav-bar').removeClass('opaque');
+    			}
+    		});
+    	</script>
     </body>
 
     </html>
