@@ -34,15 +34,22 @@
 					$student_id = $this->StudentModel->getStudentId($action);
 
 					//print_r($student_id);
-
-					if ( !$student_id )
-						show_404(); //no student account found
+					$error['username'] = $action;
+					if ( !$student_id ){
+						
+						$this->load->view('header'); 
+						$this->load->view('errors/html/dne_student', $error); 
+						$this->load->view('footer');
+					}
 					else  {
 						$isVerified = $this->StudentModel->isStudentVerified($student_id);
 						$isArchived = $this->StudentModel->isStudentArchived($student_id);
 
-						if (!$isVerified || $isArchived)
-							show_404(); //student is either not verified or is blocked by admin
+						if (!$isVerified || $isArchived){
+							$this->load->view('header'); 
+							$this->load->view('errors/html/dne_student', $error); 
+							$this->load->view('footer');
+						}							
 						else{	
 
 							$this->loadStudentProfileByOthers($student_id, $account_type);		

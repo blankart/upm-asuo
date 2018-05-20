@@ -1,12 +1,37 @@
-<?php
-require("header.php");
-if(!isset($_SESSION)){
-session_start();
-}
-if(isset($_SESSION['logged_in']) == TRUE) {
-header("Location: index.php" );
-}
-?>
+<script type="text/javascript">
+	
+     $(document).ready(function(){
+
+
+        $('#forgotPasswordForm').on("submit",function(e){
+       			var email = document.getElementById('email').value;
+       			
+               e.preventDefault();
+               $.ajax({
+                  type: "post",
+                  url :"<?php echo base_url(); ?>/resetPassword", 
+                  async: false,
+                  cache: false,
+                  contentType: false,
+                  processData: false,
+                  data: new FormData(this),
+                  success : function (data){
+                      swal({title: "Success!", text: "A new password has been sent to " +email+ ".", type: "success"},
+                        function(){
+                        	document.getElementById('email').value = '';
+                            location.reload();
+                        }
+                     );
+                  },
+                  error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                     //alert("Status: " + textStatus + " | Error: " + errorThrown); 
+                     swal("Error!", "An error has occurred!", "error");
+                  }   
+            });
+          });
+        });
+
+</script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,11 +60,10 @@ header("Location: index.php" );
 					<div class="card fat">
 						<div class="card-body">
 							<h4 class="card-title">Forgot Password?</h4>
-							<form method="POST">
-							 
+							<form method="POST" id ='forgotPasswordForm'>
 								<div class="form-group">
 									<label for="email">Please enter your email address</label>
-									<input id="email" type="email" class="form-control" name="email" value="" required autofocus placeholder="sample@up.edu.ph">
+									<input id="email" type="email" maxlength="50" class="form-control" id="email" name="email" value="" required autofocus placeholder="sample@up.edu.ph">
 									<div class="form-text text-muted">
 										<small>By clicking "Reset Password" we will send a password reset link to the email provided.</small>
 									</div>
