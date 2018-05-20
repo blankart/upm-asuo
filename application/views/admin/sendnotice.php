@@ -3,51 +3,7 @@
 <head>
 
   <script>
-    function removeA(arr) {
-    var what, a = arguments, L = a.length, ax;
-    while (L > 1 && arr.length) {
-        what = a[--L];
-        while ((ax= arr.indexOf(what)) !== -1) {
-            arr.splice(ax, 1);
-        }
-    }
-    return arr;
-}
-    var allVals = [];
-     function selectAll(){
-      var allValsTemp = [];
-       $("#searchValidate .recipient").each(function(){
-         allValsTemp.push($(this).val());
-       });
-       allVals = allValsTemp;
-       searchSendNotice();
-     }
-
-     function addVal(id){
-        allVals.push(id);
-        searchSendNotice();
-     }
-
-     function delVal(id){
-        removeA(allVals, id);
-        searchSendNotice();
-     }
-
-     function deselectAll(){
-      var allValsTemp = [];
-       allVals = allValsTemp;
-       searchSendNotice();
-     }
-
-     function valsContain(id){
-      for (var i=0; allVals.length; i++){
-        if (allVals[i] == id){
-          return true;
-        }
-      }
-      return false;
-     }
-
+    var
      function getRecipient(){
       var allValsTemp = [];
        $("#searchValidate :checked").each(function(){

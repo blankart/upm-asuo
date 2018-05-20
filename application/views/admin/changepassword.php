@@ -25,7 +25,18 @@
            {
             if ($("#conPass").val()!="" && $("#newPass").val()!="")
             {
-              if ($("#newPass").val() != $("#conPass").val())
+              if ($("#newPass").val().length < 7 || $("#newPass").val().length > 32 || $("#conPass").val().length < 7 || $("#conPass").val().length > 32){
+                $("#newPass").addClass("is-valid animated fadeIn");
+                $("#newPass").addClass("is-invalid animated fadeIn");
+                $("#conPass").addClass("is-valid animated fadeIn");
+                $("#conPass").addClass("is-invalid animated fadeIn");
+                $("#conPassAlert").removeClass();
+                $("#conPassAlert").html('');
+                $("#conPassAlert").addClass('notice notice-sm notice-danger');
+                $("#conPassAlert").html('<strong>Error: </strong>Please lengthen this text to 7 characters or more.');
+                $("#conPassAlert").slideDown(400);
+              }
+              else if ($("#newPass").val() != $("#conPass").val())
               {
                 $("#newPass").addClass("is-valid animated fadeIn");
                 $("#newPass").addClass("is-invalid animated fadeIn");
