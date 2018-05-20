@@ -61,15 +61,11 @@
 				$this->loadFormF();
 			}
 			else if ($action == 'formG'){
-				$this->load->view('header');
-				$this->load->view('org/applyforaccreditation/formG');
-				$this->load->view('footer');
+				$this->loadFormG();
 			}
 
 			else if ($action == 'plans'){
-				$this->load->view('header');
-				$this->load->view('org/applyforaccreditation/plans');
-				$this->load->view('footer');
+				$this->loadPlans();
 			}
 
 			else if ($action == 'saveFormA') {
@@ -696,6 +692,28 @@
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formF', $data);
+			$this->load->view('footer');
+		}
+
+		private function loadFormG(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/formG', $data);
+			$this->load->view('footer');
+		}
+
+		private function loadPlans(){
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetails($org_id);
+
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/plans', $data);
 			$this->load->view('footer');
 		}
 
