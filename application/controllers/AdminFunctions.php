@@ -496,7 +496,7 @@
 			if($id != NULL){
 				$this->load->model('AdminModel');
 				$result = $this->AdminModel->viewMessageDetails($id);
-				echo json_encode($result[0]);
+				echo json_encode($result);
 				exit();
 			}
 			else

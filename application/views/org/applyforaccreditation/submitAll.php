@@ -5,7 +5,7 @@
         <meta content="UPCS" name="author">
         <title>Accreditation Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/home.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/table.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/sidenav.css">
     </head>
 
@@ -46,9 +46,57 @@
             <div class="main">
                 <h1>Review All Forms Before Submitting</h1>
                 <table>
+                    <tr>
+                        <th id="header">Accreditation Form</th>
+                        <th id="header">Action</th>
+                    </tr>
+                    <tr>
+                        <td>Form A: Accreditation Application</td>
+                        <td align="center"><button class="btn btn-danger">View</button>
+                    </tr>
+                    <tr>
+                        <td>Form B: Adviser's Consent</td>
+                        <td align="center"><button class="btn btn-danger">View</button>
+                    </tr>
+                    <tr>
+                        <td>Form C: Organization Profile</td>
+                        <td align="center"><button class="btn btn-danger">View</button>
+                    </tr>
+                    <tr>
+                        <td>Form D: Officers' Profile</td>
+                        <td align="center"><button class="btn btn-danger">View</button>
+                    </tr>
+                    <tr>
+                        <td>Form E: Members' Profile</td>
+                        <td align="center"><button class="btn btn-danger">View</button>
+                    </tr>
                     
+                    <?php if($org_status == "Accredited"){ ?>
+                        <tr>
+                            <td>Form F: Activity Report</td>
+                            <td align="center"><button class="btn btn-danger">View</button>
+                        </tr>
+                        <tr>
+                            <td>Form G: Financial Report</td>
+                            <td align="center"><button class="btn btn-danger">View</button>
+                        </tr>
+                    
+                    <?php } ?>
+
+                    <tr>
+                        <td>Plans</td>
+                        <td align="center"><button class="btn btn-danger">View</button>
+                    </tr>
+
+                    <tr>
+                        <td>Constitution</td>
+                        <td align="center"><button class="btn btn-danger">View</button>
+                    </tr>
+
                 </table>
-                     
+                <br><br>
+                <button class="button">Submit Application</button>
+                <br><br>   
             </div>  
         </div>
     </body>

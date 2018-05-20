@@ -255,6 +255,7 @@
 			$result = array();
 			foreach($announcements as $announcement){
 				$announcement['org_name'] = $this->getRecipients($announcement['notice_id']);
+				$announcement['date_posted'] = date("g:i:s a | F j, Y", strtotime($announcement['date_posted']));
 				array_push($result, $announcement);
 			}
 			return $result;
@@ -286,7 +287,10 @@
 			$this->db->order_by('notice_id');
 			$this->db->where ($condition);
 			$query = $this->db->get();
-			return  $query->result_array();
+
+			$details = $query->result_array()[0];
+			$details['date_posted'] = date("g:i:s a, F j, Y", strtotime($details['date_posted']));
+			return $details;
 		}
 
 		public function deleteNotice($id){

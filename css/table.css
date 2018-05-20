@@ -1,0 +1,17 @@
+/** TABLES **/
+table {
+	margin-top: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-collapse: collapse;
+    width: 75%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#header{
+	text-align: center;
+}

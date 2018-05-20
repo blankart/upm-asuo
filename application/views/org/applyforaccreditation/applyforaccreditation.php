@@ -39,7 +39,7 @@
                     </ul>
                     <?php } ?>
 
-                <button class="submitAll">Submit All</button>
+                <button class="submitAll" onclick="location.href = '<?php echo base_url(); ?>org/submitAll';">Submit All</button>
                 </div>
             </div>
             <!-- Page Content -->
