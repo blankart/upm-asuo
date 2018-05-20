@@ -41,7 +41,7 @@
                         <li><a href="<?php echo base_url(); ?>org/plans">Plans</a></li>
                     </ul>
                     <?php } ?>
-
+                <button class="submitAll">Submit All</button>
                 </div>
             </div>
             <!-- Page Content -->
