@@ -62,7 +62,7 @@
                       "</div>"+
                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['title']+"</h4>"+
-                      "<h4 style='font-size: 18px'>"+date+"</h4>"+
+                      "<h4 style='font-size: 18px'>"+result['date_posted']+"</h4>"+
                       "<h4 style='font-size: 18px'>"+result['content']+"</h4>"+
                       "</div>"+
                    "</div>"+
