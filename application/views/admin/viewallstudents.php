@@ -16,21 +16,51 @@
                 "<div class='row' style='text-align: left;'>"+
                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'><strong>UP Mail</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Course</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Year Level</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Student Number</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Contact Number</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Form5</strong></h4>"+
-                      "</div>"+
-                   "<div class='col'>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['up_mail']+"</h4>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='row' style='text-align: left;'>"+
+                   "<div class='col'>"+
+                      "<h4 style='font-size: 18px'><strong>Course</strong></h4>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['course']+"</h4>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='row' style='text-align: left;'>"+
+                   "<div class='col'>"+
+                      "<h4 style='font-size: 18px'><strong>Year Level</strong></h4>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['year_level']+"</h4>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='row' style='text-align: left;'>"+
+                   "<div class='col'>"+
+                      "<h4 style='font-size: 18px'><strong>Student Number</strong></h4>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['up_id']+"</h4>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='row' style='text-align: left;'>"+
+                   "<div class='col'>"+
+                      "<h4 style='font-size: 18px'><strong>Contact Number</strong></h4>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['contact_num']+"</h4>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='row' style='text-align: left;'>"+
+                   "<div class='col'>"+
+                      "<h4 style='font-size: 18px'><strong>Form5</strong></h4>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<a href='<?php echo base_url(); ?>assets/student/form_5/"+result['form5']+"' target='_blank'><button type='button' class='btn btn-link'>View Form5</button></a>"+
-                      "</div>"+
-                   "</div>"+
+                    "</div>"+
+                "</div>"+
                     "<a href = '<?php echo base_url();?>student/"+result['username']+"'><button type='button' class='btn btn-info'>View Student Profile</button></a>"+
                 "</div>"
        },

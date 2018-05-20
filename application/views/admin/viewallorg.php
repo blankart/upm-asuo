@@ -256,21 +256,51 @@
                 "<div class='row' style='text-align: left;'>"+
                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'><strong>Org Acronym</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Org Category</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>College</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Mailing Address</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Org Website</strong></h4>"+
-                      "<h4 style='font-size: 18px'><strong>Email Address</strong></h4>"+
-                      "</div>"+
+                    "</div>"+
                     "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['acronym']+"</h4>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='row' style='text-align: left;'>"+
+                   "<div class='col'>"+
+                       "<h4 style='font-size: 18px'><strong>Org Category</strong></h4>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['org_category']+"</h4>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='row' style='text-align: left;'>"+
+                   "<div class='col'>"+
+                       "<h4 style='font-size: 18px'><strong>College</strong></h4>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['org_college']+"</h4>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='row' style='text-align: left;'>"+
+                   "<div class='col'>"+
+                       "<h4 style='font-size: 18px'><strong>Mailing Address</strong></h4>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['mailing_address']+"</h4>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='row' style='text-align: left;'>"+
+                   "<div class='col'>"+
+                       "<h4 style='font-size: 18px'><strong>Org Website</strong></h4>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['org_website']+"</h4>"+
+                    "</div>"+
+                "</div>"+
+                "<div class='row' style='text-align: left;'>"+
+                   "<div class='col'>"+
+                       "<h4 style='font-size: 18px'><strong>Email Address</strong></h4>"+
+                    "</div>"+
+                    "<div class='col'>"+
                       "<h4 style='font-size: 18px'>"+result['org_email']+"</h4>"+
-                      "</div>"+
-                   "</div>"+
+                    "</div>"+
+                "</div>"+     
                    "<a href = '<?php echo base_url();?>org/"+nsacronym+"'><button type='button' class='btn btn-info'>View Org Profile</button></a>"+
                 "</div>"
        },
