@@ -323,6 +323,7 @@
             <div class="modal-body">
                 <div id="studSearch">
                     <div class="container">
+                      <p class="form-text text-muted">View organization accounts' profiles including their accreditation status, posts, and members. Block organizations with offenses. Blocking will make the account unusable by the organization and unsearchable by student applicants.</p>
                         <div class="mail-box">
                             <aside class="lg-side">
                                 <div class="inbox-head">

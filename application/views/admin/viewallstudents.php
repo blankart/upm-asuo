@@ -320,7 +320,7 @@
             <div class="modal-body">
                 <div id="studSearch">
                     <div class="container">
-                      <p class="form-text text-muted">View student accounts and block the ones with offenses.</p>
+                      <p class="form-text text-muted">View student accounts and block the ones with offenses. Blocking will make the account unusable by the student.</p>
                         <div class="mail-box">
                             <aside class="lg-side">
                                 <div class="inbox-head">

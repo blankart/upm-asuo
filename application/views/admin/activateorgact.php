@@ -178,7 +178,7 @@
             <div class="modal-body">
                 <div id="orgSearch">
                     <div class="container">
-                      <p class="form-text text-muted">Activate or reject organization accounts with valid e-mail and complete details.</p>
+                      <p class="form-text text-muted">Validate organization accounts with valid e-mail and complete details.</p>
                         <div class="mail-box">
                             <aside class="lg-side">
                                 <div class="inbox-head">
