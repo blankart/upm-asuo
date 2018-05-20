@@ -337,7 +337,7 @@
               <div class="mail-box">
                 <aside class="lg-side">
                   <div class="inbox-head">
-                    <form class="pull-right position needs-validation" onsubmit="return false">
+                    <form class="position needs-validation" onsubmit="return false">
                       <div class="mat-input" style="margin-top: 30px;">
                         <div class="mat-input-outer">
                           <input autocomplete="off" class="form-control" id="orgID" type="username"> <label class="">Enter Organization Name</label>
