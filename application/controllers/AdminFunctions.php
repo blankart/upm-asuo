@@ -55,8 +55,6 @@
 				$this->sendNoticeSearch();
 			else if ($action == 'sendNotice')
 				$this->sendNotice();
-			else if ($action == 'sendNoticeToAll')
-				$this->sendNoticeToAll();
 
 			else if ($action == 'viewAllNotices')
 				$this->viewAllNotices();
@@ -408,36 +406,37 @@
 				show_404();
 		}
 
-		//talk with Nico
 		private function sendNotice(){
-			$id = $this->input->post('id');
-			$noticeTitle = $this->input->post('noticeTitle');
-			$noticeMessage = $this->input->post('noticeMessage');
-			$noticeDate = $this->input->post('noticeDate');
+			$notice = $this->input->post('notice');
 
-			if($id != NULL){
+			if($notice != NULL){
+
+				$orgIds = $notice['orgIds'];
+
+				$data['sender'] = $this->session->userdata['user_id'];
+				$data['title'] = $notice['title'];
+				$data['content'] = $notice['content'];
+				$format = 'Y-m-d H:i:s';
+				$data['date_posted'] = date($format);
+				$data['archived'] = 0;
+
 				$this->load->model('AdminModel');
-				$this->AdminModel->sendNotice($id ,$noticeTitle, $noticeMessage, $noticeDate);
-				echo json_encode('true');
+
+				$notice_ID = $this->AdminModel->createNotice($data);
+				
+				$recipient['notice_ID'] = $notice_ID;
+
+				foreach($orgIds as $orgId){
+					$recipient['org_id'] = $orgId;
+					$this->AdminModel->insertRecipient($recipient);
+				}
+
+				echo json_encode(true);
 				exit();
 			}
 			else
 				show_404();
-		}
-
-		private function sendNoticeToAll(){
-			$noticeTitle = $this->input->post('noticeTitle');
-			$noticeMessage = $this->input->post('noticeMessage');
-			$noticeDate = $this->input->post('noticeDate');
-
-			if($noticeTitle != NULL && $noticeMessage != NULL && $noticeDate != NULL){
-				$this->load->model('AdminModel');
-				$this->AdminModel->sendNoticeToAll($noticeTitle, $noticeMessage, $noticeDate);
-				echo json_encode('true');
-				exit();
-			}
-			else
-				show_404();
+			
 		}
 
 		private function viewAllNotices(){

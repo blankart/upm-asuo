@@ -55,24 +55,24 @@ a765743b36d83a8681cd018ac0edb17f.jpg', 'No uploads yet', 1, 4),
 -- -------------------------------------------------------------------
 
 INSERT INTO `announcement` (`notice_id`, `sender`, `title`, `content`,  `date_posted`, `archived`) VALUES
-(1, 1,'Test Announcement', 'Hello. This is a test announcement. :D', '2018-09-04 13:23:48', 0),
-(2, 1, 'wala akong title :<', 'wala na akong maisip na ilalagay :((', '2018-09-04 13:23:49', 0),
-(3, 1, 'HAPPY BIRTHDAY ALDRIN!!!', 'BIRTHDAY NI ALDRIN XD', '2018-09-04 13:23:50', 0),
-(4, 2, 'Accredited ORganization', 'Listed below are the accredited orgs:\r\n.\r\n.\r\n.\r\n..\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n.\r\n', '2018-09-04 13:23:51', 0),
-(5, 1, 'Welcome Message', 'Welcome to the Accreditation for University-wide Orgs',  '2018-09-04 13:23:52', 0),
-(6, 1, 'Exam sa stat121', 'friday this week:<', '2018-09-04 13:23:53', 0),
-(7, 2, 'Accreditation Period', 'Accreditation period will start on ...',  '2018-09-04 13:23:54', 0),
-(8, 1, 'General Assembly for Univ-wide Orgs', 'A general assembly will be conducted on ...',  '2018-09-04 13:23:55', 0),
-(9, 1, 'Orgs with pending accreditation app\r\n', 'Listed below are the orgs with pending application:\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n...\r\n.\r\n.\r\n\r\n\r\n.', '2018-09-04 13:23:56', 0),
-(10, 1, 'Requirements for Accreditaitoin', 'Listed below are the requirements for accreditation:\r\n.\r\n.\r\n.', '2018-09-04 13:23:57', 0),
-(11, 1, 'hey', 'hey', '2018-09-04 13:23:58', 0),
-(12, 2, 'This is Zero', 'sample message', '2018-09-04 13:23:59', 0),
-(13, 1, 'Hey', 'Musta niggas',  '2018-09-04 13:24:48', 0),
-(14, 1, 'something', 'something',  '2018-09-04 13:24:49', 0),
-(15, 1, 'The quick brown fox jumps over the lazy dog', 'The quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps o', '2018-09-04 13:24:50', 0),
-(16, 2, 'jello', 'jello', '2018-09-04 13:24:51', 0),
-(17, 1, 'sdasdasd', 'asdasdasd', '2018-09-04 13:24:52', 0),
-(18, 2, 'final something', 'final something', '2018-09-04 13:24:53', 0);
+(1, 1,'Test Announcement', 'Hello. This is a test announcement. :D', '2018-01-04 13:23:48', 0),
+(2, 1, 'wala akong title :<', 'wala na akong maisip na ilalagay :((', '2018-01-04 13:23:49', 0),
+(3, 1, 'HAPPY BIRTHDAY ALDRIN!!!', 'BIRTHDAY NI ALDRIN XD', '2018-01-04 13:23:50', 0),
+(4, 2, 'Accredited ORganization', 'Listed below are the accredited orgs:\r\n.\r\n.\r\n.\r\n..\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n.\r\n', '2018-01-04 13:23:51', 0),
+(5, 1, 'Welcome Message', 'Welcome to the Accreditation for University-wide Orgs',  '2018-01-04 13:23:52', 0),
+(6, 1, 'Exam sa stat121', 'friday this week:<', '2018-01-04 13:23:53', 0),
+(7, 2, 'Accreditation Period', 'Accreditation period will start on ...',  '2018-01-04 13:23:54', 0),
+(8, 1, 'General Assembly for Univ-wide Orgs', 'A general assembly will be conducted on ...',  '2018-01-04 13:23:55', 0),
+(9, 1, 'Orgs with pending accreditation app\r\n', 'Listed below are the orgs with pending application:\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n.\r\n\r\n...\r\n.\r\n.\r\n\r\n\r\n.', '2018-01-04 13:23:56', 0),
+(10, 1, 'Requirements for Accreditaitoin', 'Listed below are the requirements for accreditation:\r\n.\r\n.\r\n.', '2018-01-04 13:23:57', 0),
+(11, 1, 'hey', 'hey', '2018-01-04 13:23:58', 0),
+(12, 2, 'This is Zero', 'sample message', '2018-01-04 13:23:59', 0),
+(13, 1, 'Hey', 'Musta niggas',  '2018-01-04 13:24:48', 0),
+(14, 1, 'something', 'something',  '2018-01-04 13:24:49', 0),
+(15, 1, 'The quick brown fox jumps over the lazy dog', 'The quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps over the lazy dogThe quick brown fox jumps o', '2018-01-04 13:24:50', 0),
+(16, 2, 'jello', 'jello', '2018-01-04 13:24:51', 0),
+(17, 1, 'sdasdasd', 'asdasdasd', '2018-01-04 13:24:52', 0),
+(18, 2, 'final something', 'final something', '2018-01-04 13:24:53', 0);
 
 
 -- -------------------------------------------------------------------

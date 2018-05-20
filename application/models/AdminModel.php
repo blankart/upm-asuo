@@ -218,26 +218,14 @@
 			return  $query->result_array();
 		}
 
-		public function sendNotice($org_id, $noticeTitle, $noticeMessage, $noticeDate){
-			$add = array(
-				'title' => $noticeTitle,
-				'content' => $noticeMessage,
-				'date_posted' => $noticeDate,
-				'recipient' => $org_id
-			);
-
-			$this->db->insert('announcement', $add);
+		public function createNotice($data){
+			$this->db->insert('announcement', $data);
+			return $this->db->insert_id();
 		}
 
-		public function sendNoticeToAll($noticeTitle, $noticeMessage, $noticeDate){
-			$add = array(
-				'title' => $noticeTitle,
-				'content' => $noticeMessage,
-				'date_posted' => $noticeDate,
-				'recipient' => 0
-				);
+		public function insertRecipient($data){
+			$this->db->insert('recipient', $data);
 
-			$this->db->insert('announcement', $add);
 		}
 
 		public function viewAllNotices($id){
@@ -245,7 +233,7 @@
 
 			$this->db->select('a.notice_id, a.title, a.date_posted');
 			$this->db->from('announcement a');
-			$this->db->order_by('a.notice_id');
+			$this->db->order_by('a.date_posted', 'DESC');
 			$this->db->where ($condition);
 			$query = $this->db->get();
 			$announcements = $query->result_array();

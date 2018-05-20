@@ -6,7 +6,36 @@
        var dataArray = [];
        var checkedDataArray = [];
        function sendNotice(){
-        alert(checkedDataArray);
+
+
+        var notice = {
+          title: (document.getElementById("sendNoticeTitle").value).trim(),
+          content: (document.getElementById("sendNoticeMessage").value).trim(),
+          orgIds: checkedDataArray
+        };
+
+        $.ajax({
+          type: "POST",
+          url: "<?php echo base_url().'admin/sendNotice'; ?>",
+          cache: false,
+          async: false,
+          dataType: "JSON",
+          data: {notice: notice},
+          success: function(result){
+             swal({title: "Success!", text: "Announcement Posted!", type: "success"},
+                     function(){ 
+                        document.getElementById("sendNoticeTitle").value = '';
+                        document.getElementById("sendNoticeMessage").value = '';
+                     }
+                  );
+
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) { 
+           alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+          }  
+        });
+
+
        }
 
        function addCheckedData(orgID){
