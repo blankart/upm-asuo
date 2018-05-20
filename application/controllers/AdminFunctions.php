@@ -353,11 +353,11 @@
 				$this->load->model('AdminModel');
 				$documents = $this->AdminModel->getAccreditationDocuments($org_id);
 
-				echo "<pre>";
-				print_r($documents)
-				echo "</pre>";
+				//echo "<pre>";
+				//print_r($documents);
+				//echo "</pre>";
 				if(!$documents){
-					echo json_encode($doduments);
+					echo json_encode($documents);
 					exit();
 				}
 				else{

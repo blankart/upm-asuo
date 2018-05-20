@@ -134,19 +134,19 @@ INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`, `i
 -- -------------------------------------------------------------------------
 
 INSERT INTO `orgpost` (`post_id`, `org_id`, `title`, `content`, `date_posted`, `privacy`, `archived`) VALUES
-(1, 6, "Untitled", "This is content 1", '2018-11-11 13:23:44', 'Public', 1),
-(2, 6, "Title of 2", "This is content 2", '2018-11-11 13:23:45', 'Members', 0),
-(3, 6, "Title 3", "This is content 3", '2018-11-11 13:23:46', 'Officers', 1),
-(4, 6, "4th Title", "This is content 4", '2018-11-11 13:23:47', 'Members', 1),
-(5, 6, "Title of 5th Post", "This is content 5", '2018-11-11 13:23:48', 'Officers', 0),
-(6, 6, "6 out of 6 Title", "This is content 6", '2018-11-11 13:23:49', 'Public', 0),
+(1, 6, "Untitled", "This is content 1", '2018-01-11 13:23:44', 'Public', 1),
+(2, 6, "Title of 2", "This is content 2", '2018-01-11 13:23:45', 'Members', 0),
+(3, 6, "Title 3", "This is content 3", '2018-01-11 13:23:46', 'Officers', 1),
+(4, 6, "4th Title", "This is content 4", '2018-01-11 13:23:47', 'Members', 1),
+(5, 6, "Title of 5th Post", "This is content 5", '2018-01-11 13:23:48', 'Officers', 0),
+(6, 6, "6 out of 6 Title", "This is content 6", '2018-01-11 13:23:49', 'Public', 0),
 
-(7, 1, "Untitled", "This is content 7", '2018-11-11 13:24:44', 'Public', 0),
-(8, 1, "Title of 8", "This is content 8", '2018-11-11 13:25:45', 'Members', 0),
-(9, 1, "Title 9", "This is content 9", '2018-11-11 13:26:46', 'Officers', 0),
-(10, 3, "10th Title", "This is content 10", '2018-11-11 13:27:47', 'Members', 0),
-(11, 3, "Title of 11th Post", "This is content 11", '2018-11-11 13:28:48', 'Officers', 0),
-(12, 3, "12 out of 12 Title", "This is content 12", '2018-11-11 13:29:49', 'Public', 0);
+(7, 1, "Untitled", "This is content 7", '2018-01-11 13:24:44', 'Public', 0),
+(8, 1, "Title of 8", "This is content 8", '2018-01-11 13:25:45', 'Members', 0),
+(9, 1, "Title 9", "This is content 9", '2018-01-11 13:26:46', 'Officers', 0),
+(10, 3, "10th Title", "This is content 10", '2018-01-11 13:27:47', 'Members', 0),
+(11, 3, "Title of 11th Post", "This is content 11", '2018-01-11 13:28:48', 'Officers', 0),
+(12, 3, "12 out of 12 Title", "This is content 12", '2018-01-11 13:29:49', 'Public', 0);
 
 -- -------------------------------------------------------------------------
 
