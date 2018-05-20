@@ -1,50 +1,3 @@
-<script type="text/javascript">
-
-	function nameFormatCheck(input) {  
-    var regex_num = new RegExp('^[0-9]*$');
-    var regex = new RegExp("^[a-zA-Z]+( [a-zA-Z]+)*$");
-    var value =  input.value;
-    
-    if( regex_num.test(value) )
-       input.setCustomValidity("Numbers are not allowed!");   
-    else if( !regex.test(value) )
-      input.setCustomValidity("Special characters are not allowed!");   
-    else 
-      input.setCustomValidity("");      
-  }
-
-  function noSpecialCharactersAndExtraSpacesCheck(input){
-
-        var regex = new RegExp("^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$");
-        var value =  input.value;
-        
-        if( !regex.test(value) )
-          input.setCustomValidity("Special characters and extra spaces are not allowed!");   
-        else 
-          input.setCustomValidity("");    
-    }
-
-	function inStay(){
-      var inStay = "<?php echo $stay; ?>"
-
-      if(inStay == "new")
-         document.getElementById("new").checked = true;
-      else if(inStay == "old"){
-         document.getElementById("old").checked = true; 
-      }
-   }
-   function activateText(value){
-      var textbox = document.getElementById("years");
-
-      if(value == "old"){
-         textbox.disabled = false;
-      } else {
-         textbox.disabled = true;
-      }
-   }
-
-   window.onload = inStay;
-</script>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -52,6 +5,8 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/phases.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/sidenav.css">
 		<script src="<?php echo base_url();?>js/script.js"></script>
+		<!-- transferred script to formA.js -->
+		<script type="text/javascript" src="<?php echo base_url(); ?>js/formA.js"></script>
 	</head>
 
 	<body>
@@ -157,7 +112,7 @@
 
 					<!-- review details before submitting-->
 					<div id="show_all_data">
-						*show overview of data inputted*<br>
+						*show overview of PDF*<br>
 
 						<!-- add sweet alert -->
 						<button class="button" onclick="submitForm()">Save</button>
