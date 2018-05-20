@@ -338,13 +338,14 @@
                               <div class="well profile text-center">
                         		    <h2><?php echo $profile['acronym']; ?></h2>
                         		    <h5><?php echo $profile['org_college']; ?></h5>
-                        		    <h6><a href=""><?php echo $profile['org_email']; ?></a> || <a href=""><?php echo $profile['org_website']; ?></a></h6>
+                        		    <h6><i class="fas fa-envelope"></i> <a href=""><?php echo $profile['org_email']; ?></a>&emsp;<i class="fas fa-link"></i> <a href=""><?php echo $profile['org_website']; ?></a></h6>
                         		  </div>
                               <div class="well profile text-left">
-                        		    <p><strong>Organization Description:</strong></p>
-                        		    <p> <?php echo $profile['description']; ?></p><br>
-                        		    <p><strong>Organization Objectives:</strong></p>
-                        		    <p><?php echo $profile['objectives']; ?></p><br>
+                                <br><br>
+                        		    <h4>Organization Description:</h4>
+                        		    <p style="text-indent: 30px;"><?php echo $profile['description']; ?></p><br>
+                        		    <h4>Organization Objectives:</h4>
+                        		    <p style="text-indent: 30px;"><?php echo $profile['objectives']; ?></p><br>
                     		      </div> 
 
                             </div>
