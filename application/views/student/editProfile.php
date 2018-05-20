@@ -84,6 +84,18 @@
    function noUploads(){
       swal("Failed!", "You have not uploaded any Form 5 yet!", "warning");
    }
+
+   function selectedSex(){
+      var sex = "<?php echo $sex; ?>"
+
+      if(sex == 'Male')
+         document.getElementById("sex").value = 'Male';
+      else
+         document.getElementById("sex").value = 'Female'; 
+
+   }
+
+   window.onload = selectedSex
 </script>
 
 <div class="modal animated bounceInUp" id="editStudentProfile" data-backdrop="false" data-keyboard="false">
@@ -99,7 +111,7 @@
 
             <div class="text-center">
                <form enctype="multipart/form-data" method="POST" id="uploadProfilePicture">
-                  <img src="<?php echo base_url().'assets/student/profile_pic/'.$profile_pic.'?'.rand(1, 100); ?>" class="avatar img-thumbnail" alt="avatar" height="500px"  width="500px">
+                  <img src="<?php echo base_url().'assets/student/profile_pic/'.$profile_pic.'?'.rand(1, 1000); ?>" class="avatar img-thumbnail" alt="avatar" height="500px"  width="500px">
 
                   <br><br>
                   <label id="prof_pic" style="margin-left: 20em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Change Profile Picture
@@ -110,24 +122,58 @@
                </form>
             </div>
 
+            <form method="POST">
+
                <div class="form-group">
                   <label class="col-lg control-label">Name</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" name="name" value = "<?php echo $first_name.' '.$middle_name.' '.$last_name; ?>" readonly required>
-                  </div>
+                     <input class="form-control" type="text" value = "<?php echo $first_name.' '.$middle_name.' '.$last_name; ?>" readonly required>
+                </div>
                </div>
+
                <div class="form-group">
-                  <label class="col-lg control-label">Year</label>
+                  <label class="col-lg control-label">UP Mail</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" name="data[year]" value = "<?php echo $year_level; ?>" readonly required>
+                     <input class="form-control" type="text" value = "<?php echo $up_mail; ?>"  required readonly>
                   </div>
                </div>
+
                <div class="form-group">
+                  <label class="col-lg control-label">Student Number</label>
+                  <div class="col-lg">
+                     <input class="form-control" type="text" name="data[up_id]" value = "<?php echo $up_id; ?>" required>
+                  </div>
+               </div>
+                 <div class="form-group">
                   <label class="col-lg control-label">Course</label>
                   <div class="col-lg">
                      <input class="form-control" type="text" name="data[course]" value = "<?php echo $course; ?>" required>
                   </div>
                </div>
+               <div class="form-group">
+                  <label class="col-lg control-label">Year</label>
+                  <div class="col-lg">
+                     <input class="form-control" type="text" name="data[year_level]" value = "<?php echo $year_level; ?>" readonly required>
+                  </div>
+               </div>
+
+               <div class="form-group">
+                  <label class="col-lg control-label">Sex</label>
+                  <div class="col-lg">
+                     <select class="form-control" id="sex" name="data[sex]" selected = "<?php echo $sex; ?>" required>
+                        <option>Male</option>
+                        <option>Female</option>
+                     </select>
+                  </div>
+               </div>           
+
+               <div class="form-group">
+                  <label class="col-lg control-label">Birthday</label>
+                  <div class="col-lg">
+                     <input class="form-control" type="date" name="data[birthday]" value = "<?php echo $birthday; ?>"  required>
+                  </div>
+               </div>
+
                <div class="form-group">
                   <label class="col-lg control-label">Address</label>
                   <div class="col-lg">
@@ -140,17 +186,12 @@
                      <input class="form-control" type="text" name="data[contact_num]" value = "<?php echo $contact_num; ?>" required>
                   </div>
                </div>
-               <div class="form-group">
-                  <label class="col-lg control-label">Email</label>
-                  <div class="col-lg">
-                     <input class="form-control" type="text" name="est" value = "<?php echo $up_mail; ?>"  required readonly>
-                  </div>
-               </div>
          </div>
          <!-- Modal footer -->
          <div class="modal-footer">
          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
          <button type="submit" onclick="validateForm()" class="btn btn-danger">Save</button>
+      </form>
          </div>
 			<div class="form-group">
                <form enctype="multipart/form-data" id= 'uploadForm5Form' method="POST">

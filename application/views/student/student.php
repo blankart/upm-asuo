@@ -127,7 +127,7 @@
 							<h5 style="color: white;">Profile Details</h5>
 						</div>
 						<div class="card-body">
-							<div class='wrapper'><img class='profileicon' src="<?php echo base_url().'assets/student/profile_pic/'.$profile['profile_pic'].'?'.rand(1, 100);?>"></div>
+							<div class='wrapper'><img class='profileicon' src="<?php echo base_url().'assets/student/profile_pic/'.$profile['profile_pic'].'?'.rand(1, 1000);?>"></div>
 							<h3 style="text-align: center; margin-bottom: 5 px; margin-top: 30px;"><strong><?php echo $profile['first_name']; ?> <?php echo $profile['last_name']; ?></strong></h3>
 							<h6 style="text-align: center; margin-bottom: 30px;"><strong><?php echo $profile['course']; ?>, <?php echo $profile['year_level']; ?></strong></h6>
 							<p style="text-align: center;"><?php echo $profile['up_mail']; ?></p>

@@ -28,8 +28,8 @@
 
 			else if($action == 'verify')
 				$this->verify($type, $code);
-			//else if($action == 'sendVerificationMail')
-			//	$this->sendVerificationMail();
+			else if($action == 'resendVerificationMail')
+				$this->resendVerificationMail();
 
 			else if($action == 'checkLogin')
 				$this->checkLogin();
@@ -140,7 +140,7 @@
 				);
 
 				//send verification email
-				$this->sendVerificationMail('org', $org_id, strtolower( $result['org_email'] ));
+				$this->sendVerificationMail('org', $org_id, strtolower( $result['org_email'] ), false);
 
 				$org_session = $this->SystemModel->createOrgProfile($profile_details);
 				$org_session['account_type'] = 'unverifiedOrg';
@@ -246,7 +246,7 @@
 					$this->StudentModel->uploadForm5($student_id, $file_name.".jpg"); 
 
 					//send verification email
-					$this->sendVerificationMail('student', $student_id, strtolower( $result['up_mail'] ));
+					$this->sendVerificationMail('student', $student_id, strtolower( $result['up_mail'] ), false);
 					//$this->sendVerificationMail();
 
 					$this->setSessions($student_session);
@@ -352,14 +352,15 @@
 					//echo 'Successfully verified your account. try logging in';
 
 					$this->load->view('header');
-					$this->load->view('verified');
+					$this->load->view('successfulverification');
 					$this->load->view('footer');
 
 				}
 				else{
 					$this->load->view('header');
-					$this->load->view('activated');
+					$this->load->view('unsuccessfulverification');
 					$this->load->view('footer');
+
 				}
 			}
 
@@ -371,47 +372,98 @@
 					//echo 'Successfully verified your account. try logging in';
 
 					$this->load->view('header');
-					$this->load->view('verified');
+					$this->load->view('successfulverification');
 					$this->load->view('footer');
 
 				}
 				else{
 					$this->load->view('header');
-					$this->load->view('activated');
+					$this->load->view('unsuccessfulverification');
 					$this->load->view('footer');
 				}
 			}
 		}
 
+		private function resendVerificationMail(){
+
+			$source = $this->input->post('source');
+
+			if($source == 'student'){
+
+				$account_type = $this->session->userdata['account_type'];
+				$user_id = $this->session->userdata['user_id'];
+
+			
+				$this->load->model('SystemModel');
+
+				if($account_type == 'unverifiedStudent'){
+					$account_type = 'student';
+					$email_address  = $this->SystemModel->getStudentEmail($user_id);
+				}
+
+				if($account_type == 'unverifiedOrg'){
+					$account_type = 'org';
+					$email_address  = $this->SystemModel->getOrgEmail($user_id);
+				}
+		
+				$this->sendVerificationMail($account_type, $user_id, $email_address, true);
+
+			
+				echo json_encode(true);
+				exit();
+
+			}
+			else{
+				echo json_encode(false);
+				exit();
+			}
+		}
+
 		//private function sendVerificationMail(){
-		private function sendVerificationMail($account_type, $user_id, $email_address ){
+		private function sendVerificationMail($account_type, $user_id, $email_address, $isResend){
 
 			//$account_type = 'org';
 			//$user_id = 10;
-			//$activation_code = md5('orgVerification'.$user_id);
+			//$verificaton_code = md5('orgVerification'.$user_id);
 
 			//$email = 'mjfernando@up.edu.ph'; //input email
-			//$link = base_url().'verify/g/'.$activation_code;
+			//$link = base_url().'verify/g/'.$verificaton_code;
 
 			$email = $email_address;
-			if($account_type == 'student'){
-		   		$activation_code = md5('studentVerification'.$user_id);
-		   		$link = base_url().'verify/t/'.$activation_code;
-		   	}
-		   	
-		   	if($account_type == 'org'){
-		   		$activation_code = md5('orgVerification'.$user_id);
-		   		$link = base_url().'verify/g/'.$activation_code;
+			$this->load->model('SystemModel');
+
+			if( $isResend ){
+				$code = $this->SystemModel->getVerificationCode($account_type, $user_id);
+				$verificaton_code = md5($code);
+				$id = $this->SystemModel->updateVerificationCode($account_type, $user_id, $verificaton_code);
+
+				if($account_type == 'student')
+		   			$link = base_url().'verify/t/'.$verificaton_code;
+			   	if($account_type == 'org')
+		   			$link = base_url().'verify/g/'.$verificaton_code;
 			}
 			
+			else{
 
-			$data['type'] = $account_type; 
-			$data['user_id'] = $user_id;
-			$data['code'] = $activation_code;
-			$data['status'] = 'Pending';
+				if($account_type == 'student'){
+			   		$verificaton_code = md5('studentVerification'.$user_id);
+			   		$link = base_url().'verify/t/'.$verificaton_code;
+		  	 	}
+		   	
+			   	if($account_type == 'org'){
+			   		$verificaton_code = md5('orgVerification'.$user_id);
+			   		$link = base_url().'verify/g/'.$verificaton_code;
+				}
 
-			$this->load->model('SystemModel');
-			$id  = $this->SystemModel->createVerificationCode($data);
+				$data['type'] = $account_type; 
+				$data['user_id'] = $user_id;
+				$data['code'] = $verificaton_code;
+				$data['status'] = 'Pending';
+
+				
+				$id  = $this->SystemModel->createVerificationCode($data);
+			}
+			
 			
 			if($id){
 				//set email library configuration

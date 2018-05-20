@@ -2,7 +2,7 @@
 	class AdminModel extends CI_Model{
 				
 		public function searchStudents($string){
-			$condition = "sa.student_id = sp.student_id AND sa.isActivated = 0 AND sa.isVerified = 1 AND (sp.last_name LIKE '%".$string."%' OR sp.first_name LIKE '%".$string."%' OR sa.up_id LIKE '%".$string."%') "; 
+			$condition = "sa.student_id = sp.student_id AND sa.isActivated = 0 AND sa.isVerified = 1 AND (sp.last_name LIKE '%".$string."%' OR sp.first_name LIKE '%".$string."%' OR sa.up_id LIKE '%".$string."%') AND sa.archived = 0"; 
 			
 			$this->db->select('sa.student_id, sa.up_mail, sa.up_id, sp.first_name, sp.last_name, sp.middle_name');
 			$this->db->from('studentaccount sa, studentprofile sp');
@@ -16,7 +16,7 @@
 		public function viewStudentInfo($id){
 			$condition = "sa.student_id = sp.student_id AND sa.student_id = " .$id;
 
-			$this->db->select('sa.student_id, sa.username, sa.up_mail, sa.up_id, sp.first_name, sp.middle_name, sp.last_name, sp.course, sp.contact_num, sp.year_level');
+			$this->db->select('sa.student_id, sa.username, sa.up_mail, sa.up_id, sp.first_name, sp.middle_name, sp.last_name, sp.course, sp.contact_num, sp.year_level, sp.form5');
 			$this->db->from('studentaccount sa, studentprofile sp');
 			$this->db->order_by('sa.student_id');
 			$this->db->where ($condition);
@@ -131,7 +131,7 @@
 			
 			$this->db->select('oa.org_id, oa.org_status, oa.archived, oa.org_email, op.org_name');
 			$this->db->from('organizationaccount oa,organizationprofile op');
-			$this->db->order_by('oa.org_id');
+			$this->db->order_by('op.org_name');
 			$this->db->where ($condition);
 
 			$query = $this->db->get();

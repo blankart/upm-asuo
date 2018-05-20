@@ -81,26 +81,26 @@
 		}
 
 		public function getOrgTally($org_id){
-			$tally['male_first'] = $this->getTally($org_id, 'Male', '1');
-			$tally['female_first'] = $this->getTally($org_id, 'Female', '1');
+			$tally['male_first'] = $this->getTally($org_id, 'Male', '1st Year');
+			$tally['female_first'] = $this->getTally($org_id, 'Female', '1st Year');
 
-			$tally['male_second'] = $this->getTally($org_id, 'Male', '2');
-			$tally['female_second'] = $this->getTally($org_id, 'Female', '2');
+			$tally['male_second'] = $this->getTally($org_id, 'Male', '2nd Year');
+			$tally['female_second'] = $this->getTally($org_id, 'Female', '2nd Year');
 
-			$tally['male_third'] = $this->getTally($org_id, 'Male', '3');
-			$tally['female_third'] = $this->getTally($org_id, 'Female', '3');
+			$tally['male_third'] = $this->getTally($org_id, 'Male', '3rd Year');
+			$tally['female_third'] = $this->getTally($org_id, 'Female', '3rd Year');
 
-			$tally['male_fourth'] = $this->getTally($org_id, 'Male', '4');
-			$tally['female_fourth'] = $this->getTally($org_id, 'Female', '4');
+			$tally['male_fourth'] = $this->getTally($org_id, 'Male', '4th Year');
+			$tally['female_fourth'] = $this->getTally($org_id, 'Female', '4th Year');
 
-			$tally['male_fifth'] = $this->getTally($org_id, 'Male', '5');
-			$tally['female_fifth'] = $this->getTally($org_id, 'Female', '5');
+			$tally['male_fifth'] = $this->getTally($org_id, 'Male', '5th Year');
+			$tally['female_fifth'] = $this->getTally($org_id, 'Female', '5th Year');
 
-			$tally['male_sixth'] = $this->getTally($org_id, 'Male', '6');
-			$tally['female_sixth'] = $this->getTally($org_id, 'Female', '6');
+			$tally['male_sixth'] = $this->getTally($org_id, 'Male', '6th Year');
+			$tally['female_sixth'] = $this->getTally($org_id, 'Female', '6th Year');
 
-			$tally['male_seventh'] = $this->getTally($org_id, 'Male', '7');
-			$tally['female_seventh'] = $this->getTally($org_id, 'Female', '7');
+			$tally['male_seventh'] = $this->getTally($org_id, 'Male', '7th Year');
+			$tally['female_seventh'] = $this->getTally($org_id, 'Female', '7th Year');
 
 			$tally['male_masteral'] = $this->getTally($org_id, 'Male', 'Masteral');
 			$tally['female_masteral'] = $this->getTally($org_id, 'Female', 'Masteral');

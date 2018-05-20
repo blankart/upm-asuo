@@ -161,9 +161,69 @@
 	    // end of REGISTER FUNCTIONS
 
 	    // VERIFICATION FUNCTIONS
+
+	    public function getStudentEmail($student_id){
+
+	    	$condition = "student_id =" .$student_id. " AND student_id = " .$student_id; 
+
+	    	$this->db->select('up_mail');
+	    	$this->db->from('studentaccount');
+	    	$this->db->where($condition);
+	    	$query = $this->db->get();
+
+	    	if($query->num_rows() == 1)
+	    		return $query->result_array()[0]['up_mail'];
+	    	else
+	    		return false;
+
+	    }
+
+	    public function getOrgEmail($org_id){
+
+	    	$condition = "org_id =" .$org_id. " AND org_id = " .$org_id; 
+
+	    	$this->db->select('org_email');
+	    	$this->db->from('OrganizationAccount');
+	    	$this->db->where($condition);
+	    	$query = $this->db->get();
+
+	    	if($query->num_rows() == 1)
+	    		return $query->result_array()[0]['org_email'];
+	    	else
+	    		return false;
+	    }
+
 		public function createVerificationCode($data){
 			$this->db->insert('verificationcode', $data);
 			return $this->db->insert_id();	
+		}
+
+		public function getVerificationCode($type, $user_id){
+			$condition = "type = '" .$type. "' AND user_id = " .$user_id. " AND status = 'Pending'"; 
+
+			$this->db->select('code');
+			$this->db->from('verificationcode');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if($query->num_rows() == 1){
+				return $query->result_array()[0]['code'];
+			}
+			else
+				return false;
+		}
+
+		public function updateVerificationCode($type, $user_id, $new_code){
+
+			$condition = "type ='" .$type. "' AND user_id = " .$user_id. " AND status = 'Pending'";
+
+			$changes = array(
+				'code' => $new_code
+			);
+
+			$this->db->where($condition);
+			$this->db->update('verificationcode', $changes);
+			return $this->db->affected_rows();
 		}
 
 		public function verifyStudentAccount($code){

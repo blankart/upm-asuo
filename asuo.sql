@@ -18,7 +18,7 @@ CREATE TABLE `studentprofile` (
   `sex` varchar(6) NOT NULL,
   `birthday` date NOT NULL,
   `course` varchar(50) NOT NULL,
-  `year_level` varchar(10) NOT NULL,
+  `year_level` varchar(12) NOT NULL,
   `contact_num` varchar(11) NOT NULL,
   `address` varchar(100) NOT NULL DEFAULT 'N/A',
   `profile_pic` varchar(40) NOT NULL DEFAULT 'default_male.jpg',

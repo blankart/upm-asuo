@@ -101,7 +101,7 @@
                       "<h4 style='font-size: 18px'>"+result['year_level']+"</h4>"+
                       "<h4 style='font-size: 18px'>"+result['up_id']+"</h4>"+
                       "<h4 style='font-size: 18px'>"+result['contact_num']+"</h4>"+
-                      "<button type='button' class='btn btn-link'>View Form5</button>"+
+                      "<a href='<?php echo base_url(); ?>assets/student/form_5/"+result['form5']+"' target='_blank'><button type='button' class='btn btn-link'>View Form5</button></a>"+
                       "</div>"+
                    "</div>"+
                 "</div>"

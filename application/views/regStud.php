@@ -22,7 +22,7 @@
                    processData: false,
                    data: new FormData(this),
                    success : function (data){
-                    alert(data);
+                   // alert(data);
                       swal({title: "Success!", text: "You have successfully created an account!", type: "success"},
                             function(){ 
                                location.reload();
@@ -30,7 +30,7 @@
                        );
                    },
                    error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                      alert("Status: " + textStatus + " | Error: " + errorThrown); 
+                    //  alert("Status: " + textStatus + " | Error: " + errorThrown); 
                        swal("Error!", "Error in creating your account", "error");
                    }   
                 });
@@ -249,13 +249,13 @@
                                  </div>
                                  <div class="col-3">
                                     <select class="form-control" name="data[year_level]" required>
-                                       <option value ='1' >First Year</option>
-                                       <option value ='2' >Second Year</option>
-                                       <option value ='3' >Third Year</option>
-                                       <option value ='4' >Fourth Year</option>
-                                       <option value ='5' >Fifth Year</option>
-                                       <option value ='6' >Sixth Year</option>
-                                       <option value ='7' >Seventh Year</option>
+                                       <option >1st Year</option>
+                                       <option >2nd Year</option>
+                                       <option >3rd Year</option>
+                                       <option >4th Year</option>
+                                       <option >5th Year</option>
+                                       <option >6th Year</option>
+                                       <option >7th Year</option>
                                        <option>Masteral</option>
                                        <option>Doctoral</option>
                                     </select>
