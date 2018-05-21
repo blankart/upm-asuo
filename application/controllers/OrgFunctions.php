@@ -25,7 +25,7 @@
 			else if($action == 'uploadFormF')
 				$this->uploadFormF();
 			else if($action == 'uploadFormG')
-				$this->uploadFormF();
+				$this->uploadFormG();
 			else if($action == 'applyToOrg')
 				$this->applyToOrg();
 			else if ($action == 'rejectMembership')
