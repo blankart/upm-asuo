@@ -23,8 +23,8 @@ INSERT INTO `studentprofile` (`student_id`, `first_name`, `middle_name`, `last_n
 (10, 'Albert', 'Hans', 'Einstein', 'Male', '1879-03-14', 'BS Computer Science', 'Doctoral', '09453291650', 'Under the Sea', 'BF8E91BA73CA6CAB9E41FD1931793031.jpg', 'D204F53E427E51F8FC1D3D8884BEB161.jpg');
 
 INSERT INTO `admin` (`admin_id`, `username`, `password`, `admin_name`, `admin_email`) VALUES
-(1, 'OSA', '32250170a0dca92d53ec9624f336ca24', 'Office of Student Affairs', 'admin@up.edu.ph'),
-(2, 'USC', '32250170a0dca92d53ec9624f336ca24', 'University Student Council', 'usc@up.edu.ph');
+(1, 'OSA', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Office of Student Affairs', 'admin@up.edu.ph'),
+(2, 'USC', '$2y$10$O0bATKLUoYY9BmAGhAnbIOb/7halb57Vp8535bbm6JGnKbqUFv1O2', 'University Student Council', 'usc@up.edu.ph');
 
 INSERT INTO `organizationaccount` (`org_id`, `org_email`, `password`, `org_status`, `isVerified`, `isActivated`, `archived`) VALUES
 (1, 'aisec@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 0, 0,  0),
