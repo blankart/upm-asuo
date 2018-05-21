@@ -83,7 +83,7 @@
 					Date Established:&nbsp;&nbsp;<input type="text" id="established" name="established" value="<?php echo $date_established; ?>" disabled>
 					<br><br>
 
-					<button class="button" onclick="processcPhase1()">Continue</button>
+					<button class="btn btn-danger" type="button" onclick="processcPhase1()">Continue</button>
 				</div>
 
 				<div id="cphase2">
@@ -92,32 +92,35 @@
 
 					 ?>" disabled><br><br>
 		
-					<button class="button" onclick="processcPhase2()">Continue</button>
-					<button class="button" onclick="backc1()">Back</button>
+					<button class="btn btn-danger" type="button" onclick="backc1()">Back</button>
+					<button class="btn btn-danger" type="button" onclick="processcPhase2()">Continue</button>
 				</div>
 			
 				<div id="cphase3">
-					Is your organization incorporated with the Securities and Exchange Commission(SEC)?<br>
+					Is your organization incorporated with the Securities and Exchange Commission(SEC)? &nbsp;&nbsp;
 					<input type="radio" id="no" name="incSEC" value="no" onclick="activateText(this.value)" disabled>&nbsp; No &nbsp;&nbsp;
 					<input type="radio" id="yes" name="incSEC" onclick="activateText(this.value)" value="yes" disabled>&nbsp; Yes,&nbsp;when?&nbsp;&nbsp;
 					<input type="text" id="when" name="when" placeholder="year" disabled>
 					<br><br>
 
-					<button class="button" onclick="processcPhase3()">Continue</button>
-					<button class="button" onclick="backc2()">Back</button>
+					<button class="btn btn-danger" type="button" onclick="backc2()">Back</button>
+					<button class="btn btn-danger" type="button" onclick="processcPhase3()">Continue</button>
 				</div>
 			</form>
+
+			<!-- review details before submitting-->
+			<div class="myBtn" id="show_data">
+				<object data="<?php echo base_url(); ?>org/viewFormC" type="pdf" width="100%" height="500">
+					<iframe src="<?php echo base_url(); ?>org/viewFormC" style="border: none;" width="100%" height="400">This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo base_url(); ?>org/formCpdf">Download PDF</a>
+					</iframe>
+				</object>
+				<br><br>
+				<button class="btn btn-danger" type="button" onclick="backc3()">Back</button>	
+				<button class="btn btn-danger" type="button" onclick="submitForm()">Save</button>
+			</div>
+
 		</div>
-		<!-- review details before submitting-->
-		<div class="main" id="show_all_data">
-			<object data="<?php echo base_url(); ?>org/viewFormC" type="pdf" width="100%" height="400">
-				<iframe src="<?php echo base_url(); ?>org/viewFormC" style="border: none;" width="100%" height="400">This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo base_url(); ?>org/formCpdf">Download PDF</a>
-				</iframe>
-			</object>	
-			<button class="button" onclick="submitForm()">Save</button>
-			<button class="button" onclick="backc3()">Back</button>
-			<br><br>
-		</div>
+
 
 	</div>
 	</body>

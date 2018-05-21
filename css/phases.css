@@ -38,7 +38,7 @@ form#multiphase2{
     text-align: right;
 }
 
-form#multiphase2 > #cphase2, #cphase3{
+form#multiphase2 > #cphase2, #cphase3,  #show_data{
     display: none;
 }
 
@@ -108,12 +108,16 @@ input#email, #website{
     width: 26.5%;
 }
 
-input#established, #when{
-    width: 7%;
+input#established{
+    width: 7.2%;
+}
+
+input#when{
+    width: 5%;
 }
 
 input#numMembers{
-    width: 15%;
+    width: 75%;
 }
 
 input#name{
