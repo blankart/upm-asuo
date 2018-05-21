@@ -17,7 +17,7 @@
 }
 
 onReady(function() {
-  $('.h-100').show()
+  $('.headerbar').show()
   $('.loading-screen').addClass('animated fadeOut');
 });
 	</script>
