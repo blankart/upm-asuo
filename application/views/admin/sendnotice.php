@@ -322,7 +322,7 @@
                       <div class="mat-input" style="margin-top: 30px;">
                         <div class="mat-input-outer">
                           <input autocomplete="off" class="form-control" id="sendNoticeInput" type="username"> <label class="">Enter Org Email/Name</label>
-                          <div class="border"></div><button class="btn btn-danger btn-block" onclick="getRecipient()" style="margin-top: 10px">Search</button>
+                          <div class="border"></div><button class="btn btn-danger btn-block" onclick="searchSendNotice()" style="margin-top: 10px">Search</button>
                         </div>
                       </div>
                       <div style="text-align: center"></div>
