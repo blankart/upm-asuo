@@ -225,7 +225,7 @@
 			
 			$this->db->select('oa.org_id, oa.org_status, oa.org_email, op.org_name');
 			$this->db->from('organizationaccount oa,organizationprofile op');
-			$this->db->order_by('oa.org_id');
+			$this->db->order_by('op.org_name');
 			$this->db->where ($condition);
 
 			$query = $this->db->get();

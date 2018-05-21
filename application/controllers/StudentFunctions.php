@@ -16,7 +16,6 @@
 				$this->uploadForm5();
 
 			else if($action == 'search')
-				//echo 'here';
 				$this->search();
 
 			else if($action == 'checkStudentPassword')

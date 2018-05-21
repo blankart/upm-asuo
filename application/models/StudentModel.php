@@ -58,8 +58,10 @@
 				$posts = $this->getOrgPosts($orgID['org_id'], $orgID['position']);
 
 				if (!empty($posts)){
-					foreach($posts as $post)
+					foreach($posts as $post){
+						$post['content'] = nl2br( $post['content'] );
 						array_push($orgposts, $post);
+					}
 				}
 			}
 

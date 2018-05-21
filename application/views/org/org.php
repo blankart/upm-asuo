@@ -18,6 +18,21 @@
 
 ?>
 
+<script type="text/javascript">
+       $(function () {
+         $('a[href="#search"]').on('click', function(event){
+             event.preventDefault();
+             $('#search').addClass('open');
+             $('#search > form > input[type="search"]').focus();
+         });
+         $('#search, #search button.close').on('click keyup', function(event){
+             if(event.target == this || event.target.className == 'close' || event.keyCode == 27){
+                 $(this).removeClass('open');
+             }
+         });
+     });
+</script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -303,7 +318,7 @@
                               <?php } ?>
 
                             <?php if(!$isAdmin && !$isOfficer && !$isMember && !$isOrg && $isApplicant ){?>
-                            <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="applyToOrg()" disabled>Apply for Membership</button>
+                            <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="applyToOrg()" disabled>Membership Request Sent</button>
                               <?php } ?>
 
                         </div>
@@ -338,7 +353,7 @@
                               <div class="well profile text-center">
                         		    <h2><?php echo $profile['acronym']; ?></h2>
                         		    <h5><?php echo $profile['org_college']; ?></h5>
-                        		    <h6><i class="fas fa-envelope"></i> <a href=""><?php echo $profile['org_email']; ?></a>&emsp;<i class="fas fa-link"></i> <a href=""><?php echo $profile['org_website']; ?></a></h6>
+                        		    <h6><i class="fas fa-envelope"></i> <a href="mailto:<?php echo $profile['org_email']; ?>"><?php echo $profile['org_email']; ?></a>&emsp;<i class="fas fa-link"></i> <a href="<?php echo $profile['org_website']; ?>" target="_blank"><?php echo $profile['org_website']; ?></a></h6>
                         		  </div>
                               <div class="well profile text-left">
                                 <br><br>
@@ -405,7 +420,7 @@
                                                     <td class="text-center">
                                                       <span class="badge badge-success"><?php echo $member['position']; ?></span></td>
                                                     <td>
-                                                      <?php echo $member['up_mail']; ?>
+                                                     <a href="mailto:<?php echo $member['up_mail']; ?>"><?php echo $member['up_mail']; ?></a>
                                                     </td>
                                                      <?php if($account_type == 'org') {?>
                                                     <td>
@@ -424,7 +439,7 @@
                                                     <td class="text-center">
                                                       <span class="badge badge-success"><?php echo $member['position']; ?></span></td>
                                                     <td>
-                                                     <?php echo $member['up_mail']; ?>
+                                                      <a href="mailto:<?php echo $member['up_mail']; ?>"><?php echo $member['up_mail']; ?></a>
                                                     </td>
                                                      <?php if($account_type == 'org') {?>
                                                       <td>
