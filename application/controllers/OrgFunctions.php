@@ -653,6 +653,7 @@
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/applyforaccreditation', $data);
+			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
 		
