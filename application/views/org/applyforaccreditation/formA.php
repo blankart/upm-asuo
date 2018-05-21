@@ -59,8 +59,8 @@
 
 					<div id="phase2">
 						Organization Name:&nbsp;&nbsp;<input type="text" id="orgName" name="orgName" value="<?php echo $org_name; ?>" disabled/>&nbsp;	
-						<input type="radio" name="data[stay]" id="new" onclick="activateText(this.value)" value="new">&nbsp; New &nbsp; &nbsp;
-						<input type="radio" name="data[stay]" id="old"  onclick="activateText(this.value)" value="old">&nbsp; Old &nbsp; |
+						<input type="radio" name="data[stay]" id="new" value="new">&nbsp; New &nbsp; &nbsp;
+						<input type="radio" name="data[stay]" id="old" value="old">&nbsp; Old &nbsp; |
 						<input type="text" id ="years" name="data[experience]" value="<?php echo $experience ?>">
 						<br><br><br>
 
@@ -77,7 +77,7 @@
 					</div>
 
 					<div id="phase4">
-						Name of Adviser:&nbsp;&nbsp;<input type="text" id="adviser" name="data[adviser]" value="<?php echo $adviser ?>" onkeyup="nameFormatCheck(this)" required>
+						Name of Adviser:&nbsp;&nbsp;<input type="text" id="adviser" name="data[adviser]" value="<?php echo $adviser ?>" required>
 						Position/Designation:&nbsp;&nbsp;<input type="text" id="adviserPos" name="data[adviser_position]" value="<?php echo $adviser_position ?>" required>&nbsp;&nbsp;
 						College/Unit:&nbsp;&nbsp;<input type="text" id="adviserUnit" onkeyup="incomplete1()" name="data[adviser_college]" value="<?php echo $adviser_college ?>" required>
 						<br><br>
@@ -87,7 +87,7 @@
 					</div>
 
 					<div id="phase5">
-						Contact Person:&nbsp;&nbsp;<input type="text" id="contactPerson" name="data[contact_person]" value="<?php echo $contact_person ?>" onkeyup="nameFormatCheck(this)" required>
+						Contact Person:&nbsp;&nbsp;<input type="text" id="contactPerson" name="data[contact_person]" value="<?php echo $contact_person ?>" required>
 						Position in Organization:&nbsp;&nbsp;<input type="text" id="contactPos" name="data[contact_position]" value="<?php echo $contact_position ?>" required>&nbsp;&nbsp;
 						Email:&nbsp;&nbsp;<input type="email" id="contactMail" name="data[contact_email]"  value="<?php echo $contact_email ?>" required>
 						Address:&nbsp;&nbsp;<input type="text" id="contactAddress" name="data[contact_address]"  value="<?php echo $contact_address ?>" required>
