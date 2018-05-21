@@ -360,28 +360,33 @@
 			$this->db->from('studentaccount');
 			$this->db->where($condition);
 			$query = $this->db->get();
-			
-			if(!password_verify($credentials['password'],$query->result_array()[0]['password']))
+
+			if($query->num_rows() ==1 ){
+				if(!password_verify($credentials['password'],$query->result_array()[0]['password']))
+					return false;
+				else{
+					//get student profile details for 'myprofile' view 
+					
+					$student_id = $query->result_array()[0]['student_id'];
+					$sessionDetails = $this->getStudentSessionDetails($student_id);
+
+					$isActivated = $query->result_array()[0]['isActivated'];
+					if($isActivated == 0)
+						$sessionDetails['account_type'] = 'unactivatedStudent';
+
+					$isVerified = $query->result_array()[0]['isVerified'];
+					if($isVerified == 0)
+						$sessionDetails['account_type'] = 'unverifiedStudent';
+
+					$archived = $query->result_array()[0]['archived'];
+					if($archived == 1)
+						$sessionDetails['account_type'] = 'archivedStudent';
+
+					return $sessionDetails;
+				}
+			}
+			else
 				return false;
-
-			//get student profile details for 'myprofile' view 
-			
-			$student_id = $query->result_array()[0]['student_id'];
-			$sessionDetails = $this->getStudentSessionDetails($student_id);
-
-			$isActivated = $query->result_array()[0]['isActivated'];
-			if($isActivated == 0)
-				$sessionDetails['account_type'] = 'unactivatedStudent';
-
-			$isVerified = $query->result_array()[0]['isVerified'];
-			if($isVerified == 0)
-				$sessionDetails['account_type'] = 'unverifiedStudent';
-
-			$archived = $query->result_array()[0]['archived'];
-			if($archived == 1)
-				$sessionDetails['account_type'] = 'archivedStudent';
-
-			return $sessionDetails;
 		}
 
 		private function loginOrg($credentials){
@@ -392,27 +397,32 @@
 			$this->db->where($condition);
 			$query = $this->db->get();
 			
-			if(!password_verify($credentials['password'],$query->result_array()[0]['password']))
+			if($query->num_rows() ==1 ){
+				if(!password_verify($credentials['password'],$query->result_array()[0]['password']))
+					return false;
+				else{		
+				//get org profile details for 'org' view 
+		
+					$org_id = $query->result_array()[0]['org_id'];
+					$sessionDetails = $this->getOrgSessionDetails($org_id);
+
+					$isActivated = $query->result_array()[0]['isActivated'];
+					if($isActivated == 0)
+						$sessionDetails['account_type'] = 'unactivatedOrg';
+
+					$isVerified = $query->result_array()[0]['isVerified'];
+					if($isVerified == 0)
+						$sessionDetails['account_type'] = 'unverifiedOrg';
+
+					$archived = $query->result_array()[0]['archived'];
+					if($archived == 1)
+						$sessionDetails['account_type'] = 'archivedOrg';
+
+					return $sessionDetails;
+				}
+			}
+			else
 				return false;
-	
-			//get org profile details for 'org' view 
-	
-			$org_id = $query->result_array()[0]['org_id'];
-			$sessionDetails = $this->getOrgSessionDetails($org_id);
-
-			$isActivated = $query->result_array()[0]['isActivated'];
-			if($isActivated == 0)
-				$sessionDetails['account_type'] = 'unactivatedOrg';
-
-			$isVerified = $query->result_array()[0]['isVerified'];
-			if($isVerified == 0)
-				$sessionDetails['account_type'] = 'unverifiedOrg';
-
-			$archived = $query->result_array()[0]['archived'];
-			if($archived == 1)
-				$sessionDetails['account_type'] = 'archivedOrg';
-
-			return $sessionDetails;
 		}
 
 		private function loginAdmin($credentials){
@@ -422,12 +432,17 @@
 			$this->db->from('admin');
 			$this->db->where($condition);
 			$query = $this->db->get();
-
-			if(password_verify($credentials['password'],$query->result_array()[0]['password'])){
-				$result = $query->result_array()[0];
-				$result['account_type'] = 'admin'; 
-				return $result;
+			if($query->num_rows() ==1 ){
+				if(password_verify($credentials['password'],$query->result_array()[0]['password'])){
+					$result = $query->result_array()[0];
+					$result['account_type'] = 'admin'; 
+					return $result;
+				}
+				else 
+					return false;
 			}
+			else
+				return false;
 		/*	$condition = "admin_email = '" . $credentials['username']. "' AND password = '" . $credentials['password']. "'";
 
 			$this->db->select('*');

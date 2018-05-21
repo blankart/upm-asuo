@@ -5,7 +5,7 @@ INSERT INTO `studentaccount` (`student_id`, `up_id`, `up_mail`, `username`, `pas
 (4, '201481207', 'acracusa@up.edu.ph', 'acracusa', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 1, 1, 0),
 (5, '201411235', 'kacolumna@up.edu.ph', 'kacolumna', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 1, 0, 1),
 (6, '201408109', 'pslasmarias@up.edu.ph', 'pslasmarias', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 1, 1, 0),
-(7, '201479241', 'ncmendoza11@up.edu.ph', 'ncmendoza1', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 1, 0, 0),
+(7, '201479241', 'ncmendoza11@up.edu.ph', 'ncmendoza11', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 1, 0, 0),
 (8, '201499764', 'dgperez@up.edu.ph', 'dgperez', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 1, 1, 0),
 (9, '201480756', 'avsanguenza@up.edu.ph', 'avsanguenza', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 0, 0, 0),
 (10, '201480768', 'aleinstein@up.edu.ph', 'aleinstein', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 1, 1, 0);
@@ -124,11 +124,11 @@ INSERT INTO `orgpost` (`post_id`, `org_id`, `title`, `content`, `date_posted`, `
 (6, 6, "6 out of 6 Title", "This is content 6. This post is deleted. It should not be visible.", '2018-01-11 13:23:49', 'Public', 1),
 
 (7, 6, "Chapter 1", "Once was Apollo\nNow a rat in the Lab’rinth\nSend help. And cronuts\nNo.\nI refuse to share this part of my story. It was the lowest, most humiliating,most awful week in my four-thousand-plus years of life. Tragedy. Disaster. Heartbreak. I will not tell you about it.\n\nWhy are you still here? Go away!", '2018-01-11 13:24:44', 'Public', 0),
-(8, 1, "Title of 8", "This is content 8", '2018-01-11 13:25:45', 'Members', 0),
-(9, 1, "Title 9", "This is content 9", '2018-01-11 13:26:46', 'Officers', 0),
-(10, 3, "10th Title", "This is content 10", '2018-01-11 13:27:47', 'Members', 0),
-(11, 3, "Title of 11th Post", "This is content 11", '2018-01-11 13:28:48', 'Officers', 0),
-(12, 3, "12 out of 12 Title", "This is content 12", '2018-01-11 13:29:49', 'Public', 0);
+(8, 1, "Caught in the Middle", "I was dreaming life away\nAll the while just going blind\nCan't see the forest for the trees\nBehind the lids of my own eyes\nNostalgia's cool, but it won't help me now\nA dream is good (don't wear it out) if you don't wear it out\nAnd I'm just a little bit caught in the middle\nI try to keep going but it's not that simple\nI think I'm a little bit caught in the middle\nGotta keep going or they'll call me a quitter\nYeah, I'm caught in the middle\nNo, I don't need no help\nI can sabotage me by myself\nI don't need no one else\nI can sabotage me by myself", '2018-01-11 13:25:45', 'Members', 0),
+(9, 1, "Pool", "I'm underwater\nWith no air in my lungs\nMy eyes are open\nI'm done giving up\nYou are the wave\nI could never tame\nIf I survive\nI'll dive back in", '2018-01-11 13:26:46', 'Officers', 0),
+(10, 1, "Tell Me How", "You keep me up with your silence\nTake me down with your quiet\nOf all the weapons you fight with\nYour silence is the most violent\nTell me how to feel about you now\nTell me how to feel about you now\nOh, let me know\nDo I suffocate or let go?", '2018-01-11 13:27:47', 'Members', 0),
+(11, 3, "Spoiler | Ship of the Dead", "“I think this is awesome, Magnus,” she said on the phone from California. “You are amazing. I—I kind of needed some good news right now.”\nThat set my ears buzzing. Why did Annabeth sound like she’d been crying?\n“You okay, cuz?”\nShe paused for a long time. “I will be. We…we got some bad news when we got out here.”", '2018-01-11 13:28:48', 'Officers', 0),
+(12, 3, "Hard Times", "Walking around/nMy little rain cloud/nHanging over my head/nAnd it ain't coming down/nWhere do I go?/nGimme some sort of sign/nYou hit me with lightning!/nMaybe I'll come alive", '2018-01-11 13:29:49', 'Public', 0);
 
 -- -------------------------------------------------------------------------
 
