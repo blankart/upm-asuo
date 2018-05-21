@@ -6,7 +6,39 @@
 	<title>UP Organizations</title>
 <!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
 </head>
+<script>
+	function onReady(callback) {
+  var intervalId = window.setInterval(function() {
+    if (document.getElementsByClassName('h-100')[0] !== undefined) {
+      window.clearInterval(intervalId);
+      callback.call(this);
+    }
+  }, 1000);
+}
+
+onReady(function() {
+  $('.headerbar').show()
+  $('.loading-screen').addClass('animated fadeOut');
+});
+	</script>
+	
 <body class="my-login-page">
+	<div class='loading-screen'>
+		<div class="container">
+	<div class="row">
+		<div id="loader">
+    		<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+			<div class="dot"></div>
+		</div>
+	</div>
+</div>
+	</div>
 <section class="h-100">
 	<div class="headerbar">
 		<h1 class="display-1" style="font-size: 60px;">UP Organizations</h1>

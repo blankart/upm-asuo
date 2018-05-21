@@ -220,8 +220,9 @@
        function updaterecipientSection(){
          output="";
          for (var key in checkedDataArray){
-             output+="<span class='notice notice-success notice-sm animated fadeIn' style='margin: 5px;'>"+dataArray[getDataArrayKey(checkedDataArray[key])]['org_name']+"<\/span><button class='btn btn-sm btn-danger' onclick='addCheckedData("+checkedDataArray[key]+")'><i class='fas fa-trash-alt'><\/i><\/button>";
+             output+="<span class='notice notice-success notice-sm animated fadeIn' style='margin: 5px;'>"+dataArray[getDataArrayKey(checkedDataArray[key])]['org_name']+"<\/span><button class='btn btn-sm btn-danger' onclick='addCheckedData("+checkedDataArray[key]+")' style='margin: 5px;'><i class='fas fa-trash-alt'><\/i><\/button>";
          }
+         
          $('.recipientSection').html(output);
        }
        function updateNumOfRecipients(){

@@ -87,6 +87,10 @@ h2{
     cursor: pointer;
 }
 
+.btn {
+    cursor: pointer;
+}
+
 .submitAll{
     margin-top: 20px;
     width: 100%;
@@ -108,3 +112,4 @@ h2{
     padding-bottom: 50px; 
     border-radius: 10px;
 }
+

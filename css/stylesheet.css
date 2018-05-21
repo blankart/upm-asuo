@@ -37,7 +37,9 @@
     padding-top: 40px;
     text-align: center;
     padding-bottom: 20px;
+    display: none;
 }
+
 .h-100 .headerbar .text.pull-left {
     color: #FFFFFF;
     font-size: xx-large;
@@ -52,6 +54,7 @@
 .h-100 .container.h-100 .row {
     padding-top: 20px;
     text-align: left;
+    height: 400px;
 }
 .my-login-page h1 {
     color: #FFFFFF;

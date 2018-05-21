@@ -103,7 +103,14 @@
 
 					if ( !$org_id || $isArchived || !$isVerified || ($account_type == 'student' && !$isActivated) ){
 						$this->load->view('header'); 
-						$this->load->view('errors/html/dne_org'); 
+						$this->load->view('errors/html/dne_org');
+						if($account_type== 'admin'){
+							$this->load->view('admin/changepassword');
+						}
+						if($account_type== 'student'){
+							$this->load->view('student/search');
+							$this->load->view('student/changepassword');
+						}  
 						$this->load->view('footer');
 					}
 					else{
@@ -213,14 +220,14 @@
 			$result['org_id'] = $org_id;
 			$this->load->view('header');
 			$this->load->view('org/org', $result);
-			$this->load->view('footer');
-			if($account_type == 'student'){	
+			
+			if($account_type == 'student'){
+				$this->load->view('student/search');	
 				$this->load->view('student/changepassword');
-				$this->load->view('student/search');
 			}
 			if($account_type == 'admin')
 				$this->load->view('admin/changepassword');
-
+			$this->load->view('footer');
 
 		}
 
@@ -646,6 +653,7 @@
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/applyforaccreditation', $data);
+			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
 		
