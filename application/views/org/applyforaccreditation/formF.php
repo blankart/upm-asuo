@@ -83,8 +83,10 @@
                     <input type="file" name="formF" id="file-to-upload" class="inputfile inputfile-1" data-multiple-caption="{count} files selected" accept="application/pdf" multiple/>
                     <label for="file-to-upload"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg> <span>Choose a file&hellip;</span></label>                     
                     <br><br>
-                    <button class="button" id="prevBtn" onclick="showPrev()">Preview</button>
                  </form>
+                 <div class="myBtn">
+                    <button class="btn btn-danger" id="prevBtn" onclick="showPrev()">Preview</button> 
+                 </div>
 
               </div>
             </div>
@@ -97,17 +99,18 @@
                       <canvas id="pdf-canvas" width="800"></canvas>
                       <div id="pdf-meta">
                         <div id="pdf-buttons">
-                          <button id="pdf-prev">Previous</button>
-                          <button id="pdf-next">Next</button>
+                          <button class="btn btn-info" id="pdf-prev">Previous</button>
+                          <button class="btn btn-info" id="pdf-next">Next</button>
                         </div>
                         <div id="page-count-container">Page <div id="pdf-current-page"></div> of <div id="pdf-total-pages"></div></div>
                       </div> <!--end meta -->
                       <div id="page-loader">Loading page ...</div>
                     </div> <!-- end contents-->
                 </div> <!-- end container pdf-->
-               
-              <button class="button" id ='submitFormF' onclick="document.getElementById('submitFormF').click();" >Upload</button>
-              <button class="button" id="back" onclick="back()">Back</button>
+                <div class="myBtn"> 
+                  <button class="btn btn-danger" id ='submitFormF' onclick="document.getElementById('submitFormF').click();" >Upload</button>
+                  <button class="btn btn-danger" id="back" onclick="back()">Back</button>
+                </div>
               </div>
             </div> <!--end cont2-->
           </div>

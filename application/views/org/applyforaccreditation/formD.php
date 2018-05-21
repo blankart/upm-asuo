@@ -51,8 +51,10 @@
                     <iframe src="<?php echo base_url(); ?>org/viewFormD" style="border: none;" width="100%" height="400">This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo base_url(); ?>org/formDpdf">Download PDF</a>
                     </iframe>
                 </object>
-
-                <button class="button">Save</button><br><br>
+                <br><br>
+                <div class="myBtn">
+                    <button class="btn btn-danger">Save</button><br><br>
+                </div>
             </div>
         </div>
     </body>

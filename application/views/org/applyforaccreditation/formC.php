@@ -109,19 +109,16 @@
 			</form>
 
 			<!-- review details before submitting-->
-			<div class="myBtn" id="show_data">
+			<div class="myBtn" id="show_dataPrev">
 				<object data="<?php echo base_url(); ?>org/viewFormC" type="pdf" width="100%" height="500">
 					<iframe src="<?php echo base_url(); ?>org/viewFormC" style="border: none;" width="100%" height="400">This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo base_url(); ?>org/formCpdf">Download PDF</a>
 					</iframe>
 				</object>
 				<br><br>
-				<button class="btn btn-danger" type="button" onclick="backc3()">Back</button>	
+
 				<button class="btn btn-danger" type="button" onclick="submitForm()">Save</button>
 			</div>
-
 		</div>
-
-
 	</div>
 	</body>
 </html>
