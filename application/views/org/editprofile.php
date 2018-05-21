@@ -6,7 +6,17 @@
 
 ?>
 <script>
+     function addressFormatCheck(input){
 
+        var regex = new RegExp("^[a-zA-Z0-9\.\,\'\-\#]+( [a-zA-Z0-9\.\,\'\-]+)*$");
+        var value =  input.value;
+        
+        if( !regex.test(value) ) 
+          input.setCustomValidity("Special characters other than ' - , . # and extra spaces are not allowed!");    
+        else 
+          input.setCustomValidity("");    
+    }   input.setCustomValidity("");    
+    
 
    function showPreview() {
   var preview = document.querySelector('img[alt=avatar]');
@@ -199,7 +209,7 @@
                <div class="form-group">
                   <label class="col-lg control-label">Acronym</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" maxlength = "30" value ="<?php echo $profile['acronym']; ?>" name="acronym">
+                     <input class="form-control" type="text" maxlength = "30" value ="<?php echo $profile['acronym']; ?>" name="acronym" readonly>
                   </div>
                </div>
                <div class="form-group">
@@ -217,7 +227,7 @@
                <div class="form-group">
                   <label class="col-lg control-label">Mailing Address</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" maxlength = "100" value ="<?php echo $profile['mailing_address']; ?>" name="mailing_address">
+                     <input class="form-control" type="text" maxlength = "100" value ="<?php echo $profile['mailing_address']; ?>" name="mailing_address" onkeyup="addressFormatCheck(this)" required>
                   </div>
                </div>
                <div class="form-group">

@@ -353,7 +353,7 @@
                               <div class="well profile text-center">
                         		    <h2><?php echo $profile['acronym']; ?></h2>
                         		    <h5><?php echo $profile['org_college']; ?></h5>
-                        		    <h6><i class="fas fa-envelope"></i> <a href="mailto:<?php echo $profile['org_email']; ?>"><?php echo $profile['org_email']; ?></a>&emsp;<i class="fas fa-link"></i> <a href="<?php echo $profile['org_website']; ?>" target="_blank"><?php echo $profile['org_website']; ?></a></h6>
+                        		    <h6><i class="fas fa-envelope"></i> <a href="mailto:<?php echo $profile['org_email']; ?>"><?php echo $profile['org_email']; ?></a>&emsp;<i class="fas fa-link"></i> <a href="<?php echo prep_url($profile['org_website']); ?>" target="_blank"><?php echo $profile['org_website']; ?></a></h6>
                         		  </div>
                               <div class="well profile text-left">
                                 <br><br>

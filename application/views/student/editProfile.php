@@ -37,14 +37,15 @@
   }
 
   function addressFormatCheck(input){
-    var regex = new RegExp("^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$"); 
-    var value =  input.value;
 
-      if( !regex.test(value) )
-          input.setCustomValidity("Extra spaces are not allowed!");   
-      else 
-        input.setCustomValidity(""); 
-  }
+        var regex = new RegExp("^[a-zA-Z0-9\.\,\'\-\#]+( [a-zA-Z0-9\.\,\'\-]+)*$");
+        var value =  input.value;
+        
+        if( !regex.test(value) ) 
+          input.setCustomValidity("Special characters other than ' - , . # and extra spaces are not allowed!");    
+        else 
+          input.setCustomValidity("");    
+    }
 
      $(document).ready(function(){
 

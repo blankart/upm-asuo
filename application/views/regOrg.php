@@ -6,11 +6,25 @@
         var regex = new RegExp("^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$");
         var value =  input.value;
         
-        if( !regex.test(value) )
-          input.setCustomValidity("Special characters and extra spaces are not allowed!");   
+        if(value.length == 0)
+           input.setCustomValidity("This field should not be empty!"); 
+        else if( !regex.test(value) )
+          input.setCustomValidity("Special characters and extra spaces are not allowed!"); 
         else 
           input.setCustomValidity("");    
     }
+
+     function addressFormatCheck(input){
+
+        var regex = new RegExp("^[a-zA-Z0-9\.\,\'\-\#]+( [a-zA-Z0-9\.\,\'\-]+)*$");
+        var value =  input.value;
+        
+        if( !regex.test(value) ) 
+          input.setCustomValidity("Special characters other than ' - , . # and extra spaces are not allowed!");    
+        else 
+          input.setCustomValidity("");    
+    }
+
 
 
     function websiteFormatCheck(input){
@@ -256,7 +270,7 @@ function conPassValidate()
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12">
-                                                <input type="text" maxlength="100" class="form-control" name="data[mailing_address]" id='mailing_address' onkeyup="noSpecialCharactersAndExtraSpacesCheck(this)"  required>
+                                                <input type="text" maxlength="100" class="form-control" name="data[mailing_address]" id='mailing_address' onkeyup="addressFormatCheck(this)"  required>
                                                 <small class="form-text text-muted">Mailing Address</small>
                                             </div>
                                         </div>
