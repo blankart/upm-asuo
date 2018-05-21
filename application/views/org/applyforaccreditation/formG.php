@@ -104,7 +104,7 @@
                     </div> <!-- end contents-->
                 </div> <!-- end container pdf-->
                
-              <button class="button" id ='submitFormG'>Upload</button>
+              <button class="button" id ='submitFormG' onclick="document.getElementById('submitFormG').click();">Upload</button>
               <button class="button" id="back" onclick="back()">Back</button>
               </div>
             </div> <!--end cont2-->
