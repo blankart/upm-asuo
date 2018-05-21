@@ -4,6 +4,7 @@
 			$first_name = ($this->session->userdata['first_name']);
 			$username = ($this->session->userdata['username']);
 			$email = ($this->session->userdata['email']);
+			$profile_pic = ($this->session->userdata['profilepic']);
 		}
 		if($this->session->userdata['account_type'] == 'admin'){
 			$username = ($this->session->userdata['username']);
@@ -13,6 +14,7 @@
 			$nsacronym = ($this->session->userdata['nsacronym']);
 			$acronym = ($this->session->userdata['acronym']);
 			$email = ($this->session->userdata['email']);
+			$org_logo = ($this->session->userdata['org_logo']);
 		}
 	}
 ?>
@@ -68,7 +70,7 @@
 				<a href='#search'><i class='fas fa-search'></i>Search for Organizations</a>
 				</div>
 				<li class='nav-item'>
-				<a class='nav-link' href='".base_url()."student/".$username."'>".$first_name."</a>
+				<a class='nav-link' href='".base_url()."student/".$username."'><img style='margin-right: 2px;' width='25' src='".base_url().'assets/student/profile_pic/'.$profile_pic.'?'.rand(1, 1000)."'> ".$first_name."</a>
 		  		</li>
 		  		<li class='nav-item'>
 		  		<a class='nav-link' href='#' data-toggle='modal' data-target='#changestudentpassword'>Change Password</a>
@@ -82,7 +84,7 @@
 				logged in as: <a>".$email."</a>
 				</div>
 				<li class='nav-item'>
-				<a class='nav-link' href='".base_url()."org/".$nsacronym."'>".$acronym."</a>
+				<a class='nav-link' href='".base_url()."org/".$nsacronym."'><img style='margin-right: 2px;' width='25' src='".base_url().'assets/org/logo/'.$org_logo.'?'.rand(1, 100)."'> ".$acronym."</a>
 		  		</li>
 		  		<li class='nav-item'>
 		  		<a class='nav-link' href='#' data-toggle='modal' data-target='#changeorgpassword'>Change Password</a>

@@ -300,7 +300,8 @@
 		    		'acronym' => $data['acronym'],
 		    		'nsacronym' => $nsacronym,
 		    		'email'     => $data['org_email'],
-		    		'logged_in' => TRUE
+		    		'logged_in' => TRUE,
+		    		'org_logo' => $data['org_logo']
 				);
 
 			    $this->session->set_userdata($details);
@@ -315,7 +316,8 @@
 		    		'first_name'  => $data['first_name'],
 		   			'username'  => $data['username'],
 		    		'email'     => $data['up_mail'],
-		    		'logged_in' => TRUE
+		    		'logged_in' => TRUE,
+		    		'profilepic' => $data['profile_pic']
 				);
 
 				$this->session->set_userdata($details);
