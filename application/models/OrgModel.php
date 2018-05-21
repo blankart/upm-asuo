@@ -359,6 +359,12 @@
 				$aaInsert['org_id'] = $org_id;
 				$aaInsert['app_status'] = "Pending";
 				$aaInsert['form_A'] = "No Submission";
+				$aaInsert['form_B'] = "No Submission";
+				$aaInsert['form_C'] = "No Submission";
+				$aaInsert['form_D'] = "No Submission";
+				$aaInsert['form_E'] = "No Submission";
+				$aaInsert['form_F'] = "No Submission";
+				$aaInsert['plans'] = "No Submission";
 				$this->db->insert('accreditationapplication', $aaInsert);
 
 				//get app_id from accreditationapplication
