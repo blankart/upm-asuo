@@ -94,7 +94,6 @@
 		private function loadAdminPanel(){
 			$this->load->view('header');
 			$this->load->view('admin');
-			$this->load->view('footer');
 			$this->load->view("admin/activateorgact.php");
             $this->load->view("admin/validatestudact.php");
             $this->load->view("admin/sendnotice.php");
@@ -105,6 +104,7 @@
             $this->load->view("admin/changepassword.php");
               $this->load->view("admin/openaccreditperiod.php");
               $this->load->view("admin/changeloginnotice.php");
+			$this->load->view('footer');
 		}
 
 		private function searchStudents(){

@@ -126,6 +126,14 @@
 	        <script src="<?php echo base_url();?>js/popper.min.js"></script>
 	        <script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
 	        <script>
+	        	$(document).on({
+    			ajaxStart: function(){
+        $('.loadingscreen').show();
+    },
+    ajaxStop: function(){
+    		$('.loadingscreen').hide(); 
+    }
+  });
     		$(window).scroll(function(){
     			if ($(this).scrollTop() > 50){
     				$('#nav-bar').addClass('opaque');

@@ -347,6 +347,20 @@
                         </div>
                     </div>
                 </div>
+                <div class="loadingscreen">
+          <div class="row">
+            <div id="loader">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+          </div>
+        </div>
                 <div id="allstudResult" style="height: 300px; overflow-y: scroll;">
                   
                 </div>

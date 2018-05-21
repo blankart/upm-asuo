@@ -176,19 +176,19 @@
 						<div class="card-header">
 
 							<?php if(!$isStudent){ ?>
-							<button class="btn btn-light btn-sm" id="studProfileBTN" style="margin-left: 15px;" type="button">About <?php echo $profile['first_name']; ?></button>
+							<button class="btn btn-light btn-lg" id="studProfileBTN" style="margin-left: 15px;" type="button">About <?php echo $profile['first_name']; ?></button>
 							<?php } ?>
 
 							<?php if($isStudent){ ?>
-							<button class="btn btn-light btn-sm active" id="announcementsBTN" type="button">Announcements</button> 
+							<button class="btn btn-light btn-lg active" id="announcementsBTN" type="button">Announcements</button> 
 							<?php } ?>
 
 							<?php if($isStudent){ ?>
-							<button class="btn btn-light btn-sm" id="myOrgsBTN" style="margin-left: 15px;" type="button">My Organizations</button>
+							<button class="btn btn-light btn-lg" id="myOrgsBTN" style="margin-left: 15px;" type="button">My Organizations</button>
 							<?php } ?>
 
 							<?php if(!$isStudent){ ?>
-							<button class="btn btn-light btn-sm" id="myOrgsBTN" style="margin-left: 15px;" type="button"><?php echo $profile['first_name']; ?>'s Organizations</button>
+							<button class="btn btn-light btn-lg" id="myOrgsBTN" style="margin-left: 15px;" type="button"><?php echo $profile['first_name']; ?>'s Organizations</button>
 							<?php } ?>
 
 						</div>

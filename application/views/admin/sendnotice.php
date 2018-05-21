@@ -337,6 +337,20 @@
                     </div>
                     <div class='recipientSection' style='margin-top: 15px; margin-bottom: 15px;'></div>
                     <div id='sendNoticeFooter' style='padding-left: 88%; margin-bottom: 10px;'></div>
+                    <div class="loadingscreen">
+          <div class="row">
+            <div id="loader">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+          </div>
+        </div>
                     <div id="sendNoticeResult" style="height: 300px; overflow-y: scroll; display: block;"></div>
                   </div>
                 </aside>

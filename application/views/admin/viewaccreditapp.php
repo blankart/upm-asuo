@@ -350,6 +350,20 @@
                   <div class="inbox-body">
                     <button class="btn btn-info" onclick="searchBox('Pending')" type="button">Pending Applications</button> <button class="btn btn-success" onclick="searchBox('Accredited')" type="button">Approved</button> <button class="btn btn-danger" onclick="searchBox('Unaccredited')" type="button">Rejected</button>
                     <div class="mail-option"></div>
+                    <div class="loadingscreen">
+          <div class="row">
+            <div id="loader">
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+              <div class="dot"></div>
+            </div>
+          </div>
+        </div>
                     <div id="myResult" style="height: 300px; overflow-y: scroll;"></div>
                   </div>
                 </aside>
