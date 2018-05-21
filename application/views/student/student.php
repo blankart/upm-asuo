@@ -238,7 +238,7 @@
 											<?php foreach($orgs as $org){?>
 											<tr>
 												<td>
-													<a class="org-link" href="<?php echo base_url().'org/'.str_replace(' ', '', $org['acronym']); ?>"><img alt="orgLogo" src="<?php echo base_url().'assets/org/logo/'.$org['org_logo'].'?'.rand(1, 100); ?>" style="max-height: 80px" title="ACRONYM"></a>
+													<a class="org-link" href="<?php echo base_url().'org/'.str_replace(' ', '', $org['acronym']); ?>"><img alt="orgLogo" src="<?php echo base_url().'assets/org/logo/'.$org['org_logo'].'?'.rand(1, 100); ?>" style="max-height: 80px" title="<?php echo $org['acronym']; ?>"></a>
 												</td>
 												<td><?php echo $org['position'];?></td>
 												<td><?php echo $org['org_email'];?></td>
