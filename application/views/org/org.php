@@ -326,9 +326,9 @@
                 </div>
                 
                 <div class="col-8">
-                    <div class="card" style="box-shadow: 0 0 40px rgba(0,0,0,.2); height: 600px; overflow-y: scroll;">
-                        <div class="card-body">
-                            <?php if($account_type!="org"){ ?> 
+                    <div class="card" style="box-shadow: 0 0 40px rgba(0,0,0,.2); height: 600px;">
+                    	<div class='card-header'>
+                    		<?php if($account_type!="org"){ ?> 
                               <button class="btn btn-light btn-lg active" id="orgProfileBTN" type="button">About <?php echo $profile['acronym']; ?> </button> 
                             <?php } ?>
 
@@ -345,6 +345,9 @@
                              <?php } ?>
 
                             <button class="btn btn-light btn-lg active" id="orgPostsBut" style="margin-left: 15px;" type="button">Posts</button> 
+                    	</div>
+                        <div class="card-body" style='overflow-y: scroll;'>
+                            
 
                             
                             <hr>
