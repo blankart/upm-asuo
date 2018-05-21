@@ -44,10 +44,11 @@
 }
 
 .box {
-    border-radius: 20px;
+  border-radius: 20px;
 	background-color: #eee;
 	padding: 4.25rem .25rem;
-    margin-bottom: 0px;
+  padding-bottom: 30px;
+  margin-bottom: 0px;
 }
 
 .box + .box {
@@ -178,7 +179,7 @@ input[type=button]{
 }
 
 #page-count-container {
-    margin-right: 100px;
+  margin-right: 100px;
   float: right;
 }
 
@@ -202,4 +203,12 @@ input[type=button]{
   display: none;
   color: #999999;
   font-size: 13px;
+}
+
+
+.myBtn{
+  text-align: right;
+  margin-right: 5%;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
