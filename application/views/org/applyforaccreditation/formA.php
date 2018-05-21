@@ -64,16 +64,16 @@
 						<input type="text" id ="years" name="data[experience]" value="<?php echo $experience ?>">
 						<br><br><br>
 
-						<button class="btn btn-danger" type="button" onclick="processPhase2()">Continue</button>
 						<button class="btn btn-danger" type="button" onclick="back1()">Back</button>
+						<button class="btn btn-danger" type="button" onclick="processPhase2()">Continue</button>
 					</div>
 
 					<div id="phase3">
 						Category:&nbsp;&nbsp;<input type="text" id="category" name="category" value="<?php echo $org_category ?>" disabled>
 						<br><br><br>
 
-						<button class="btn btn-danger" type="button" onclick="processPhase3()">Continue</button>
 						<button class="btn btn-danger" type="button" onclick="back2()">Back</button>
+						<button class="btn btn-danger" type="button" onclick="processPhase3()">Continue</button>
 					</div>
 
 					<div id="phase4">
@@ -82,8 +82,8 @@
 						College/Unit:&nbsp;&nbsp;<input type="text" id="adviserUnit" onkeyup="incomplete1()" name="data[adviser_college]" value="<?php echo $adviser_college ?>" required>
 						<br><br>
 
-						<button class="btn btn-danger" type="button" id="phase4but" onclick="processPhase4()" disabled>Continue</button>
 						<button class="btn btn-danger" type="button" onclick="back3()">Back</button>
+						<button class="btn btn-danger" type="button" id="phase4but" onclick="processPhase4()" disabled>Continue</button>
 					</div>
 
 					<div id="phase5">
@@ -96,8 +96,8 @@
 						Other Contact Details:&nbsp;&nbsp;<input type="text" id="contactOthers" name="data[contact_other_details]" value="<?php echo $contact_other_details ?>" required>
 						<br><br>
 
-						<button class="btn btn-danger" type="button" id="phase5but" onclick="processPhase5()" disabled>Continue</button>
 						<button class="btn btn-danger" type="button" onclick="back4()">Back</button>
+						<button class="btn btn-danger" type="button" id="phase5but" onclick="processPhase5()" disabled>Continue</button>
 					</div>
 
 					<div id="phase6">
@@ -106,8 +106,8 @@
 						Brief Description of Organization:
 						<input type="text" id="description" name="description" value="<?php echo $description ?>" disabled><br><br>
 
-						<button class="btn btn-danger" type="button" onclick="processPhase6()">Continue</button>
 						<button class="btn btn-danger" type="button" onclick="back5()">Back</button>
+						<button class="btn btn-danger" type="button" onclick="processPhase6()">Continue</button>
 					</div>
 
 					<!-- review details before submitting-->
@@ -115,8 +115,8 @@
 						*show overview of PDF*<br>
 
 						<!-- add sweet alert -->
-						<button class="btn btn-danger" type="button" onclick="submitForm()">Save</button>
 						<button class="btn btn-danger" type="button" onclick="back6()">Back</button>
+						<button class="btn btn-danger" type="button" onclick="submitForm()">Save</button>
 					</div>
 					<input type="hidden" name="data[app_id]" value="<?php echo $app_id;?>">
 				</form>

@@ -163,8 +163,9 @@
                         &nbsp;61-100&nbsp;>&nbsp;Full Accreditation for a year<br>
 
                         <blockquote><b>NOTE:</b> Newly established student organizations are given probationary status upon completion of the requirements (rights and privileges accorded to organizations with full accreditation are not yet granted such as voting power during General Assemblies, less prioritization in the use of facilities and tambayan assignment)</blockquote>
-
-                    <button id="continue" class="button" onclick="location.href = '<?php echo base_url(); ?>org/formA';">Continue</button><br><br><br> 
+                    <div class="myBtn">
+                        <button id="continue" class="btn btn-danger" onclick="location.href = '<?php echo base_url(); ?>org/formA';">Continue</button><br> 
+                    </div>
             </div>  
         </div>
     </body>
