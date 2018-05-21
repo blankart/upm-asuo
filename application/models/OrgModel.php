@@ -536,6 +536,17 @@
 			$this->db->where($condition);
 			$this->db->update("accreditationapplication", $changes);
 		}
+
+		public function uploadPlans($id, $file_name){
+			$condition = 'org_id = ' .$id;
+
+			$changes = array(
+				'plans' => $file_name.'.pdf'
+			);
+
+			$this->db->where($condition);
+			$this->db->update("accreditationapplication", $changes);
+		}
 		//end of ORG ACCREDITATION FUNCTIONS
 //---------------------------------------------END OF ORG ACCREDITATION FUNCTIONS -----------------------------
 		//CREATE POST FUNCTION
