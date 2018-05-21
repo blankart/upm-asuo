@@ -41,9 +41,17 @@
 			$this->db->from("announcement a, organizationprofile op, recipient r, admin ad");
 			$this->db->order_by('a.notice_id', 'DESC');
 			$this->db->where($condition);
-			$announcements = $this->db->get();
+			$query = $this->db->get();
 
-			return $announcements->result_array();
+			$results = $query->result_array();
+			$announcements = array();
+
+			foreach($results as $result){
+				$result['content'] = nl2br( $result['content'] );
+				array_push($announcements, $result);
+			}
+
+			return $announcements;
 		}
 
 		public function getMembers($org_id){
@@ -65,8 +73,17 @@
 			$this->db->from("orgpost opt, organizationprofile op");
 			$this->db->where($condition);
 			$this->db->order_by('opt.post_id', 'DESC');
-			$posts = $this->db->get();
-			return $posts->result_array();
+			$query = $this->db->get();
+
+			$results = $query->result_array();
+			$posts = array();
+
+			foreach($results as $result){
+				$result['content'] = nl2br( $result['content'] );
+				array_push($posts, $result);
+			}
+
+			return $posts;
 		}
 
 		private function getOrgApplications($org_id){

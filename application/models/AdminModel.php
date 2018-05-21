@@ -290,6 +290,7 @@
 
 			$details = $query->result_array()[0];
 			$details['date_posted'] = date("g:i:s a, F j, Y", strtotime($details['date_posted']));
+			$details['content'] = nl2br( $details['content'] );
 			return $details;
 		}
 

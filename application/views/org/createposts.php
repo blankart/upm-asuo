@@ -59,6 +59,8 @@
           archived: 0
         };
 
+       // alert(JSON.stringify(content));
+
         $.ajax({
           type: "POST",
           url: "<?php echo base_url().'org/createPost'; ?>",

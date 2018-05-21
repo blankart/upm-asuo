@@ -27,16 +27,16 @@ INSERT INTO `admin` (`admin_id`, `username`, `password`, `admin_name`, `admin_em
 (2, 'USC', '32250170a0dca92d53ec9624f336ca24', 'University Student Council', 'usc@up.edu.ph');
 
 INSERT INTO `organizationaccount` (`org_id`, `org_email`, `password`, `org_status`, `isVerified`, `isActivated`, `archived`) VALUES
-(1, 'aisec@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 0, 0,  0),
+(1, 'aisec@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1,  1),
 (2, 'upmchorale@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Accredited', 1, 1,  0),
-(3, 'gabriela@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 0,  0),
-(4, 'morg@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 0,  0),
-(5, 'upbeau@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Accredited', 1, 1,  0),
+(3, 'gabriela@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1,  0),
+(4, 'morg@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1,  0),
+(5, 'upbeau@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Accredited', 1, 0,  1),
 (6, 'upsocomsci@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Accredited', 1, 1, 0),
-(7, 'orcomsoc@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 0, 0,  1),
-(8, 'upvector@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 0,  1),
-(9, 'orgasm@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1,  1),
-(10, 'upmkule@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 0, 0,  0);
+(7, 'orcomsoc@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 0, 0),
+(8, 'upvector@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1, 0),
+(9, 'orgasm@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 0, 0, 0),
+(10, 'upmkule@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1, 0);
 
 INSERT INTO `organizationprofile` (`org_id`, `org_name`, `acronym`, `org_category`, `org_college`, `description`, `objectives`, `org_website`, `mailing_address`, `date_established`, `org_logo`, `constitution`, `incSEC`, `sec_years`) VALUES
 (1, 'AISEC', 'AISEC', 'Socio-Civic', 'College of Arts and Sciences', 'international involvement org', 'to something', 'aisec.com', 'here', '1988', '	
@@ -115,33 +115,15 @@ INSERT INTO `accreditationapplication` (`app_id`, `org_id`, `app_status`, `form_
 
 -- -------------------------------------------------------------------------
 
-INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`, `isRemoved`, `removal_reason`) VALUES
-(1, 6, 1, 'President', 0, 'Not removed'),
-(2, 6, 2, 'Member', 0, 'Not removed'),
-(3, 6, 3, 'Member', 0, 'Not removed'),
-(4, 6, 4, 'Member', 1, 'Not cute enough XD'),
-(5, 6, 5, 'Secretary', 0, 'Not removed'),
-(6, 6, 6, 'Finance Officer', 0, 'Not removed'),
-(7, 6, 7, 'Treasurer', 0, 'Not removed'),
-(8, 6, 8, 'Member', 1, 'Kulang ng 3 paligo'),
-(9, 6, 9, 'Auditor', 0, 'Not removed'),
-
-(10, 1, 10, 'President', 0, 'Not removed'),
-(11, 3, 10, 'Member', 0, 'Not removed'),
-(12, 4, 10, 'Member', 1, 'Too school for cool'),
-(13, 9, 10, 'Auditor', 0, 'Not removed');
-
--- -------------------------------------------------------------------------
-
 INSERT INTO `orgpost` (`post_id`, `org_id`, `title`, `content`, `date_posted`, `privacy`, `archived`) VALUES
-(1, 6, "Untitled", "This is content 1", '2018-01-11 13:23:44', 'Public', 1),
-(2, 6, "Title of 2", "This is content 2", '2018-01-11 13:23:45', 'Members', 0),
-(3, 6, "Title 3", "This is content 3", '2018-01-11 13:23:46', 'Officers', 1),
-(4, 6, "4th Title", "This is content 4", '2018-01-11 13:23:47', 'Members', 1),
-(5, 6, "Title of 5th Post", "This is content 5", '2018-01-11 13:23:48', 'Officers', 0),
-(6, 6, "6 out of 6 Title", "This is content 6", '2018-01-11 13:23:49', 'Public', 0),
+(1, 6, "Untitled", "Hey dad, look at me. Think back and talk to me. Did I grow up according to plan? And did you think I have wasted my time doing things I wanted to? And it hurts when you disapprove all along.", '2018-01-11 13:23:44', 'Public', 0),
+(2, 6, "Speak Now", "I am not the kind of girl who should be rudely barging in on a white veil occasion. But you are not the kind of boy who should be marrying the wrong girl. I sneak in and see your friends and her snotty little family all dressed in pastel", '2018-01-11 13:23:45', 'Members', 0),
+(3, 6, "Title 3", "This is content 3. This post is deleted. It should not be visible.", '2018-01-11 13:23:46', 'Officers', 1),
+(4, 6, "4th Title", "This is content 4. This post is deleted. It should not be visible.", '2018-01-11 13:23:47', 'Members', 1),
+(5, 6, "Sagastipean", "Sagastipean hortzaz gora, ah!\nBelarrak bizkarra guri,\n\nsagar lorak xuritan lehertu\ngau ederraren zauri,\n\nmizperalek bost hezur ditu\nbost pena nere bihotzak\n\nbost adarrek bost sagar lora, jir jir\nbost izar lotsak.\n\nKopla kanta, airia dantza\nzorion eta nahigabe\ngau giroa ederra da ta,\nama ez naiz logale.", '2018-01-11 13:23:48', 'Officers', 0),
+(6, 6, "6 out of 6 Title", "This is content 6. This post is deleted. It should not be visible.", '2018-01-11 13:23:49', 'Public', 1),
 
-(7, 1, "Untitled", "This is content 7", '2018-01-11 13:24:44', 'Public', 0),
+(7, 6, "Chapter 1", "Once was Apollo\nNow a rat in the Lab’rinth\nSend help. And cronuts\nNo.\nI refuse to share this part of my story. It was the lowest, most humiliating,most awful week in my four-thousand-plus years of life. Tragedy. Disaster. Heartbreak. I will not tell you about it.\n\nWhy are you still here? Go away!", '2018-01-11 13:24:44', 'Public', 0),
 (8, 1, "Title of 8", "This is content 8", '2018-01-11 13:25:45', 'Members', 0),
 (9, 1, "Title 9", "This is content 9", '2018-01-11 13:26:46', 'Officers', 0),
 (10, 3, "10th Title", "This is content 10", '2018-01-11 13:27:47', 'Members', 0),
@@ -154,20 +136,40 @@ INSERT INTO `orgapplication` (`orgapp_id`, `org_id`, `student_id`, `status`) VAL
 (1, 6, 1, 'Approved'),
 (2, 6, 2, 'Approved'),
 (3, 6, 3, 'Approved'),
-(4, 6, 4, 'Rejected'),
-(5, 6, 5, 'Approved'),
+(4, 6, 4, 'Approved'),
+(5, 8, 6, 'Approved'),
 (6, 6, 6, 'Approved'),
-(7, 6, 7, 'Approved'),
-(8, 6, 8, 'Pending'),
-(9, 6, 9, 'Approved'),
+(7, 4, 5, 'Approved'),
+(8, 6, 8, 'Approved'),
+(9, 3, 4, 'Approved'),
 
 (10, 1, 10, 'Approved'),
 (11, 2, 10, 'Pending'),
-(12, 3, 10, 'Pending'),
+(12, 3, 10, 'Approved'),
 (13, 4, 10, 'Approved'),
-(14, 5, 10, 'Pending'),
+(14, 8, 10, 'Approved'),
 (15, 6, 10, 'Pending'),
-(16, 9, 10, 'Approved');
+(16, 10, 10, 'Approved'),
+(17, 6, 8, 'Pending');
+
+-- -------------------------------------------------------------------------
+
+INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`, `isRemoved`, `removal_reason`) VALUES
+(1, 6, 1, 'President', 0, 'Not removed'),
+(2, 6, 2, 'Member', 0, 'Not removed'),
+(3, 6, 3, 'Member', 0, 'Not removed'),
+(4, 6, 4, 'Member', 1, 'Not cute enough XD'),
+(5, 8, 6, 'Secretary', 0, 'Not removed'),
+(6, 6, 6, 'Finance Officer', 0, 'Not removed'),
+(7, 4, 5, 'Treasurer', 0, 'Not removed'),
+(8, 6, 8, 'Member', 1, 'Kulang ng 3 paligo'),
+(9, 3, 4, 'Auditor', 0, 'Not removed'),
+
+(10, 1, 10, 'President', 0, 'Not removed'),
+(11, 3, 10, 'Member', 0, 'Not removed'),
+(12, 4, 10, 'Member', 1, 'Too school for cool'),
+(13, 8, 10, 'Auditor', 0, 'Not removed'),
+(14, 10, 10, 'Member', 0, 'Not removed');
 
 -- ------------------------------------------------------------------------
 
