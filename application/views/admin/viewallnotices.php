@@ -88,6 +88,7 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
+                <p class="form-text text-muted">View all posted announcements together with their details.</p>
                 </div>
                 <div id="allMessageResult" style="height: 600px; overflow-y: scroll;">
                   

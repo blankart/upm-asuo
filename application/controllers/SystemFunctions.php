@@ -266,12 +266,13 @@
 
 			if($credentials != NULL)
 			{
-				$credentials['password'] = md5($credentials['password']);
+				//just follow the code in SystemModel/loginAdmin.
 
 				$this->load->model('SystemModel');
 			    $result = $this->SystemModel->login($credentials);
 
 			    if(!$result)
+
 			    	redirect(base_url().'login'); //login Unsuccessful
 			   	else
 			    	$this->setSessions($result);

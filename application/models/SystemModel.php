@@ -419,7 +419,18 @@
 		}
 
 		private function loginAdmin($credentials){
-			$condition = "admin_email = '" . $credentials['username']. "' AND password = '" . $credentials['password']. "'";
+			
+			$condition = "admin_email = '" . $credentials['username']. "'";
+			$this->db->select('*');
+			$this->db->from('admin');
+			$this->db->where($condition);
+			$query = $this->db->get();
+			if(password_verify($credentials['password'],$query->result_array()[0]['password'])){
+				$result = $query->result_array()[0];
+				$result['account_type'] = 'admin'; 
+				return $result;
+			}
+		/*	$condition = "admin_email = '" . $credentials['username']. "' AND password = '" . $credentials['password']. "'";
 
 			$this->db->select('*');
 			$this->db->from('admin');
@@ -432,7 +443,7 @@
 				return $result;
 			}
 			else 
-				return false;
+				return false;*/
 		}
 
 		/*

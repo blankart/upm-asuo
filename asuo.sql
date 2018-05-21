@@ -45,7 +45,7 @@ ALTER TABLE `studentprofile`
  CREATE TABLE `admin` (
   `admin_id` int(11) UNSIGNED NOT NULL,
   `username` varchar(32) NOT NULL,
-  `password` varchar(32) NOT NULL,
+  `password` varchar(60) NOT NULL,
   `admin_name` varchar(50) NOT NULL,
   `admin_email` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

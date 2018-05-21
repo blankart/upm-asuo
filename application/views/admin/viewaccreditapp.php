@@ -334,6 +334,7 @@
         <div class="modal-body">
           <div id="orgSearch">
             <div class="container">
+              <p class="form-text text-muted">View organizations who applied for accreditation according to their status (pending, approved, rejected) and look over their documents. Approve or reject an application depending on the rules set. </p>
               <div class="mail-box">
                 <aside class="lg-side">
                   <div class="inbox-head">

@@ -23,6 +23,7 @@
             </div>
             <!-- Modal body -->
             <div class="modal-body">
+              <p class="form-text text-muted">Set accreditation period for the academic year.</p>
                <div class="form-group">
                   <center><label class="control-label">Start Date</label>
                   <center><input class="form-control" style="max-width: 160px" type="date" name="startDate">
