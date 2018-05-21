@@ -626,6 +626,7 @@
 			//var_dump($result);
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formA', $result);
+			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 
 
@@ -665,6 +666,7 @@
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formB', $data);
+			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
 		private function loadFormC(){
@@ -677,6 +679,7 @@
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formC', $data);
+			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
 
@@ -688,6 +691,7 @@
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formD', $data);
+			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
 
@@ -699,6 +703,7 @@
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formE', $data);
+			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
 
@@ -710,6 +715,7 @@
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formF', $data);
+			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
 
@@ -721,6 +727,7 @@
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formG', $data);
+			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
 
@@ -732,6 +739,7 @@
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/plans', $data);
+			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
 
@@ -743,6 +751,7 @@
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/submitAll', $data);
+			$this->load->view('org/changepassword');
 			$this->load->view('footer');			
 		}
 
