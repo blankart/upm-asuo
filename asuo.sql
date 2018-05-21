@@ -110,6 +110,7 @@ CREATE TABLE `accreditationapplication` (
   `form_D` varchar(40) NOT NULL DEFAULT 'None',
   `form_E` varchar(40) NOT NULL DEFAULT 'None',
   `form_F` varchar(40) NOT NULL DEFAULT 'None',
+  `form_G` varchar(40) NOT NULL DEFAULT 'None',
   `plans` varchar(40) NOT NULL DEFAULT 'None'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

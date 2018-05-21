@@ -359,17 +359,14 @@
 
 		}
 
-		public function input_formA_details($org_id)
+		public function initAccred($org_id)
 		{
-
-			//check if has history of application
 			$condition = "org_id = ".$org_id;
 			$this->db->select("*");
 			$this->db->from("accreditationapplication");
 			$this->db->where($condition);
 			$aaDetails = $this->db->get();
 
-			//if accreditation application is empty
 			if($aaDetails->num_rows() == 0)
 			{
 
@@ -381,9 +378,62 @@
 				$aaInsert['form_D'] = "No Submission";
 				$aaInsert['form_E'] = "No Submission";
 				$aaInsert['form_F'] = "No Submission";
+				$aaInsert['form_G'] = "No Submission";
 				$aaInsert['plans'] = "No Submission";
 				$this->db->insert('accreditationapplication', $aaInsert);
+				/*
+				$condition = "org_id = ".$org_id;
+				$this->db->select("app_id");
+				$this->db->from("accreditationapplication");
+				$this->db->where($condition);
+				$aaApp_id = $this->db->get();			
 
+				//set user input details to blank
+				$result['stay'] = "new";
+				$result['app_id'] = $aaApp_id;
+				$result['experience'] = "0";
+				$result['adviser'] = "";
+				$result['adviser_position'] = "";
+				$result['adviser_college'] = "";
+				$result['contact_person'] = "";
+				$result['contact_position'] = "";
+				$result['contact_email'] = "";
+				$result['contact_address'] = "";
+				$result['contact_tel'] = "";
+				$result['contact_mobile'] = "";
+				$result['contact_other_details'] = "";
+				return $result;
+				*/
+			}
+
+		}
+
+		public function input_formA_details($org_id)
+		{
+			/*
+			//check if has history of application
+			$condition = "org_id = ".$org_id;
+			$this->db->select("*");
+			$this->db->from("accreditationapplication");
+			$this->db->where($condition);
+			$aaDetails = $this->db->get();
+
+			//if accreditation application is empty
+			//if($aaDetails->num_rows() == 0)
+			//{
+			
+				$aaInsert['org_id'] = $org_id;
+				$aaInsert['app_status'] = "Pending";
+				$aaInsert['form_A'] = "No Submission";
+				$aaInsert['form_B'] = "No Submission";
+				$aaInsert['form_C'] = "No Submission";
+				$aaInsert['form_D'] = "No Submission";
+				$aaInsert['form_E'] = "No Submission";
+				$aaInsert['form_F'] = "No Submission";
+				$aaInsert['form_G'] = "No Submission";
+				$aaInsert['plans'] = "No Submission";
+				$this->db->insert('accreditationapplication', $aaInsert);
+				
 				//get app_id from accreditationapplication
 				$condition = "org_id = ".$org_id;
 				$this->db->select("app_id");
@@ -406,11 +456,11 @@
 				$result['contact_mobile'] = "";
 				$result['contact_other_details'] = "";
 				return $result;
-
-			}
+			*/
+			//}
 			//accreditation application is not empty
-			else
-			{
+			//else
+			//{
 				//get app_id from accreditationapplication
 				$condition = "org_id = ".$org_id;
 				$this->db->select("app_id");
@@ -449,7 +499,7 @@
 				}
 				
 
-			}
+			//}
 
 		}
 
@@ -474,6 +524,28 @@
 
 			$this->db->where($condition);
 			$this->db->update("accreditationapplication", $changes);	
+		}
+
+		public function uploadFormG($id, $file_name){
+			$condition = 'org_id = ' .$id;
+
+			$changes = array(
+				'form_G' => $file_name.'.pdf'
+			);
+
+			$this->db->where($condition);
+			$this->db->update("accreditationapplication", $changes);
+		}
+
+		public function uploadPlans($id, $file_name){
+			$condition = 'org_id = ' .$id;
+
+			$changes = array(
+				'plans' => $file_name.'.pdf'
+			);
+
+			$this->db->where($condition);
+			$this->db->update("accreditationapplication", $changes);
 		}
 		//end of ORG ACCREDITATION FUNCTIONS
 //---------------------------------------------END OF ORG ACCREDITATION FUNCTIONS -----------------------------
