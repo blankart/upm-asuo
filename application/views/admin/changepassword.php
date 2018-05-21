@@ -139,6 +139,7 @@
                 </div>
                 <!-- Modal body -->
                 <div class="modal-body">
+                  <p class="form-text text-muted">If your old password was compromised, make sure that your new password is very different from your old one.</p>
                     <div id="adminAlert" style="display: none;">
                     </div>
                     <div class="form-group">

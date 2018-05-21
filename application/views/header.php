@@ -39,6 +39,8 @@
             body {
             	background-image: url(<?php echo base_url();?>img/BG.jpg);
             	background-attachment: fixed;
+            	background-repeat: no-repeat;
+            	background-size: cover;
             	margin-left: 0px;
             	margin-right: 0px;
             }
