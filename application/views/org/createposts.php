@@ -59,7 +59,7 @@
           archived: 0
         };
 
-       // alert(JSON.stringify(content));
+        alert(JSON.stringify(content));
 
         $.ajax({
           type: "POST",

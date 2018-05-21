@@ -1,14 +1,14 @@
 INSERT INTO `studentaccount` (`student_id`, `up_id`, `up_mail`, `username`, `password`, `isVerified`, `isActivated`, `archived`) VALUES
-(1, '201412345', 'anayos@up.edu.ph', 'anayos', '32250170a0dca92d53ec9624f336ca24', 1, 1, 1),
-(2, '201364909', 'mrfernando@up.edu.ph', 'mrfernando', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
-(3, '201470124', 'mjgalvez@up.edu.ph', 'mjgalvez', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
-(4, '201481207', 'acracusa@up.edu.ph', 'acracusa', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
-(5, '201411235', 'kacolumna@up.edu.ph', 'kacolumna', '32250170a0dca92d53ec9624f336ca24', 1, 0, 1),
-(6, '201408109', 'pslasmarias@up.edu.ph', 'pslasmarias', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
-(7, '201479241', 'ncmendoza11@up.edu.ph', 'ncmendoza1', '32250170a0dca92d53ec9624f336ca24', 1, 0, 0),
-(8, '201499764', 'dgperez@up.edu.ph', 'dgperez', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0),
-(9, '201480756', 'avsanguenza@up.edu.ph', 'avsanguenza', '32250170a0dca92d53ec9624f336ca24', 0, 0, 0),
-(10, '201480768', 'aleinstein@up.edu.ph', 'aleinstein', '32250170a0dca92d53ec9624f336ca24', 1, 1, 0);
+(1, '201412345', 'anayos@up.edu.ph', 'anayos', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 1, 1, 1),
+(2, '201364909', 'mrfernando@up.edu.ph', 'mrfernando', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 1, 1, 0),
+(3, '201470124', 'mjgalvez@up.edu.ph', 'mjgalvez', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 1, 1, 0),
+(4, '201481207', 'acracusa@up.edu.ph', 'acracusa', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 1, 1, 0),
+(5, '201411235', 'kacolumna@up.edu.ph', 'kacolumna', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 1, 0, 1),
+(6, '201408109', 'pslasmarias@up.edu.ph', 'pslasmarias', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 1, 1, 0),
+(7, '201479241', 'ncmendoza11@up.edu.ph', 'ncmendoza1', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 1, 0, 0),
+(8, '201499764', 'dgperez@up.edu.ph', 'dgperez', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 1, 1, 0),
+(9, '201480756', 'avsanguenza@up.edu.ph', 'avsanguenza', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 0, 0, 0),
+(10, '201480768', 'aleinstein@up.edu.ph', 'aleinstein', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 1, 1, 0);
 
 INSERT INTO `studentprofile` (`student_id`, `first_name`, `middle_name`, `last_name`, `sex`, `birthday`, `course`, `year_level`, `contact_num`, `address`, `profile_pic`, `form5`) VALUES
 (1, 'Angelica', 'A', 'Ayos', 'Female', '1997-01-01', 'BS Computer Science', '3rd Year', '09453291650', 'Cavite', '4E59E1F6DF867919DF4F14C26E668A0E.jpg', '61A2E7862DF10CE9C90EFA2DEAFD09A3.jpg'),
@@ -27,16 +27,16 @@ INSERT INTO `admin` (`admin_id`, `username`, `password`, `admin_name`, `admin_em
 (2, 'USC', '$2y$10$O0bATKLUoYY9BmAGhAnbIOb/7halb57Vp8535bbm6JGnKbqUFv1O2', 'University Student Council', 'usc@up.edu.ph');
 
 INSERT INTO `organizationaccount` (`org_id`, `org_email`, `password`, `org_status`, `isVerified`, `isActivated`, `archived`) VALUES
-(1, 'aisec@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1,  1),
-(2, 'upmchorale@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Accredited', 1, 1,  0),
-(3, 'gabriela@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1,  0),
-(4, 'morg@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1,  0),
-(5, 'upbeau@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Accredited', 1, 0,  1),
-(6, 'upsocomsci@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Accredited', 1, 1, 0),
-(7, 'orcomsoc@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 0, 0),
-(8, 'upvector@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1, 0),
-(9, 'orgasm@yahoo.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 0, 0, 0),
-(10, 'upmkule@gmail.com', '32250170a0dca92d53ec9624f336ca24', 'Unaccredited', 1, 1, 0);
+(1, 'aisec@gmail.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 1,  1),
+(2, 'upmchorale@yahoo.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Accredited', 1, 1,  0),
+(3, 'gabriela@gmail.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 1,  0),
+(4, 'morg@yahoo.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 1,  0),
+(5, 'upbeau@gmail.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Accredited', 1, 0,  1),
+(6, 'upsocomsci@yahoo.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Accredited', 1, 1, 0),
+(7, 'orcomsoc@gmail.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 0, 0),
+(8, 'upvector@gmail.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 1, 0),
+(9, 'orgasm@yahoo.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 0, 0, 0),
+(10, 'upmkule@gmail.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 1, 0);
 
 INSERT INTO `organizationprofile` (`org_id`, `org_name`, `acronym`, `org_category`, `org_college`, `description`, `objectives`, `org_website`, `mailing_address`, `date_established`, `org_logo`, `constitution`, `incSEC`, `sec_years`) VALUES
 (1, 'AISEC', 'AISEC', 'Socio-Civic', 'College of Arts and Sciences', 'international involvement org', 'to something', 'aisec.com', 'here', '1988', '	

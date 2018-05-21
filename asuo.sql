@@ -4,7 +4,7 @@ CREATE TABLE `studentaccount` (
   `up_id` char(9) NOT NULL,
   `up_mail` varchar(50) NOT NULL,
   `username` varchar(32) NOT NULL,
-  `password` varchar(32) NOT NULL,
+  `password` varchar(60) NOT NULL,
   `isVerified` tinyint(1) NOT NULL DEFAULT 0,
   `isActivated` tinyint(1) NOT NULL DEFAULT 0,
   `archived` tinyint(1) NOT NULL DEFAULT 0
@@ -60,7 +60,7 @@ ALTER TABLE `admin`
   CREATE TABLE `organizationaccount` (
   `org_id` int(11) UNSIGNED NOT NULL,
   `org_email` varchar(50) NOT NULL,
-  `password` varchar(32) NOT NULL,
+  `password` varchar(60) NOT NULL,
   `org_status` varchar(50) NOT NULL DEFAULT 'Unaccredited',
   `isVerified` tinyint(1)NOT NULL DEFAULT 0,
   `isActivated` tinyint(1) NOT NULL DEFAULT 0,

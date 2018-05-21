@@ -352,70 +352,67 @@
 		}
 
 		private function loginStudent($credentials){	
-			$condition = "(username = '" . $credentials['username']. "' OR up_mail = '".$credentials['username']."') 
-					AND password = '" . $credentials['password']. "'";
 
-			$this->db->select('student_id, isVerified, isActivated, archived');
-			$this->db->from('StudentAccount');
+			$condition = "(up_mail = '" . $credentials['username']. "' OR username = '" . $credentials['username']. "') AND ".
+			"(up_mail = '" . $credentials['username']. "' OR username = '" . $credentials['username']. "')";
+
+			$this->db->select('student_id, password, isVerified, isActivated, archived');
+			$this->db->from('studentaccount');
 			$this->db->where($condition);
 			$query = $this->db->get();
+			
+			if(!password_verify($credentials['password'],$query->result_array()[0]['password']))
+				return false;
 
 			//get student profile details for 'myprofile' view 
-			if ($query->num_rows() == 1){
+			
+			$student_id = $query->result_array()[0]['student_id'];
+			$sessionDetails = $this->getStudentSessionDetails($student_id);
 
-				$student_id = $query->result_array()[0]['student_id'];
-				$sessionDetails = $this->getStudentSessionDetails($student_id);
+			$isActivated = $query->result_array()[0]['isActivated'];
+			if($isActivated == 0)
+				$sessionDetails['account_type'] = 'unactivatedStudent';
 
+			$isVerified = $query->result_array()[0]['isVerified'];
+			if($isVerified == 0)
+				$sessionDetails['account_type'] = 'unverifiedStudent';
 
-				$isActivated = $query->result_array()[0]['isActivated'];
-				if($isActivated == 0)
-					$sessionDetails['account_type'] = 'unactivatedStudent';
+			$archived = $query->result_array()[0]['archived'];
+			if($archived == 1)
+				$sessionDetails['account_type'] = 'archivedStudent';
 
-				$isVerified = $query->result_array()[0]['isVerified'];
-				if($isVerified == 0)
-					$sessionDetails['account_type'] = 'unverifiedStudent';
-
-				$archived = $query->result_array()[0]['archived'];
-				if($archived == 1)
-					$sessionDetails['account_type'] = 'archivedStudent';
-
-				return $sessionDetails;
-			}
-			else 
-				return false;
+			return $sessionDetails;
 		}
 
 		private function loginOrg($credentials){
-			$condition = "org_email = '" . $credentials['username']. "' 
-					AND password = '" . $credentials['password']. "'";
+			$condition = "org_email = '" . $credentials['username']. "' AND org_email = '" . $credentials['username']. "'";
 
-			$this->db->select('org_id, isVerified, isActivated, archived');
+			$this->db->select('org_id, password, isVerified, isActivated, archived');
 			$this->db->from('OrganizationAccount');
 			$this->db->where($condition);
 			$query = $this->db->get();
-
-			//get org profile details for 'org' view 
-			if ($query->num_rows() == 1){
-
-				$org_id = $query->result_array()[0]['org_id'];
-				$sessionDetails = $this->getOrgSessionDetails($org_id);
-
-				$isActivated = $query->result_array()[0]['isActivated'];
-				if($isActivated == 0)
-					$sessionDetails['account_type'] = 'unactivatedOrg';
-
-				$isVerified = $query->result_array()[0]['isVerified'];
-				if($isVerified == 0)
-					$sessionDetails['account_type'] = 'unverifiedOrg';
-
-				$archived = $query->result_array()[0]['archived'];
-				if($archived == 1)
-					$sessionDetails['account_type'] = 'archivedOrg';
-
-				return $sessionDetails;
-			}
-			else
+			
+			if(!password_verify($credentials['password'],$query->result_array()[0]['password']))
 				return false;
+	
+			//get org profile details for 'org' view 
+	
+			$org_id = $query->result_array()[0]['org_id'];
+			$sessionDetails = $this->getOrgSessionDetails($org_id);
+
+			$isActivated = $query->result_array()[0]['isActivated'];
+			if($isActivated == 0)
+				$sessionDetails['account_type'] = 'unactivatedOrg';
+
+			$isVerified = $query->result_array()[0]['isVerified'];
+			if($isVerified == 0)
+				$sessionDetails['account_type'] = 'unverifiedOrg';
+
+			$archived = $query->result_array()[0]['archived'];
+			if($archived == 1)
+				$sessionDetails['account_type'] = 'archivedOrg';
+
+			return $sessionDetails;
 		}
 
 		private function loginAdmin($credentials){
@@ -425,6 +422,7 @@
 			$this->db->from('admin');
 			$this->db->where($condition);
 			$query = $this->db->get();
+
 			if(password_verify($credentials['password'],$query->result_array()[0]['password'])){
 				$result = $query->result_array()[0];
 				$result['account_type'] = 'admin'; 
