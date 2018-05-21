@@ -39,6 +39,12 @@
 						
 						$this->load->view('header'); 
 						$this->load->view('errors/html/dne_student', $error); 
+						if($account_type== 'admin'){
+							$this->load->view('admin/changepassword');
+						}
+						if($account_type== 'org'){
+							$this->load->view('org/changepassword');
+						} 
 						$this->load->view('footer');
 					}
 					else  {
@@ -47,7 +53,13 @@
 
 						if (!$isVerified || $isArchived){
 							$this->load->view('header'); 
-							$this->load->view('errors/html/dne_student', $error); 
+							$this->load->view('errors/html/dne_student', $error);
+							if($account_type== 'admin'){
+							$this->load->view('admin/changepassword');
+						}
+						if($account_type== 'org'){
+							$this->load->view('org/changepassword');
+						}  
 							$this->load->view('footer');
 						}							
 						else{	
@@ -66,21 +78,22 @@
 						$data['org_email'] = $this->session->userdata['email'];
 						//echo  'verify your email using ' .$this->session->userdata['email']. "."; //load view here note: redirect
 						$this->load->view('header'); 
-						$this->load->view('errors/html/unverified', $data); 
+						$this->load->view('errors/html/unverified', $data);
 						$this->load->view('footer');
+
 					}
 				
 					if($account_type == 'unactivatedStudent'){
 						//echo 'You account is not yet activated. Procced to OSA.'; //load view here note: redirect
 						$this->load->view('header'); 
-						$this->load->view('errors/html/unactivated'); 
+						$this->load->view('errors/html/unactivated');
 						$this->load->view('footer');
 					}
 				
 					if($account_type == 'archivedStudent'){
 						//echo 'You account is blocked. Procced to OSA.'; //load view here note: redirect
 						$this->load->view('header'); 
-						$this->load->view('errors/html/blocked'); 
+						$this->load->view('errors/html/blocked');
 						$this->load->view('footer');
 					}
 				}
@@ -128,12 +141,12 @@
 
 			$this->load->view('header');
 			$this->load->view('student/student.php', $data);
-			$this->load->view('footer');
 
 			if($account_type == 'org')
 				$this->load->view('org/changepassword');
 			if($account_type == 'admin')
 				$this->load->view('admin/changepassword');
+			$this->load->view('footer');
 		}
 
 		private function editStudentProfile(){
