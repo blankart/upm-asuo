@@ -24,6 +24,8 @@
 				$this->uploadFormB();
 			else if($action == 'uploadFormF')
 				$this->uploadFormF();
+			else if($action == 'uploadFormG')
+				$this->uploadFormF();
 			else if($action == 'applyToOrg')
 				$this->applyToOrg();
 			else if ($action == 'rejectMembership')
@@ -407,6 +409,34 @@
             }	
 		}
 
+		private function uploadFormG()
+		{
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('formG'.$id);
+
+			$config['upload_path'] = './assets/org/accreditation/form_g';
+			$config['allowed_types'] = 'pdf';
+			$config['overwrite'] = TRUE;
+			$config['max_size']     = '2048';
+			$config['file_name'] = $file_name.'.pdf';
+
+			$this->upload->initialize($config);
+
+			if ( ! $this->upload->do_upload('formG')){
+		        show_404();
+                $error = array('msg' => $this->upload->display_errors());
+                echo json_encode($error);
+                exit();
+            }
+            else {                
+                $this->load->model('OrgModel');
+				$this->OrgModel->uploadFormG($id, $file_name);  
+				$data = array('msg' => $this->upload->data());  
+				echo json_encode($data);
+				exit();     
+            }	
+		}
+
 		private function applyToOrg()
 		{
 			$source = $this->input->post('org_id');			
@@ -651,7 +681,7 @@
 
 			$this->load->model('OrgModel');
 			$data = $this->OrgModel->getOrgDetails($org_id);
-
+			$this->OrgModel->initAccred($org_id);
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/applyforaccreditation', $data);
 			$this->load->view('org/changepassword');
