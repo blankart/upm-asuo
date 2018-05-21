@@ -6,9 +6,9 @@
        var dataArray = [];
        var checkedDataArray = [];
        function sendNotice(){
-
-
-        var notice = {
+        if ($('#sendNoticeTitle').val().length > 0 && $('#sendNoticeMessage').val().length > 0)
+        {
+          var notice = {
           title: (document.getElementById("sendNoticeTitle").value).trim(),
           content: (document.getElementById("sendNoticeMessage").value).trim(),
           orgIds: checkedDataArray
@@ -34,8 +34,7 @@
            alert("Status: " + textStatus); alert("Error: " + errorThrown); 
           }  
         });
-
-
+        }
        }
 
        function addCheckedData(orgID){
@@ -151,7 +150,6 @@
          
               });*/
            });
-
        function sendNoticeButton(orgName){
          var output = '<div class="container">'+
                              '<div class="form-area">'+
