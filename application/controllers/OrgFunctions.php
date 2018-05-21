@@ -26,6 +26,8 @@
 				$this->uploadFormF();
 			else if($action == 'uploadFormG')
 				$this->uploadFormG();
+			else if($action == 'uploadPlans')
+				$this->uploadPlans();
 			else if($action == 'applyToOrg')
 				$this->applyToOrg();
 			else if ($action == 'rejectMembership')
@@ -431,6 +433,34 @@
             else {                
                 $this->load->model('OrgModel');
 				$this->OrgModel->uploadFormG($id, $file_name);  
+				$data = array('msg' => $this->upload->data());  
+				echo json_encode($data);
+				exit();     
+            }	
+		}
+
+		private function uploadPlans()
+		{
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('plans'.$id);
+
+			$config['upload_path'] = './assets/org/accreditation/plans';
+			$config['allowed_types'] = 'pdf';
+			$config['overwrite'] = TRUE;
+			$config['max_size']     = '2048';
+			$config['file_name'] = $file_name.'.pdf';
+
+			$this->upload->initialize($config);
+
+			if ( ! $this->upload->do_upload('plans')){
+		        show_404();
+                $error = array('msg' => $this->upload->display_errors());
+                echo json_encode($error);
+                exit();
+            }
+            else {                
+                $this->load->model('OrgModel');
+				$this->OrgModel->uploadPlans($id, $file_name);  
 				$data = array('msg' => $this->upload->data());  
 				echo json_encode($data);
 				exit();     
