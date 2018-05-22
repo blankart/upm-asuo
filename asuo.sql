@@ -285,8 +285,27 @@ ALTER TABLE `verificationcode`
 ALTER TABLE `verificationcode`
   MODIFY `code_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
+  -- ----------------------------------------------------------------------------------------------------------------------------
+  -- LOGIN NOTICE
+  CREATE TABLE `login_notice` (
+    `announcement_id` int(11) UNSIGNED NOT NULL,
+    `admin_id` int(11) UNSIGNED NOT NULL,
+    `title` varchar(50) NOT NULL DEFAULT "Untitled",
+    `content` varchar(200) NOT NULL DEFAULT "No details",
+    `date_posted` DATETIME NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+  ALTER TABLE `login_notice`
+  ADD PRIMARY KEY (`announcement_id`);
 
+  ALTER TABLE `login_notice`
+  MODIFY `announcement_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+  ALTER TABLE `login_notice`
+  ADD KEY `admin_id` (`admin_id`);
+
+  ALTER TABLE `login_notice`
+  ADD CONSTRAINT `login_notice_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`);
  -- ----------------------------------------------------------------------------------------------------------------------------
   -- RESTRICTED ACRONYMS
 

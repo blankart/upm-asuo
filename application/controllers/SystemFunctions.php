@@ -8,9 +8,14 @@
 			 	if( isset($this->session->userdata['logged_in']) )
 			 		$this->redirectToProfile();
 				else{
-					$this->load->view('header');
-					$this->load->view(''.$action);
-					$this->load->view('footer');
+					if($action == 'login'){
+						$this->loginPage();
+					}
+					else{
+						$this->load->view('header');
+						$this->load->view(''.$action);
+						$this->load->view('footer');
+					}
 				}
 			}
 
@@ -40,6 +45,16 @@
 
 			else
 				show_404();
+		}
+
+		private function loginPage(){
+
+			$this->load->model('SystemModel');
+			$data['notice'] =	$this->SystemModel->getLoginNotice();
+
+			$this->load->view('header');
+			$this->load->view('login', $data);
+			$this->load->view('footer');
 		}
 
 		private function redirectToProfile(){

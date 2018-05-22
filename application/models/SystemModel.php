@@ -3,6 +3,19 @@
 
 		//REGISTER FUNCTIONS
 
+		public function getLoginNotice(){
+
+			$this->db->select('*');
+			$this->db->from('login_notice');
+			$this->db->order_by('announcement_id', 'DESC');
+			$query = $this->db->get();
+
+			if ($query->num_rows() > 0)
+				return $query->result_array()[0];
+			else
+				return false;
+		}
+
 		// STUDENT
 		public function validateStudentUPMail($up_mail){
 			$condition = "up_mail = '" . $up_mail."' AND up_mail = '" . $up_mail."'";
