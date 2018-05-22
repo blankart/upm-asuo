@@ -728,7 +728,7 @@
 			$result = $this->OrgModel->input_formA_details($org_id);
 			
 			//get predefined form a details
-			$pre_def_details = $this->OrgModel->getOrgDetails($org_id);
+			$pre_def_details = $this->OrgModel->getOrgDetailsForm($org_id);
 				
 			$result['org_name'] = $pre_def_details['org_name'];
 			$result['org_category'] = $pre_def_details['org_category'];
@@ -767,7 +767,7 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
 			$this->OrgModel->initAccred($org_id);
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/applyforaccreditation', $data);
@@ -779,7 +779,7 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formB', $data);
@@ -790,7 +790,7 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
 			
 			$data['tally'] = $this->OrgModel->getOrgTally($org_id);
 
@@ -804,7 +804,7 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formD', $data);
@@ -816,7 +816,7 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formE', $data);
@@ -828,7 +828,7 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formF', $data);
@@ -840,7 +840,7 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formG', $data);
@@ -852,7 +852,7 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/plans', $data);
@@ -864,7 +864,7 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$result = $this->OrgModel->getOrgDetails($org_id);
+			$result = $this->OrgModel->getOrgDetailsForm($org_id);
 			$data = $this->OrgModel->getForms($org_id);
 			$data['org_status'] = $result['org_status'];
 
