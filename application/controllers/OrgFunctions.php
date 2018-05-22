@@ -873,16 +873,19 @@
 			<b>Organization Name:</b>'.$result['org_name'].'<br>
 			<b>Number of members:</b>'.$tally.'<br>	
 			<b>Category:</b>'.$result['org_category'].'<br>
-			<b>Adviser:</b><br>
-			<b>Position/Designation:</b>&nbsp;&nbsp;&nbsp;&nbsp;<br><b>College/Unit: </b><br>
-			<b>Contact Person:</b><br>
-			<b>Position in the Organization</b>
+			<b>Adviser:</b>'.$result['adviser'].'<br>
+			<b>Position/Designation:</b>'.$result['adviser_position'].'&nbsp;&nbsp;&nbsp;&nbsp;<br>
+			<b>College/Unit: </b>'.$result['adviser_college'].'<br>
+			<b>Contact Person:</b>'.$result['contact_person'].'<br>
+			<b>Position in the Organization</b>'.$result['contact_position'].'
 			<br>
-			<b>Address:</b>
+			<b>Address:</b>'.$result['contact_address'].'
 			<br>
-			<b>Telephone no.:</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>Mobile no.:</b>
+			<b>Telephone no.:</b'.$result['contact_tel'].'&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>Mobile no.:</b>'.$result['contact_mobile'].'
 			<br>
-			<b>Email:</b>&nbsp;&nbsp;&nbsp;&nbsp;<b>Other contact details:</b>
+			<b>Email:</b>'.$result['contact_email'].'&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>Other contact details:</b>'.$result['contact_other_details'].'
 			<br>
 			<b>Objectives of Organization:</b>'.$result['objectives'].'
 			<br>
@@ -904,9 +907,9 @@
 
 				</p>
 			';
-			var_dump($html);
-			//$pdf->writeHTML($html, true, 0, true, 0);
-			//$pdf->Output('example_003.pdf', 'I');
+			//var_dump($html);
+			$pdf->writeHTML($html, true, 0, true, 0);
+			$pdf->Output('example_003.pdf', 'I');
 
 
 		}
