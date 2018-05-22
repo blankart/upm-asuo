@@ -587,6 +587,10 @@
 			if($type == 'Membership Removal'){
                 $reason = $other_info;
 
+
+			if($type == 'Membership Removal'){
+                $reason = $other_info;
+
                 $reason = $other_info;
                 $message = '<html><body>';
                 $message .= '<p> Notification from ASUO:</p>';
@@ -658,6 +662,8 @@
 				    $result['success'] = 'No';
 				    $result['error'] = $this->email->print_debugger(array('headers'));
 				   }
+			}
+
 		}
 
 
@@ -873,6 +879,7 @@
 
 			//$name = 'UP Society of Computer Scientists';
 			// WALA PANG POSITION/DESIGNATION
+
 			$html= '<p align="right"><b>Date filed:</b>Text</p><br><br>
 			<b>Organization Name:</b>Text<br><br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New [ &nbsp;]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Old [&nbsp; ] years in existence<br><br>
