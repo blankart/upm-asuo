@@ -33,7 +33,31 @@
        closeOnConfirm: false
       },
    function(){
+
+         $.ajax({
+       type:"post",
+       url:"<?php echo base_url(); ?>admin/searchOrganizations",
+       cache: false,
+       data:{query: search, source: "admin"},
+       dataType: 'json',
+       async: false,
+       success:function(result){
+        if(result){
+          swal({title: "Period Set!!", text: "You have set the accreditation period.", type: "success"},
+            function(){ 
+              location.reload();
+            }
+          );
+        }
+         else
+           swal("Failed!", "There was an error in opening the accreditation period.", "error");
+
+        }
+       });
+     
+     
       //AJAX NESTED WITH SUCCESS SWAL
+
       });
     }
   }

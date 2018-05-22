@@ -243,6 +243,10 @@
 			$this->db->update('accreditationapplication', $changes);
 		}
 		//
+		public function openAccreditation($period){
+			$this->db->insert('accreditation_period', $period);
+			return true;
+		}
 
 		public function sendNoticeSearch($string){
 			$condition = "oa.org_id = op.org_id AND oa.isActivated = 1 AND oa.archived = 0 AND (oa.org_email LIKE '%".$string."%' OR op.org_name LIKE '%".$string."%')";
@@ -263,7 +267,6 @@
 
 		public function insertRecipient($data){
 			$this->db->insert('recipient', $data);
-
 		}
 
 		public function viewAllNotices($id){
