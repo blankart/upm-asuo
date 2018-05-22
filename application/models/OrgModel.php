@@ -33,6 +33,50 @@
 
 			return $org_details->result_array()[0];
 		}
+		public function getOrgDetailsForm($org_id)
+		{
+			$condition = "oa.org_id = op.org_id AND op.org_id = " .$org_id ;
+
+			$this->db->select("op.*, oa.org_status, oa.org_email");
+			$this->db->from("organizationprofile op, organizationaccount oa");
+			$this->db->where($condition);
+			$org_details = $this->db->get();
+			$org_result = $org_details->result_array();
+
+			$condition = "org_id = ".$org_id;
+			$this->db->select("app_id");
+			$this->db->from("accreditationapplication");
+			$this->db->where($condition);
+			$aaApp_id = $this->db->get();
+			//return $temp->result_array()[0];
+			if($aaApp_id->num_rows() == 0)
+			{
+				return false;
+			}
+			else
+			{
+				$condition = "aa.org_id = ".$org_id." AND aa.app_id = fa.app_id";
+				$this->db->select("fa.*");
+				$this->db->from("accreditationapplication aa,form_a_details fa");
+				$this->db->where($condition);
+				$faDetails = $this->db->get();
+
+				if($faDetails->num_rows() == 0)
+				{
+				return false;
+				}
+				else //else if not empty
+				{
+					return true;
+				}
+				
+
+				
+				//$org_details->result_array()[0]['stay'] = $temp->result_array()[0]['stay'];
+			}
+
+			//return $org_details->result_array()[0];
+		}
 
 		private function getAnnouncements($org_id){
 			$condition = "r.org_id = " .$org_id. " AND a.notice_ID = r.notice_ID AND op.org_id = r.org_id AND a.sender = ad.admin_id AND a.archived = 0";
@@ -398,6 +442,7 @@
 				$aaInsert['form_G'] = "No Submission";
 				$aaInsert['plans'] = "No Submission";
 				$this->db->insert('accreditationapplication', $aaInsert);
+				$this->input_formA_details($org_id);
 				/*
 				$condition = "org_id = ".$org_id;
 				$this->db->select("app_id");
@@ -422,6 +467,8 @@
 				return $result;
 				*/
 			}
+
+
 
 		}
 
@@ -508,6 +555,7 @@
 						$result['contact_tel'] = "";
 						$result['contact_mobile'] = "";
 						$result['contact_other_details'] = "";
+						$this->db->insert('form_a_details',$result);
 						return $result;
 				}
 				else //form_a_details value is not empty

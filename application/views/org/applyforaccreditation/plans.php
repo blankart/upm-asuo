@@ -56,7 +56,7 @@
             <div class="col-4">
                 <!-- insert sidenav -->
                 <div class="sidenav">
-                	<?php if($org_status == "Accredited"){ ?>
+                	<?php if($stay == "old"){ ?>
                   <ul class="menu">
                     	<li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
                     	<li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
@@ -86,7 +86,7 @@
             <!-- Page Content -->
 			<div class="main">
 				<?php 
-					if($org_status == "Unaccredited"){
+					if($stay == "new"){
 						echo "<h1>Plans for the Academic Year</h1>";
 					}
 					else{

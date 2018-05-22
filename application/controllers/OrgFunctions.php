@@ -749,13 +749,25 @@
 			$result = $this->OrgModel->input_formA_details($org_id);
 			
 			//get predefined form a details
-			$pre_def_details = $this->OrgModel->getOrgDetails($org_id);
+			//$pre_def_details = $this->OrgModel->getOrgDetailsForm($org_id);
+
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			//var_dump($data);
+			if($data == false)
+			{
+				$org_data['stay'] = 'new';
+			}
+			else
+			{
+				$org_data['stay'] = 'old';
+			}
 				
-			$result['org_name'] = $pre_def_details['org_name'];
-			$result['org_category'] = $pre_def_details['org_category'];
-			$result['description'] = $pre_def_details['description'];
-			$result['objectives'] = $pre_def_details['objectives'];
-			$result['org_status'] = $pre_def_details['org_status'];
+			$result['org_name'] = $org_data['org_name'];
+			$result['org_category'] = $org_data['org_category'];
+			$result['description'] = $org_data['description'];
+			$result['objectives'] = $org_data['objectives'];
+			$result['org_status'] = $org_data['org_status'];
 			//var_dump($result);
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formA', $result);
@@ -793,10 +805,22 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			
 			$this->OrgModel->initAccred($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			//var_dump($data);
+			if($data == false)
+			{
+				$org_data['stay'] = 'new';
+			}
+			else
+			{
+				$org_data['stay'] = 'old';
+			}
+			//var_dump($org_data);
 			$this->load->view('header');
-			$this->load->view('org/applyforaccreditation/applyforaccreditation', $data);
+			$this->load->view('org/applyforaccreditation/applyforaccreditation', $org_data);
 			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
@@ -808,10 +832,20 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			//var_dump($data);
+			if($data == false)
+			{
+				$org_data['stay'] = 'new';
+			}
+			else
+			{
+				$org_data['stay'] = 'old';
+			}
 
 			$this->load->view('header');
-			$this->load->view('org/applyforaccreditation/formB', $data);
+			$this->load->view('org/applyforaccreditation/formB', $org_data);
 			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
@@ -822,12 +856,22 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			//var_dump($data);
+			if($data == false)
+			{
+				$org_data['stay'] = 'new';
+			}
+			else
+			{
+				$org_data['stay'] = 'old';
+			}
 			
-			$data['tally'] = $this->OrgModel->getOrgTally($org_id);
+			$org_data['tally'] = $this->OrgModel->getOrgTally($org_id);
 
 			$this->load->view('header');
-			$this->load->view('org/applyforaccreditation/formC', $data);
+			$this->load->view('org/applyforaccreditation/formC', $org_data);
 			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
@@ -839,10 +883,20 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			//var_dump($data);
+			if($data == false)
+			{
+				$org_data['stay'] = 'new';
+			}
+			else
+			{
+				$org_data['stay'] = 'old';
+			}
 
 			$this->load->view('header');
-			$this->load->view('org/applyforaccreditation/formD', $data);
+			$this->load->view('org/applyforaccreditation/formD', $org_data);
 			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
@@ -854,10 +908,20 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			//var_dump($data);
+			if($data == false)
+			{
+				$org_data['stay'] = 'new';
+			}
+			else
+			{
+				$org_data['stay'] = 'old';
+			}
 
 			$this->load->view('header');
-			$this->load->view('org/applyforaccreditation/formE', $data);
+			$this->load->view('org/applyforaccreditation/formE', $org_data);
 			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
@@ -869,10 +933,20 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			//var_dump($data);
+			if($data == false)
+			{
+				$org_data['stay'] = 'new';
+			}
+			else
+			{
+				$org_data['stay'] = 'old';
+			}
 
 			$this->load->view('header');
-			$this->load->view('org/applyforaccreditation/formF', $data);
+			$this->load->view('org/applyforaccreditation/formF', $org_data);
 			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
@@ -884,10 +958,20 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			//var_dump($data);
+			if($data == false)
+			{
+				$org_data['stay'] = 'new';
+			}
+			else
+			{
+				$org_data['stay'] = 'old';
+			}
 
 			$this->load->view('header');
-			$this->load->view('org/applyforaccreditation/formG', $data);
+			$this->load->view('org/applyforaccreditation/formG', $org_data);
 			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
@@ -899,10 +983,20 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			//var_dump($data);
+			if($data == false)
+			{
+				$org_data['stay'] = 'new';
+			}
+			else
+			{
+				$org_data['stay'] = 'old';
+			}
 
 			$this->load->view('header');
-			$this->load->view('org/applyforaccreditation/plans', $data);
+			$this->load->view('org/applyforaccreditation/plans', $org_data);
 			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
@@ -914,9 +1008,19 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$result = $this->OrgModel->getOrgDetails($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
+			$formData = $this->OrgModel->getOrgDetailsForm($org_id);
+			//var_dump($data);
+			if($formData == false)
+			{
+				$org_data['stay'] = 'new';
+			}
+			else
+			{
+				$org_data['stay'] = 'old';
+			}
 			$data = $this->OrgModel->getForms($org_id);
-			$data['org_status'] = $result['org_status'];
+			$data['org_status'] = $org_data['org_status'];
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/submitAll', $data);

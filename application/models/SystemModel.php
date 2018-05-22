@@ -19,10 +19,11 @@
 		}
 
 		public function getLoginNotice(){
-
-			$this->db->select('*');
-			$this->db->from('login_notice');
-			$this->db->order_by('announcement_id', 'DESC');
+			$condition = 'ad.admin_id = ln.admin_id';
+			$this->db->select('ln.*, ad.admin_name');
+			$this->db->where($condition);
+			$this->db->from('login_notice ln, admin ad');
+			$this->db->order_by('ln.announcement_id', 'DESC');
 			$query = $this->db->get();
 
 			if ($query->num_rows() > 0)

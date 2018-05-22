@@ -66,20 +66,20 @@
               for (var key in result) {
                
                 if (result.hasOwnProperty(key)) {
-                 if (result[key]['org_status'] == string)
+                 if (result[key]['app_status'] == string)
                  {
                   output+="<tr>"+
                           "<td>"+result[key]['org_id']+"<\/td>"+
                           "<td>"+result[key]['org_name']+"<\/td>"+
                           //actions
                           "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewDocuments("+result[key]['org_id']+")' style='margin-left: 10px;'>View Documents<\/button>";
-                          if (result[key]['org_status'] == "Accredited"){
+                          if (result[key]['app_status'] == "Accredited"){
                            output+="<button onclick='reject("+result[key]['org_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Reject<\/button>";
                           }
-                          else if (result[key]['org_status'] == "Unaccredited"){
+                          else if (result[key]['app_status'] == "Unaccredited"){
                            output+="<button onclick='accredit("+result[key]['org_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Accredit<\/button>";
                           }
-                          else if (result[key]['org_status'] == "Pending"){
+                          else if (result[key]['app_status'] == "Pending"){
                            output+="<button onclick='accredit("+result[key]['org_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Accredit<\/button>"+
                            "<button onclick='sendNoticeButtonApp(\""+result[key]['org_name']+"\","+result[key]['org_id']+")' class='btn btn-info btn-xs' style='margin-left: 10px;'>Send Notice<\/button>"+
                            "<button onclick='reject("+result[key]['org_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Reject<\/button>";

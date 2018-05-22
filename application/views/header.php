@@ -17,6 +17,8 @@
 			$org_logo = ($this->session->userdata['org_logo']);
 		}
 	}
+  
+
 ?>
     <!DOCTYPE html>
     <html>
@@ -84,7 +86,7 @@
             <a class="navbar-brand" href="<?php echo base_url();?>login">
             	<?php if (!isset($this->session->userdata['logged_in'])) 
             	echo "University of the Philippines Manila";
-            	else echo "<strong>ASUO</strong>";
+            	else echo "Accreditation System";
              	?>
         </a>
 
