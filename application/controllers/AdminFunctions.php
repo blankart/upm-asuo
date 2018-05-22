@@ -126,6 +126,8 @@
 
 				$this->load->model('AdminModel');
 				$this->AdminModel->sendStudentNotice($data);
+				echo json_encode(true);
+				exit();
 			}
 			else
 				show_404();
