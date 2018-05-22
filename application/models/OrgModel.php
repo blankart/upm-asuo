@@ -624,7 +624,7 @@
 			$condition = 'org_id = ' .$org_id;
 
 			$changes = array(
-				'app_status' => 'Submitted'
+				'app_status' => 'Pending'
 			);
 
 			$this->db->where($condition);
