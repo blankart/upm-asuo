@@ -16,7 +16,7 @@
    //ALDRIN
    function submitFormC(){
    	$.ajax({
-                type: "post",
+              type: "post",
            		url :"<?php echo base_url(); ?>org/uploadFormC", 
                 async: false,
                 cache: false,

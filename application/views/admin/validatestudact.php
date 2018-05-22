@@ -39,20 +39,40 @@
 
         function sendNoticeStud(student_id){
           swal({
-  title: "Send Notice to Student",
-  text: "Write message: ",
-  type: "input",
-  showCancelButton: true,
-  closeOnConfirm: false,
-  inputPlaceholder: "Write something"
-}, function (inputValue) {
-  if (inputValue === false) return false;
-  if (inputValue === "") {
-    swal.showInputError("You need to write something!");
-    return false
-  }
-  swal("Nice!", "You wrote: " + inputValue, "success");
-});
+            title: "Send Notice to Student",
+            text: "Write message: ",
+            type: "input",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            inputPlaceholder: "Write something"
+          }, function (inputValue) {
+            if (inputValue === false) return false;
+
+             var message = inputValue.trim();
+            if ( message=== "") {
+              swal.showInputError("You need to write something!");
+              return false
+            }
+
+            if (message.length >  200) {
+                    swal("Error!", "Your message should not be more than 2-0 characters!", "error");
+                    return false;
+            }
+                $.ajax({
+                      type: "post",
+                      url: "<?php echo base_url();?>admin/sendStudentNotice",
+                      data: {student_id: student_id, message: message},
+                      dataType: "JSON",
+                      async: false,
+                      cache: false,
+                      success: function(result){
+
+                        if(result){
+                            swal("Nice!", "You wrote: " + message, "success");
+                        }
+                      }
+                    });          
+          });
       }
        function rejectAcc(student_id){
          swal({
@@ -231,7 +251,7 @@
         <div class="modal-body">
           <div id="studSearch">
             <div class="container">
-              <p class="form-text text-muted">Activate or reject student accounts with valid UP mail and complete details.</p>
+              <p class="form-text text-muted">Activate student accounts with valid UP mail and complete details.</p>
               <div class="mail-box">
                 <aside class="lg-side">
                   <div class="inbox-head">

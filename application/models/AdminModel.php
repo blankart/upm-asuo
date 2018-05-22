@@ -1,6 +1,11 @@
 <?php
 	class AdminModel extends CI_Model{
-				
+		
+		public function sendStudentNotice($data){
+			$this->db->insert('student_notice', $data);
+			return $this->db->insert_id();
+		}
+
 		public function searchStudents($string){
 			$condition = "sa.student_id = sp.student_id AND sa.isActivated = 0 AND sa.isVerified = 1 AND (sp.last_name LIKE '%".$string."%' OR sp.first_name LIKE '%".$string."%' OR sa.up_id LIKE '%".$string."%') AND sa.archived = 0"; 
 			
@@ -172,7 +177,7 @@
 		}
 
 		public function getAccreditationDocuments($org_id){
-			$condition = "aa.org_id = " .$org_id. " AND aa.org_id = op.org_id AND aa.app_status = 'Pending'";
+			$condition = "aa.org_id = " .$org_id. " AND aa.org_id = op.org_id AND aa.app_status = 'Submitted'";
 
 			$this->db->select('aa.*, op.*');
 			$this->db->from('accreditationapplication aa, organizationprofile op');
@@ -206,6 +211,15 @@
 
 			$this->db->where($condition);
 			$this->db->update('organizationaccount', $changes);
+
+			//Accredited
+
+			$changes = array(
+				'app_status' => 'Accredited'
+			);
+
+			$this->db->where($condition);
+			$this->db->update('accreditationapplication', $changes);
 		}
 
 		public function rejectOrg($id){
@@ -217,6 +231,14 @@
 
 			$this->db->where($condition);
 			$this->db->update('organizationaccount', $changes);
+
+			//reject
+			$changes = array(
+				'app_status' => 'Rejected'
+			);
+
+			$this->db->where($condition);
+			$this->db->update('accreditationapplication', $changes);
 		}
 		//
 

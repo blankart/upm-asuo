@@ -330,6 +330,30 @@ ALTER TABLE `verificationcode`
   ALTER TABLE `student_notice`
   ADD CONSTRAINT `student_notice_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`),
   ADD CONSTRAINT `student_notice_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `studentaccount` (`student_id`);
+
+  -- ----------------------------------------------------------------------------------------------------------------------------
+  -- LOGIN NOTICE
+  CREATE TABLE `accreditation_period` (
+    `period_id` int(11) UNSIGNED NOT NULL,
+    `admin_id` int(11) UNSIGNED NOT NULL,
+    `start_date` DATETIME NOT NULL,
+    `end_date` DATETIME NOT NULL,
+    `status` varchar(20) NOT NULL DEFAULT "Closed" 
+  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+  ALTER TABLE `accreditation_period`
+  ADD PRIMARY KEY (`period_id`);
+
+  ALTER TABLE `accreditation_period`
+  MODIFY `period_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+  ALTER TABLE `accreditation_period`
+  ADD KEY `admin_id` (`admin_id`);
+
+  ALTER TABLE `accreditation_period`
+  ADD CONSTRAINT `accreditation_period_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`);
+
+
  -- ----------------------------------------------------------------------------------------------------------------------------
   -- RESTRICTED ACRONYMS
 

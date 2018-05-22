@@ -1,3 +1,52 @@
+<script>//form validation
+
+
+	function nameFormatCheck(input) {  
+    var regex_num = new RegExp('^[0-9]*$');
+    var regex = new RegExp("^[a-zA-Z]+( [a-zA-Z]+)*$");
+    var value =  input.value;
+    
+    if( regex_num.test(value) )
+       input.setCustomValidity("Numbers are not allowed!");   
+    else if( !regex.test(value) )
+      input.setCustomValidity("Special characters are not allowed!");   
+    else 
+      input.setCustomValidity("");      
+  }
+
+  function noSpecialCharactersAndExtraSpacesCheck(input){
+
+        var regex = new RegExp("^[a-zA-Z0-9]+( [a-zA-Z0-9]+)*$");
+        var value =  input.value;
+        
+        if( !regex.test(value) )
+          input.setCustomValidity("Special characters and extra spaces are not allowed!");   
+        else 
+          input.setCustomValidity("");    
+    }
+
+	function inStay(){
+      var inStay = "<?php echo $stay; ?>"
+
+      if(inStay == "new")
+         document.getElementById("new").checked = true;
+      else if(inStay == "old"){
+         document.getElementById("old").checked = true; 
+      }
+   }
+   function activateText(value){
+      var textbox = document.getElementById("years");
+
+      if(value == "old"){
+         textbox.disabled = false;
+      } else {
+         textbox.disabled = true;
+      }
+   }
+
+   window.onload = inStay;
+</script>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -5,8 +54,6 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/phases.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/sidenav.css">
 		<script src="<?php echo base_url();?>js/script.js"></script>
-		<!-- transferred script to formA.js -->
-		<script type="text/javascript" src="<?php echo base_url(); ?>js/formA.js"></script>
 	</head>
 
 	<body>
@@ -101,26 +148,16 @@
 					</div>
 
 					<div id="phase6">
-						Objectives of Organization:
-						<input type="text" id="objectives" name="objectives" value="<?php echo $objectives?>" disabled><br>
-						Brief Description of Organization:
-						<input type="text" id="description" name="description" value="<?php echo $description ?>" disabled><br><br>
+						Objectives of Organization:<br>
+						<textarea rows="2" cols="100%" id="objectives" name="objectives" style="resize: none;" placeholder="<?php echo $objectives?>" disabled></textarea><br><br>
+						Brief Description of Organization:<br>
+						<textarea rows="2" cols="100%" id="description" name="description" style="resize: none;" placeholder="<?php echo $description ?>" disabled></textarea><br><br>
 
 						<button class="btn btn-danger" type="button" onclick="back5()">Back</button>
-						<button class="btn btn-danger" type="button" onclick="processPhase6()">Continue</button>
-					</div>
-
-					<!-- review details before submitting-->
-					<div id="show_all_data">
-						*show overview of PDF*<br>
-
-						<!-- add sweet alert -->
-						<button class="btn btn-danger" type="button" onclick="back6()">Back</button>
 						<button class="btn btn-danger" type="button" onclick="submitForm()">Save</button>
 					</div>
 					<input type="hidden" name="data[app_id]" value="<?php echo $app_id;?>">
 				</form>
-
 			</div>
 		</div>
 	</body>
