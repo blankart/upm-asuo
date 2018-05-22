@@ -310,7 +310,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">View All Student Accounts</h4>
+                <h4 class="modal-title"><i class="fa fa-user fa-2x pull-left" style='margin-right: 20px;'></i>View All Student Accounts</h4>
             </div>
             <!-- Modal body -->
             <div class="modal-body">

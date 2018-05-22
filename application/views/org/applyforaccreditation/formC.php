@@ -138,8 +138,6 @@
 					</iframe>
 				</object>
 				<br><br>
-
-				<button class="btn btn-danger" type="button" onclick="submitFormC()">Save</button>
 			</div>
 		</div>
 	</div>

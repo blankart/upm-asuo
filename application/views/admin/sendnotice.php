@@ -307,11 +307,11 @@
       <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Send Announcement</h4>
+          <h4 class="modal-title"><i class="fas fa-paper-plane fa-2x pull-left" style='margin-right: 20px;'></i>Send Announcement</h4>
         </div><!-- Modal body -->
         <div class="modal-body">
           <div id="sendNoticeSearch">
-            <h1 style="text-align: center;">Select recipient</h1>
+            <h4 style="text-align: center;">Select recipient</h4>
             <div class="container">
               <div class="mail-box">
                 <aside class="lg-side">
