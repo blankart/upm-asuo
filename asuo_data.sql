@@ -169,6 +169,11 @@ INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`, `i
 (14, 10, 10, 'Member', 0, 'Not removed');
 
 -- ------------------------------------------------------------------------
+INSERT INTO `login_notice` (`announcement_id`, `admin_id`, `title`, `content`, `date_posted`) VALUES
+(1, 1, 'Welcome Message', "Walking around\nWith my little rain cloud\nHanging over my head\nAnd it ain't coming down\nWhere do I go?\nGimme some sort of sign\nYou hit me with lightning!\nMaybe I'll come alive", '2018-05-22 23:00:00');
+
+
+-- ------------------------------------------------------------------------
 
 INSERT INTO `restrictedacronym` (`res_id`, `acronym`) VALUES
 (1, 'login'),
