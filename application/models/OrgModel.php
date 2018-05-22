@@ -35,9 +35,9 @@
 		}
 		public function getOrgDetailsForm($org_id)
 		{
-			$condition = "oa.org_id = op.org_id AND op.org_id = " .$org_id;
+			$condition = "oa.org_id = op.org_id AND op.org_id = " .$org_id.'op.org_id = aa.org_id AND aa.org_id = '.$org_id.' AND aa.app_id = fa.app_id';
 
-			$this->db->select("op.*, oa.org_status, oa.org_email");
+			$this->db->select("op.*, oa.org_status, oa.org_email,fa.stay");
 			$this->db->from("organizationprofile op, organizationaccount oa,accreditationapplication aa, form_a_details fa");
 			$this->db->where($condition);
 			$org_details = $this->db->get();
