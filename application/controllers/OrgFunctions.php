@@ -80,16 +80,19 @@
 				$this->saveFormA();
 			}
 			else if($action == 'viewFormA'){
-				$this->viewFormA();
+				$this->viewFormA("preview");
 			}
 			else if($action == 'viewFormC'){
-				$this->viewFormC();
+				if(!isset($_SERVER['HTTP_REFERER'])){
+						show_404();
+				}
+				$this->viewFormC("preview");
 			}
 			else if($action == 'viewFormD'){
-				$this->viewFormD();
+				$this->viewFormD("preview");
 			}
 			else if($action == 'viewFormE'){
-				$this->viewFormE();
+				$this->viewFormE("preview");
 			}
 			else if($action == 'viewFormF'){
 				$this->viewFormF();
@@ -499,6 +502,11 @@
 				$this->load->model('OrgModel');
 				$this->OrgModel->rejectMembership($org_id, $student_id);
 
+				$org_name = $this->OrgModel->getOrgName($org_id);
+                $up_mail = $this->OrgModel->getStudentUPMail($student_id);
+                $this->sendNotification('Organization Membership Rejected', $org_name, $up_mail, 'None');
+
+
 				echo json_encode(true);
 				exit();
 			}
@@ -517,6 +525,11 @@
 
 				$this->load->model('OrgModel');
 				$this->OrgModel->approveMembership($org_id, $student_id);
+
+				$org_name = $this->OrgModel->getOrgName($org_id);
+                $up_mail = $this->OrgModel->getStudentUPMail($student_id);
+                $this->sendNotification('Organization Membership Approved', $org_name, $up_mail, 'None');
+
 
 				echo json_encode(true);
 				exit();
@@ -540,7 +553,7 @@
 
 				$org_name = $this->OrgModel->getOrgName($org_id);
 				$up_mail = $this->OrgModel->getStudentUPMail($student_id);
-				$this->sendChangePositionNotification($org_name, $up_mail, $position);
+				$this->sendNotification('Change in Membership Position', $org_name, $up_mail, $position);
 
 				echo json_encode($position);
 				exit();
@@ -564,7 +577,7 @@
 
 				$org_name = $this->OrgModel->getOrgName($org_id);
 				$up_mail = $this->OrgModel->getStudentUPMail($student_id);
-				$this->sendRemoveMembershipNotification($org_name, $up_mail, $reason);
+				$this->sendNotification('Membership Removal', $org_name, $up_mail, $reason);
 
 				echo json_encode($org_name.' '.$up_mail);
 				exit();
@@ -573,9 +586,51 @@
 				show_404();
 		}
 
-		private function sendRemoveMembershipNotification($org_name, $up_mail, $reason){
-		
-				$config = array(
+		private function sendNotification($type, $org_name, $up_mail, $other_info){
+
+			if($type == 'Membership Removal'){
+                $reason = $other_info;
+
+                $reason = $other_info;
+                $message = '<html><body>';
+                $message .= '<p> Notification from ASUO:</p>';
+                $message .= '<p>Your membership from '. $org_name.' has been removed.</p>';
+                $message .= "<p>The reason indicated was '".$reason."'.</p>";
+			    $message .= '<p>For more details, please communicate with your organization.</p>';
+			    $message .= '<p>ASUO Administrator</p>';
+			    $message .= '</body></html>';
+            }
+
+            if($type == 'Change in Membership Position'){
+                $position = $other_info;
+                $message = '<html><body>';
+                $message .= '<p> Notification from ASUO:</p>';
+                $message .= '<p>Your membership position in '. $org_name.' has been changed.</p>';
+                $message .= "<p>Your new position is now '".$position."'.</p>";
+                $message .= '<p>For more details, please communicate with your organization.</p>';
+                $message .= '<p>ASUO Administrator</p>';
+                $message .= '</body></html>';
+             }
+
+            if($type == 'Organization Membership Approved'){
+                 $message = '<html><body>';
+                $message .= '<p> Notification from ASUO:</p>';
+                $message .= '<p>Your organization membership application in '. $org_name.' has been approved.</p>';
+                $message .= '<p>For more details, please contact ' .$org_name. '.</p>';
+                $message .= '<p>ASUO Administrator</p>';
+                $message .= '</body></html>';
+             }
+
+             if($type == 'Organization Membership Rejected'){
+                 $message = '<html><body>';
+                $message .= '<p> Notification from ASUO:</p>';
+                $message .= '<p>Your organization membership application in '. $org_name.' has been rejected.</p>';
+                $message .= '<p>For more details, please contact ' .$org_name. '.</p>';
+                $message .= '<p>ASUO Administrator</p>';
+                $message .= '</body></html>';
+             }
+
+         		 $config = array(
 					'useragent' => "CodeIgniter",
 		        	'mailpath'  => "/usr/bin/sendmail",
 					'protocol'  => 'smtp' , 
@@ -596,15 +651,7 @@
 			    $this->email->from($up_mail, 'ASUO Team');
 
 			    $this->email->to($up_mail);
-			    $this->email->subject('Membership Removal');
-
-			    $message = '<html><body>';
-			    $message .= '<p> Notification from ASUO:</p>';
-			    $message .= '<p>Your membership from '. $org_name.' has been removed.</p>';
-			    $message .= "<p>The reason indicated was '".$reason."'.</p>";
-			    $message .= '<p>For more details, please communicate with your organization.</p>';
-			    $message .= '<p>ASUO Administrator</p>';
-			    $message .= '</body></html>';
+			    $this->email->subject($type);
 
 			    $this->email->message($message);
 			
@@ -616,52 +663,6 @@
 				    $result['error'] = $this->email->print_debugger(array('headers'));
 				   }
 		}
-
-		private function sendChangePositionNotification($org_name, $up_mail, $position){
-		
-				$config = array(
-					'useragent' => "CodeIgniter",
-		        	'mailpath'  => "/usr/bin/sendmail",
-					'protocol'  => 'smtp' , 
-			        'smtp_host' => 'ssl://smtp.gmail.com' , 
-			        'smtp_port' => 465 , 
-			        'smtp_user' => 'asuodevelopers@gmail.com' ,
-			        'smtp_pass' => 'cmsc128.1',
-			        'mailtype'  => 'html', 
-			        'charset'   => 'utf-8', 
-			        'newline'   => "\r\n",  
-			        'wordwrap'  => TRUE 
-				);
-
-			    //load email library
-			  	$this->email->initialize($config);
-
-			    $this->email->set_mailtype('html');
-			    $this->email->from($up_mail, 'ASUO Team');
-
-			    $this->email->to($up_mail);
-			    $this->email->subject('Change in Membership Position');
-
-			    $message = '<html><body>';
-			    $message .= '<p> Notification from ASUO:</p>';
-			    $message .= '<p>Your membership position in '. $org_name.' has been changed.</p>';
-			    $message .= "<p>Your new position is now '".$position."'.</p>";
-			    $message .= '<p>For more details, please communicate with your organization.</p>';
-			    $message .= '<p>ASUO Administrator</p>';
-			    $message .= '</body></html>';
-
-			    $this->email->message($message);
-			
-				if ($this->email->send()){
-				      $result['success'] = 'Yes';
-				}
-				else{
-				    $result['success'] = 'No';
-				    $result['error'] = $this->email->print_debugger(array('headers'));
-				   }
-		}
-
-
 
 
 //-------------------------------FORMS FOR ACCREDITATION---------------------------------------
@@ -702,8 +703,13 @@
 			//var_dump("org id ".$org_id);
 			$this->load->model('OrgModel');
 			$temp = $this->OrgModel->insertFormAdetails($form_details,$org_id);
+			//INSERT INTO DB
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('formA'.$id);
+			$this->OrgModel->uploadFormA($id, $file_name);
+			$this->viewFormA("save");
 			//var_dump($temp);
-			redirect(base_url().'org/formA');
+			redirect(base_url().'org/formC');
 		}
 
 		private function loadAccreditationHome(){
@@ -818,7 +824,7 @@
 		}
 
 
-		private function viewFormA()
+		private function viewFormA($type)
 		{
 
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -875,19 +881,19 @@
 			<b>Organization Name:</b>'.$result['org_name'].'<br>
 			<b>Number of members:</b>'.$tally.'<br>	
 			<b>Category:</b>'.$result['org_category'].'<br>
-			<b>Adviser:</b>'.$result['adviser'].'<br>
-			<b>Position/Designation:</b>'.$result['adviser_position'].'&nbsp;&nbsp;&nbsp;&nbsp;<br>
-			<b>College/Unit: </b>'.$result['adviser_college'].'<br>
-			<b>Contact Person:</b>'.$result['contact_person'].'<br>
-			<b>Position in the Organization</b>'.$result['contact_position'].'
+			<b>Adviser:</b>'.$result['formA']['adviser'].'<br>
+			<b>Position/Designation:</b>'.$result['formA']['adviser_position'].'&nbsp;&nbsp;&nbsp;&nbsp;<br>
+			<b>College/Unit: </b>'.$result['formA']['adviser_college'].'<br>
+			<b>Contact Person:</b>'.$result['formA']['contact_person'].'<br>
+			<b>Position in the Organization</b>'.$result['formA']['contact_position'].'
 			<br>
-			<b>Address:</b>'.$result['contact_address'].'
+			<b>Address:</b>'.$result['formA']['contact_address'].'
 			<br>
-			<b>Telephone no.:</b'.$result['contact_tel'].'&nbsp;&nbsp;&nbsp;&nbsp;
-			<b>Mobile no.:</b>'.$result['contact_mobile'].'
+			<b>Telephone no.:</b'.$result['formA']['contact_tel'].'&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>Mobile no.:</b>'.$result['formA']['contact_mobile'].'
 			<br>
-			<b>Email:</b>'.$result['contact_email'].'&nbsp;&nbsp;&nbsp;&nbsp;
-			<b>Other contact details:</b>'.$result['contact_other_details'].'
+			<b>Email:</b>'.$result['formA']['contact_email'].'&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>Other contact details:</b>'.$result['formA']['contact_other_details'].'
 			<br>
 			<b>Objectives of Organization:</b>'.$result['objectives'].'
 			<br>
@@ -895,28 +901,38 @@
 			<br>
 			<br>
 			<br>
-				<p align="right">___________________________________<br>
-				<b>Name of Person Filing the Application</b>
-				<br>
-				___________________________________<br>
-				<b>Position in the Organization</b>
-				<br>
-				___________________________________<br>
-				<b>Signature</b>
-				<br>
-
-
-
 				</p>
 			';
 			//var_dump($html);
 			$pdf->writeHTML($html, true, 0, true, 0);
-			$pdf->Output('example_003.pdf', 'I');
+
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('formA'.$id);
+         	//$filelocation = "C:\\xampp\\htdocs\\ASUO\\assets\\org\\accreditation\\form_D";//windows
+        	//$fileNL = $filelocation."\\".$file_name;//Windows
+
+        	$varArray = explode("/", $_SERVER['DOCUMENT_ROOT']);
+       		$temp = "ASUO\\assets\\org\\accreditation\\form_A\\";
+       		$base_directory = implode("\\", $varArray).$temp;
+       		
+
+
+       		if($type == 'preview')
+       		{
+       			$pdf->Output($base_directory.$file_name.".pdf",'I');
+       		}
+       		else
+       		{
+       			if($type == 'save')
+       			{
+       				$pdf->Output($base_directory.$file_name.".pdf",'F');
+       			}
+       		}
 
 
 		}
 		
-		private function viewFormC(){
+		private function viewFormC($type){
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 			// set document information
@@ -1054,10 +1070,35 @@
 			$pdf->writeHTML($tbl, true, false, false, false, '');
 			$pdf->writeHTML($line, true, 0, true, 0);
 
-			$pdf->Output('formc.pdf', 'I');
+			//$pdf->Output('formc.pdf', 'I');
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('formC'.$id);
+         	$filelocation = "C:\\xampp\\htdocs\\ASUO\\assets\\org\\accreditation\\form_C";//windows
+        	$fileNL = $filelocation."\\".$file_name;//Windows
+
+        	$varArray = explode("/", $_SERVER['DOCUMENT_ROOT']);
+       		$temp = "ASUO\\assets\\org\\accreditation\\form_C\\";
+       		$base_directory = implode("\\", $varArray).$temp;
+
+       		//INSERT INTO DB
+       		$this->load->model('OrgModel');
+			$this->OrgModel->uploadFormC($id, $file_name);
+
+       		if($type == 'preview')
+       		{
+       			$pdf->Output($base_directory.$file_name.".pdf",'I');
+       		}
+       		else
+       		{
+       			if($type == 'save')
+       			{
+       				$pdf->Output($base_directory.$file_name.".pdf",'F');
+       			}
+       		}
+			
 		}
 
-		private function viewFormD(){
+		private function viewFormD($type){
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 			// set document information
@@ -1136,13 +1177,36 @@
 				$pdf->writeHTML($samplehtml, true, 0, true, 0);
 			}
 			
-			$pdf->Output('example_003.pdf', 'I');
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('formD'.$id);
+         	//$filelocation = "C:\\xampp\\htdocs\\ASUO\\assets\\org\\accreditation\\form_D";//windows
+        	//$fileNL = $filelocation."\\".$file_name;//Windows
+
+        	$varArray = explode("/", $_SERVER['DOCUMENT_ROOT']);
+       		$temp = "ASUO\\assets\\org\\accreditation\\form_D\\";
+       		$base_directory = implode("\\", $varArray).$temp;
+       		
+       		//INSERT INTO DB
+       		$this->load->model('OrgModel');
+			$this->OrgModel->uploadFormD($id, $file_name);
+
+       		if($type == 'preview')
+       		{
+       			$pdf->Output($base_directory.$file_name.".pdf",'I');
+       		}
+       		else
+       		{
+       			if($type == 'save')
+       			{
+       				$pdf->Output($base_directory.$file_name.".pdf",'F');
+       			}
+       		}
 			//$pdf->Output('example_003.pdf', 'I');
 
 
 		}
 
-		public function viewFormE(){
+		public function viewFormE($type){
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 			// set document information
@@ -1228,7 +1292,30 @@
 		
 			
 			//var_dump($samplehtml);
-			$pdf->Output('example_003.pdf', 'I');			
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('formE'.$id);
+         	//$filelocation = "C:\\xampp\\htdocs\\ASUO\\assets\\org\\accreditation\\form_D";//windows
+        	//$fileNL = $filelocation."\\".$file_name;//Windows
+
+        	$varArray = explode("/", $_SERVER['DOCUMENT_ROOT']);
+       		$temp = "ASUO\\assets\\org\\accreditation\\form_E\\";
+       		$base_directory = implode("\\", $varArray).$temp;
+       		
+       		//INSERT INTO DB
+       		$this->load->model('OrgModel');
+			$this->OrgModel->uploadFormE($id, $file_name);
+
+       		if($type == 'preview')
+       		{
+       			$pdf->Output($base_directory.$file_name.".pdf",'I');
+       		}
+       		else
+       		{
+       			if($type == 'save')
+       			{
+       				$pdf->Output($base_directory.$file_name.".pdf",'F');
+       			}
+       		}		
 		}
 
 		private function viewFormF(){

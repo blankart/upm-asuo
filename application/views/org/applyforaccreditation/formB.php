@@ -127,6 +127,9 @@
               </div>
               </div>
             </div> <!--end cont2-->
+
+            <p>&nbsp;&nbsp;For the document template, &nbsp; <a href="<?php echo base_url(); ?>assets/org/accreditation/form_B/formB_template.docx" download>Click Here.</a></p>
+            
           </div>
         <script src="<?php echo base_url();?>js/custom-file-input.js"></script>
         <script src="<?php echo base_url();?>js/preview.js"></script>

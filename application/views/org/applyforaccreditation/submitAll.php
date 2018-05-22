@@ -62,7 +62,7 @@
                         <td align="center"><button class="btn btn-danger" onclick="
 
                         <?php if($form_A != 'No Submission'){ ?>
-                        	window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_B/<?php echo $form_A; ?>')
+                        	window.open('<?php echo base_url(); ?>assets/org/accreditation/form_A/<?php echo $form_A; ?>')
                         <?php } else {?>
                         	noFileUpload()
                         <?php } ?>
@@ -74,7 +74,7 @@
                         <td align="center"><button class="btn btn-danger" onclick="
 
                         <?php if($form_B != 'No Submission'){ ?>
-                        	window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_B/<?php echo $form_B; ?>')
+                        	window.open('<?php echo base_url(); ?>assets/org/accreditation/form_B/<?php echo $form_B; ?>')
                         <?php } else {?>
                         	noFileUpload()
                         <?php } ?>
@@ -101,7 +101,7 @@
                             <td align="center"><button class="btn btn-danger" onclick="
 
                             <?php if($form_F != 'No Submission'){ ?>
-                        		window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_B/<?php echo $form_F; ?>')
+                        		window.open('<?php echo base_url(); ?>assets/org/accreditation/form_F/<?php echo $form_F; ?>')
                         	<?php }else {?>
                         		noFileUpload()
                        		<?php } ?>
@@ -113,7 +113,7 @@
                             <td align="center"><button class="btn btn-danger" onclick="
 
                             <?php if($form_G != 'No Submission'){ ?>
-                        		window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_B/<?php echo $form_G; ?>')
+                        		window.open('<?php echo base_url(); ?>assets/org/accreditation/form_G/<?php echo $form_G; ?>')
                         	<?php }else {?>
                         		noFileUpload()
                        		<?php } ?>
@@ -128,7 +128,7 @@
                         <td align="center"><button class="btn btn-danger" onclick="
 
   						<?php if($plans != 'No Submission'){ ?>
-                        	window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_B/<?php echo $planst; ?>')
+                        	window.open('<?php echo base_url(); ?>assets/org/accreditation/plans/<?php echo $plans; ?>')
                         <?php }else {?>
                         	noFileUpload()
                         <?php } ?>
@@ -141,7 +141,7 @@
                         <td align="center"><button class="btn btn-danger" onclick="
 
                         <?php if($constitution != 'No uploads yet'){ ?>
-                        	window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_B/<?php echo $constitution; ?>')
+                        	window.open('<?php echo base_url(); ?>assets/org/constitution/<?php echo $constitution; ?>')
                         <?php }else {?>
                         	noFileUpload()
                         <?php } ?>
@@ -151,8 +151,9 @@
 
                 </table>
                 <br><br>
-                <button class="button">Submit Application</button>
-                <br><br>   
+                <div class="myBtn">
+                    <button class="btn btn-danger">Submit Application</button>
+                </div>   
             </div>  
         </div>
     </body>

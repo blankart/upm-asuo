@@ -84,8 +84,12 @@
 				
 					if($account_type == 'unactivatedStudent'){
 						//echo 'You account is not yet activated. Procced to OSA.'; //load view here note: redirect
+						$student_id = $this->session->userdata['user_id'];
+
+						$data = $this->StudentModel->getStudentDetails($student_id);
+						$data['notice'] = $this->StudentModel->getAdminNotice($student_id);
 						$this->load->view('header'); 
-						$this->load->view('errors/html/unactivated');
+						$this->load->view('unactivatedstudent', $data);
 						$this->load->view('footer');
 					}
 				

@@ -306,20 +306,37 @@
 
 		public function getDBformA($org_id)
 		{
-			$condition = $org_id." = aa.org_id AND aa.app_id = fa.app_id";
+			$condition = "aa.org_id = ".$org_id." AND aa.app_id = fa.app_id";
 			$this->db->select("fa.*");
-			$this->db->from("form_a_details fa, accrediationapplication aa");
+			$this->db->from("form_a_details fa, accreditationapplication aa");
 			$this->db->where($condition);
 			$org_details = $this->db->get();
-			
-			return $org_details;
+			if($org_details->num_rows() == 0)
+			{
+				$result['adviser'] = "";
+				$result['adviser_position'] = "";
+				$result['adviser_college'] = "";
+				$result['contact_person'] = "";
+				$result['contact_position'] = "";
+				$result['contact_email'] = "";
+				$result['contact_address'] = "";
+				$result['contact_tel'] = "";
+				$result['contact_mobile'] = "";
+				$result['contact_other_details'] = "";
+				return $result;
+			}
+			else
+			{
+				return $org_details->result_array()[0];
+			}
+			//
 		}
 
 		public function getFormAdetails($org_id)
 		{
 
 			$data = $this->getOrgDetails($org_id);
-			$data['formA'] = $this->getDBformA();
+			$data['formA'] = $this->getDBformA($org_id);
 			$data['tally'] = $this->getOrgTally($org_id);
 
 			return $data;
@@ -503,12 +520,51 @@
 
 		}
 
+		public function uploadFormA($id, $file_name){
+			$condition = 'org_id = ' .$id;
 
+			$changes = array(
+				'form_A' => $file_name.'.pdf'
+			);
+
+			$this->db->where($condition);
+			$this->db->update("accreditationapplication", $changes);
+		}
 		public function uploadFormB($id, $file_name){
 			$condition = 'org_id = ' .$id;
 
 			$changes = array(
 				'form_B' => $file_name.'.pdf'
+			);
+
+			$this->db->where($condition);
+			$this->db->update("accreditationapplication", $changes);
+		}
+		public function uploadFormC($id, $file_name){
+			$condition = 'org_id = ' .$id;
+
+			$changes = array(
+				'form_C' => $file_name.'.pdf'
+			);
+
+			$this->db->where($condition);
+			$this->db->update("accreditationapplication", $changes);
+		}
+		public function uploadFormD($id, $file_name){
+			$condition = 'org_id = ' .$id;
+
+			$changes = array(
+				'form_D' => $file_name.'.pdf'
+			);
+
+			$this->db->where($condition);
+			$this->db->update("accreditationapplication", $changes);
+		}
+		public function uploadFormE($id, $file_name){
+			$condition = 'org_id = ' .$id;
+
+			$changes = array(
+				'form_E' => $file_name.'.pdf'
 			);
 
 			$this->db->where($condition);

@@ -134,7 +134,17 @@
                 }
 
                 function studApproved(name, acronym, id){
-                   $.ajax({
+                  
+                  swal({
+                    title: "Approve "+ name+ "?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Approve",
+                    closeOnConfirm: false
+                  },
+                  function(){
+
+                      $.ajax({
                       type: "post",
                       url: "<?php echo base_url();?>org/approveMembership",
                       data: {student_id: id},
@@ -151,10 +161,21 @@
                         }
                       }
                     });
-                
+                    }
+                  );
                 }
 
                 function studReject(name, id){
+
+                  swal({
+                    title: "Reject "+ name+ "?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Reject",
+                    closeOnConfirm: false
+                  },
+                  function(){
+
                     $.ajax({
                       type: "post",
                       url: "<?php echo base_url();?>org/rejectMembership",
@@ -172,6 +193,8 @@
                         }
                       }
                     });
+                    }
+                  );
                 }
 
                 function changePosition(name, id ){
