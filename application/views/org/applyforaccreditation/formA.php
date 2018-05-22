@@ -61,7 +61,7 @@
             <div class="col-4">
 				<!-- sidenav -->
                 <div class="sidenav">
-                	<?php if($org_status == "Accredited"){ ?>
+                	<?php if($stay == "old"){ ?>
                 	<ul class="menu">
                         <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
                         <li class="active"><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
