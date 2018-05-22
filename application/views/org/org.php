@@ -311,11 +311,11 @@
 
                             <?php if($account_type == 'org') {?>
 								<button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#editprofile">
-									<i class="fa fa-edit fa-2x pull-left"></i>Edit Profile</button> 
+									<i class="fa fa-edit fa-2x" style='float: left;'></i>Edit Profile</button> 
 								<button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" onclick="location.href = '<?php echo base_url(); ?>org/applyforaccreditation';">
-									<i class="fa fa-folder-open fa-2x pull-left"></i>Apply for Accreditation</button>
+									<a><i class="fa fa-folder-open fa-2x" style='float: left;'></i>Apply for Accreditation</a></button>
 								<button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#createposts">
-									<i class="fas fa-paper-plane fa-2x pull-left" style='margin-right: 20px;'></i>Create Post</button>
+									<a><i class="fas fa-paper-plane fa-2x pull-left" style='float: left;'></i>Create Post</a></button>
                             <?php } ?>
 
                             <?php if(!$isAdmin && !$isOfficer && !$isMember && !$isOrg && !$isApplicant ){?>
