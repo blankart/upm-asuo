@@ -706,8 +706,9 @@
 			$id = $this->session->userdata['user_id'];
 			$file_name = md5('formA'.$id);
 			$this->OrgModel->uploadFormA($id, $file_name);
+			$this->viewFormA("save");
 			//var_dump($temp);
-			redirect(base_url().'org/formA');
+			redirect(base_url().'org/formC');
 		}
 
 		private function loadAccreditationHome(){
