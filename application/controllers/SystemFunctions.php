@@ -282,7 +282,6 @@
 			if($credentials != NULL)
 			{
 				//just follow the code in SystemModel/loginAdmin.
-
 				$this->load->model('SystemModel');
 			    $result = $this->SystemModel->login($credentials);
 
@@ -305,6 +304,23 @@
 
 			$account_type = $data['account_type'];
 
+			$this->load->model('SystemModel');
+			$period = $this->SystemModel->getAccreditationPeriod();
+
+			$format = 'Y-m-d H:i:s';
+			$open_accreditation= false;
+
+			if($period != false){
+				$today = date($format);
+				$end = date( $period['end_date'] );
+
+				if($today < $end)
+					$open_accreditation = true;
+				else
+					$open_accreditation = false;
+			}else
+				$open_accreditation= false;
+
 			if($account_type == 'org' || $account_type == 'unverifiedOrg' || $account_type == 'unactivatedOrg' || $account_type == 'archivedOrg'){
 
 				$nsacronym = str_replace(' ', '', $data['acronym']);
@@ -316,7 +332,8 @@
 		    		'nsacronym' => $nsacronym,
 		    		'email'     => $data['org_email'],
 		    		'logged_in' => TRUE,
-		    		'org_logo' => $data['org_logo']
+		    		'org_logo' => $data['org_logo'],
+		    		'open_accreditation' => $open_accreditation
 				);
 
 			    $this->session->set_userdata($details);
@@ -332,7 +349,8 @@
 		   			'username'  => $data['username'],
 		    		'email'     => $data['up_mail'],
 		    		'logged_in' => TRUE,
-		    		'profilepic' => $data['profile_pic']
+		    		'profilepic' => $data['profile_pic'],
+		    		'open_accreditation' => $open_accreditation
 				);
 
 				$this->session->set_userdata($details);
@@ -345,7 +363,8 @@
 					'user_id' => $data['admin_id'],
 	       			'username'  => $data['username'],
 	       			'admin_name'  => $data['admin_name'],
-	    			'logged_in' => TRUE	    			
+	    			'logged_in' => TRUE,
+	    			'open_accreditation' => $open_accreditation  			
 				);
 
 				$this->session->set_userdata($details);
@@ -356,8 +375,10 @@
 		private function logOut(){
 			$this->session->unset_userdata('logged_in');
 			$this->session->sess_destroy();
+			$this->load->model('SystemModel');
+			$data['notice'] =	$this->SystemModel->getLoginNotice();
 			$this->load->view('header');
-			$this->load->view('login');
+			$this->load->view('login', $data);
 			$this->load->view('footer');
 		}
 

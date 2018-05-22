@@ -2,6 +2,8 @@
   
   $account_type=$this->session->userdata["account_type"];
 
+  $open_accreditation = $this->session->userdata['open_accreditation'];
+
     if($account_type == 'student' || $account_type == 'admin'){
         $isAdmin = $isAdmin;
         $isOfficer = $isOfficer;
@@ -335,8 +337,13 @@
                             <?php if($account_type == 'org') {?>
 								<button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#editprofile">
 									<i class="fa fa-edit fa-2x" style='float: left;'></i>Edit Profile</button> 
+
+                  <?php if($open_accreditation) {?>
 								<button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" onclick="location.href = '<?php echo base_url(); ?>org/applyforaccreditation';">
 									<a><i class="fa fa-folder-open fa-2x" style='float: left;'></i>Apply for Accreditation</a></button>
+
+                  <?php }?>
+
 								<button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#createposts">
 									<a><i class="fas fa-paper-plane fa-2x pull-left" style='float: left;'></i>Create Post</a></button>
                             <?php } ?>

@@ -454,14 +454,21 @@
 
 				$admin_id = $this->session->userdata['user_id'];				
 				$data['admin_id'] = $admin_id;
-				$data['start_date'] = $period['start_date'];
-				$data['end_date'] = $period['end_date'];
+
+				
+
+				$format = 'Y-m-d H:i:s';
+				$time = strtotime($period['start_date']);
+
+				$data['start_date'] = date($format, $time);
+
+				$time = strtotime($period['end_date']);
+				$data['end_date'] =  date($format, $time);
 				$data['status'] = 'Opened';
 
 				$this->load->model('AdminModel');
-				$result = false;
-				$result = $this->AdminModel->openAccreditationPeriod($data);
-				echo json_encode($result);
+				$this->AdminModel->openAccreditationPeriod($data);
+				echo json_encode(true);
 				exit();
 			}
 			else
