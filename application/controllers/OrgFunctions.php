@@ -1056,9 +1056,27 @@
 
 			//$pdf->Output('formc.pdf', 'I');
 			$id = $this->session->userdata['user_id'];
-			$file_name = md5('formC'.$id);
+			$file_name = md5('formC'.$id).".pdf";
+			//$full_path = "http://localhost\\ASUO\\assets\\org\\accreditation\\form_C";	
+			//var_dump(chmod($full_path, 0755));
 			//ob_clean();
-			$pdf->Output(base_url()."assets/org/accreditation/form_C/".$file_name.".pdf", 'F');
+			//$filename= "{$membership->id}.pdf"; 
+         	//$filelocation = "C:\\xampp\\htdocs\\ASUO\\assets\\org\\accreditation\\form_C";//windows
+             //$filelocation = "/var/www/project/custom"; //Linux
+
+        	//$fileNL = $full_path."\\".$file_name;//Windows
+           // $fileNL = $full_path."/".$filename; //Linux
+
+       		//$pdf->Output($fileNL,'FI');
+       		//var_dump("success");
+       		$temp = base_url()."assets/org/accreditation/form_C/";
+       		var_dump(chmod($temp,777));
+			$pdf->Output($temp.$file_name, 'FI');
+			//var_dump("././".__DIR__);
+			//$pdf_string = $pdf->Output($file_name, 'S');
+
+			//var_dump($_SERVER['DOCUMENT_ROOT']."ASUO/assets/org/accreditation/form_C/");
+			//file_put_contents(base_url()."assets/org/accreditation/form_C/".$file_name, $pdf_string);
 		}
 
 		private function viewFormD(){
