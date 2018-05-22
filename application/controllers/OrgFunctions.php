@@ -6,10 +6,8 @@
 			if( !isset($this->session->userdata['logged_in']) )
 				redirect(base_url().'login');
 			else if($action == 'login' || $action == 'regstud' || $action == 'regorg')
-			 		$this->redirectToProfile();
+			 		$this->redirecttToProfile();
 
-			else if ($action == 'checkOrgPassword')
-				$this->checkOrgPassword();
 			else if ($action == 'changeOrgPassword')
 				$this->changeOrgPassword();
 			else if ($action=='createPost')
@@ -478,11 +476,16 @@
 				$this->viewFormD('save');
 				$this->viewFormE('save');
 				$this->load->model('OrgModel');
-				$this->OrgModel->submitApplication($org_id);
+				$result = $this->OrgModel->submitApplication($org_id);
+
+				echo json_encode($result);
+				exit(); 
 
 			}
-			echo json_encode($data);
-			exit(); 
+			else
+				show_404();
+
+			
 		}
 
 		private function applyToOrg()

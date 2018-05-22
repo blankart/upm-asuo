@@ -177,7 +177,7 @@
 		}
 
 		public function getAccreditationDocuments($org_id){
-			$condition = "aa.org_id = " .$org_id. " AND aa.org_id = op.org_id AND aa.app_status = 'Pending'";
+			$condition = "aa.org_id = " .$org_id. " AND aa.org_id = op.org_id AND aa.app_status = 'Submitted'";
 
 			$this->db->select('aa.*, op.*');
 			$this->db->from('accreditationapplication aa, organizationprofile op');
@@ -211,6 +211,15 @@
 
 			$this->db->where($condition);
 			$this->db->update('organizationaccount', $changes);
+
+			//Accredited
+
+			$changes = array(
+				'app_status' => 'Accredited'
+			);
+
+			$this->db->where($condition);
+			$this->db->update('accreditationapplication', $changes);
 		}
 
 		public function rejectOrg($id){
@@ -222,6 +231,14 @@
 
 			$this->db->where($condition);
 			$this->db->update('organizationaccount', $changes);
+
+			//reject
+			$changes = array(
+				'app_status' => 'Rejected'
+			);
+
+			$this->db->where($condition);
+			$this->db->update('accreditationapplication', $changes);
 		}
 		//
 		public function openAccreditation($period){
