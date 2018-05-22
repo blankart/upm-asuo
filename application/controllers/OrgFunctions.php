@@ -499,6 +499,11 @@
 				$this->load->model('OrgModel');
 				$this->OrgModel->rejectMembership($org_id, $student_id);
 
+				$org_name = $this->OrgModel->getOrgName($org_id);
+                $up_mail = $this->OrgModel->getStudentUPMail($student_id);
+                $this->sendNotification('Organization Membership Rejected', $org_name, $up_mail, 'None');
+
+
 				echo json_encode(true);
 				exit();
 			}
@@ -517,6 +522,11 @@
 
 				$this->load->model('OrgModel');
 				$this->OrgModel->approveMembership($org_id, $student_id);
+
+				$org_name = $this->OrgModel->getOrgName($org_id);
+                $up_mail = $this->OrgModel->getStudentUPMail($student_id);
+                $this->sendNotification('Organization Membership Approved', $org_name, $up_mail, 'None');
+
 
 				echo json_encode(true);
 				exit();
@@ -540,7 +550,7 @@
 
 				$org_name = $this->OrgModel->getOrgName($org_id);
 				$up_mail = $this->OrgModel->getStudentUPMail($student_id);
-				$this->sendChangePositionNotification($org_name, $up_mail, $position);
+				$this->sendNotification('Change in Membership Position', $org_name, $up_mail, $position);
 
 				echo json_encode($position);
 				exit();
@@ -564,7 +574,7 @@
 
 				$org_name = $this->OrgModel->getOrgName($org_id);
 				$up_mail = $this->OrgModel->getStudentUPMail($student_id);
-				$this->sendRemoveMembershipNotification($org_name, $up_mail, $reason);
+				$this->sendNotification('Membership Removal', $org_name, $up_mail, $reason);
 
 				echo json_encode($org_name.' '.$up_mail);
 				exit();
@@ -573,9 +583,51 @@
 				show_404();
 		}
 
-		private function sendRemoveMembershipNotification($org_name, $up_mail, $reason){
-		
-				$config = array(
+		private function sendNotification($type, $org_name, $up_mail, $other_info){
+
+			if($type == 'Membership Removal'){
+                $reason = $other_info;
+
+                $reason = $other_info;
+                $message = '<html><body>';
+                $message .= '<p> Notification from ASUO:</p>';
+                $message .= '<p>Your membership from '. $org_name.' has been removed.</p>';
+                $message .= "<p>The reason indicated was '".$reason."'.</p>";
+			    $message .= '<p>For more details, please communicate with your organization.</p>';
+			    $message .= '<p>ASUO Administrator</p>';
+			    $message .= '</body></html>';
+            }
+
+            if($type == 'Change in Membership Position'){
+                $position = $other_info;
+                $message = '<html><body>';
+                $message .= '<p> Notification from ASUO:</p>';
+                $message .= '<p>Your membership position in '. $org_name.' has been changed.</p>';
+                $message .= "<p>Your new position is now '".$position."'.</p>";
+                $message .= '<p>For more details, please communicate with your organization.</p>';
+                $message .= '<p>ASUO Administrator</p>';
+                $message .= '</body></html>';
+             }
+
+            if($type == 'Organization Membership Approved'){
+                 $message = '<html><body>';
+                $message .= '<p> Notification from ASUO:</p>';
+                $message .= '<p>Your organization membership application in '. $org_name.' has been approved.</p>';
+                $message .= '<p>For more details, please contact ' .$org_name. '.</p>';
+                $message .= '<p>ASUO Administrator</p>';
+                $message .= '</body></html>';
+             }
+
+             if($type == 'Organization Membership Rejected'){
+                 $message = '<html><body>';
+                $message .= '<p> Notification from ASUO:</p>';
+                $message .= '<p>Your organization membership application in '. $org_name.' has been rejected.</p>';
+                $message .= '<p>For more details, please contact ' .$org_name. '.</p>';
+                $message .= '<p>ASUO Administrator</p>';
+                $message .= '</body></html>';
+             }
+
+         		 $config = array(
 					'useragent' => "CodeIgniter",
 		        	'mailpath'  => "/usr/bin/sendmail",
 					'protocol'  => 'smtp' , 
@@ -596,15 +648,7 @@
 			    $this->email->from($up_mail, 'ASUO Team');
 
 			    $this->email->to($up_mail);
-			    $this->email->subject('Membership Removal');
-
-			    $message = '<html><body>';
-			    $message .= '<p> Notification from ASUO:</p>';
-			    $message .= '<p>Your membership from '. $org_name.' has been removed.</p>';
-			    $message .= "<p>The reason indicated was '".$reason."'.</p>";
-			    $message .= '<p>For more details, please communicate with your organization.</p>';
-			    $message .= '<p>ASUO Administrator</p>';
-			    $message .= '</body></html>';
+			    $this->email->subject($type);
 
 			    $this->email->message($message);
 			
@@ -616,52 +660,6 @@
 				    $result['error'] = $this->email->print_debugger(array('headers'));
 				   }
 		}
-
-		private function sendChangePositionNotification($org_name, $up_mail, $position){
-		
-				$config = array(
-					'useragent' => "CodeIgniter",
-		        	'mailpath'  => "/usr/bin/sendmail",
-					'protocol'  => 'smtp' , 
-			        'smtp_host' => 'ssl://smtp.gmail.com' , 
-			        'smtp_port' => 465 , 
-			        'smtp_user' => 'asuodevelopers@gmail.com' ,
-			        'smtp_pass' => 'cmsc128.1',
-			        'mailtype'  => 'html', 
-			        'charset'   => 'utf-8', 
-			        'newline'   => "\r\n",  
-			        'wordwrap'  => TRUE 
-				);
-
-			    //load email library
-			  	$this->email->initialize($config);
-
-			    $this->email->set_mailtype('html');
-			    $this->email->from($up_mail, 'ASUO Team');
-
-			    $this->email->to($up_mail);
-			    $this->email->subject('Change in Membership Position');
-
-			    $message = '<html><body>';
-			    $message .= '<p> Notification from ASUO:</p>';
-			    $message .= '<p>Your membership position in '. $org_name.' has been changed.</p>';
-			    $message .= "<p>Your new position is now '".$position."'.</p>";
-			    $message .= '<p>For more details, please communicate with your organization.</p>';
-			    $message .= '<p>ASUO Administrator</p>';
-			    $message .= '</body></html>';
-
-			    $this->email->message($message);
-			
-				if ($this->email->send()){
-				      $result['success'] = 'Yes';
-				}
-				else{
-				    $result['success'] = 'No';
-				    $result['error'] = $this->email->print_debugger(array('headers'));
-				   }
-		}
-
-
 
 
 //-------------------------------FORMS FOR ACCREDITATION---------------------------------------
