@@ -9,7 +9,6 @@
             <div class="modal-body">
 				<div>
                     <p class="form-text text-muted">Message entered will appear on the login page and can be viewed by all.</p><br>
-					<center><h5>Compose Message</h5>
 				</div>
 				<div class="form-group">
 					<input type="text" minlength="1" maxlength="50" class="form-control" id="sendNoticeTitle" name="subject" placeholder="Title" required>
