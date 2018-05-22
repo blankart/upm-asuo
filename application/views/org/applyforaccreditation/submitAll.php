@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+
+<script type="text/javascript">
+	function noFileUpload(){
+		swal('Warning', 'You have not uploaded yet!', 'warning');
+	}
+
+</script>
 <html>
     <head>
         <meta charset="utf-8">
@@ -52,45 +59,94 @@
                     </tr>
                     <tr>
                         <td>Form A: Accreditation Application</td>
-                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/formA.pdf');">View</button>
+                        <td align="center"><button class="btn btn-danger" onclick="
+
+                        <?php if($form_A != 'No Submission'){ ?>
+                        	window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_B/<?php echo $form_A; ?>')
+                        <?php } else {?>
+                        	noFileUpload()
+                        <?php } ?>
+
+                        ">View</button>
                     </tr>
                     <tr>
                         <td>Form B: Adviser's Consent</td>
-                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/formB.pdf');">View</button>
+                        <td align="center"><button class="btn btn-danger" onclick="
+
+                        <?php if($form_B != 'No Submission'){ ?>
+                        	window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_B/<?php echo $form_B; ?>')
+                        <?php } else {?>
+                        	noFileUpload()
+                        <?php } ?>
+
+
+                        ">View</button>
                     </tr>
                     <tr>
                         <td>Form C: Organization Profile</td>
-                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/formC.pdf');">View</button>
+                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>org/viewFormC');">View</button>
                     </tr>
                     <tr>
                         <td>Form D: Officers' Profile</td>
-                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/formD.pdf');">View</button>
+                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>org/viewFormD');">View</button>
                     </tr>
                     <tr>
                         <td>Form E: Members' Profile</td>
-                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/formE.pdf');">View</button>
+                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>org/viewFormE');">View</button>
                     </tr>
                     
                     <?php if($org_status == "Accredited"){ ?>
                         <tr>
                             <td>Form F: Activity Report</td>
-                            <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/formF.pdf');">View</button>
+                            <td align="center"><button class="btn btn-danger" onclick="
+
+                            <?php if($form_F != 'No Submission'){ ?>
+                        		window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_B/<?php echo $form_F; ?>')
+                        	<?php }else {?>
+                        		noFileUpload()
+                       		<?php } ?>
+
+                            ">View</button>
                         </tr>
                         <tr>
                             <td>Form G: Financial Report</td>
-                            <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/formG.pdf');">View</button>
+                            <td align="center"><button class="btn btn-danger" onclick="
+
+                            <?php if($form_G != 'No Submission'){ ?>
+                        		window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_B/<?php echo $form_G; ?>')
+                        	<?php }else {?>
+                        		noFileUpload()
+                       		<?php } ?>
+
+                            ">View</button>
                         </tr>
                     
                     <?php } ?>
 
                     <tr>
                         <td>Plans</td>
-                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/plans.pdf');">View</button>
+                        <td align="center"><button class="btn btn-danger" onclick="
+
+  						<?php if($plans != 'No Submission'){ ?>
+                        	window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_B/<?php echo $planst; ?>')
+                        <?php }else {?>
+                        	noFileUpload()
+                        <?php } ?>
+
+                        ">View</button>
                     </tr>
 
                     <tr>
                         <td>Constitution</td>
-                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/constitution.pdf');">View</button>
+                        <td align="center"><button class="btn btn-danger" onclick="
+
+                        <?php if($constitution != 'No uploads yet'){ ?>
+                        	window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_B/<?php echo $constitution; ?>')
+                        <?php }else {?>
+                        	noFileUpload()
+                        <?php } ?>
+
+                        ">View</button>
                     </tr>
 
                 </table>

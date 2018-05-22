@@ -807,7 +807,9 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetails($org_id);
+			$result = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getForms($org_id);
+			$data['org_status'] = $result['org_status'];
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/submitAll', $data);
