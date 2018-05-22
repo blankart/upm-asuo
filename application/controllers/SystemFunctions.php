@@ -282,7 +282,6 @@
 			if($credentials != NULL)
 			{
 				//just follow the code in SystemModel/loginAdmin.
-
 				$this->load->model('SystemModel');
 			    $result = $this->SystemModel->login($credentials);
 
@@ -356,8 +355,10 @@
 		private function logOut(){
 			$this->session->unset_userdata('logged_in');
 			$this->session->sess_destroy();
+			$this->load->model('SystemModel');
+			$data['notice'] =	$this->SystemModel->getLoginNotice();
 			$this->load->view('header');
-			$this->load->view('login');
+			$this->load->view('login', $data);
 			$this->load->view('footer');
 		}
 

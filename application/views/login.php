@@ -47,14 +47,16 @@ onReady(function() {
 			<div class="col-sm-7 text">
 			<div class="row justify-content-md-center h-100">
 				<div class="card fat">	
-					<div class="card-body">
-						 <h2>Getting Started</h2>
+					<div class="card-body" style='width: 650px;'>
+						 <?php if ($notice){ echo '<h2>'.$notice['title'].'</h2>';} else{echo 'No login message found';}?>
 				<hr>
-                <div class="description">
-                    <p>
-	                   	Lorem ispsum dolor sit amet, consectetur adipiscing elit. Integer eget egestas quam. Nulla sodales purus nisi, vitae cursus ipsum maximus non. Vestibulum nec vestibulum turpis. Sed justo lacus, pulvinar a dolor in, malesuada tempor purus. Proin id lectus eu arcu hendrerit tempor vitae et ligula. Phasellus facilisis tellus sed sagittis cursus. Proin nec scelerisque ipsum, et sollicitudin ante. Etiam tellus risus, sollicitudin ac tincidunt vitae, semper ac nisi.
+                <div class="description" style='overflow-y: scroll; font-size: 16px;'>
+                	<div style='font-style: italic; margin-bottom: 10px;'><?php if ($notice) echo date("g:i:s a |  F j, Y", strtotime($notice['date_posted'])); else echo 'No login message found'; ?></div>
+                    <p style='font-size: 16px;'>
+	                   	<?php if ($notice) echo nl2br($notice['content']); else echo 'No login message found'; ?>
                    	</p>
                 </div>
+                <div style='font-style: italic; margin-top: 10px; font-size: 16px;'><?php if ($notice) echo $notice['admin_name']; else echo 'No login message found'; ?></div>
 					</div>
 				</div>
 				</div>
