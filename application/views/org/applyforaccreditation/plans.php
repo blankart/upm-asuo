@@ -86,7 +86,7 @@
             <!-- Page Content -->
 			<div class="main">
 				<?php 
-					if($app_status == "new"){
+					if($stay == "new"){
 						echo "<h1>Plans for the Academic Year</h1>";
 					}
 					else{
