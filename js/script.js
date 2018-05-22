@@ -3,13 +3,13 @@ function _(x){
 }
 
 function processPhase1(){
-	_("progressBar").value = 16.67;
+	_("progressBar").value = 20;
 	_("phase1").style.display = "none";
 	_("phase2").style.display = "block";
 }
 
 function processPhase2(){
-	_("progressBar").value = 33.34;
+	_("progressBar").value = 40;
 	_("phase2").style.display = "none";
 	_("phase3").style.display = "block";
 }
@@ -21,7 +21,7 @@ function back1(){
 }
 
 function processPhase3(){
-	_("progressBar").value = 50.01;
+	_("progressBar").value = 60;
 	_("phase3").style.display = "none";
 	_("phase4").style.display = "block";
 }
@@ -29,7 +29,7 @@ function processPhase3(){
 function back2(){
 	_("phase2").style.display = "block";
 	_("phase3").style.display = "none";
-	_("progressBar").value = 16.67;
+	_("progressBar").value = 20;
 }
 ////////////////////////////////////////////
 function incomplete1() {
@@ -47,11 +47,11 @@ function incomplete1() {
 ///////////////////////////////////////////
 function processPhase4(){
 	if (document.getElementById('phase4but').disabled == false){
-		_("progressBar").value = 66.68;
+		_("progressBar").value = 80;
 		_("phase4").style.display = "none";
 		_("phase5").style.display = "block";
 	} else {
-		_("progressBar").value = 50.01;
+		_("progressBar").value = 60;
 		_("phase3").style.display = "none";
 		_("phase4").style.display = "block";
 	}
@@ -60,7 +60,7 @@ function processPhase4(){
 function back3(){
 	_("phase3").style.display = "block";
 	_("phase4").style.display = "none";
-	_("progressBar").value = 33.34;
+	_("progressBar").value = 40;
 }
 
 function incomplete2() {
@@ -85,11 +85,11 @@ function incomplete2() {
 
 function processPhase5(){
 	if (document.getElementById('phase5but').disabled == false){
-		_("progressBar").value = 83.35;
+		_("progressBar").value = 100;
 		_("phase5").style.display = "none";
 		_("phase6").style.display = "block";
 	} else {
-		_("progressBar").value = 66.68;
+		_("progressBar").value = 80;
 		_("phase4").style.display = "none";
 		_("phase5").style.display = "block";		
 	}
@@ -98,21 +98,20 @@ function processPhase5(){
 function back4(){
 	_("phase4").style.display = "block";
 	_("phase5").style.display = "none";
-	_("progressBar").value = 50.01;
+	_("progressBar").value = 60;
 }
 
 function processPhase6(){
 	_("progressBar").value = 100;
 	_("phase6").style.display = "none";
 	_("show_all_data").style.display = "block";
-	_("status").innerHTML = "Data Overview";
 
 }
 
 function back5(){
 	_("phase5").style.display = "block";
 	_("phase6").style.display = "none";
-	_("progressBar").value = 66.68;
+	_("progressBar").value = 80;
 }
 
 function back6(){
@@ -123,7 +122,6 @@ function back6(){
 
 function submitForm(){
 	_("multiphase").method = "post";
-	//_("multiphase").action = "my_parser.php";
 	_("multiphase").submit();
 	
 }

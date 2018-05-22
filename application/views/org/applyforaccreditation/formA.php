@@ -101,26 +101,16 @@
 					</div>
 
 					<div id="phase6">
-						Objectives of Organization:
-						<input type="text" id="objectives" name="objectives" value="<?php echo $objectives?>" disabled><br>
-						Brief Description of Organization:
-						<input type="text" id="description" name="description" value="<?php echo $description ?>" disabled><br><br>
+						Objectives of Organization:<br>
+						<textarea rows="2" cols="100%" id="objectives" name="objectives" style="resize: none;" placeholder="<?php echo $objectives?>" disabled></textarea><br><br>
+						Brief Description of Organization:<br>
+						<textarea rows="2" cols="100%" id="description" name="description" style="resize: none;" placeholder="<?php echo $description ?>" disabled></textarea><br><br>
 
 						<button class="btn btn-danger" type="button" onclick="back5()">Back</button>
-						<button class="btn btn-danger" type="button" onclick="processPhase6()">Continue</button>
-					</div>
-
-					<!-- review details before submitting-->
-					<div id="show_all_data">
-						*show overview of PDF*<br>
-
-						<!-- add sweet alert -->
-						<button class="btn btn-danger" type="button" onclick="back6()">Back</button>
 						<button class="btn btn-danger" type="button" onclick="submitForm()">Save</button>
 					</div>
 					<input type="hidden" name="data[app_id]" value="<?php echo $app_id;?>">
 				</form>
-
 			</div>
 		</div>
 	</body>
