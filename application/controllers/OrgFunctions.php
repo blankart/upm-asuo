@@ -80,19 +80,46 @@
 				$this->saveFormA();
 			}
 			else if($action == 'viewFormA'){
-				$this->viewFormA("preview");
+					if(!isset($_SERVER['HTTP_REFERER'])){
+					show_404();
+
+					}
+				else{
+					$this->viewFormA("preview");
+				}
 			}
 			else if($action == 'viewFormC'){
-				$this->viewFormC("preview");
+				if(!isset($_SERVER['HTTP_REFERER'])){
+					show_404();
+
+					}
+					else{
+						$this->viewFormC("preview");
+					}
 			}
 			else if($action == 'viewFormD'){
-				$this->viewFormD("preview");
+					if(!isset($_SERVER['HTTP_REFERER'])){
+						show_404();
+					}
+					else{
+						$this->viewFormD("preview");
+					}
 			}
 			else if($action == 'viewFormE'){
-				$this->viewFormE("preview");
+						if(!isset($_SERVER['HTTP_REFERER'])){
+						show_404();
+					}
+					else{
+						$this->viewFormE("preview");
+					}
 			}
 			else if($action == 'viewFormF'){
-				$this->viewFormF();
+					if(!isset($_SERVER['HTTP_REFERER'])){
+						show_404();
+					}
+					else{
+						$this->viewFormE("preview");
+					}
 			}
 			else{
 				$account_type = $this->session->userdata['account_type'];

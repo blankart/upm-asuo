@@ -251,7 +251,7 @@
         <div class="modal-body">
           <div id="studSearch">
             <div class="container">
-              <p class="form-text text-muted">Activate or reject student accounts with valid UP mail and complete details.</p>
+              <p class="form-text text-muted">Activate student accounts with valid UP mail and complete details.</p>
               <div class="mail-box">
                 <aside class="lg-side">
                   <div class="inbox-head">
