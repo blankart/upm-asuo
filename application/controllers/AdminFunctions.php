@@ -55,6 +55,9 @@
 			else if($action == 'rejectOrg')
 				$this->rejectOrg();
 			//
+
+			else if($action == 'openAccreditationPeriod')
+				$this->openAccreditationPeriod();
 			
 			else if ($action == 'sendNoticeSearch')
 				$this->sendNoticeSearch();
@@ -442,6 +445,28 @@
 				show_404();
 		}
 		//
+
+		private function openAccreditationPeriod(){
+
+			$period = $this->input->post('period');
+
+			if($period != NULL){
+
+				$admin_id = $this->session->userdata['user_id'];				
+				$data['admin_id'] = $admin_id;
+				$data['start_date'] = $period['start_date'];
+				$data['end_date'] = $period['end_date'];
+				$data['status'] = 'Opened';
+
+				$this->load->model('AdminModel');
+				$result = false;
+				$result = $this->AdminModel->openAccreditationPeriod($data);
+				echo json_encode($result);
+				exit();
+			}
+			else
+				show_404();
+		}
 
 		private function sendNoticeSearch(){
 			$query = $this->input->post('query');
