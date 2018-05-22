@@ -52,6 +52,7 @@
 
             swal({
        html: true,
+       customClass: 'swal-wide animated fadeIn',
        title: "<h4>Message Details</h4>",
        text: "<div class='container' style='margin-top: 20px;'>"+
                 "<div class='row' style='text-align: left;'>"+

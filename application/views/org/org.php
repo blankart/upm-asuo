@@ -356,7 +356,7 @@
                               <div class="well profile text-center">
                         		    <h2><?php echo $profile['acronym']; ?></h2>
                         		    <h5><?php echo $profile['org_college']; ?></h5>
-                        		    <h6><i class="fas fa-envelope"></i> <a href="mailto:<?php echo $profile['org_email']; ?>"><?php echo $profile['org_email']; ?></a>&emsp;<i class="fas fa-link"></i> <a href="<?php echo prep_url($profile['org_website']); ?>" target="_blank"><?php echo $profile['org_website']; ?></a></h6>
+                        		    <h6><i class="fas fa-envelope"></i> <a href="mailto:<?php echo $profile['org_email']; ?>" style="color: #008b8b;"><?php echo $profile['org_email']; ?></a>&emsp;<i class="fas fa-link"></i> <a href="<?php echo prep_url($profile['org_website']); ?>" target="_blank" style="color: #008b8b;" ><?php echo $profile['org_website']; ?></a></h6>
                         		  </div>
                               <div class="well profile text-left">
                                 <br><br>
@@ -378,7 +378,7 @@
                                    ?>
                                 <div class="stream-post">
                                     <div class="sp-author">
-                                        <a class="sp-author-avatar" href="#"><img alt="" src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo'].'?'.rand(1, 100); ?>"></a>
+                                        <a class="sp-author-avatar"><img alt="" src="<?php echo base_url().'assets/org/logo/'.$profile['org_logo'].'?'.rand(1, 100); ?>"></a>
                                         <h6 class="sp-author-name"><a href="#"><?php echo $profile['acronym']; ?></a></h6>
                                     </div>
 
@@ -418,12 +418,12 @@
                                                       ?>
                                                 <tr>
                                                     <td>
-                                                     <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$member['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="<?php echo base_url().'student/'.$member['username'];?>"><?php echo $member['first_name']." ".$member['middle_name']." ".$member['last_name']; ?></a>
+                                                     <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$member['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="<?php echo base_url().'student/'.$member['username'];?>" style="color:inherit;"><?php echo $member['first_name']." ".$member['middle_name']." ".$member['last_name']; ?></a>
                                                     </td>
                                                     <td class="text-center">
                                                       <span class="badge badge-success"><?php echo $member['position']; ?></span></td>
                                                     <td>
-                                                     <a href="mailto:<?php echo $member['up_mail']; ?>"><?php echo $member['up_mail']; ?></a>
+                                                     <a href="mailto:<?php echo $member['up_mail']; ?>"  style="color: #008b8b;"><?php echo $member['up_mail']; ?></a>
                                                     </td>
                                                      <?php if($account_type == 'org') {?>
                                                     <td>
@@ -437,12 +437,12 @@
                                                   if($member['position'] == "Member"){ ?>
                                                 <tr>
                                                     <td>
-                                                     <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$member['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="<?php echo base_url().'student/'.$member['username'];?>"><?php echo $member['first_name']." ".$member['middle_name']." ".$member['last_name']; ?></a>
+                                                     <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$member['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="<?php echo base_url().'student/'.$member['username'];?>" style="color:inherit;"><?php echo $member['first_name']." ".$member['middle_name']." ".$member['last_name']; ?></a>
                                                     </td>
                                                     <td class="text-center">
                                                       <span class="badge badge-success"><?php echo $member['position']; ?></span></td>
                                                     <td>
-                                                      <a href="mailto:<?php echo $member['up_mail']; ?>"><?php echo $member['up_mail']; ?></a>
+                                                      <a href="mailto:<?php echo $member['up_mail']; ?>"  style="color: #008b8b;"><?php echo $member['up_mail']; ?></a>
                                                     </td>
                                                      <?php if($account_type == 'org') {?>
                                                       <td>
@@ -474,7 +474,7 @@
                                       <tbody>
                                         <tr>
                                           <td>
-                                            <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$applicant['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="<?php echo base_url().'student/'.$applicant['username'];?>"><?php echo $applicant['first_name']." ".$applicant['middle_name']." ".$applicant['last_name']; ?></a>
+                                            <img alt="" src="<?php echo base_url().'assets/student/profile_pic/'.$applicant['profile_pic'].'?'.rand(1, 100); ?>"> <a class="user-link" href="<?php echo base_url().'student/'.$applicant['username'];?>" style="color:inherit;"><?php echo $applicant['first_name']." ".$applicant['middle_name']." ".$applicant['last_name']; ?></a>
                                           </td>
                                           <td align=right>
                                              <button class="btn btn-success" onclick="studApproved(' <?php echo $applicant['first_name'].' '.$applicant['middle_name'].' '.$applicant['last_name']; ?> ', '<?php echo $applicant['acronym']; ?>', '<?php echo $applicant['student_id']; ?>')" type="button" id="approveBTN">Approve</button>

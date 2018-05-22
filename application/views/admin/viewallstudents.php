@@ -11,6 +11,7 @@
           swal({
        imageUrl: "<?php echo base_url();?>"+"assets/student/profile_pic/"+result['profile_pic'],
        html: true,
+       customClass: 'swal-wide animated fadeIn',
        title: "<h4>"+result['last_name']+", "+result['first_name']+" "+result['middle_name']+"</h4>",
        text: "<div class='container' style='margin-top: 20px;'>"+
                 "<div class='row' style='text-align: left;'>"+
@@ -53,14 +54,9 @@
                       "<h4 style='font-size: 18px'>"+result['contact_num']+"</h4>"+
                     "</div>"+
                 "</div>"+
-                "<div class='row' style='text-align: left;'>"+
-                   "<div class='col'>"+
-                      "<h4 style='font-size: 18px'><strong>Form5</strong></h4>"+
-                    "</div>"+
-                    "<div class='col'>"+
-                      "<a href='<?php echo base_url(); ?>assets/student/form_5/"+result['form5']+"' target='_blank'><button type='button' class='btn btn-link'>View Form5</button></a>"+
-                    "</div>"+
-                "</div>"+
+            
+                "<div>"+
+                    "<a href='<?php echo base_url(); ?>assets/student/form_5/"+result['form5']+"' target='_blank'><button type='button' class='btn btn-link'><button type='button' class='btn btn-info'>View Form 5</button></button></a>&nbsp&nbsp"+
                     "<a href = '<?php echo base_url();?>student/"+result['username']+"'><button type='button' class='btn btn-info'>View Student Profile</button></a>"+
                 "</div>"
        },

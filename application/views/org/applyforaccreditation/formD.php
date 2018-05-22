@@ -9,6 +9,29 @@
             function openWin() {
                 window.open("applyforaccreditation/formD.pdf"); //change location
             }
+            function submitFormD(){
+    $.ajax({
+                type: "post",
+                url :"<?php echo base_url(); ?>org/uploadFormD", 
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                //data: new FormData(this),
+                        success : function (/*data*/){
+                            swal({title: "Success!", text: "You have successfully uploaded your file!", type: "success"},
+                                function(){ 
+                                    location.reload();
+                                }
+                            );
+                        },
+                        error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                            //alert("Status: " + textStatus + " | Error: " + errorThrown); 
+                            swal("Error!", "Your file may be too large or not of valid type! (PDF only)", "error");
+                        }   
+                    });
+   }
+
         </script>
     </head>
 
@@ -53,7 +76,7 @@
                 </object>
                 <br><br>
                 <div class="myBtn">
-                    <button class="btn btn-danger">Save</button><br><br>
+                    <button class="btn btn-danger" onclick='submitFormD()'>Save</button><br><br>
                 </div>
             </div>
         </div>

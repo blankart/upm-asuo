@@ -273,7 +273,7 @@
 			$condition = 'org_id = ' .$id. ' AND org_id = ' .$id;
 
 			$changes = array(
-				'constitution' => $file_name
+				'constitution' => $file_name.'.pdf'
 			);
 
 			$this->db->where($condition);

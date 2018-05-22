@@ -6,18 +6,6 @@
 
 ?>
 <script>
-     function addressFormatCheck(input){
-
-        var regex = new RegExp("^[a-zA-Z0-9\.\,\'\-\#]+( [a-zA-Z0-9\.\,\'\-]+)*$");
-        var value =  input.value;
-        
-        if( !regex.test(value) ) 
-          input.setCustomValidity("Special characters other than ' - , . # and extra spaces are not allowed!");    
-        else 
-          input.setCustomValidity("");    
-    }   input.setCustomValidity("");    
-    
-
    function showPreview() {
   var preview = document.querySelector('img[alt=avatar]');
   var file    = document.querySelector('input[type=file]').files[0];
@@ -354,7 +342,7 @@
 
                   <button type="button" class="btn btn-primary" style="margin-left: 1em" onclick="
                   <?php if ($profile["constitution"] != "No uploads yet"){ ?>
-                     window.open('<?php echo base_url()."assets/org/constitution/".$profile["constitution"].".pdf"; ?>') 
+                     window.open('<?php echo base_url()."assets/org/constitution/".$profile["constitution"]; ?>') 
                   <?php }else { ?> 
                      noUploads() 
                   <?php } ?>" > Preview File</button>

@@ -338,7 +338,7 @@
 			$config['allowed_types'] = 'pdf';
 			$config['overwrite'] = TRUE;
 			$config['max_size']     = '1000';
-			$config['file_name'] = $file_name.'.pdf';
+			$config['file_name'] = $file_name;
 
 			$this->upload->initialize($config);
 
