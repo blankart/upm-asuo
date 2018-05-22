@@ -185,7 +185,7 @@
 				<div class="jumbotron">
 				<h3 class="display-1"><center><i class="fa fa-frown-o fa-2x"></i></h3>
 				<h3 class="display-3"><center>Unactivated Account</h3>
-				<p class="lower-case"><center>Admin Notice:</p>
+				<p class="lower-case"><center>Admin Notice:<?php if( $notice != false){ echo nl2br( $notice['content'] );   } ?></p>
 				<div class="text-center">
                <form enctype="multipart/form-data" method="POST" id="uploadProfilePicture">
                   <img src="<?php echo base_url().'assets/student/profile_pic/'.$profile_pic.'?'.rand(1, 1000); ?>" class="avatar img-thumbnail" alt="avatar" height="500px"  width="500px">
