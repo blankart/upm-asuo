@@ -234,7 +234,9 @@
 
 			//reject
 			$changes = array(
-				'app_status' => 'Rejected'
+				'app_status' => 'Rejected',
+				'form_F' => 'No Submission',
+				'form_G' => 'No Submission'
 			);
 
 			$this->db->where($condition);
