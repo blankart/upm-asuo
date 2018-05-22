@@ -56,6 +56,7 @@
 </head>
 <body>
 	<div id="search">
+
 		<button class="close" type="button">x</button> <input type='text' autocomplete='off' class='searchOrgPage' max='50' min='1' onkeyup="liveSearchOrgPage()" placeholder="type organization name here">
 		<div id='searchResult'>
 			<section class='pb-5' id='searchPanel'>
