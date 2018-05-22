@@ -193,7 +193,7 @@
 		public function searchAccredApp($string){
 			$condition = "aa.org_id = oa.org_id AND aa.org_id = op.org_id AND op.org_name LIKE '%".$string."%' AND oa.archived = 0";
 
-			$this->db->select('oa.org_id, op.org_name, oa.org_status');
+			$this->db->select('oa.org_id, op.org_name, oa.org_status, aa.app_status');
 			$this->db->from('organizationprofile op, organizationaccount oa, accreditationapplication aa');
 			$this->db->order_by('op.org_id');
 			$this->db->where ($condition);
@@ -234,7 +234,7 @@
 
 			//reject
 			$changes = array(
-				'app_status' => 'Rejected',
+				'app_status' => 'Unaccredited',
 				'form_F' => 'No Submission',
 				'form_G' => 'No Submission'
 			);
