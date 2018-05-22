@@ -73,10 +73,6 @@
                     <iframe src="<?php echo base_url(); ?>org/viewFormE" style="border: none;" width="100%" height="400">This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo base_url(); ?>org/formEpdf">Download PDF</a>
                     </iframe>
                 </object>
-                <br><br>
-                <div class="myBtn">
-                    <button class="btn btn-danger" onclick='submitFormE()'>Save</button><br><br>
-                </div>
 			</div>
 		</div>
 	</body>
