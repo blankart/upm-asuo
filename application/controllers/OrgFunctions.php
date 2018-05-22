@@ -882,7 +882,7 @@
 
 			$html= '<p align="right"><b>Date filed:</b>'.Date('M d, Y').'</p><br><br>
 			<b>Organization Name:</b> '.$result['org_name'].'<br><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New ['/*; if($result['formA']['stay']=="new") $html.="X"; else $html.="&nbsp;"; $html.=*/.']&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Old [&nbsp; ] years in existence<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New ['; if($result['formA']['stay']=="new") $html.="X"; else $html.="&nbsp;"; $html.=']&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Old ['; if($result['formA']['stay']=="old") $html.="X"; else $html.="&nbsp;"; $html.=']'. ' ' .$result['formA']['experience'].' years in existence<br><br>
 			<b>Number of members:</b>'.$tally.'<br><br>	
 			<b>Category:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['; if($result['org_category']=="Academic") $html.="X"; else $html.="&nbsp;"; $html.='] Academic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['; if($result['org_category']=="Cause-oriented") $html.="X"; else $html.="&nbsp;"; $html.='] Cause-oriented&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['; if($result['org_category']=="Cultural") $html.="X"; else $html.="&nbsp;"; $html.='] Cultural<br><br>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['; if($result['org_category']=="Fraternity") $html.="X"; else $html.="&nbsp;"; $html.='] Fraternity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['; if($result['org_category']=="Sorority") $html.="X"; else $html.="&nbsp;"; $html.='] Sorority&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['; if($result['org_category']=="Socio-Civic") $html.="X"; else $html.="&nbsp;"; $html.='] Socio-Civic<br><br>
@@ -894,7 +894,7 @@
 			<b>Position in the Organization</b> '.$result['formA']['contact_position'].'
 			<br><br>
 			<b>Address:</b> '.$result['formA']['contact_address'].'<br><br>
-            <b>Telephone no.:</b>'.$result['formA']['contact_tel'].'&nbsp;&nbsp;&nbsp;&nbsp;
+            <b>Telephone no.:</b> '.$result['formA']['contact_tel'].'&nbsp;&nbsp;&nbsp;&nbsp;
 			<b>Mobile no.:</b> '.$result['formA']['contact_mobile'].'
 			<br><br>
 			<b>Email:</b>'.$result['formA']['contact_email'].'&nbsp;&nbsp;&nbsp;&nbsp;
