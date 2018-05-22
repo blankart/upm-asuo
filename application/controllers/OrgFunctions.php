@@ -873,19 +873,19 @@
 			<b>Organization Name:</b>'.$result['org_name'].'<br>
 			<b>Number of members:</b>'.$tally.'<br>	
 			<b>Category:</b>'.$result['org_category'].'<br>
-			<b>Adviser:</b>'.$result['adviser'].'<br>
-			<b>Position/Designation:</b>'.$result['adviser_position'].'&nbsp;&nbsp;&nbsp;&nbsp;<br>
-			<b>College/Unit: </b>'.$result['adviser_college'].'<br>
-			<b>Contact Person:</b>'.$result['contact_person'].'<br>
-			<b>Position in the Organization</b>'.$result['contact_position'].'
+			<b>Adviser:</b>'.$result['formA']['adviser'].'<br>
+			<b>Position/Designation:</b>'.$result['formA']['adviser_position'].'&nbsp;&nbsp;&nbsp;&nbsp;<br>
+			<b>College/Unit: </b>'.$result['formA']['adviser_college'].'<br>
+			<b>Contact Person:</b>'.$result['formA']['contact_person'].'<br>
+			<b>Position in the Organization</b>'.$result['formA']['contact_position'].'
 			<br>
-			<b>Address:</b>'.$result['contact_address'].'
+			<b>Address:</b>'.$result['formA']['contact_address'].'
 			<br>
-			<b>Telephone no.:</b'.$result['contact_tel'].'&nbsp;&nbsp;&nbsp;&nbsp;
-			<b>Mobile no.:</b>'.$result['contact_mobile'].'
+			<b>Telephone no.:</b'.$result['formA']['contact_tel'].'&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>Mobile no.:</b>'.$result['formA']['contact_mobile'].'
 			<br>
-			<b>Email:</b>'.$result['contact_email'].'&nbsp;&nbsp;&nbsp;&nbsp;
-			<b>Other contact details:</b>'.$result['contact_other_details'].'
+			<b>Email:</b>'.$result['formA']['contact_email'].'&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>Other contact details:</b>'.$result['formA']['contact_other_details'].'
 			<br>
 			<b>Objectives of Organization:</b>'.$result['objectives'].'
 			<br>
@@ -1052,7 +1052,11 @@
 			$pdf->writeHTML($tbl, true, false, false, false, '');
 			$pdf->writeHTML($line, true, 0, true, 0);
 
-			$pdf->Output('formc.pdf', 'I');
+			//$pdf->Output('formc.pdf', 'I');
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('formC'.$id);
+			//ob_clean();
+			$pdf->Output(base_url()."assets/org/accreditation/form_C/".$file_name.".pdf", 'F');
 		}
 
 		private function viewFormD(){
