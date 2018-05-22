@@ -83,13 +83,13 @@
 				$this->viewFormA();
 			}
 			else if($action == 'viewFormC'){
-				$this->viewFormC();
+				$this->viewFormC("preview");
 			}
 			else if($action == 'viewFormD'){
-				$this->viewFormD();
+				$this->viewFormD("preview");
 			}
 			else if($action == 'viewFormE'){
-				$this->viewFormE();
+				$this->viewFormE("preview");
 			}
 			else if($action == 'viewFormF'){
 				$this->viewFormF();
@@ -916,7 +916,7 @@
 
 		}
 		
-		private function viewFormC(){
+		private function viewFormC($type){
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 			// set document information
@@ -1057,28 +1057,28 @@
 			//$pdf->Output('formc.pdf', 'I');
 			$id = $this->session->userdata['user_id'];
 			$file_name = md5('formC'.$id).".pdf";
-			//$full_path = base_url()."assets/org/accreditation/form_C";	
-			//var_dump(chmod($full_path, 0755));
-			//ob_clean();
-			//$filename= "{$membership->id}.pdf"; 
          	$filelocation = "C:\\xampp\\htdocs\\ASUO\\assets\\org\\accreditation\\form_C";//windows
-             //$filelocation = "/var/www/project/custom"; //Linux
-
         	$fileNL = $filelocation."\\".$file_name;//Windows
-           // $fileNL = $full_path."/".$filename; //Linux
 
         	$varArray = explode("/", $_SERVER['DOCUMENT_ROOT']);
-       		//var_dump($varArray);
        		$temp = "ASUO\\assets\\org\\accreditation\\form_C\\";
        		$base_directory = implode("\\", $varArray).$temp;
-       		//var_dump($base_directory.$file_name);
-			$pdf->Output($base_directory.$file_name,'FI');
-       		//$pdf->Output($fileNL,'FI');
-       		//var_dump("success");
-			//$pdf->Output(base_url()."assets/org/accreditation/form_C/".$file_name.".pdf", 'F');
+       		
+       		if($type == 'preview')
+       		{
+       			$pdf->Output($base_directory.$file_name,'I');
+       		}
+       		else
+       		{
+       			if($type == 'save')
+       			{
+       				$pdf->Output($base_directory.$file_name,'F');
+       			}
+       		}
+			
 		}
 
-		private function viewFormD(){
+		private function viewFormD($type){
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 			// set document information
@@ -1157,13 +1157,32 @@
 				$pdf->writeHTML($samplehtml, true, 0, true, 0);
 			}
 			
-			$pdf->Output('example_003.pdf', 'I');
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('formD'.$id).".pdf";
+         	//$filelocation = "C:\\xampp\\htdocs\\ASUO\\assets\\org\\accreditation\\form_D";//windows
+        	//$fileNL = $filelocation."\\".$file_name;//Windows
+
+        	$varArray = explode("/", $_SERVER['DOCUMENT_ROOT']);
+       		$temp = "ASUO\\assets\\org\\accreditation\\form_D\\";
+       		$base_directory = implode("\\", $varArray).$temp;
+       		
+       		if($type == 'preview')
+       		{
+       			$pdf->Output($base_directory.$file_name,'I');
+       		}
+       		else
+       		{
+       			if($type == 'save')
+       			{
+       				$pdf->Output($base_directory.$file_name,'F');
+       			}
+       		}
 			//$pdf->Output('example_003.pdf', 'I');
 
 
 		}
 
-		public function viewFormE(){
+		public function viewFormE($type){
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 			// set document information
@@ -1249,7 +1268,26 @@
 		
 			
 			//var_dump($samplehtml);
-			$pdf->Output('example_003.pdf', 'I');			
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('formE'.$id).".pdf";
+         	//$filelocation = "C:\\xampp\\htdocs\\ASUO\\assets\\org\\accreditation\\form_D";//windows
+        	//$fileNL = $filelocation."\\".$file_name;//Windows
+
+        	$varArray = explode("/", $_SERVER['DOCUMENT_ROOT']);
+       		$temp = "ASUO\\assets\\org\\accreditation\\form_E\\";
+       		$base_directory = implode("\\", $varArray).$temp;
+       		
+       		if($type == 'preview')
+       		{
+       			$pdf->Output($base_directory.$file_name,'I');
+       		}
+       		else
+       		{
+       			if($type == 'save')
+       			{
+       				$pdf->Output($base_directory.$file_name,'F');
+       			}
+       		}		
 		}
 
 		private function viewFormF(){
