@@ -41,22 +41,24 @@ onReady(function() {
 	</div>
 <section class="h-100">
 	<div class="headerbar">
-		<h1 class="display-1" style="font-size: 40px;">Online Accreditation System for University-wide Orgs</h1>
+		<h1 class="display-1" style="font-size: 40px;">Online Accreditation System for University-wide Organizations</h1>
 			<div class="container h-100 animated fadeIn">
 			<div class="row">
 			<div class="col-sm-7 text">
 			<div class="row justify-content-md-center h-100">
-				<div class="card fat">	
-					<div class="card-body" style='width: 650px;'>
-						 <?php if ($notice){ echo '<h2>'.$notice['title'].'</h2>';} else{echo 'No login message found';}?>
-				<hr>
-                <div class="description" style='overflow-y: scroll; font-size: 16px;'>
+				<div class="card fat" style='border: none; padding: 0 !important;'>
+					<div class='card-header' style='background-color:rgb(123,17,19); border: none;'>
+						<h2 style='color: white;'>Announcement</h2>
+					</div>	
+					<div class="card-body" style='overflow-y: scroll; overflow-x: hidden;width: 650px;'>
+						<?php if ($notice){ echo '<h4>'.$notice['title'].'</h4>';} else{echo 'No login message found';}?>
+                <div class="description" style='font-size: 16px;'>
                 	<div style='font-style: italic; margin-bottom: 10px;'><?php if ($notice) echo date("g:i:s a |  F j, Y", strtotime($notice['date_posted'])); else echo 'No login message found'; ?></div>
                     <p style='font-size: 16px;'>
 	                   	<?php if ($notice) echo nl2br($notice['content']); else echo 'No login message found'; ?>
                    	</p>
                 </div>
-                <div style='font-style: italic; margin-top: 10px; font-size: 16px;'><?php if ($notice) echo $notice['admin_name']; else echo 'No login message found'; ?></div>
+                <div style='font-style: italic; margin-top: 10px; font-size: 16px;'><?php if ($notice) echo '<strong>'.$notice['admin_name'].'</strong>'; else echo 'No login message found'; ?></div>
 					</div>
 				</div>
 				</div>
