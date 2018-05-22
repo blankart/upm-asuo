@@ -348,7 +348,6 @@
 
 	    // LOGIN FUNCTIONS
 		public function login($credentials){
-			
 			$student = $this->loginStudent($credentials);
 
 			if(!$student){
@@ -362,6 +361,7 @@
 				else
 					return $org;
 			}else
+
 				return $student;
 		}
 
