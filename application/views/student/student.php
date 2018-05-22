@@ -219,7 +219,7 @@
 									<br>
 									<h2><?php echo $profile['last_name']; ?>, <?php echo $profile['first_name']; ?> <?php echo $profile['middle_name']; ?></h2>
 									<p><strong><?php echo $profile['course']; ?>, <?php echo $profile['year_level']; ?></strong></p>
-									<i class="fas fa-envelope"></i>  <a href="mailto:<?php echo $profile['up_mail']; ?>"><?php echo $profile['up_mail']; ?></a>&emsp;<i class="fas fa-phone-square"></i>  <?php echo $profile['contact_num']; ?></p>
+									<i class="fas fa-envelope"></i>  <a href="mailto:<?php echo $profile['up_mail']; ?>" style="color: #008b8b;"><?php echo $profile['up_mail']; ?></a>&emsp;<i class="fas fa-phone-square"></i>  <?php echo $profile['contact_num']; ?></p>
 								</div>
 							</div>
 

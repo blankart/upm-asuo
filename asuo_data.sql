@@ -30,8 +30,8 @@ INSERT INTO `organizationaccount` (`org_id`, `org_email`, `password`, `org_statu
 (1, 'aisec@gmail.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 1,  1),
 (2, 'upmchorale@yahoo.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Accredited', 1, 1,  0),
 (3, 'gabriela@gmail.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 1,  0),
-(4, 'morg@yahoo.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 1,  0),
-(5, 'upbeau@gmail.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Accredited', 1, 0,  1),
+(4, 'morg@yahoo.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Accredited', 1, 1,  0),
+(5, 'upbeau@gmail.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 0,  1),
 (6, 'upsocomsci@yahoo.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Accredited', 1, 1, 0),
 (7, 'orcomsoc@gmail.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 0, 0),
 (8, 'upvector@gmail.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 1, 0),
@@ -58,7 +58,7 @@ INSERT INTO `announcement` (`notice_id`, `sender`, `title`, `content`,  `date_po
 (3, 1, 'Accreditation Period Now Open', "Organizations are now able to apply for accreditation. Please take note of the deadline set for this year's accreditation. \nThank you.", '2018-04-30 22:07:23', 0),
 (4, 1, "Resubmit Form", "Please resubmit your Form B and Form F.\nThank you.", '2018-05-10 23:59:59', 0),
 (5, 1, 'Accreditation Period Ended', 'Accreditation period for AY 2018-2019 has officially been closed.\nStay tuned for updates regarding your accreditation applications.\nThank you.', '2018-05-14 00:00:00', 0),
-(6, 1, 'Accreditation Result', 'Listed below are the accredited orgs:\n1) Gabriela Youth\n2) UP Beau\n3) UP Society of Computer Scientists\n\n -- Nothing follows -- ', '2018-05-21 13:00:11', 0);
+(6, 1, 'Accreditation Result', 'Listed below are the accredited orgs:\n1) UP Manila Chorale\n2) UP Manila Musical Organization\n3) UP Society of Computer Scientists\n\n -- Nothing follows -- ', '2018-05-21 13:00:11', 0);
 
 -- -------------------------------------------------------------------
 
@@ -85,8 +85,8 @@ INSERT INTO `recipient` (`recipient_id`, `notice_id`, `org_id`) VALUES
 (20, 3, 8),
 (21, 3, 10),
 (22, 4, 1),
-(23, 4, 6),
-(24, 4, 8),
+(23, 4, 2),
+(24, 4, 4),
 (25, 4, 10),
 (26, 5, 1),
 (27, 5, 2),

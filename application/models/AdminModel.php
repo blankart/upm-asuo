@@ -51,7 +51,7 @@
 		public function viewOrgInfo($id){
 			$condition = "oa.org_id = op.org_id AND oa.org_id = " .$id;
 
-			$this->db->select('oa.org_id, op.*');
+			$this->db->select('oa.org_id, oa.org_email, op.*');
 			$this->db->from('organizationaccount oa, organizationprofile op');
 			$this->db->order_by('oa.org_id');
 			$this->db->where ($condition);
