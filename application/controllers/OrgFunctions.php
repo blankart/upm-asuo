@@ -730,8 +730,8 @@
 			//get predefined form a details
 			//$pre_def_details = $this->OrgModel->getOrgDetailsForm($org_id);
 
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			//var_dump($data);
 			if($data == false)
 			{
@@ -781,8 +781,9 @@
 			$this->load->model('OrgModel');
 			
 			$this->OrgModel->initAccred($org_id);
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
+
 			//var_dump($data);
 			if($data == false)
 			{
@@ -803,8 +804,8 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			//var_dump($data);
 			if($data == false)
 			{
@@ -824,8 +825,8 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			//var_dump($data);
 			if($data == false)
 			{
@@ -848,8 +849,8 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			//var_dump($data);
 			if($data == false)
 			{
@@ -870,8 +871,8 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			//var_dump($data);
 			if($data == false)
 			{
@@ -892,8 +893,8 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			//var_dump($data);
 			if($data == false)
 			{
@@ -914,8 +915,8 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			//var_dump($data);
 			if($data == false)
 			{
@@ -936,8 +937,8 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			//var_dump($data);
 			if($data == false)
 			{
@@ -958,8 +959,8 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
 			$org_data = $this->OrgModel->getOrgDetails($org_id);
-			$formData = $this->OrgModel->getOrgDetailsForm($org_id);
 			//var_dump($data);
 			if($formData == false)
 			{
