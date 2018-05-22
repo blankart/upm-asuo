@@ -80,7 +80,7 @@
 				$this->saveFormA();
 			}
 			else if($action == 'viewFormA'){
-				$this->viewFormA();
+				$this->viewFormA("preview");
 			}
 			else if($action == 'viewFormC'){
 				$this->viewFormC("preview");
@@ -700,6 +700,10 @@
 			//var_dump("org id ".$org_id);
 			$this->load->model('OrgModel');
 			$temp = $this->OrgModel->insertFormAdetails($form_details,$org_id);
+			//INSERT INTO DB
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('formA'.$id);
+			$this->OrgModel->uploadFormA($id, $file_name);
 			//var_dump($temp);
 			redirect(base_url().'org/formA');
 		}
@@ -816,7 +820,7 @@
 		}
 
 
-		private function viewFormA()
+		private function viewFormA($type)
 		{
 
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -893,23 +897,33 @@
 			<br>
 			<br>
 			<br>
-				<p align="right">___________________________________<br>
-				<b>Name of Person Filing the Application</b>
-				<br>
-				___________________________________<br>
-				<b>Position in the Organization</b>
-				<br>
-				___________________________________<br>
-				<b>Signature</b>
-				<br>
-
-
-
 				</p>
 			';
 			//var_dump($html);
 			$pdf->writeHTML($html, true, 0, true, 0);
-			$pdf->Output('example_003.pdf', 'I');
+
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('formA'.$id);
+         	//$filelocation = "C:\\xampp\\htdocs\\ASUO\\assets\\org\\accreditation\\form_D";//windows
+        	//$fileNL = $filelocation."\\".$file_name;//Windows
+
+        	$varArray = explode("/", $_SERVER['DOCUMENT_ROOT']);
+       		$temp = "ASUO\\assets\\org\\accreditation\\form_A\\";
+       		$base_directory = implode("\\", $varArray).$temp;
+       		
+
+
+       		if($type == 'preview')
+       		{
+       			$pdf->Output($base_directory.$file_name.".pdf",'I');
+       		}
+       		else
+       		{
+       			if($type == 'save')
+       			{
+       				$pdf->Output($base_directory.$file_name.".pdf",'F');
+       			}
+       		}
 
 
 		}
@@ -1054,23 +1068,27 @@
 
 			//$pdf->Output('formc.pdf', 'I');
 			$id = $this->session->userdata['user_id'];
-			$file_name = md5('formC'.$id).".pdf";
+			$file_name = md5('formC'.$id);
          	$filelocation = "C:\\xampp\\htdocs\\ASUO\\assets\\org\\accreditation\\form_C";//windows
         	$fileNL = $filelocation."\\".$file_name;//Windows
 
         	$varArray = explode("/", $_SERVER['DOCUMENT_ROOT']);
        		$temp = "ASUO\\assets\\org\\accreditation\\form_C\\";
        		$base_directory = implode("\\", $varArray).$temp;
-       		
+
+       		//INSERT INTO DB
+       		$this->load->model('OrgModel');
+			$this->OrgModel->uploadFormC($id, $file_name);
+
        		if($type == 'preview')
        		{
-       			$pdf->Output($base_directory.$file_name,'I');
+       			$pdf->Output($base_directory.$file_name.".pdf",'I');
        		}
        		else
        		{
        			if($type == 'save')
        			{
-       				$pdf->Output($base_directory.$file_name,'F');
+       				$pdf->Output($base_directory.$file_name.".pdf",'F');
        			}
        		}
 			
@@ -1156,7 +1174,7 @@
 			}
 			
 			$id = $this->session->userdata['user_id'];
-			$file_name = md5('formD'.$id).".pdf";
+			$file_name = md5('formD'.$id);
          	//$filelocation = "C:\\xampp\\htdocs\\ASUO\\assets\\org\\accreditation\\form_D";//windows
         	//$fileNL = $filelocation."\\".$file_name;//Windows
 
@@ -1164,15 +1182,19 @@
        		$temp = "ASUO\\assets\\org\\accreditation\\form_D\\";
        		$base_directory = implode("\\", $varArray).$temp;
        		
+       		//INSERT INTO DB
+       		$this->load->model('OrgModel');
+			$this->OrgModel->uploadFormD($id, $file_name);
+
        		if($type == 'preview')
        		{
-       			$pdf->Output($base_directory.$file_name,'I');
+       			$pdf->Output($base_directory.$file_name.".pdf",'I');
        		}
        		else
        		{
        			if($type == 'save')
        			{
-       				$pdf->Output($base_directory.$file_name,'F');
+       				$pdf->Output($base_directory.$file_name.".pdf",'F');
        			}
        		}
 			//$pdf->Output('example_003.pdf', 'I');
@@ -1267,7 +1289,7 @@
 			
 			//var_dump($samplehtml);
 			$id = $this->session->userdata['user_id'];
-			$file_name = md5('formE'.$id).".pdf";
+			$file_name = md5('formE'.$id);
          	//$filelocation = "C:\\xampp\\htdocs\\ASUO\\assets\\org\\accreditation\\form_D";//windows
         	//$fileNL = $filelocation."\\".$file_name;//Windows
 
@@ -1275,15 +1297,19 @@
        		$temp = "ASUO\\assets\\org\\accreditation\\form_E\\";
        		$base_directory = implode("\\", $varArray).$temp;
        		
+       		//INSERT INTO DB
+       		$this->load->model('OrgModel');
+			$this->OrgModel->uploadFormE($id, $file_name);
+
        		if($type == 'preview')
        		{
-       			$pdf->Output($base_directory.$file_name,'I');
+       			$pdf->Output($base_directory.$file_name.".pdf",'I');
        		}
        		else
        		{
        			if($type == 'save')
        			{
-       				$pdf->Output($base_directory.$file_name,'F');
+       				$pdf->Output($base_directory.$file_name.".pdf",'F');
        			}
        		}		
 		}
