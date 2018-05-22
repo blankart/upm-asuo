@@ -11,6 +11,7 @@
           swal({
        imageUrl: "<?php echo base_url();?>"+"assets/student/profile_pic/"+result['profile_pic'],
        html: true,
+       customClass: 'swal-wide animated fadeIn',
        title: "<h4>"+result['last_name']+", "+result['first_name']+" "+result['middle_name']+"</h4>",
        text: "<div class='container' style='margin-top: 20px;'>"+
                 "<div class='row' style='text-align: left;'>"+

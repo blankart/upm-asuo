@@ -251,6 +251,7 @@
           swal({
        imageUrl: "<?php echo base_url();?>assets/org/logo/"+result['org_logo'],
        html: true,
+       customClass: 'swal-wide animated fadeIn',
        title: "<h4>"+result['org_name']+"</h4>",
        text: "<div class='container' style='margin-top: 20px;'>"+
                 "<div class='row' style='text-align: left;'>"+
