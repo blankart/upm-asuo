@@ -91,6 +91,7 @@
           <!-- Page Content -->
           <div class="main">
             <h1>Form B: Adviser's Consent</h1>
+            <p>For the document template, &nbsp; <a href="<?php echo base_url(); ?>assets/org/accreditation/form_B/formB_template.docx" download>Click Here.</a></p>
 
             <div class="content" id="cont1">
               <div class="box">
