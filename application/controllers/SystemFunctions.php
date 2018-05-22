@@ -412,7 +412,7 @@
 
 				$random_string = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"), 0, rand(8,8));
 
-				$password = md5($random_string);
+				$password = password_hash($random_string, PASSWORD_BCRYPT);
 
 				$this->load->model('SystemModel');
 				$result = $this->SystemModel->updateNewPassword($email, $password);
