@@ -80,7 +80,7 @@
 				$this->saveFormA();
 			}
 			else if($action == 'viewFormA'){
-				$this->viewFormA();
+				$this->viewFormA("preview");
 			}
 			else if($action == 'viewFormC'){
 				$this->viewFormC("preview");
@@ -702,6 +702,10 @@
 			//var_dump("org id ".$org_id);
 			$this->load->model('OrgModel');
 			$temp = $this->OrgModel->insertFormAdetails($form_details,$org_id);
+			//INSERT INTO DB
+			$id = $this->session->userdata['user_id'];
+			$file_name = md5('formA'.$id);
+			$this->OrgModel->uploadFormA($id, $file_name);
 			//var_dump($temp);
 			redirect(base_url().'org/formA');
 		}
@@ -818,7 +822,7 @@
 		}
 
 
-		private function viewFormA()
+		private function viewFormA($type)
 		{
 
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
@@ -909,9 +913,7 @@
        		$temp = "ASUO\\assets\\org\\accreditation\\form_A\\";
        		$base_directory = implode("\\", $varArray).$temp;
        		
-       		//INSERT INTO DB
-       		$this->load->model('OrgModel');
-			$this->OrgModel->uploadFormA($id, $file_name);
+
 
        		if($type == 'preview')
        		{
