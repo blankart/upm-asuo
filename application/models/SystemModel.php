@@ -260,7 +260,8 @@
 				);
 
 				$this->db->where($condition2);
-				return  $this->db->update('studentaccount', $changes);
+				$this->db->update('studentaccount', $changes);
+				return true;
 			}
 			else 
 				return false;

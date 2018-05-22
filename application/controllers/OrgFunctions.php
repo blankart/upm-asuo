@@ -240,9 +240,8 @@
 			$password = $this->input->post('orgpassword');
 		
 			if($id != NULL && $password != NULL){
-				$orgpassword = md5($password);
 				$this->load->model('OrgModel');
-				$result = $this->OrgModel->checkOrgPassword($id, $orgpassword);
+				$result = $this->OrgModel->checkOrgPassword($id, $password);
 				echo json_encode($result);
 				exit();
 			}
@@ -255,7 +254,7 @@
 			$password = $this->input->post('neworgpassword');
 		
 			if($id != NULL && $password != NULL){
-				$neworgpassword = md5 ($password);
+				$neworgpassword = password_hash($password, PASSWORD_BCRYPT);
 				$this->load->model('OrgModel');
 				$this->OrgModel->changeOrgPassword($id, $neworgpassword);
 				echo json_encode('true');

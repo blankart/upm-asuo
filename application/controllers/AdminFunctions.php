@@ -521,9 +521,9 @@
 			$password = $this->input->post('adminpassword');
 		
 			if($id != NULL && $password != NULL){
-				$adminpassword = md5($password);
+				
 				$this->load->model('AdminModel');
-				$result = $this->AdminModel->checkAdminPassword($id, $adminpassword);
+				$result = $this->AdminModel->checkAdminPassword($id, $password);
 				echo json_encode($result);
 				exit();
 			}
@@ -536,7 +536,7 @@
 			$password = $this->input->post('newadminpassword');
 		
 			if($id != NULL && $password != NULL){
-				$newadminpassword = md5 ($password);
+				$newadminpassword = password_hash($password, PASSWORD_BCRYPT);
 				$this->load->model('AdminModel');
 				$this->AdminModel->changeAdminPassword($id, $newadminpassword);
 				echo json_encode('true');

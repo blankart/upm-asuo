@@ -128,7 +128,7 @@
 			
 				$account_data = array(
 					'org_email' => strtolower ($result['org_email']),
-					'password' => md5($result['password']),
+					'password' => password_hash($result['password'], PASSWORD_BCRYPT),
 					'org_status' => 'Unaccredited',
 					'isVerified' => 0,
 					'isActivated'=> 0,
@@ -218,7 +218,7 @@
 						'up_mail' => strtolower( $result['up_mail'] ),
 						'up_id' => $result['up_id'],
 						'username' => $username,
-						'password' => md5 ($result['password']),
+						'password' => password_hash($result['password'], PASSWORD_BCRYPT ),
 						'isVerified' => 0,
 						'isActivated'=> 0,
 						'archived' => 0
@@ -368,7 +368,6 @@
 			//student
 			if($type == 't'){
 				$result = $this->SystemModel->verifyStudentAccount($code);
-
 				if($result){
 					//echo 'Successfully verified your account. try logging in';
 
