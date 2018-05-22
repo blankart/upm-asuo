@@ -161,9 +161,9 @@
         $('.loadingscreen').show();
     },
     ajaxStop: function(){
-    		setTimeout(function(){
+    		//setTimeout(function(){
     			$('.loadingscreen').hide(); 
-    		}, 500);
+    		//}, 500);
     		
     }
   });
