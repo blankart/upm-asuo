@@ -899,29 +899,29 @@
 			//$name = 'UP Society of Computer Scientists';
 			// WALA PANG POSITION/DESIGNATION
 
-			$html= '<p align="right"><b>Date filed:</b>Text</p><br><br>
-			<b>Organization Name:</b>Text<br><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New [ &nbsp;]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Old [&nbsp; ] years in existence<br><br>
-			<b>Number of members:</b>Text<br><br>	
-			<b>Category:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Academic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Cause-oriented&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Cultural<br><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Fraternity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Sorority&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Socio-Civic<br><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Sports/Recreation&nbsp;&nbsp;[ &nbsp;] Special Interest&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Service<br><br>
-			<b>Adviser:</b>Text<br><br>
-			<b>Position/Designation:</b>Text&nbsp;&nbsp;&nbsp;&nbsp;
-			<b>College/Unit: </b>Text<br><br>
-			<b>Contact Person:</b>Text<br><br>
-			<b>Position in the Organization</b>Text
+			$html= '<p align="right"><b>Date filed:</b>'.Date('M d, Y').'</p><br><br>
+			<b>Organization Name:</b> '.$result['org_name'].'<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New ['/*; if($result['formA']['stay']=="new") $html.="X"; else $html.="&nbsp;"; $html.=*/.']&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Old [&nbsp; ] years in existence<br><br>
+			<b>Number of members:</b>'.$tally.'<br><br>	
+			<b>Category:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['; if($result['org_category']=="Academic") $html.="X"; else $html.="&nbsp;"; $html.='] Academic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['; if($result['org_category']=="Cause-oriented") $html.="X"; else $html.="&nbsp;"; $html.='] Cause-oriented&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['; if($result['org_category']=="Cultural") $html.="X"; else $html.="&nbsp;"; $html.='] Cultural<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['; if($result['org_category']=="Fraternity") $html.="X"; else $html.="&nbsp;"; $html.='] Fraternity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['; if($result['org_category']=="Sorority") $html.="X"; else $html.="&nbsp;"; $html.='] Sorority&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['; if($result['org_category']=="Socio-Civic") $html.="X"; else $html.="&nbsp;"; $html.='] Socio-Civic<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Sports/Recreation&nbsp;&nbsp;['; if($result['org_category']=="Special Interest") $html.="X"; else $html.="&nbsp;"; $html.='] Special Interest&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;['; if($result['org_category']=="Service") $html.="X"; else $html.="&nbsp;"; $html.='] Service<br><br>
+			<b>Adviser:</b> '.$result['formA']['adviser'].'<br><br>
+			<b>Position/Designation:</b> '.$result['formA']['adviser_position'].'&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>College/Unit: </b> '.$result['formA']['adviser_college'].'<br><br>
+			<b>Contact Person:</b> '.$result['formA']['contact_person'].'<br><br>
+			<b>Position in the Organization</b> '.$result['formA']['contact_position'].'
 			<br><br>
-			<b>Address:</b>Text<br><br>
-            <b>Telephone no.:</b>Text&nbsp;&nbsp;&nbsp;&nbsp;
-			<b>Mobile no.:</b>Text
+			<b>Address:</b> '.$result['formA']['contact_address'].'<br><br>
+            <b>Telephone no.:</b>'.$result['formA']['contact_tel'].'&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>Mobile no.:</b> '.$result['formA']['contact_mobile'].'
 			<br><br>
-			<b>Email:</b>Text&nbsp;&nbsp;&nbsp;&nbsp;
-			<b>Other contact details:</b>Text
+			<b>Email:</b>'.$result['formA']['contact_email'].'&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>Other contact details:</b> '.$result['formA']['contact_other_details'].'
 			<br><br>
-			<b>Objectives of Organization:</b>Text
+			<b>Objectives of Organization:</b> '.$result['objectives'].'
 			<br><br>
-			<b>Brief description of Organization:</b>Text
+			<b>Brief description of Organization:</b> '.$result['description'].'
 			<br>
 			<br>
 			<br>
