@@ -291,7 +291,7 @@ ALTER TABLE `verificationcode`
     `announcement_id` int(11) UNSIGNED NOT NULL,
     `admin_id` int(11) UNSIGNED NOT NULL,
     `title` varchar(50) NOT NULL DEFAULT "Untitled",
-    `content` varchar(200) NOT NULL DEFAULT "No details",
+    `content` varchar(500) NOT NULL DEFAULT "No details",
     `date_posted` DATETIME NOT NULL
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -306,6 +306,30 @@ ALTER TABLE `verificationcode`
 
   ALTER TABLE `login_notice`
   ADD CONSTRAINT `login_notice_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`);
+
+  -- ----------------------------------------------------------------------------------------------------------------------------
+  -- LOGIN NOTICE
+  CREATE TABLE `student_notice` (
+    `announcement_id` int(11) UNSIGNED NOT NULL,
+    `admin_id` int(11) UNSIGNED NOT NULL,
+    `student_id` int(11) UNSIGNED NOT NULL,
+    `content` varchar(200) NOT NULL DEFAULT "No details",
+    `date_posted` DATETIME NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+  ALTER TABLE `student_notice`
+  ADD PRIMARY KEY (`announcement_id`);
+
+  ALTER TABLE `student_notice`
+  MODIFY `announcement_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+  ALTER TABLE `student_notice`
+  ADD KEY `admin_id` (`admin_id`),
+  ADD KEY `student_id` (`student_id`);
+
+  ALTER TABLE `student_notice`
+  ADD CONSTRAINT `student_notice_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`),
+  ADD CONSTRAINT `student_notice_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `studentaccount` (`student_id`);
  -- ----------------------------------------------------------------------------------------------------------------------------
   -- RESTRICTED ACRONYMS
 

@@ -2,6 +2,23 @@
 	class StudentModel extends CI_Model{
 
 		// VIEW STUDENT PROFILE  FUNCTIONS
+
+		public function getAdminNotice($student_id){
+			$condition = "student_id = " .$student_id. " AND student_id = " .$student_id;
+
+
+			$this->db->select("*");
+			$this->db->from("student_notice");
+			$this->db->where($condition);
+			$this->db->order_by('announcement_id', 'DESC');
+			$query = $this->db->get();
+		
+			if($query->num_rows() > 0)
+				return $query->result_array()[0];
+			else
+				return false;		
+		}
+
 		public function getStudentProfileDetails($student_id){
 			$result['profile']= $this->getStudentDetails($student_id);
 			$result['orgs'] = $this->getStudentOrgs($student_id);

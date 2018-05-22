@@ -185,7 +185,8 @@
 				<h3 class="display-1"><center><i class="fa fa-frown-o fa-2x"></i></h3>
 				<h3 class="display-3"><center>Unactivated Account</h3>
           <p class="lower-case" style='text-align: center;'>Your account's activation is on process. For inquiries, please proceed to OSA.</p>
-				<div class='notice notice-danger' style='margin-top: 20px;'><h5 class="lower-case">Admin Notice:</h5></div>
+				<div class='notice notice-danger' style='margin-top: 20px;'><h5 class="lower-case">Admin Notice:<?php if( $notice != false){ echo nl2br( $notice['content'] );   } ?></h5></div>
+
             <form method="POST" id="editProfileForm">
 
                <div class="form-group">
