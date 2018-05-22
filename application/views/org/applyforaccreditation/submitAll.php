@@ -151,8 +151,9 @@
 
                 </table>
                 <br><br>
-                <button class="button">Submit Application</button>
-                <br><br>   
+                <div class="myBtn">
+                    <button class="btn btn-danger">Submit Application</button>
+                </div>   
             </div>  
         </div>
     </body>
