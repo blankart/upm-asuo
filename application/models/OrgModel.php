@@ -628,7 +628,7 @@
 			);
 
 			$this->db->where($condition);
-			$this->db->update("accreditationapplication", $changes);
+			return $this->db->update("accreditationapplication", $changes);
 		}
 		//end of ORG ACCREDITATION FUNCTIONS
 //---------------------------------------------END OF ORG ACCREDITATION FUNCTIONS -----------------------------

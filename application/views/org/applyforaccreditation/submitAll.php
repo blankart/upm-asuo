@@ -5,8 +5,9 @@
 		swal('Warning', 'You have not uploaded yet!', 'warning');
 	}
 
-    function checkForms(){
-        
+    function checkForms()
+    {
+        <?php if($org_status == "Accredited"){ ?>
         var form_A = '<?php echo $form_A;?>';
         var form_B = "<?php echo $form_B;?>";
         var form_F = "<?php echo $form_F;?>";
@@ -14,7 +15,8 @@
         var plans  = "<?php echo $plans;?>";
         var constitution  = "<?php echo $constitution;?>";
 
-        if(form_B != 'No Submission' && form_A != 'No Submission' && form_F != 'No Submission' && form_G != 'No Submission' && plans != 'No Submission' && constitution != 'No uploads yet' ){
+        if(form_B != 'No Submission' && form_A != 'No Submission' && form_F != 'No Submission' && form_G != 'No Submission' && plans != 'No Submission' && constitution != 'No uploads yet' )
+        {
 
                $.ajax({
                   type: "post",
@@ -28,19 +30,102 @@
                   //data: new FormData(this),
                   success : function (data){
                    //alert(data);
-                      swal({title: "Success!", text: "You have successfully uploaded your file!", type: "success"},
+                   if(data){
+                        swal({title: "Success!", text: "You have successfully submitted your Application!", type: "success"},
                         function(){ 
                            location.reload();
                         }
                      );
+                   }   
                   },
                   error: function(XMLHttpRequest, textStatus, errorThrown) { 
                      //alert("Status: " + textStatus + " | Error: " + errorThrown); 
-                     swal("Error!", "Your file may be too large or not of valid type! (PDF only)", "error");
+                     swal("Error!", "There in an error in your Submission", "error");
                   }   
             });
+        }
+        else
+        {
+           if(form_A == 'No Submission')
+           {
+                swal('Warning', 'You have not uploaded Form A yet!', 'warning'); 
            }
-        
+           if(form_B == 'No Submission')
+           {
+                swal('Warning', 'You have not uploaded Form B yet!', 'warning'); 
+           }
+           if(form_F == 'No Submission')
+           {
+                swal('Warning', 'You have not uploaded Form F yet!', 'warning'); 
+           }
+           if(form_G == 'No Submission')
+           {
+                swal('Warning', 'You have not uploaded Form G yet!', 'warning'); 
+           }
+           if(plans == 'No Submission')
+           {
+                swal('Warning', 'You have not uploaded plans yet!', 'warning'); 
+           }
+           if(constitution == 'No uploads yet')
+           {
+                swal('Warning', 'You have not uploaded constitution yet!', 'warning'); 
+           }
+        }
+        <?php } else{ ?>
+            var form_A = '<?php echo $form_A;?>';
+            var form_B = "<?php echo $form_B;?>";
+            var plans  = "<?php echo $plans;?>";
+            var constitution  = "<?php echo $constitution;?>";
+
+        if(form_B != 'No Submission' && form_A != 'No Submission' && plans != 'No Submission' && constitution != 'No uploads yet' )
+        {
+
+               $.ajax({
+                  type: "post",
+                  url: "<?php echo base_url(); ?>org/uploadAll", 
+                  async: false,
+                  cache: false,
+                  dataType: 'json',
+                  data:{source: "org"},
+                  //contentType: false,
+                 // processData: false,
+                  //data: new FormData(this),
+                  success : function (data){
+                   //alert(data);
+                   if(data){
+                        swal({title: "Success!", text: "You have successfully submitted your Application!", type: "success"},
+                        function(){ 
+                           location.reload();
+                        }
+                     );
+                   }   
+                  },
+                  error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                     //alert("Status: " + textStatus + " | Error: " + errorThrown); 
+                     swal("Error!", "There in an error in your Submission", "error");
+                  }   
+            });
+               
+        }else{
+           if(form_A == 'No Submission')
+           {
+                swal('Warning', 'You have not uploaded Form A yet!', 'warning'); 
+           }
+           if(form_B == 'No Submission')
+           {
+                swal('Warning', 'You have not uploaded Form B yet!', 'warning'); 
+           }
+           if(plans == 'No Submission')
+           {
+                swal('Warning', 'You have not uploaded plans yet!', 'warning'); 
+           }
+           if(constitution == 'No uploads yet')
+           {
+                swal('Warning', 'You have not uploaded constitution yet!', 'warning'); 
+           }
+        }
+        <?php } ?>
+
     }
 
 </script>
