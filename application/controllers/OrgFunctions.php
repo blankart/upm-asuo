@@ -28,6 +28,8 @@
 				$this->uploadFormG();
 			else if($action == 'uploadPlans')
 				$this->uploadPlans();
+			else if($action == 'uploadAll')
+				$this->uploadAll();
 			else if($action == 'applyToOrg')
 				$this->applyToOrg();
 			else if ($action == 'rejectMembership')
@@ -464,6 +466,23 @@
 				echo json_encode($data);
 				exit();     
             }	
+		}
+
+		private function uploadAll()
+		{
+			$data = $this->input->post('source');
+			$org_id = $this->session->userdata['user_id'];	
+			if($data == 'org')
+			{
+				$this->viewFormC('save');
+				$this->viewFormD('save');
+				$this->viewFormE('save');
+				$this->load->model('OrgModel');
+				$this->OrgModel->submitApplication($org_id);
+
+			}
+			echo json_encode($data);
+			exit(); 
 		}
 
 		private function applyToOrg()
