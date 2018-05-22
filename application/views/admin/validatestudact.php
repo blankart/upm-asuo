@@ -27,7 +27,7 @@
                output+="<tr>"+
                         "<td>"+result[key]['up_id']+"<\/td>"+
                         "<td>"+result[key]['last_name']+", "+result[key]['first_name']+ " " +result[key]['middle_name']+ "<\/td>"+
-                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Account<\/button><button onclick='approveStud("+result[key]['student_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Validate<\/button> <button onclick='rejectAcc("+result[key]['student_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Reject<\/button><\/td>"+
+                        "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewStudInfo("+result[key]['student_id']+")' style='margin-left: 10px;'> View Account<\/button><button onclick='sendNoticeStud("+result[key]['student_id']+")' class='btn btn-info btn-xs' style='margin-left: 10px;'>Send Notice<\/button><button onclick='approveStud("+result[key]['student_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Validate<\/button> <button onclick='rejectAcc("+result[key]['student_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Reject<\/button><\/td>"+
                      "<\/tr>";
             }
          }
@@ -37,6 +37,23 @@
 
      }
 
+        function sendNoticeStud(student_id){
+          swal({
+  title: "Send Notice to Student",
+  text: "Write message: ",
+  type: "input",
+  showCancelButton: true,
+  closeOnConfirm: false,
+  inputPlaceholder: "Write something"
+}, function (inputValue) {
+  if (inputValue === false) return false;
+  if (inputValue === "") {
+    swal.showInputError("You need to write something!");
+    return false
+  }
+  swal("Nice!", "You wrote: " + inputValue, "success");
+});
+      }
        function rejectAcc(student_id){
          swal({
            title: "Reject student account creation?",
