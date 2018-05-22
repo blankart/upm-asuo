@@ -618,6 +618,18 @@
 			else
 				return false;
 		}
+
+		public function submitApplication($org_id)
+		{
+			$condition = 'org_id = ' .$org_id;
+
+			$changes = array(
+				'app_status' => 'Submitted'
+			);
+
+			$this->db->where($condition);
+			$this->db->update("accreditationapplication", $changes);
+		}
 		//end of ORG ACCREDITATION FUNCTIONS
 //---------------------------------------------END OF ORG ACCREDITATION FUNCTIONS -----------------------------
 		//CREATE POST FUNCTION
