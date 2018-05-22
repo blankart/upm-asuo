@@ -52,45 +52,45 @@
                     </tr>
                     <tr>
                         <td>Form A: Accreditation Application</td>
-                        <td align="center"><button class="btn btn-danger">View</button>
+                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/formA.pdf');">View</button>
                     </tr>
                     <tr>
                         <td>Form B: Adviser's Consent</td>
-                        <td align="center"><button class="btn btn-danger">View</button>
+                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/formB.pdf');">View</button>
                     </tr>
                     <tr>
                         <td>Form C: Organization Profile</td>
-                        <td align="center"><button class="btn btn-danger">View</button>
+                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/formC.pdf');">View</button>
                     </tr>
                     <tr>
                         <td>Form D: Officers' Profile</td>
-                        <td align="center"><button class="btn btn-danger">View</button>
+                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/formD.pdf');">View</button>
                     </tr>
                     <tr>
                         <td>Form E: Members' Profile</td>
-                        <td align="center"><button class="btn btn-danger">View</button>
+                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/formE.pdf');">View</button>
                     </tr>
                     
                     <?php if($org_status == "Accredited"){ ?>
                         <tr>
                             <td>Form F: Activity Report</td>
-                            <td align="center"><button class="btn btn-danger">View</button>
+                            <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/formF.pdf');">View</button>
                         </tr>
                         <tr>
                             <td>Form G: Financial Report</td>
-                            <td align="center"><button class="btn btn-danger">View</button>
+                            <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/formG.pdf');">View</button>
                         </tr>
                     
                     <?php } ?>
 
                     <tr>
                         <td>Plans</td>
-                        <td align="center"><button class="btn btn-danger">View</button>
+                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/plans.pdf');">View</button>
                     </tr>
 
                     <tr>
                         <td>Constitution</td>
-                        <td align="center"><button class="btn btn-danger">View</button>
+                        <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>/assets/org/accreditation/form_A/constitution.pdf');">View</button>
                     </tr>
 
                 </table>
