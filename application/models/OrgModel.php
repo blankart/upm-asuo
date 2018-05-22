@@ -24,10 +24,10 @@
 		}
 
 		public function getOrgDetails($org_id){
-			$condition = "oa.org_id = op.org_id AND op.org_id = " .$org_id;
+			$condition = "oa.org_id = op.org_id AND op.org_id = " .$org_id." AND op.org_id = aa.org_id AND aa.org_id = ".$org_id." AND aa.app_id = fa.app_id";
 
-			$this->db->select("op.*, oa.org_status, oa.org_email");
-			$this->db->from("organizationprofile op, organizationaccount oa");
+			$this->db->select("op.*, oa.org_status, oa.org_email,fa.stay");
+			$this->db->from("organizationprofile op, organizationaccount oa, accreditationapplication aa, form_a_details fa");
 			$this->db->where($condition);
 			$org_details = $this->db->get();
 
@@ -398,6 +398,7 @@
 				$aaInsert['form_G'] = "No Submission";
 				$aaInsert['plans'] = "No Submission";
 				$this->db->insert('accreditationapplication', $aaInsert);
+				$this->input_formA_details($org_id);
 				/*
 				$condition = "org_id = ".$org_id;
 				$this->db->select("app_id");
@@ -422,6 +423,8 @@
 				return $result;
 				*/
 			}
+
+
 
 		}
 
@@ -508,6 +511,7 @@
 						$result['contact_tel'] = "";
 						$result['contact_mobile'] = "";
 						$result['contact_other_details'] = "";
+						$this->db->insert('form_a_details',$result);
 						return $result;
 				}
 				else //form_a_details value is not empty
