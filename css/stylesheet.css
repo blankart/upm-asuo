@@ -105,6 +105,11 @@
     text-align: center;
     min-width: 350px;
 }
+
+.card .card-body .btn.btn-danger.admin-button a{
+    font-size: 15px;
+}
+
 .col .card .card-header {
     font-size: x-large;
     font-weight: 500;

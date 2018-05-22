@@ -161,7 +161,10 @@
         $('.loadingscreen').show();
     },
     ajaxStop: function(){
-    		$('.loadingscreen').hide(); 
+    		//setTimeout(function(){
+    			$('.loadingscreen').hide(); 
+    		//}, 500);
+    		
     }
   });
     		$(window).scroll(function(){
