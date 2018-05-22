@@ -177,7 +177,6 @@
 
    window.onload = preload
 	</script>
-	<div class="wrapper animated bounceIn" style="margin-top: 80px;">
 					
 		<div class="container-fluid" id="body-container-fluid">
 			<div class="container">
@@ -185,26 +184,15 @@
 				<div class="jumbotron">
 				<h3 class="display-1"><center><i class="fa fa-frown-o fa-2x"></i></h3>
 				<h3 class="display-3"><center>Unactivated Account</h3>
-				<p class="lower-case"><center>Admin Notice:<?php if( $notice != false){ echo nl2br( $notice['content'] );   } ?></p>
-				<div class="text-center">
-               <form enctype="multipart/form-data" method="POST" id="uploadProfilePicture">
-                  <img src="<?php echo base_url().'assets/student/profile_pic/'.$profile_pic.'?'.rand(1, 1000); ?>" class="avatar img-thumbnail" alt="avatar" height="500px"  width="500px">
-
-                  <br><br>
-                  <label id="prof_pic" style="margin-left: 20em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Change Profile Picture
-                  <input type="file" style="display: none;" onchange="document.getElementById('submitProfilePic').click();" class="form-control" id = 'profile_pic' name = 'profile_pic'>
-                   </label>
-
-                  <button type="submit" style="display: none;" id = 'submitProfilePic'> </button>
-               </form>
-            </div>
+          <p class="lower-case" style='text-align: center;'>Your account's activation is on process. For inquiries, please proceed to OSA.</p>
+				<div class='notice notice-danger' style='margin-top: 20px;'><h5 class="lower-case">Admin Notice:<?php if( $notice != false){ echo nl2br( $notice['content'] );   } ?></h5></div>
 
             <form method="POST" id="editProfileForm">
 
                <div class="form-group">
                   <label class="col-lg control-label">Name</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" value = "<?php echo $first_name.' '.$middle_name.' '.$last_name; ?>" readonly required>
+                     <input class="form-control" type="text" value = "<?php echo $first_name.' '.$middle_name.' '.$last_name; ?>" required>
                 </div>
                </div>
 
@@ -298,14 +286,6 @@
                      <input class="form-control" type="text" maxlength="11" name="data[contact_num]" value = "<?php echo $contact_num; ?>" onkeyup="contactNumFormatCheck(this)" required>
                   </div>
                </div>
-         </div>
-         <!-- Modal footer -->
-         <div class="modal-footer">
-         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-         <button type="submit" onclick="validateForm()" class="btn btn-danger">Save</button>
-      </form>
-         </div>
-			<div class="form-group">
                <form enctype="multipart/form-data" id= 'uploadForm5Form' method="POST">
                  <div class="form-group">
                   <label id="form5Label" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Form 5
@@ -318,13 +298,18 @@
                      noUploads() 
                   <?php } ?>" > Preview File</button>
                   <button type="submit" style="display: none;" id = 'submitForm5'> </button>
+                  <button type="submit" onclick="validateForm()" class="btn btn-danger">Save</button>
+                  <a  href="<?php echo base_url().'logout'; ?>"><button type="button" class="btn btn-danger">Log Out</button></a>
                </div>
             </form>
-      </div>
-					<a  href="<?php echo base_url().'logout'; ?>"><button type="button" class="btn btn-danger">Log Out</button></a>
-				</div>	
+         </div>
+         <!-- Modal footer -->
+         
+      </form>
+         </div>
+					
  			</div>
-		</div>
+		</div>  
 	</div>
 </body>
 </html>
