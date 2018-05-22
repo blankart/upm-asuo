@@ -83,9 +83,6 @@
 				$this->viewFormA("preview");
 			}
 			else if($action == 'viewFormC'){
-				if(!isset($_SERVER['HTTP_REFERER'])){
-						show_404();
-				}
 				$this->viewFormC("preview");
 			}
 			else if($action == 'viewFormD'){
@@ -243,9 +240,8 @@
 			$password = $this->input->post('orgpassword');
 		
 			if($id != NULL && $password != NULL){
-				$orgpassword = md5($password);
 				$this->load->model('OrgModel');
-				$result = $this->OrgModel->checkOrgPassword($id, $orgpassword);
+				$result = $this->OrgModel->checkOrgPassword($id, $password);
 				echo json_encode($result);
 				exit();
 			}
@@ -258,7 +254,7 @@
 			$password = $this->input->post('neworgpassword');
 		
 			if($id != NULL && $password != NULL){
-				$neworgpassword = md5 ($password);
+				$neworgpassword = password_hash($password, PASSWORD_BCRYPT);
 				$this->load->model('OrgModel');
 				$this->OrgModel->changeOrgPassword($id, $neworgpassword);
 				echo json_encode('true');
@@ -591,6 +587,10 @@
 			if($type == 'Membership Removal'){
                 $reason = $other_info;
 
+
+			if($type == 'Membership Removal'){
+                $reason = $other_info;
+
                 $reason = $other_info;
                 $message = '<html><body>';
                 $message .= '<p> Notification from ASUO:</p>';
@@ -877,31 +877,33 @@
 
 			//$name = 'UP Society of Computer Scientists';
 			// WALA PANG POSITION/DESIGNATION
-			$html= '<p align="right"><b>Date filed:</b>'.date("M d, Y").'</p><br>
-			<b>Organization Name:</b>'.$result['org_name'].'<br>
-			<b>Number of members:</b>'.$tally.'<br>	
-			<b>Category:</b>'.$result['org_category'].'<br>
-			<b>Adviser:</b>'.$result['formA']['adviser'].'<br>
-			<b>Position/Designation:</b>'.$result['formA']['adviser_position'].'&nbsp;&nbsp;&nbsp;&nbsp;<br>
-			<b>College/Unit: </b>'.$result['formA']['adviser_college'].'<br>
-			<b>Contact Person:</b>'.$result['formA']['contact_person'].'<br>
-			<b>Position in the Organization</b>'.$result['formA']['contact_position'].'
+
+			$html= '<p align="right"><b>Date filed:</b>Text</p><br><br>
+			<b>Organization Name:</b>Text<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;New [ &nbsp;]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Old [&nbsp; ] years in existence<br><br>
+			<b>Number of members:</b>Text<br><br>	
+			<b>Category:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Academic&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Cause-oriented&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Cultural<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Fraternity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Sorority&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Socio-Civic<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Sports/Recreation&nbsp;&nbsp;[ &nbsp;] Special Interest&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ &nbsp;] Service<br><br>
+			<b>Adviser:</b>Text<br><br>
+			<b>Position/Designation:</b>Text&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>College/Unit: </b>Text<br><br>
+			<b>Contact Person:</b>Text<br><br>
+			<b>Position in the Organization</b>Text
+			<br><br>
+			<b>Address:</b>Text<br><br>
+            <b>Telephone no.:</b>Text&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>Mobile no.:</b>Text
+			<br><br>
+			<b>Email:</b>Text&nbsp;&nbsp;&nbsp;&nbsp;
+			<b>Other contact details:</b>Text
+			<br><br>
+			<b>Objectives of Organization:</b>Text
+			<br><br>
+			<b>Brief description of Organization:</b>Text
 			<br>
-			<b>Address:</b>'.$result['formA']['contact_address'].'
-			<br>
-			<b>Telephone no.:</b'.$result['formA']['contact_tel'].'&nbsp;&nbsp;&nbsp;&nbsp;
-			<b>Mobile no.:</b>'.$result['formA']['contact_mobile'].'
-			<br>
-			<b>Email:</b>'.$result['formA']['contact_email'].'&nbsp;&nbsp;&nbsp;&nbsp;
-			<b>Other contact details:</b>'.$result['formA']['contact_other_details'].'
-			<br>
-			<b>Objectives of Organization:</b>'.$result['objectives'].'
-			<br>
-			<b>Brief description of Organization:</b>'.$result['description'].'
 			<br>
 			<br>
-			<br>
-				</p>
 			';
 			//var_dump($html);
 			$pdf->writeHTML($html, true, 0, true, 0);

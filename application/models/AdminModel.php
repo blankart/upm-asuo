@@ -306,7 +306,7 @@
 		}
 
 		public function checkAdminPassword($id, $adminpassword){
-			$condition = "admin_id = " .$id. " AND password = '" .$adminpassword. "'";
+			$condition = "admin_id = " .$id. " AND admin_id = " .$id;
 
 			$this->db->select('*');
 			$this->db->from('admin');
@@ -314,8 +314,10 @@
 
 			$query = $this->db->get();
 
-			if ($query->num_rows() == 1)
-				return true;
+			if ($query->num_rows() == 1){
+				$password = $query->result_array()[0]['password'];
+				return password_verify($adminpassword, $password);
+			}
 			else 
 				return false;
 		}

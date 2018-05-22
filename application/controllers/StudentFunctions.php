@@ -252,9 +252,8 @@
 			$password = $this->input->post('studentpassword');
 		
 			if($id != NULL && $password != NULL){
-				$studentpassword = md5($password);
 				$this->load->model('StudentModel');
-				$result = $this->StudentModel->checkStudentPassword($id, $studentpassword);
+				$result = $this->StudentModel->checkStudentPassword($id, $password);
 				echo json_encode($result);
 				exit();
 			}
@@ -267,7 +266,7 @@
 			$password = $this->input->post('newstudentpassword');
 		
 			if($id != NULL && $password != NULL){
-				$newstudentpassword = md5 ($password);
+				$newstudentpassword = password_hash($password, PASSWORD_BCRYPT);
 				$this->load->model('StudentModel');
 				$this->StudentModel->changeStudentPassword($id, $newstudentpassword);
 				echo json_encode('true');

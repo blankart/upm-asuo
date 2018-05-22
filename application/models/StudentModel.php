@@ -171,17 +171,20 @@
 		// end of SEARCH FUNCTIONS
 
 		//CHANGE PASSWORD FUNCTIONS
-		public function checkStudentPassword($id, $orgpassword){
-			$condition = "student_id = " .$id. " AND password = '" .$orgpassword. "'";
+		public function checkStudentPassword($id, $studentpassword){
+			
+			$condition = "student_id = " .$id. " AND student_id = " .$id;
 
-			$this->db->select('student_id');
+			$this->db->select('*');
 			$this->db->from('studentaccount');
 			$this->db->where ($condition);
 
 			$query = $this->db->get();
 
-			if ($query->num_rows() == 1)
-				return true;
+			if ($query->num_rows() == 1){
+				$password = $query->result_array()[0]['password'];
+				return password_verify($studentpassword, $password);
+			}
 			else 
 				return false;
 		}

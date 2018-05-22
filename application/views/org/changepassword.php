@@ -1,4 +1,4 @@
-x`<?php
+<?php
    if (isset($this->session->userdata['logged_in'])) {
     $id = ($this->session->userdata['user_id']);
    }

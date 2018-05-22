@@ -629,16 +629,19 @@
 
 		//CHANGE PASSWORD FUNCTIONS
 		public function checkOrgPassword($id, $orgpassword){
-			$condition = "org_id = " .$id. " AND password = '" .$orgpassword. "'";
 
-			$this->db->select('org_id');
+			$condition = "org_id = " .$id. " AND org_id = " .$id;
+
+			$this->db->select('*');
 			$this->db->from('organizationaccount');
 			$this->db->where ($condition);
 
 			$query = $this->db->get();
 
-			if ($query->num_rows() == 1)
-				return true;
+			if ($query->num_rows() == 1){
+				$password = $query->result_array()[0]['password'];
+				return password_verify($orgpassword, $password);
+			}
 			else 
 				return false;
 		}
