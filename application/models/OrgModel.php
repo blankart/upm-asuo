@@ -371,7 +371,7 @@
 			{
 
 				$aaInsert['org_id'] = $org_id;
-				$aaInsert['app_status'] = "Pending";
+				$aaInsert['app_status'] = "No Submission";
 				$aaInsert['form_A'] = "No Submission";
 				$aaInsert['form_B'] = "No Submission";
 				$aaInsert['form_C'] = "No Submission";
