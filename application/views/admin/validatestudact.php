@@ -209,7 +209,7 @@
       <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">Validate Student Account</h4>
+          <h4 class="modal-title"><i class="fa fa-check-circle-o fa-2x pull-left" style='margin-right: 20px;'></i>Validate Student Account</h4>
         </div><!-- Modal body -->
         <div class="modal-body">
           <div id="studSearch">

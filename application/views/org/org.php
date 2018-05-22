@@ -310,7 +310,12 @@
                             <hr>
 
                             <?php if($account_type == 'org') {?>
-                            <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#editprofile">Edit Profile</button> <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" onclick="location.href = '<?php echo base_url(); ?>org/applyforaccreditation';">Apply for Accreditation</button><button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#createposts">Create Post</button>
+								<button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#editprofile">
+									<i class="fa fa-edit fa-2x pull-left"></i>Edit Profile</button> 
+								<button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" onclick="location.href = '<?php echo base_url(); ?>org/applyforaccreditation';">
+									<i class="fa fa-folder-open fa-2x pull-left"></i>Apply for Accreditation</button>
+								<button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#createposts">
+									<i class="fas fa-paper-plane fa-2x pull-left" style='margin-right: 20px;'></i>Create Post</button>
                             <?php } ?>
 
                             <?php if(!$isAdmin && !$isOfficer && !$isMember && !$isOrg && !$isApplicant ){?>

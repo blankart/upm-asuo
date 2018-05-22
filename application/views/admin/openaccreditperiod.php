@@ -15,11 +15,11 @@
    }
 </script>
 <div class="modal animated bounceInUp" id="openaccreditperiod" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered" style="max-width: 350px;">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 400px;">
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Open Accreditation Period</h4>
+                <h4 class="modal-title"><i class="fa fa-calendar fa-2x pull-left admin-icon" style='margin-right: 20px;'></i>Open Accreditation Period</h4>
             </div>
             <!-- Modal body -->
             <div class="modal-body">

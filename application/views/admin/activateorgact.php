@@ -173,7 +173,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Activate Organization Account</h4>
+                <h4 class="modal-title"><i class="fa fa-check-circle fa-2x pull-left" style='margin-right: 20px;'></i>Activate Organization Account</h4>
             </div>
             <!-- Modal body -->
             <div class="modal-body">

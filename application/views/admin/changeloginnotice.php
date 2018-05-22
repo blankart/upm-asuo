@@ -3,7 +3,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">Change Login Notice</h4>
+                <h4 class="modal-title"><i class="fa fa-edit fa-2x pull-left" style='margin-right: 20px;'></i>Change Login Notice</h4>
             </div>
             <!-- Modal body -->
             <div class="modal-body">

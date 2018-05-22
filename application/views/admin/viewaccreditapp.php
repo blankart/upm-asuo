@@ -328,7 +328,7 @@
       <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header">
-          <h4 class="modal-title">View Accreditation Applications</h4>
+          <h4 class="modal-title"><i class="fa fa-folder-open fa-2x pull-left"></i>View Accreditation Applications</h4>
 
         </div><!-- Modal body -->
         <div class="modal-body">
