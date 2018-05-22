@@ -520,12 +520,51 @@
 
 		}
 
+		public function uploadFormA($id, $file_name){
+			$condition = 'org_id = ' .$id;
 
+			$changes = array(
+				'form_A' => $file_name.'.pdf'
+			);
+
+			$this->db->where($condition);
+			$this->db->update("accreditationapplication", $changes);
+		}
 		public function uploadFormB($id, $file_name){
 			$condition = 'org_id = ' .$id;
 
 			$changes = array(
 				'form_B' => $file_name.'.pdf'
+			);
+
+			$this->db->where($condition);
+			$this->db->update("accreditationapplication", $changes);
+		}
+		public function uploadFormC($id, $file_name){
+			$condition = 'org_id = ' .$id;
+
+			$changes = array(
+				'form_C' => $file_name.'.pdf'
+			);
+
+			$this->db->where($condition);
+			$this->db->update("accreditationapplication", $changes);
+		}
+		public function uploadFormD($id, $file_name){
+			$condition = 'org_id = ' .$id;
+
+			$changes = array(
+				'form_D' => $file_name.'.pdf'
+			);
+
+			$this->db->where($condition);
+			$this->db->update("accreditationapplication", $changes);
+		}
+		public function uploadFormE($id, $file_name){
+			$condition = 'org_id = ' .$id;
+
+			$changes = array(
+				'form_E' => $file_name.'.pdf'
 			);
 
 			$this->db->where($condition);

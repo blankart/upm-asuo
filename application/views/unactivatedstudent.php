@@ -185,7 +185,8 @@
 				<h3 class="display-1"><center><i class="fa fa-frown-o fa-2x"></i></h3>
 				<h3 class="display-3"><center>Unactivated Account</h3>
           <p class="lower-case" style='text-align: center;'>Your account's activation is on process. For inquiries, please proceed to OSA.</p>
-				<div class='notice notice-danger' style='margin-top: 20px;'><h5 class="lower-case">Admin Notice:</h5></div>
+				<div class='notice notice-info' style='margin-top: 20px;'><h6 class="lower-case"><?php if( $notice != false){ echo '<strong>Admin Notice:</strong><br>'.nl2br( $notice['content'] );   }else echo '<center><strong>No notice from Admin.</strong>' ?></h8></div>
+
             <form method="POST" id="editProfileForm">
 
                <div class="form-group">
@@ -286,20 +287,24 @@
                   </div>
                </div>
                <form enctype="multipart/form-data" id= 'uploadForm5Form' method="POST">
+                
                  <div class="form-group">
                   <label id="form5Label" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;">Upload Form 5
                      <input type="file" style="display: none;" class="form-control" id = 'form5' name = 'form5' onchange="document.getElementById('submitForm5').click();"></label>
-
-                  <button type="button" class="btn btn-primary" style="margin-left: 1em" onclick="
+                     </div>
+                     
+                  <button type="button" class="btn btn-primary" style="margin: 1px; margin-left: 1em" onclick="
                   <?php if ($form5 != "None"){ ?>
                      window.open('<?php echo base_url()."assets/student/form_5/".$form5; ?>') 
                   <?php }else { ?> 
                      noUploads() 
                   <?php } ?>" > Preview File</button>
                   <button type="submit" style="display: none;" id = 'submitForm5'> </button>
-                  <button type="submit" onclick="validateForm()" class="btn btn-danger">Save</button>
-                  <a  href="<?php echo base_url().'logout'; ?>"><button type="button" class="btn btn-danger">Log Out</button></a>
+                  <button type="submit" onclick="validateForm()" style='margin: 10px;' class="btn btn-danger">Save</button>
+                  
+                <div class='wrapper'><a  href="<?php echo base_url().'logout'; ?>" style='margin: 10px;'><button type="button" class="btn btn-danger">Log Out</button></a></div>
                </div>
+
             </form>
          </div>
          <!-- Modal footer -->
