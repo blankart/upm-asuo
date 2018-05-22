@@ -662,6 +662,8 @@
 				    $result['success'] = 'No';
 				    $result['error'] = $this->email->print_debugger(array('headers'));
 				   }
+			}
+
 		}
 
 
