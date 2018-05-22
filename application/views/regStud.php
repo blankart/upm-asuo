@@ -353,7 +353,6 @@
                               </script>
                               <div id="fileCheckerNote" class="notice notice-sm notice-danger" style="display: none;">
                            </div>
-                           <br><br>
                               <div class="form-group">
                                  <div class="margin-top20 text-center">
                                     Already registered?<a href="<?php echo base_url();?>login"> Log In</a>
