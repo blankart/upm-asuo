@@ -564,6 +564,21 @@
 			$this->db->where($condition);
 			$this->db->update("accreditationapplication", $changes);
 		}
+
+		public function getForms($org_id){
+
+			$condition = "op.org_id = aa.org_id AND aa.org_id =". $org_id;
+
+			$this->db->select('aa.*, op.constitution');
+			$this->db->from('accreditationapplication aa, organizationprofile op');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if($query->num_rows() == 1)
+				return $query->result_array()[0];
+			else
+				return false;
+		}
 		//end of ORG ACCREDITATION FUNCTIONS
 //---------------------------------------------END OF ORG ACCREDITATION FUNCTIONS -----------------------------
 		//CREATE POST FUNCTION

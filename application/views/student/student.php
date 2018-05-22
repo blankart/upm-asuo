@@ -165,7 +165,8 @@
 							<h6 style="text-align: center; margin-bottom: 30px;"><strong><?php echo $profile['course']; ?>, <?php echo $profile['year_level']; ?></strong></h6>
 							<hr>
 							<?php if($isStudent){ ?>
-							<button class="btn btn-danger btn-block" data-target="#editStudentProfile" data-toggle="modal" style="margin-top: 10px;" type="button">Edit Profile</button>
+							<button class="btn btn-danger btn-block" data-target="#editStudentProfile" data-toggle="modal" style="margin-top: 10px;" type="button">
+								<a><i class="fa fa-edit fa-2x pull-left" style='margin-right: 20px;'></i>Edit Profile</a></button>
 							<?php } ?>
 
 						</div>
@@ -241,7 +242,7 @@
 													<a class="org-link" href="<?php echo base_url().'org/'.str_replace(' ', '', $org['acronym']); ?>"><img alt="orgLogo" src="<?php echo base_url().'assets/org/logo/'.$org['org_logo'].'?'.rand(1, 100); ?>" style="max-height: 80px" title="<?php echo $org['acronym']; ?>"></a>
 												</td>
 												<td><?php echo $org['position'];?></td>
-												<td><?php echo $org['org_email'];?></td>
+												<td><a href="mailto:<?php echo $org['org_email']; ?>" style="color: #008b8b;"><?php echo $org['org_email'];?></a></td>
 											</tr>
 										<?php }?>
 										</tbody>

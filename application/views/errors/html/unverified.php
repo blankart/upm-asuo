@@ -5,7 +5,8 @@
 
       $.ajax({
         type: "POST",
-        url: "<?php echo base_url().'resendVerificationMail'; ?>",
+        url: "<?php echo base_url().'resendVeri
+		ficationMail'; ?>",
         cache: false,
         async: false,
         dataType: "JSON",

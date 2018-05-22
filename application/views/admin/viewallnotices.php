@@ -85,7 +85,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title">View All Announcements</h4>
+                <h4 class="modal-title"><i class="fa fa-envelope-o fa-2x pull-left" style='margin-right: 20px;'></i>View All Announcements</h4>
             </div>
             <!-- Modal body -->
             <div class="modal-body">

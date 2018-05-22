@@ -134,7 +134,17 @@
                 }
 
                 function studApproved(name, acronym, id){
-                   $.ajax({
+                  
+                  swal({
+                    title: "Approve "+ name+ "?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Approve",
+                    closeOnConfirm: false
+                  },
+                  function(){
+
+                      $.ajax({
                       type: "post",
                       url: "<?php echo base_url();?>org/approveMembership",
                       data: {student_id: id},
@@ -151,10 +161,21 @@
                         }
                       }
                     });
-                
+                    }
+                  );
                 }
 
                 function studReject(name, id){
+
+                  swal({
+                    title: "Reject "+ name+ "?",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "Reject",
+                    closeOnConfirm: false
+                  },
+                  function(){
+
                     $.ajax({
                       type: "post",
                       url: "<?php echo base_url();?>org/rejectMembership",
@@ -172,6 +193,8 @@
                         }
                       }
                     });
+                    }
+                  );
                 }
 
                 function changePosition(name, id ){
@@ -310,7 +333,12 @@
                             <hr>
 
                             <?php if($account_type == 'org') {?>
-                            <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#editprofile">Edit Profile</button> <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" onclick="location.href = '<?php echo base_url(); ?>org/applyforaccreditation';">Apply for Accreditation</button><button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#createposts">Create Post</button>
+								<button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#editprofile">
+									<i class="fa fa-edit fa-2x" style='float: left;'></i>Edit Profile</button> 
+								<button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" onclick="location.href = '<?php echo base_url(); ?>org/applyforaccreditation';">
+									<a><i class="fa fa-folder-open fa-2x" style='float: left;'></i>Apply for Accreditation</a></button>
+								<button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#createposts">
+									<a><i class="fas fa-paper-plane fa-2x pull-left" style='float: left;'></i>Create Post</a></button>
                             <?php } ?>
 
                             <?php if(!$isAdmin && !$isOfficer && !$isMember && !$isOrg && !$isApplicant ){?>
