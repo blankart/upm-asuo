@@ -8,6 +8,9 @@
 			else if($action == 'login' || $action == 'regstud' || $action == 'regorg')
 			 	$this->redirectToProfile();
 
+
+			else if ($action == 'sendStudentNotice')
+				$this->sendStudentNotice();
 			else if ($action == 'searchStudents')
 				$this->searchStudents();
 			else if ($action == 'viewStudentInfo')
@@ -105,6 +108,27 @@
               $this->load->view("admin/openaccreditperiod.php");
               $this->load->view("admin/changeloginnotice.php");
 			$this->load->view('footer');
+		}
+
+		private function sendStudentNotice(){
+			$student_id = $this->input->post('student_id');
+			$message = $this->input->post('message');
+
+			if($student_id != NULL && $message != NULL){
+
+				$admin_id = $this->session->userdata['user_id'];
+
+				$data['admin_id'] = $admin_id;
+				$data['student_id'] = $student_id;
+				$data['content'] = $message;
+				$format = 'Y-m-d H:i:s';
+				$data['date_posted'] = date($format);
+
+				$this->load->model('AdminModel');
+				$this->AdminModel->sendStudentNotice($data);
+			}
+			else
+				show_404();
 		}
 
 		private function searchStudents(){
