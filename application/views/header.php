@@ -17,8 +17,6 @@
 			$org_logo = ($this->session->userdata['org_logo']);
 		}
 	}
-  
-
 ?>
     <!DOCTYPE html>
     <html>

@@ -243,7 +243,7 @@
 			$this->db->update('accreditationapplication', $changes);
 		}
 		//
-		public function openAccreditation($period){
+		public function openAccreditationPeriod($period){
 			$this->db->insert('accreditation_period', $period);
 			return true;
 		}

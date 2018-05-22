@@ -384,6 +384,10 @@
 		}
 
 		private function uploadFormB(){
+
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			$id = $this->session->userdata['user_id'];
 			$file_name = md5('formB'.$id);
 
@@ -411,6 +415,9 @@
 		}
 
 		private function uploadFormF(){
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			$id = $this->session->userdata['user_id'];
 			$file_name = md5('formF'.$id);
 
@@ -439,6 +446,10 @@
 
 		private function uploadFormG()
 		{
+
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			$id = $this->session->userdata['user_id'];
 			$file_name = md5('formG'.$id);
 
@@ -467,6 +478,9 @@
 
 		private function uploadPlans()
 		{
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			$id = $this->session->userdata['user_id'];
 			$file_name = md5('plans'.$id);
 
@@ -495,6 +509,9 @@
 
 		private function uploadAll()
 		{
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			$data = $this->input->post('source');
 			$org_id = $this->session->userdata['user_id'];	
 			if($data == 'org')
@@ -517,6 +534,7 @@
 
 		private function applyToOrg()
 		{
+
 			$source = $this->input->post('org_id');			
 			$org_id = $source;
 			//$org_id = 6;
@@ -719,6 +737,9 @@
 //-------------------------------FORMS FOR ACCREDITATION---------------------------------------
 		private function generateFormA()
 		{	
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			//get org id
 			$org_id = $this->session->userdata['user_id'];
 
@@ -760,6 +781,8 @@
 		//saving data from form a accreditation
 		private function saveFormA()
 		{
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
 			 
 			$form_details = $this->input->post('data');
 			$org_id = $this->session->userdata['user_id']; 
@@ -776,6 +799,9 @@
 		}
 
 		private function loadAccreditationHome(){
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
@@ -801,6 +827,9 @@
 		}
 		
 		private function loadFormB(){
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
@@ -822,6 +851,9 @@
 			$this->load->view('footer');
 		}
 		private function loadFormC(){
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
@@ -846,6 +878,9 @@
 		}
 
 		private function loadFormD(){
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
@@ -868,6 +903,9 @@
 		}
 
 		private function loadFormE(){
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
@@ -890,6 +928,9 @@
 		}
 
 		private function loadFormF(){
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
@@ -912,6 +953,9 @@
 		}
 
 		private function loadFormG(){
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
@@ -934,6 +978,9 @@
 		}
 
 		private function loadPlans(){
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
@@ -956,6 +1003,9 @@
 		}
 
 		function loadSubmitAll(){
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
@@ -982,6 +1032,8 @@
 
 		private function viewFormA($type)
 		{
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
 
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
@@ -1091,6 +1143,9 @@
 		}
 		
 		private function viewFormC($type){
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 			// set document information
@@ -1257,6 +1312,10 @@
 		}
 
 		private function viewFormD($type){
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
+
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 			// set document information
@@ -1365,6 +1424,9 @@
 		}
 
 		public function viewFormE($type){
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
 			$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 			// set document information
@@ -1477,6 +1539,9 @@
 		}
 
 		private function viewFormF(){
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+			
 				$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 			// set document information
