@@ -43,11 +43,7 @@
 				$this->loadAccreditationHome();
 			}
 			else if ($action == 'formA'){
-
-				//lalagay tong mga to sa private function pagkakuha ng details
-				$this->generateFormA();
-				//$this->loadFormA();
-
+				$this->loadFormA();
 			}
 			else if ($action == 'formB'){
 				$this->loadFormB();
@@ -735,49 +731,6 @@
 
 
 //-------------------------------FORMS FOR ACCREDITATION---------------------------------------
-		private function generateFormA()
-		{	
-			if(!$this->session->userdata['open_accreditation'])
-				redirect(base_url().'login');
-
-			//get org id
-			$org_id = $this->session->userdata['user_id'];
-
-			$this->load->model('OrgModel');
-			
-			//get user input form a details
-			$result = $this->OrgModel->input_formA_details($org_id);
-			
-			//get predefined form a details
-			//$pre_def_details = $this->OrgModel->getOrgDetailsForm($org_id);
-
-			$data = $this->OrgModel->getOrgDetailsForm($org_id);
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
-			//var_dump($data);
-			if($data == false)
-			{
-				$org_data['stay'] = 'new';
-			}
-			else
-			{
-				$org_data['stay'] = 'old';
-			}
-				
-			$result['org_name'] = $org_data['org_name'];
-			$result['org_category'] = $org_data['org_category'];
-			$result['description'] = $org_data['description'];
-			$result['objectives'] = $org_data['objectives'];
-			$result['org_status'] = $org_data['org_status'];
-			//var_dump($result);
-			$this->load->view('header');
-			$this->load->view('org/applyforaccreditation/formA', $result);
-			$this->load->view('org/changepassword');
-			$this->load->view('footer');
-
-
-
-		}
-
 		//saving data from form a accreditation
 		private function saveFormA()
 		{
@@ -805,29 +758,48 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			
-			$this->OrgModel->initAccred($org_id);
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
-			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$this->OrgModel->initAccred($org_id, $AY_id);
+			$org_data['org_accred_status'] = $this->OrgModel->getOrgStatus($org_id, $AY_id);
+
 			$period = $this->OrgModel->getAccreditationPeriod();
 			
 			if($period != false)
 				$org_data['end_date'] = $period['end_date'];
 			else
 				$org_data['end_date'] = false;
-
-			//var_dump($data);
-			if($data == false)
-			{
-				$org_data['stay'] = 'new';
-			}
-			else
-			{
-				$org_data['stay'] = 'old';
-			}
+		
 			//var_dump($org_data);
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/applyforaccreditation', $org_data);
+			$this->load->view('org/changepassword');
+			$this->load->view('footer');
+		}
+
+		private function loadFormA()
+		{	
+			if(!$this->session->userdata['open_accreditation'])
+				redirect(base_url().'login');
+
+			$org_id = $this->session->userdata['user_id'];
+
+			$this->load->model('OrgModel');
+			$result = $this->OrgModel->input_formA_details($org_id);
+			$org_data = $this->OrgModel->getOrgDetails($org_id);
+			//var_dump($data);
+			
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$this->OrgModel->initAccred($org_id, $AY_id);
+			$result['org_accred_status'] = $this->OrgModel->getOrgStatus($org_id, $AY_id);
+
+			$result['org_name'] = $org_data['org_name'];
+			$result['org_category'] = $org_data['org_category'];
+			$result['description'] = $org_data['description'];
+			$result['objectives'] = $org_data['objectives'];
+			$result['org_status'] = $org_data['org_status'];
+			//var_dump($result);
+			$this->load->view('header');
+			$this->load->view('org/applyforaccreditation/formA', $result);
 			$this->load->view('org/changepassword');
 			$this->load->view('footer');
 		}
@@ -841,15 +813,11 @@
 			$this->load->model('OrgModel');
 			$data = $this->OrgModel->getOrgDetailsForm($org_id);
 			$org_data = $this->OrgModel->getOrgDetails($org_id);
-			//var_dump($data);
-			if($data == false)
-			{
-				$org_data['stay'] = 'new';
-			}
-			else
-			{
-				$org_data['stay'] = 'old';
-			}
+			
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$this->OrgModel->initAccred($org_id, $AY_id);
+			$org_data['org_accred_status'] = $this->OrgModel->getOrgStatus($org_id, $AY_id);
+
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formB', $org_data);
@@ -865,16 +833,11 @@
 			$this->load->model('OrgModel');
 			$data = $this->OrgModel->getOrgDetailsForm($org_id);
 			$org_data = $this->OrgModel->getOrgDetails($org_id);
-			//var_dump($data);
-			if($data == false)
-			{
-				$org_data['stay'] = 'new';
-			}
-			else
-			{
-				$org_data['stay'] = 'old';
-			}
-			
+		
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$this->OrgModel->initAccred($org_id, $AY_id);
+			$org_data['org_accred_status'] = $this->OrgModel->getOrgStatus($org_id, $AY_id);
+
 			$org_data['tally'] = $this->OrgModel->getOrgTally($org_id);
 
 			$this->load->view('header');
@@ -890,17 +853,10 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetailsForm($org_id);
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
-			//var_dump($data);
-			if($data == false)
-			{
-				$org_data['stay'] = 'new';
-			}
-			else
-			{
-				$org_data['stay'] = 'old';
-			}
+
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$this->OrgModel->initAccred($org_id, $AY_id);
+			$org_data['org_accred_status'] = $this->OrgModel->getOrgStatus($org_id, $AY_id);		
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formD', $org_data);
@@ -916,16 +872,10 @@
 
 			$this->load->model('OrgModel');
 			$data = $this->OrgModel->getOrgDetailsForm($org_id);
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
-			//var_dump($data);
-			if($data == false)
-			{
-				$org_data['stay'] = 'new';
-			}
-			else
-			{
-				$org_data['stay'] = 'old';
-			}
+
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$this->OrgModel->initAccred($org_id, $AY_id);
+			$org_data['org_accred_status'] = $this->OrgModel->getOrgStatus($org_id, $AY_id);		
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/formE', $org_data);
@@ -940,22 +890,19 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetailsForm($org_id);
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
-			//var_dump($data);
-			if($data == false)
-			{
-				$org_data['stay'] = 'new';
+
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$this->OrgModel->initAccred($org_id, $AY_id);
+			$org_accred_status = $this->OrgModel->getOrgStatus($org_id, $AY_id);		
+
+			if($org_accred_status == 'old'){
+				$this->load->view('header');
+				$this->load->view('org/applyforaccreditation/formF');
+				$this->load->view('org/changepassword');
+				$this->load->view('footer');
 			}
 			else
-			{
-				$org_data['stay'] = 'old';
-			}
-
-			$this->load->view('header');
-			$this->load->view('org/applyforaccreditation/formF', $org_data);
-			$this->load->view('org/changepassword');
-			$this->load->view('footer');
+				redirect(base_url().'login');
 		}
 
 		private function loadFormG(){
@@ -965,22 +912,18 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetailsForm($org_id);
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
-			//var_dump($data);
-			if($data == false)
-			{
-				$org_data['stay'] = 'new';
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$this->OrgModel->initAccred($org_id, $AY_id);
+			$org_accred_status = $this->OrgModel->getOrgStatus($org_id, $AY_id);
+
+			if($org_accred_status == 'old'){
+				$this->load->view('header');
+				$this->load->view('org/applyforaccreditation/formG');
+				$this->load->view('org/changepassword');
+				$this->load->view('footer');
 			}
 			else
-			{
-				$org_data['stay'] = 'old';
-			}
-
-			$this->load->view('header');
-			$this->load->view('org/applyforaccreditation/formG', $org_data);
-			$this->load->view('org/changepassword');
-			$this->load->view('footer');
+				redirect(base_url().'login');
 		}
 
 		private function loadPlans(){
@@ -990,17 +933,10 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetailsForm($org_id);
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
-			//var_dump($data);
-			if($data == false)
-			{
-				$org_data['stay'] = 'new';
-			}
-			else
-			{
-				$org_data['stay'] = 'old';
-			}
+
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$this->OrgModel->initAccred($org_id, $AY_id);
+			$org_data['org_accred_status'] = $this->OrgModel->getOrgStatus($org_id, $AY_id);			
 
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/plans', $org_data);
@@ -1015,22 +951,12 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$temp = $this->OrgModel->getOrgDetailsForm($org_id);
-			$org_data = $this->OrgModel->getOrgDetails($org_id);
-			$data = $this->OrgModel->getForms($org_id);
-			$data['org_status'] = $org_data['org_status'];
-			//var_dump($data);
-			if($temp == false)
-			{
-				$org_data['stay'] = 'new';
-				$data['stay'] = 'new';
 
-			}
-			else
-			{
-				$org_data['stay'] = 'old';
-				$data['stay'] = 'old';
-			}
+			$data = $this->OrgModel->getForms($org_id);
+			
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$this->OrgModel->initAccred($org_id, $AY_id);
+			$data['org_accred_status'] = $this->OrgModel->getOrgStatus($org_id, $AY_id);		
 
 			//var_dump($data);
 			$this->load->view('header');

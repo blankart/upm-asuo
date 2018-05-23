@@ -7,7 +7,7 @@
 
     function checkForms()
     {
-        <?php if($stay == "old"){ ?>
+        <?php if($org_accred_status == "old"){ ?>
         var form_A = '<?php echo $form_A;?>';
         var form_B = "<?php echo $form_B;?>";
         var form_F = "<?php echo $form_F;?>";
@@ -144,7 +144,7 @@
             <div class="col-4">
                 <!-- insert sidenav -->
                 <div class="sidenav">
-                    <?php if($stay == "old"){ ?>
+                    <?php if($org_accred_status == "old"){ ?>
                     <ul class="menu">
                         <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
@@ -218,7 +218,7 @@
                         <td align="center"><button class="btn btn-danger" onclick="window.open('<?php echo base_url(); ?>org/viewFormE');">View</button>
                     </tr>
                     
-                    <?php if($stay == "old"){ ?>
+                    <?php if($org_accred_status == "old"){ ?>
                         <tr>
                             <td>Form F: Activity Report</td>
                             <td align="center"><button class="btn btn-danger" onclick="

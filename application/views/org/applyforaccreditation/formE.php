@@ -39,7 +39,7 @@
             <div class="col-4">
             <!-- insert sidenav -->
                 <div class="sidenav">
-                    <?php if($stay == "old"){ ?>
+                    <?php if($org_accred_status == "old"){ ?>
                     <ul class="menu">
                         <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
                         <li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>

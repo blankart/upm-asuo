@@ -191,7 +191,7 @@
 		}
 
 		public function searchAccredApp($string){
-			$condition = "aa.org_id = oa.org_id AND aa.org_id = op.org_id AND op.org_name LIKE '%".$string."%' AND oa.archived = 0";
+			$condition = "aa.org_id = oa.org_id AND aa.org_id = op.org_id AND aa.app_status <> 'On Progress' AND op.org_name LIKE '%".$string."%' AND oa.archived = 0";
 
 			$this->db->select('oa.org_id, op.org_name, oa.org_status, aa.app_status');
 			$this->db->from('organizationprofile op, organizationaccount oa, accreditationapplication aa');
@@ -245,9 +245,23 @@
 			$this->db->insert('login_notice', $data);
 		}
 		//
+
+
 		public function openAccreditationPeriod($period){
+			$AY_id = $this->createAcademicYear();
+
+			$period['AY_id'] = $AY_id;
 			$this->db->insert('accreditation_period', $period);
 			return true;
+		}
+
+		private function createAcademicYear(){
+
+			$year['year_start'] = date('Y');;
+			$year['year_end'] = date('Y', strtotime('+1 year'));
+
+			$this->db->insert('academicyear', $year);
+			return $this->db->insert_id();
 		}
 
 		public function sendNoticeSearch($string){

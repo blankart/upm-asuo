@@ -96,14 +96,56 @@ ALTER TABLE `organizationprofile`
 
 ALTER TABLE `organizationprofile`
   ADD CONSTRAINT `organizationprofile_ibfk_1` FOREIGN KEY (`org_id`) REFERENCES `organizationaccount` (`org_id`);
+-- ----------------------------------------------------------------------------------------------------------------------------
+-- ACADEMIC YEAR
 
-  -- ----------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE `academicyear` (
+  `AY_id` int(11) UNSIGNED NOT NULL,
+  `year_start` int(4) UNSIGNED NOT NULL,
+  `year_end` int(4) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+ALTER TABLE `academicyear`
+  ADD PRIMARY KEY (`AY_id`);
+
+ALTER TABLE `academicyear`
+  MODIFY `AY_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+
+
+    -- ----------------------------------------------------------------------------------------------------------------------------
+  -- ACCREDITATION PERIOD
+  CREATE TABLE `accreditation_period` (
+    `period_id` int(11) UNSIGNED NOT NULL,
+    `admin_id` int(11) UNSIGNED NOT NULL,
+    `AY_id` int(11) UNSIGNED NOT NULL,
+    `start_date` DATETIME NOT NULL,
+    `end_date` DATETIME NOT NULL,
+    `status` varchar(20) NOT NULL DEFAULT "Closed" 
+  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+  ALTER TABLE `accreditation_period`
+  ADD PRIMARY KEY (`period_id`);
+
+  ALTER TABLE `accreditation_period`
+  MODIFY `period_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+  ALTER TABLE `accreditation_period`
+  ADD KEY `admin_id` (`admin_id`),
+  ADD KEY `AY_id` (`AY_id`);
+
+  ALTER TABLE `accreditation_period`
+  ADD CONSTRAINT `accreditation_period_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`),
+  ADD CONSTRAINT `accreditation_period_ibfk_2` FOREIGN KEY (`AY_id`) REFERENCES `academicyear` (`AY_id`);
+
+   -- ----------------------------------------------------------------------------------------------------------------------------
 -- ACCREDITATION APPLICATION
 
 CREATE TABLE `accreditationapplication` (
   `app_id` int(11) UNSIGNED NOT NULL,
+  `AY_id` int(11) UNSIGNED NOT NULL,
   `org_id` int(11) UNSIGNED NOT NULL,
-  `app_status` varchar (15) NOT NULL DEFAULT 'Rejected',
+  `app_status` varchar (15) NOT NULL DEFAULT 'On Progress',
   `form_A` varchar(40) NOT NULL DEFAULT 'No Submission',
   `form_B` varchar(40) NOT NULL DEFAULT 'No Submission',
   `form_C` varchar(40) NOT NULL DEFAULT 'No Submission',
@@ -121,12 +163,37 @@ ALTER TABLE `accreditationapplication`
   MODIFY `app_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 ALTER TABLE `accreditationapplication`
-  ADD KEY `org_id` (`org_id`);
+  ADD KEY `org_id` (`org_id`),
+  ADD KEY `AY_id` (`AY_id`);
 
 ALTER TABLE `accreditationapplication`
-  ADD CONSTRAINT `accreditationapplication_ibfk_1` FOREIGN KEY (`org_id`) REFERENCES `organizationaccount` (`org_id`);
+  ADD CONSTRAINT `accreditationapplication_ibfk_1` FOREIGN KEY (`org_id`) REFERENCES `organizationaccount` (`org_id`),
+  ADD CONSTRAINT `accreditationapplication_ibfk_2` FOREIGN KEY (`AY_id`) REFERENCES `academicyear` (`AY_id`);
 
- -- -----------------------------------------------------------------------------------------------------------------------------
+
+  -- ----------------------------------------------------------------------------------------------------------------------------
+  -- ACCREDITATION 
+  CREATE TABLE `accreditation` (
+    `accreditation_id` int(11) UNSIGNED NOT NULL,
+    `AY_id` int(11) UNSIGNED NOT NULL,
+    `org_id` int(11) UNSIGNED NOT NULL
+  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+  ALTER TABLE `accreditation`
+  ADD PRIMARY KEY (`accreditation_id`);
+
+  ALTER TABLE `accreditation`
+  MODIFY `accreditation_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+
+  ALTER TABLE `accreditation`
+  ADD KEY `AY_id` (`AY_id`),
+  ADD KEY `org_id` (`org_id`);
+
+  ALTER TABLE `accreditation`
+  ADD CONSTRAINT `accreditation_ibfk_1` FOREIGN KEY (`AY_id`) REFERENCES `academicyear` (`AY_id`),
+  ADD CONSTRAINT `accreditation_ibfk_2` FOREIGN KEY (`org_id`) REFERENCES `organizationaccount` (`org_id`);
+
+  -- -----------------------------------------------------------------------------------------------------------------------------
  -- FORM A DETAILS
 CREATE TABLE `form_a_details` (
   `app_id` int(11) UNSIGNED NOT NULL,
@@ -330,29 +397,6 @@ ALTER TABLE `verificationcode`
   ALTER TABLE `student_notice`
   ADD CONSTRAINT `student_notice_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`),
   ADD CONSTRAINT `student_notice_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `studentaccount` (`student_id`);
-
-  -- ----------------------------------------------------------------------------------------------------------------------------
-  -- LOGIN NOTICE
-  CREATE TABLE `accreditation_period` (
-    `period_id` int(11) UNSIGNED NOT NULL,
-    `admin_id` int(11) UNSIGNED NOT NULL,
-    `start_date` DATETIME NOT NULL,
-    `end_date` DATETIME NOT NULL,
-    `status` varchar(20) NOT NULL DEFAULT "Closed" 
-  ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-  ALTER TABLE `accreditation_period`
-  ADD PRIMARY KEY (`period_id`);
-
-  ALTER TABLE `accreditation_period`
-  MODIFY `period_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
-
-  ALTER TABLE `accreditation_period`
-  ADD KEY `admin_id` (`admin_id`);
-
-  ALTER TABLE `accreditation_period`
-  ADD CONSTRAINT `accreditation_period_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`);
-
 
  -- ----------------------------------------------------------------------------------------------------------------------------
   -- RESTRICTED ACRONYMS

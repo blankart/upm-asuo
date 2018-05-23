@@ -105,10 +105,19 @@ INSERT INTO `recipient` (`recipient_id`, `notice_id`, `org_id`) VALUES
 
 -- -------------------------------------------------------------------
 
-INSERT INTO `accreditationapplication` (`app_id`, `org_id`, `app_status`, `form_A`, `form_B`, `form_C`, `form_D`, `form_E`, `form_F`, `plans`) VALUES
-(1, 6, 'Pending', 'E0DF1C144280F4E36E638DCF95CED92C.pdf', '6581085DAAFDB45D90322F986D96B670.pdf', 'FEE06AFE1E48B092C726EA711D3ABE73.pdf', '3B7501A8C9CDE3A7B1EA381057BADA10.pdf', '1DB1EA57A537AE0B81576B66E9277161.pdf', 'D2A02B6233821B11D388957DEA0FE989.pdf', 'EFDAEADEA97149177948B2685C2F162F.pdf')
+-- INSERT INTO `accreditationapplication` (`app_id`, `org_id`, `app_status`, `form_A`, `form_B`, `form_C`, `form_D`, `form_E`, `form_F`, `plans`) VALUES
+-- (1, 6, 'Pending', 'E0DF1C144280F4E36E638DCF95CED92C.pdf', '6581085DAAFDB45D90322F986D96B670.pdf', 'FEE06AFE1E48B092C726EA711D3ABE73.pdf', '3B7501A8C9CDE3A7B1EA381057BADA10.pdf', '1DB1EA57A537AE0B81576B66E9277161.pdf', 'D2A02B6233821B11D388957DEA0FE989.pdf', 'EFDAEADEA97149177948B2685C2F162F.pdf')
+-- ;
+-- -------------------------------------------------------------------
+
+
+INSERT INTO `academicyear` (`AY_id`, `year_start`, `year_end`) VALUES
+(1, 2017, 2018)
 ;
 
+INSERT INTO `accreditation` (`accreditation_id`, `AY_id`, `org_id`) VALUES
+(1, 1, 6)
+;
 
 -- -------------------------------------------------------------------------
 
@@ -170,7 +179,7 @@ INSERT INTO `orgmember` (`membership_id`, `org_id`, `student_id`, `position`, `i
 
 -- ------------------------------------------------------------------------
 INSERT INTO `login_notice` (`announcement_id`, `admin_id`, `title`, `content`, `date_posted`) VALUES
-(1, 1, 'Welcome Message', "Walking around\nWith my little rain cloud\nHanging over my head\nAnd it ain't coming down\nWhere do I go?\nGimme some sort of sign\nYou hit me with lightning!\nMaybe I'll come alive", '2018-05-22 23:00:00');
+(1, 1, 'Welcome Message', "Walking around with my little rain cloud. Hanging over my head and it ain't coming down. Where do I go?\nGimme some sort of sign. You hit me with lightning! Maybe I'll come alive", '2018-05-22 23:00:00');
 
 INSERT INTO `student_notice` (`announcement_id`, `admin_id`, `student_id`, `content`, `date_posted`) VALUES
 (1, 1, 7, "Listed below are changes needed for your account to be activated:\n1)Student Number\n2)Name\n3)Address\n\nThank you.", '2018-05-22 23:00:00');

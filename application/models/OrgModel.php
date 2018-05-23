@@ -16,6 +16,35 @@
 				return false;
 		}
 
+		public function getAcademicYear(){
+
+			$this->db->select('*');
+			$this->db->from('academicyear');
+			$this->db->order_by('AY_id', 'DESC');
+			$query = $this->db->get();
+
+			if($query->num_rows() > 0)
+				return $query->result_array()[0]['AY_id'];
+			else
+				return false;
+		}
+
+		public function getOrgStatus($org_id, $AY_id){
+			$prev_year = $AY_id-1;
+
+			$condition = 'org_id = ' .$org_id. " AND AY_id = " .$prev_year;
+
+			$this->db->select('accreditation_id');
+			$this->db->from('accreditation');
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if($query->num_rows() == 1)
+				return 'old';
+			else
+				return 'new';
+		}
+
 		//VIEW PROFILE FUNCTIONS
 		public function getOrgProfileDetails($org_id){
 
@@ -429,7 +458,7 @@
 
 		}
 
-		public function initAccred($org_id)
+		public function initAccred($org_id, $AY_id)
 		{
 			$condition = "org_id = ".$org_id;
 			$this->db->select("*");
@@ -441,7 +470,8 @@
 			{
 
 				$aaInsert['org_id'] = $org_id;
-				$aaInsert['app_status'] = "No Submission";
+				$aaInsert['AY_id'] = $AY_id;
+				$aaInsert['app_status'] = "On Progress";
 				$aaInsert['form_A'] = "No Submission";
 				$aaInsert['form_B'] = "No Submission";
 				$aaInsert['form_C'] = "No Submission";
@@ -476,10 +506,6 @@
 				$result['contact_other_details'] = "";
 				return $result;
 				*/
-			
-			
-
-
 		}
 
 		public function input_formA_details($org_id)
