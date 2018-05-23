@@ -166,7 +166,7 @@
 							<hr>
 							<?php if($isStudent){ ?>
 							<button class="btn btn-danger btn-block" data-target="#editStudentProfile" data-toggle="modal" style="margin-top: 10px;" type="button">
-								<a><i class="fa fa-edit fa-2x pull-left" style='margin-right: 20px;'></i>Edit Profile</a></button>
+								<a>Edit Profile</a></button>
 							<?php } ?>
 
 						</div>

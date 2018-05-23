@@ -159,7 +159,7 @@
 
 		// SEARCH FUNCTIONS
 		public function search($searchItem){
-			$condition = "(op.org_name LIKE '%" .$searchItem. "%' OR op.acronym LIKE '%" .$searchItem. "%' OR oa.org_email LIKE '%" .$searchItem. "%') AND op.org_id = oa.org_id AND oa.archived = 0  AND oa.isVerified = 1  AND oa.isActivated = 1 ";
+			$condition = "(op.org_name LIKE '%" .$searchItem. "%' OR op.acronym LIKE '%" .$searchItem. "%') AND op.org_id = oa.org_id AND oa.archived = 0  AND oa.isVerified = 1  AND oa.isActivated = 1 ";
 
 			$this->db->select("op.org_id, op.org_name, op.acronym, oa.org_email, op.org_category, op.description, op.org_logo");
 			$this->db->distinct();
