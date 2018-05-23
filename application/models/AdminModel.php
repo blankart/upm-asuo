@@ -240,6 +240,10 @@
 			$this->db->where($condition);
 			$this->db->update('accreditationapplication', $changes);
 		}
+
+		public function changeLoginNotice($data){
+			$this->db->insert('login_notice', $data);
+		}
 		//
 		public function openAccreditationPeriod($period){
 			$this->db->insert('accreditation_period', $period);

@@ -44,6 +44,8 @@
 				$this->blockOrgAccount();
 			else if ($action == 'unblockOrgAccount')
 				$this->unblockOrgAccount();
+			else if ($action == 'changeLoginNotice')
+				$this->changeLoginNotice();
 
 			//
 			else if($action == 'viewDocuments')
@@ -367,6 +369,24 @@
 			}
 			else
 				show_404();
+		}
+
+		private function changeLoginNotice(){
+
+			$notice = $this->input->post('data');
+
+			if($notice != NULL){
+				$admin_id = $this->session->userdata['user_id'];
+				$notice['admin_id'] = $admin_id;
+				$format = 'Y-m-d H:i:s';
+				$notice['date_posted'] = date($format);
+
+				$this->load->model('AdminModel');
+				$this->AdminModel->changeLoginNotice($notice);
+				echo json_encode($notice);
+				exit();
+			}
+			else show_404();	
 		}
 
 		//
