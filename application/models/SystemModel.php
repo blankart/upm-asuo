@@ -3,6 +3,21 @@
 
 		//REGISTER FUNCTIONS
 
+		public function getAccreditationPeriod(){
+			$condition = "status = 'Opened'";
+
+			$this->db->select('*');
+			$this->db->from('accreditation_period');
+			$this->db->where($condition);
+			$this->db->order_by('period_id', 'DESC');
+			$query = $this->db->get();
+
+			if($query->num_rows() > 0)
+				return $query->result_array()[0];
+			else
+				return false;
+		}
+
 		public function getLoginNotice(){
 			$condition = 'ad.admin_id = ln.admin_id';
 			$this->db->select('ln.*, ad.admin_name');
@@ -189,7 +204,6 @@
 	    		return $query->result_array()[0]['up_mail'];
 	    	else
 	    		return false;
-
 	    }
 
 	    public function getOrgEmail($org_id){
@@ -349,7 +363,6 @@
 
 	    // LOGIN FUNCTIONS
 		public function login($credentials){
-			
 			$student = $this->loginStudent($credentials);
 
 			if(!$student){
@@ -363,6 +376,7 @@
 				else
 					return $org;
 			}else
+
 				return $student;
 		}
 

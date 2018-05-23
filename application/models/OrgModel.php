@@ -35,14 +35,40 @@
 		}
 		public function getOrgDetailsForm($org_id)
 		{
-			$condition = "oa.org_id = op.org_id AND op.org_id = " .$org_id.'op.org_id = aa.org_id AND aa.org_id = '.$org_id.' AND aa.app_id = fa.app_id';
 
-			$this->db->select("op.*, oa.org_status, oa.org_email,fa.stay");
-			$this->db->from("organizationprofile op, organizationaccount oa,accreditationapplication aa, form_a_details fa");
+			$condition = "org_id = ".$org_id;
+			$this->db->select("app_id");
+			$this->db->from("accreditationapplication");
 			$this->db->where($condition);
-			$org_details = $this->db->get();
+			$aaApp_id = $this->db->get();
+			//return $aaApp_id->result_array()[0];
+			if($aaApp_id->num_rows() == 0)
+			{
+				return false;
+			}
+			else
+			{
+				$condition = "aa.org_id = ".$org_id." AND aa.app_id = fa.app_id";
+				$this->db->select("fa.*");
+				$this->db->from("accreditationapplication aa,form_a_details fa");
+				$this->db->where($condition);
+				$faDetails = $this->db->get();
 
-			return $org_details->result_array()[0];
+				if($faDetails->result_array()[0]['stay'] == "new")
+				{
+					return false;
+				}
+				else //else if not empty
+				{
+					return true;
+				}
+				
+
+				
+				//$org_details->result_array()[0]['stay'] = $temp->result_array()[0]['stay'];
+			}
+
+			//return $org_details->result_array()[0];
 		}
 
 		private function getAnnouncements($org_id){

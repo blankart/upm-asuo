@@ -34,14 +34,24 @@
       },
    function(){
 
+    var start = $('#startDate').val();
+    var end = $('#endDate').val();
+
+
+      var period = {
+            start_date: start, 
+            end_date: end
+         };
+
          $.ajax({
        type:"post",
-       url:"<?php echo base_url(); ?>admin/searchOrganizations",
+       url:"<?php echo base_url(); ?>admin/openAccreditationPeriod",
        cache: false,
-       data:{query: search, source: "admin"},
+       data:{period: period},
        dataType: 'json',
        async: false,
        success:function(result){
+        alert(JSON.stringify(result));
         if(result){
           swal({title: "Period Set!!", text: "You have set the accreditation period.", type: "success"},
             function(){ 
