@@ -33,7 +33,7 @@
 
 			return $org_details->result_array()[0];
 		}
-		
+
 		public function getOrgDetailsForm($org_id)
 		{
 
@@ -54,7 +54,7 @@
 				$this->db->from("accreditationapplication aa,form_a_details fa");
 				$this->db->where($condition);
 				$faDetails = $this->db->get();
-
+				//return $faDetails->result_array();
 				if($faDetails->result_array()[0]['stay'] == "new")
 				{
 					return false;
@@ -436,7 +436,8 @@
 				$aaInsert['form_G'] = "No Submission";
 				$aaInsert['plans'] = "No Submission";
 				$this->db->insert('accreditationapplication', $aaInsert);
-				$this->input_formA_details($org_id);
+			}
+			$this->input_formA_details($org_id);
 				/*
 				$condition = "org_id = ".$org_id;
 				$this->db->select("app_id");
@@ -460,8 +461,8 @@
 				$result['contact_other_details'] = "";
 				return $result;
 				*/
-			}
-
+			
+			
 
 
 		}
@@ -527,7 +528,7 @@
 				$aaApp_id = $this->db->get();			
 
 				//check if form_a_details is empty for checking of history application
-				$condition = "aa.org_id = ".$org_id." AND aa.app_id = fa.app_id";
+				$condition = "aa.org_id = ".$org_id." AND fa.app_id = ".$aaApp_id->result_array()[0]['app_id'];
 				$this->db->select("fa.*");
 				$this->db->from("accreditationapplication aa,form_a_details fa");
 				$this->db->where($condition);
