@@ -807,8 +807,9 @@
 			$this->load->model('OrgModel');
 			
 			$this->OrgModel->initAccred($org_id);
-			$data = $this->OrgModel->getOrgDetailsForm($org_id);
 			$org_data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			
 
 			//var_dump($data);
 			if($data == false)
