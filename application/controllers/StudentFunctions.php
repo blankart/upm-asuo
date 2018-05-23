@@ -239,7 +239,7 @@
 
 			if($searchItem != NULL){
 				$this->load->model("StudentModel");
-				$result = $this->StudentModel->search($searchItem);
+				$result = $this->StudentModel->search(htmlspecialchars($searchItem, ENT_QUOTES));
 				echo json_encode($result);
 				exit();
 			}
