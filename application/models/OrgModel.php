@@ -33,22 +33,16 @@
 
 			return $org_details->result_array()[0];
 		}
+		
 		public function getOrgDetailsForm($org_id)
 		{
-			$condition = "oa.org_id = op.org_id AND op.org_id = " .$org_id ;
-
-			$this->db->select("op.*, oa.org_status, oa.org_email");
-			$this->db->from("organizationprofile op, organizationaccount oa");
-			$this->db->where($condition);
-			$org_details = $this->db->get();
-			$org_result = $org_details->result_array();
 
 			$condition = "org_id = ".$org_id;
 			$this->db->select("app_id");
 			$this->db->from("accreditationapplication");
 			$this->db->where($condition);
 			$aaApp_id = $this->db->get();
-			//return $temp->result_array()[0];
+			//return $aaApp_id->result_array()[0];
 			if($aaApp_id->num_rows() == 0)
 			{
 				return false;
@@ -61,9 +55,9 @@
 				$this->db->where($condition);
 				$faDetails = $this->db->get();
 
-				if($faDetails->num_rows() == 0)
+				if($faDetails->result_array()[0]['stay'] == "new")
 				{
-				return false;
+					return false;
 				}
 				else //else if not empty
 				{

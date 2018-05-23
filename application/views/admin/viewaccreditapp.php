@@ -3,7 +3,37 @@
 <head>
 
   <script>
+    function sendNoticeAccred(orgid){
+        if ($('#sendNoticeTitle').val().length > 0 && $('#sendNoticeMessage').val().length > 0)
+        {
+          var notice = {
+          title: (document.getElementById("sendNoticeTitle").value).trim(),
+          content: (document.getElementById("sendNoticeMessage").value).trim(),
+          orgIds: [orgid]
+        };
 
+        $.ajax({
+          type: "POST",
+          url: "<?php echo base_url().'admin/sendNotice'; ?>",
+          cache: false,
+          async: false,
+          dataType: "JSON",
+          data: {notice: notice},
+          success: function(result){
+             swal({title: "Success!", text: "Announcement Posted!", type: "success"},
+                     function(){ 
+                        document.getElementById("sendNoticeTitle").value = '';
+                        document.getElementById("sendNoticeMessage").value = '';
+                     }
+                  );
+
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) { 
+           alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+          }  
+        });
+        }
+       }
       /*function sendNotice(orgID)
       {
         var date = "<?php echo date('Y-m-d'); ?>";
@@ -123,7 +153,7 @@
                                         '<span id="textcounter">500 characters remaining<\/span>'+
                                     '<\/div>'+
                                     '<a onclick="sendNoticeResetApp()" class="btn btn-info pull-right" style="color: white;">Back<\/a>'+
-                                    '<button type="submit" onclick="sendNotice('+orgID+')" class="btn btn-danger" style="margin-left: 10px;">Send Notice<\/button>'+
+                                    '<button type="submit" onclick="sendNoticeAccred('+orgID+')" class="btn btn-danger" style="margin-left: 10px;">Send Notice<\/button>'+
                                 '<\/form>'+
                             '<\/div>'+
                         '<\/div>';
@@ -260,6 +290,12 @@
          "<div id='formFresult' style='display: none;'>"+
          "<object data='<?php echo base_url(); ?>assets/org/accreditation/form_F/"+result['form_F']+"' type='pdf' width='100%' height='800'>"+
            "<iframe src='<?php echo base_url(); ?>assets/org/accreditation/form_F/"+result['form_F']+"'style='border: none; margin-left: 10px;' width='100%' height='800'>This browser does not support PDFs. Please download the PDF to view it: <a href='<?php echo base_url(); ?>assets/org/accreditation/form_F/"+result['form_F']+"'>Download PDF<\/a>"+
+           "<\/iframe><\/object>"+
+         "<\/div>"+
+          "<div class='containerbutton' onclick='toggleForm(\"formGresult\")'><i class='fas fa-file-alt' style='margin-right: 15px;'><\/i><a href='#' id='showFormG'>View Form G<\/a><\/div>"+
+         "<div id='formGresult' style='display: none;'>"+
+         "<object data='<?php echo base_url(); ?>assets/org/accreditation/form_G/"+result['form_G']+"' type='pdf' width='100%' height='800'>"+
+           "<iframe src='<?php echo base_url(); ?>assets/org/accreditation/form_G/"+result['form_F']+"'style='border: none; margin-left: 10px;' width='100%' height='800'>This browser does not support PDFs. Please download the PDF to view it: <a href='<?php echo base_url(); ?>assets/org/accreditation/form_G/"+result['form_G']+"'>Download PDF<\/a>"+
            "<\/iframe><\/object>"+
          "<\/div>"+
          "<div class='containerbutton' onclick='toggleForm(\"Plansresult\")'><i class='fas fa-file-alt' style='margin-right: 15px;'><\/i><a href='#' id='showPlans'>View Plans<\/a><\/div>"+
