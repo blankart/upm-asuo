@@ -145,7 +145,7 @@
 			if($source == "admin"){
 				$this->load->model('AdminModel');
 				$result = array();
-				$profiles = $this->AdminModel->searchStudents($query);
+				$profiles = $this->AdminModel->searchStudents(htmlspecialchars($query, ENT_QUOTES));
 
 				foreach ($profiles as $profile)
 					array_push($result, $profile);
@@ -198,7 +198,7 @@
 			if($source == "admin"){
 				$this->load->model('AdminModel');
 				$result = array();
-				$profiles = $this->AdminModel->searchOrganizations($query);
+				$profiles = $this->AdminModel->searchOrganizations(htmlspecialchars($query, ENT_QUOTES));
 				foreach ($profiles as $profile)
 					array_push($result, $profile);
 
@@ -230,7 +230,7 @@
 			if($source == "admin"){
 				$this->load->model('AdminModel');
 				$result = array();
-				$profiles = $this->AdminModel->searchAllStudents($query);
+				$profiles = $this->AdminModel->searchAllStudents(htmlspecialchars($query, ENT_QUOTES));
 
 				foreach ($profiles as $profile)
 					array_push($result, $profile);
@@ -304,7 +304,7 @@
 			if($source == "admin"){
 				$this->load->model('AdminModel');
 				$result = array();
-				$profiles = $this->AdminModel->searchAllOrganizations($query);
+				$profiles = $this->AdminModel->searchAllOrganizations(htmlspecialchars($query, ENT_QUOTES));
 
 				foreach ($profiles as $profile)
 					array_push($result, $profile);
@@ -426,7 +426,7 @@
 			if($source == 'admin'){
 				$this->load->model('AdminModel');
 				$result = array();
-				$profiles = $this->AdminModel->searchAccredApp($query);	
+				$profiles = $this->AdminModel->searchAccredApp(htmlspecialchars($query, ENT_QUOTES));	
 
 				foreach ($profiles as $profile)
 					array_push($result, $profile);
@@ -502,7 +502,7 @@
 			if($source == 'admin'){
 				$this->load->model('AdminModel');
 				$result = array();
-				$profiles = $this->AdminModel->sendNoticeSearch($query);
+				$profiles = $this->AdminModel->sendNoticeSearch(htmlspecialchars($query, ENT_QUOTES));
 
 				foreach ($profiles as $profile)
 					array_push($result, $profile);
