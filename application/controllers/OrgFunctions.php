@@ -795,7 +795,7 @@
 			$this->OrgModel->uploadFormA($id, $file_name);
 			$this->viewFormA("save");
 			//var_dump($temp);
-			redirect(base_url().'org/formC');
+			redirect(base_url().'org/formA');
 		}
 
 		private function loadAccreditationHome(){
@@ -807,8 +807,9 @@
 			$this->load->model('OrgModel');
 			
 			$this->OrgModel->initAccred($org_id);
-			$data = $this->OrgModel->getOrgDetailsForm($org_id);
 			$org_data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			
 
 			//var_dump($data);
 			if($data == false)
@@ -1009,20 +1010,24 @@
 			$org_id = $this->session->userdata['user_id'];
 
 			$this->load->model('OrgModel');
-			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			$temp = $this->OrgModel->getOrgDetailsForm($org_id);
 			$org_data = $this->OrgModel->getOrgDetails($org_id);
+			$data = $this->OrgModel->getForms($org_id);
+			$data['org_status'] = $org_data['org_status'];
 			//var_dump($data);
-			if($formData == false)
+			if($temp == false)
 			{
 				$org_data['stay'] = 'new';
+				$data['stay'] = 'new';
+
 			}
 			else
 			{
 				$org_data['stay'] = 'old';
+				$data['stay'] = 'old';
 			}
-			$data = $this->OrgModel->getForms($org_id);
-			$data['org_status'] = $org_data['org_status'];
 
+			//var_dump($data);
 			$this->load->view('header');
 			$this->load->view('org/applyforaccreditation/submitAll', $data);
 			$this->load->view('org/changepassword');

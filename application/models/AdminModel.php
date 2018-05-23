@@ -177,7 +177,7 @@
 		}
 
 		public function getAccreditationDocuments($org_id){
-			$condition = "aa.org_id = " .$org_id. " AND aa.org_id = op.org_id AND aa.app_status = 'Submitted'";
+			$condition = "aa.org_id = " .$org_id. " AND aa.org_id = op.org_id";
 
 			$this->db->select('aa.*, op.*');
 			$this->db->from('accreditationapplication aa, organizationprofile op');
@@ -234,9 +234,7 @@
 
 			//reject
 			$changes = array(
-				'app_status' => 'Unaccredited',
-				'form_F' => 'No Submission',
-				'form_G' => 'No Submission'
+				'app_status' => 'Unaccredited'
 			);
 
 			$this->db->where($condition);

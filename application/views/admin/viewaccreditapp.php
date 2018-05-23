@@ -292,6 +292,12 @@
            "<iframe src='<?php echo base_url(); ?>assets/org/accreditation/form_F/"+result['form_F']+"'style='border: none; margin-left: 10px;' width='100%' height='800'>This browser does not support PDFs. Please download the PDF to view it: <a href='<?php echo base_url(); ?>assets/org/accreditation/form_F/"+result['form_F']+"'>Download PDF<\/a>"+
            "<\/iframe><\/object>"+
          "<\/div>"+
+          "<div class='containerbutton' onclick='toggleForm(\"formGresult\")'><i class='fas fa-file-alt' style='margin-right: 15px;'><\/i><a href='#' id='showFormG'>View Form G<\/a><\/div>"+
+         "<div id='formGresult' style='display: none;'>"+
+         "<object data='<?php echo base_url(); ?>assets/org/accreditation/form_G/"+result['form_G']+"' type='pdf' width='100%' height='800'>"+
+           "<iframe src='<?php echo base_url(); ?>assets/org/accreditation/form_G/"+result['form_F']+"'style='border: none; margin-left: 10px;' width='100%' height='800'>This browser does not support PDFs. Please download the PDF to view it: <a href='<?php echo base_url(); ?>assets/org/accreditation/form_G/"+result['form_G']+"'>Download PDF<\/a>"+
+           "<\/iframe><\/object>"+
+         "<\/div>"+
          "<div class='containerbutton' onclick='toggleForm(\"Plansresult\")'><i class='fas fa-file-alt' style='margin-right: 15px;'><\/i><a href='#' id='showPlans'>View Plans<\/a><\/div>"+
          "<div id='Plansresult' style='display: none;'>"+
          "<object data='<?php echo base_url(); ?>assets/org/accreditation/plans/"+result['plans']+"' type='pdf' width='100%' height='800'>"+

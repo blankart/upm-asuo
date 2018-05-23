@@ -33,6 +33,7 @@
 
 			return $org_details->result_array()[0];
 		}
+		
 		public function getOrgDetailsForm($org_id)
 		{
 
