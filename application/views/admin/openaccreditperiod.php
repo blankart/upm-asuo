@@ -51,7 +51,6 @@
        dataType: 'json',
        async: false,
        success:function(result){
-        alert(JSON.stringify(result));
         if(result){
           swal({title: "Period Set!!", text: "You have set the accreditation period.", type: "success"},
             function(){ 

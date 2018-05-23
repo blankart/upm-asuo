@@ -1,6 +1,21 @@
 <?php
 	class OrgModel extends CI_Model{
 
+		public function getAccreditationPeriod(){
+			$condition = "status = 'Opened'";
+
+			$this->db->select('*');
+			$this->db->from('accreditation_period');
+			$this->db->where($condition);
+			$this->db->order_by('period_id', 'DESC');
+			$query = $this->db->get();
+
+			if($query->num_rows() > 0)
+				return $query->result_array()[0];
+			else
+				return false;
+		}
+
 		//VIEW PROFILE FUNCTIONS
 		public function getOrgProfileDetails($org_id){
 

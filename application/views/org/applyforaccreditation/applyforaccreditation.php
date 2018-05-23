@@ -46,7 +46,7 @@
             <!-- Page Content -->
             <div class="main">
                 <h1>UPM STUDENT ORGANIZATIONS' PROCEDURES AND REQUIREMENTS FOR ACCREDITATION</h1>
-                    &nbsp;1.&nbsp;&nbsp;Complete this document list on or before <b>*insert date*</b><br><br>
+                    &nbsp;1.&nbsp;&nbsp;Complete this document list on or before <b><?php if($end_date != false){  echo date("F j, Y g:i:s a ", strtotime($end_date)); } ?></b><br><br>
                     <table>
                         <tr align="center">
                             <th></th>

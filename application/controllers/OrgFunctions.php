@@ -809,7 +809,12 @@
 			$this->OrgModel->initAccred($org_id);
 			$org_data = $this->OrgModel->getOrgDetails($org_id);
 			$data = $this->OrgModel->getOrgDetailsForm($org_id);
+			$period = $this->OrgModel->getAccreditationPeriod();
 			
+			if($period != false)
+				$org_data['end_date'] = $period['end_date'];
+			else
+				$org_data['end_date'] = false;
 
 			//var_dump($data);
 			if($data == false)
