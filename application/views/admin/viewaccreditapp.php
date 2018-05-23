@@ -3,7 +3,37 @@
 <head>
 
   <script>
+    function sendNoticeAccred(orgid){
+        if ($('#sendNoticeTitle').val().length > 0 && $('#sendNoticeMessage').val().length > 0)
+        {
+          var notice = {
+          title: (document.getElementById("sendNoticeTitle").value).trim(),
+          content: (document.getElementById("sendNoticeMessage").value).trim(),
+          orgIds: [orgid]
+        };
 
+        $.ajax({
+          type: "POST",
+          url: "<?php echo base_url().'admin/sendNotice'; ?>",
+          cache: false,
+          async: false,
+          dataType: "JSON",
+          data: {notice: notice},
+          success: function(result){
+             swal({title: "Success!", text: "Announcement Posted!", type: "success"},
+                     function(){ 
+                        document.getElementById("sendNoticeTitle").value = '';
+                        document.getElementById("sendNoticeMessage").value = '';
+                     }
+                  );
+
+          },
+          error: function(XMLHttpRequest, textStatus, errorThrown) { 
+           alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+          }  
+        });
+        }
+       }
       /*function sendNotice(orgID)
       {
         var date = "<?php echo date('Y-m-d'); ?>";
@@ -123,7 +153,7 @@
                                         '<span id="textcounter">500 characters remaining<\/span>'+
                                     '<\/div>'+
                                     '<a onclick="sendNoticeResetApp()" class="btn btn-info pull-right" style="color: white;">Back<\/a>'+
-                                    '<button type="submit" onclick="sendNotice('+orgID+')" class="btn btn-danger" style="margin-left: 10px;">Send Notice<\/button>'+
+                                    '<button type="submit" onclick="sendNoticeAccred('+orgID+')" class="btn btn-danger" style="margin-left: 10px;">Send Notice<\/button>'+
                                 '<\/form>'+
                             '<\/div>'+
                         '<\/div>';
