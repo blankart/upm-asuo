@@ -231,7 +231,7 @@
 			$condition = "org_id = " .$id. " AND org_id = " .$id;
 
 			$changes = array(
-				'org_status' => 'Unaccredited'
+				'org_status' => 'Rejected'
 			);
 
 			$this->db->where($condition);

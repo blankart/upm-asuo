@@ -338,7 +338,7 @@
 								<button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" data-target="#editprofile">
 									<i class="fa fa-edit fa-2x" style='float: left;'></i>Edit Profile</button> 
 
-                  <?php if($open_accreditation) {?>
+                  <?php if($open_accreditation && $profile['org_status'] != 'Rejected') {?>
 								<button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" onclick="location.href = '<?php echo base_url(); ?>org/applyforaccreditation';">
 									<a><i class="fa fa-folder-open fa-2x" style='float: left;'></i>Apply for Accreditation</a></button>
 
