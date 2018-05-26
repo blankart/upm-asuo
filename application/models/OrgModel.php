@@ -8,9 +8,10 @@
 			$this->db->from('accreditation_period');
 			$this->db->where($condition);
 			$this->db->order_by('period_id', 'DESC');
+			$this->db->limit(1);
 			$query = $this->db->get();
 
-			if($query->num_rows() > 0)
+			if($query->num_rows() ==  1)
 				return $query->result_array()[0];
 			else
 				return false;
@@ -21,9 +22,10 @@
 			$this->db->select('*');
 			$this->db->from('academicyear');
 			$this->db->order_by('AY_id', 'DESC');
-			$query = $this->db->get();
+			$this->db->limit(1);
+			$query = $this->db->get();			
 
-			if($query->num_rows() > 0)
+			if($query->num_rows() == 1)
 				return $query->result_array()[0]['AY_id'];
 			else
 				return false;
@@ -37,6 +39,7 @@
 			$this->db->select('accreditation_id');
 			$this->db->from('accreditation');
 			$this->db->where($condition);
+			$this->db->limit(1);
 			$query = $this->db->get();
 
 			if($query->num_rows() == 1)
@@ -58,7 +61,7 @@
 			return $result;
 		}
 
-		//viewed by admin
+		//viewed by admin/student
 		public function getOrgProfileDetailsByOthers($org_id){
 			$result['profile']= $this->getOrgDetails($org_id);
 			$result['members']= $this->getMembers($org_id);
@@ -324,12 +327,6 @@
 			else
 				return false;		
 		}
-
-		public function getApplicationStatus($org_id, $student_id)
-		{
-			//tables: orgapplication
-			//return: status
-		}
 		//end of MEMBERSHIP-RELATED FUNCTIONS
 
 		//EDIT PROFILE FUNCTIONS
@@ -483,84 +480,11 @@
 				$this->db->insert('accreditationapplication', $aaInsert);
 			}
 			$this->input_formA_details($org_id);
-				/*
-				$condition = "org_id = ".$org_id;
-				$this->db->select("app_id");
-				$this->db->from("accreditationapplication");
-				$this->db->where($condition);
-				$aaApp_id = $this->db->get();			
-
-				//set user input details to blank
-				$result['stay'] = "new";
-				$result['app_id'] = $aaApp_id;
-				$result['experience'] = "0";
-				$result['adviser'] = "";
-				$result['adviser_position'] = "";
-				$result['adviser_college'] = "";
-				$result['contact_person'] = "";
-				$result['contact_position'] = "";
-				$result['contact_email'] = "";
-				$result['contact_address'] = "";
-				$result['contact_tel'] = "";
-				$result['contact_mobile'] = "";
-				$result['contact_other_details'] = "";
-				return $result;
-				*/
+			
 		}
 
 		public function input_formA_details($org_id)
 		{
-			/*
-			//check if has history of application
-			$condition = "org_id = ".$org_id;
-			$this->db->select("*");
-			$this->db->from("accreditationapplication");
-			$this->db->where($condition);
-			$aaDetails = $this->db->get();
-
-			//if accreditation application is empty
-			//if($aaDetails->num_rows() == 0)
-			//{
-			
-				$aaInsert['org_id'] = $org_id;
-				$aaInsert['app_status'] = "Pending";
-				$aaInsert['form_A'] = "No Submission";
-				$aaInsert['form_B'] = "No Submission";
-				$aaInsert['form_C'] = "No Submission";
-				$aaInsert['form_D'] = "No Submission";
-				$aaInsert['form_E'] = "No Submission";
-				$aaInsert['form_F'] = "No Submission";
-				$aaInsert['form_G'] = "No Submission";
-				$aaInsert['plans'] = "No Submission";
-				$this->db->insert('accreditationapplication', $aaInsert);
-				
-				//get app_id from accreditationapplication
-				$condition = "org_id = ".$org_id;
-				$this->db->select("app_id");
-				$this->db->from("accreditationapplication");
-				$this->db->where($condition);
-				$aaApp_id = $this->db->get();			
-
-				//set user input details to blank
-				$result['stay'] = "new";
-				$result['app_id'] = $aaApp_id;
-				$result['experience'] = "0";
-				$result['adviser'] = "";
-				$result['adviser_position'] = "";
-				$result['adviser_college'] = "";
-				$result['contact_person'] = "";
-				$result['contact_position'] = "";
-				$result['contact_email'] = "";
-				$result['contact_address'] = "";
-				$result['contact_tel'] = "";
-				$result['contact_mobile'] = "";
-				$result['contact_other_details'] = "";
-				return $result;
-			*/
-			//}
-			//accreditation application is not empty
-			//else
-			//{
 				//get app_id from accreditationapplication
 				$condition = "org_id = ".$org_id;
 				$this->db->select("app_id");
@@ -577,8 +501,11 @@
 				//if form_a_details value is empty
 				if($faDetails->num_rows() == 0)
 				{
+
+					$AY_id = $this->getAcademicYear();
+					$status = $this->getOrgStatus($org_id, $AY_id);
 					//user input details set to blank
-						$result['stay'] = "new";
+						$result['stay'] = $status;
 						$result['app_id'] = $aaApp_id->result_array()[0]['app_id'];
 						$result['experience'] = "0";
 						$result['adviser'] = "";
@@ -598,10 +525,6 @@
 				{
 					return $faDetails->result_array()[0];		
 				}
-				
-
-			//}
-
 		}
 
 		public function uploadFormA($id, $file_name){

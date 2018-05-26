@@ -1,3 +1,8 @@
+<?php 
+   
+   $open_accreditation = $this->session->userdata['open_accreditation'];
+
+?>
 <script>
   $('#openaccredbutton').click(function(){
     $('#accreditperiodalert').hide();
@@ -9,7 +14,8 @@
     function getDate(date){
       return new Date(date).getTime();
     }
-   function setAccredPer(){
+
+   function setAccredPer(reset){
     getDate();
     if ($('#startDate').val()!="" && $('#endDate').val()!="")
     {
@@ -43,22 +49,36 @@
             end_date: end
          };
 
+        if(reset)
+          var link = "<?php echo base_url(); ?>admin/editAccreditationPeriod";
+        else
+          var link = "<?php echo base_url(); ?>admin/openAccreditationPeriod";
+
+
          $.ajax({
        type:"post",
-       url:"<?php echo base_url(); ?>admin/openAccreditationPeriod",
+       url: link,
        cache: false,
        data:{period: period},
        dataType: 'json',
        async: false,
        success:function(result){
         if(result){
-          swal({title: "Period Set!!", text: "You have set the accreditation period.", type: "success"},
+
+          if(reset)
+            var message = "You have changed the accreditation period.";
+          else
+            var message = "You have set the accreditation period.";
+
+          swal({title: "Period Set!!", text: message, type: "success"},
             function(){ 
               location.reload();
             }
-          );
+          ); 
         }
-         else
+        else if (result == false)
+          swal("Failed!", "You have already set an accreditation period for the upcoming academic year!", "warning");
+        else
            swal("Failed!", "There was an error in opening the accreditation period.", "error");
 
         }
@@ -88,6 +108,7 @@
       swal("Period Set!", "You have set the accreditation period.", "success");
       });*/
    }
+
 </script>
 <div class="modal animated bounceInUp" id="openaccreditperiod" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-dialog-centered" style="max-width: 700px;">
@@ -102,16 +123,26 @@
                <div class="form-group">
                 <div class='notice notice-danger' id='accreditperiodalert'></div>
                   <center><label class="control-label">Start Date</label>
-                  <center><input id='startDate' class="form-control" style="min-width: 160px" type="date" required>
+                  <center><input id='startDate' class="form-control" style="min-width: 160px" type="date"
+                    <?php if($open_accreditation){ ?> value =  <?php echo $accreditation['start_date']; ?> <?php }?> 
+                  required>
                </div>
                <div class="form-group">
                   <center><label class="control-label">End Date</label>
-                  <center><input id='endDate' class="form-control" style="min-width: 160px" type="date" required>
+                  <center><input id='endDate' class="form-control" style="min-width: 160px" type="date" 
+                    <?php if($open_accreditation){ ?> value =  <?php echo $accreditation['end_date']; ?> <?php }?> 
+                  required>
                </div>
             </div>
             <!-- Modal footer -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-basic" data-dismiss="modal">Close</button> <button type="submit" onclick="setAccredPer()" class="btn btn-danger">Save</button>
+                <button type="button" class="btn btn-basic" data-dismiss="modal">Close</button> <button type="submit" onclick="
+                <?php if(!$open_accreditation){ ?>
+                  setAccredPer(false)
+                <?php }else{ ?>
+                   setAccredPer(true)
+                <?php } ?>
+                " class="btn btn-danger">Save</button>
             </div>
             </div>
         </div>

@@ -650,10 +650,6 @@
 			if($type == 'Membership Removal'){
                 $reason = $other_info;
 
-
-			if($type == 'Membership Removal'){
-                $reason = $other_info;
-
                 $reason = $other_info;
                 $message = '<html><body>';
                 $message .= '<p> Notification from ASUO:</p>';
@@ -725,8 +721,6 @@
 				    $result['success'] = 'No';
 				    $result['error'] = $this->email->print_debugger(array('headers'));
 				   }
-			}
-
 		}
 
 
@@ -1004,10 +998,12 @@
 			// set font
 			$pdf->SetFont('Helvetica', '', 12);
 
-			$org_id = $this->session->userdata['user_id'];
+			
 			// set font
 			$pdf->SetFont('Helvetica', '', 12);
 			$pdf->AddPage();
+
+			$org_id = $this->session->userdata['user_id'];
 			$this->load->model('OrgModel');
 
 			$result = $this->OrgModel->getFormAdetails($org_id);

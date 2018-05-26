@@ -312,9 +312,10 @@
 
 			if($period != false){
 				$today = date($format);
+				$start = date( $period['start_date'] );
 				$end = date( $period['end_date'] );
 
-				if($today < $end)
+				if( $today > $start && $today < $end )
 					$open_accreditation = true;
 				else
 					$open_accreditation = false;

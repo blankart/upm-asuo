@@ -1,6 +1,6 @@
 <?php
 	class AdminModel extends CI_Model{
-		
+
 		public function sendStudentNotice($data){
 			$this->db->insert('student_notice', $data);
 			return $this->db->insert_id();
@@ -191,7 +191,10 @@
 		}
 
 		public function searchAccredApp($string){
-			$condition = "aa.org_id = oa.org_id AND aa.org_id = op.org_id AND aa.app_status <> 'On Progress' AND op.org_name LIKE '%".$string."%' AND oa.archived = 0";
+
+			$AY_id = $this->getAcademicYear();
+
+			$condition = "aa.org_id = oa.org_id AND aa.org_id = op.org_id AND aa.app_status <> 'On Progress' AND op.org_name LIKE '%".$string."%' AND AY_id = " .$AY_id. " AND oa.archived = 0";
 
 			$this->db->select('oa.org_id, op.org_name, oa.org_status, aa.app_status');
 			$this->db->from('organizationprofile op, organizationaccount oa, accreditationapplication aa');
@@ -250,9 +253,13 @@
 		public function openAccreditationPeriod($period){
 			$AY_id = $this->createAcademicYear();
 
-			$period['AY_id'] = $AY_id;
-			$this->db->insert('accreditation_period', $period);
-			return true;
+			if($AY_id != false){
+				$period['AY_id'] = $AY_id;
+				$this->db->insert('accreditation_period', $period);
+				return true;
+			}
+			else
+				return false;
 		}
 
 		private function createAcademicYear(){
@@ -260,8 +267,64 @@
 			$year['year_start'] = date('Y');;
 			$year['year_end'] = date('Y', strtotime('+1 year'));
 
-			$this->db->insert('academicyear', $year);
-			return $this->db->insert_id();
+			$condition = "year_start = '" .$year['year_start']."' AND year_end = '" .$year['year_end']. "'";
+			
+			$this->db->select("*");
+			$this->db->from("academicyear");
+			$this->db->where($condition);
+			$query = $this->db->get();
+
+			if($query->num_rows() > 0)
+				return false;
+			else{
+				$this->db->insert('academicyear', $year);
+				return $this->db->insert_id();
+			}
+		}
+
+		public function getAcademicYear(){
+
+			$this->db->select('*');
+			$this->db->from('academicyear');
+			$this->db->order_by('AY_id', 'DESC');
+			$this->db->limit(1);
+			$query = $this->db->get();			
+
+			if($query->num_rows() == 1)
+				return $query->result_array()[0]['AY_id'];
+			else
+				return false;
+		}
+
+		public function editAccreditationPeriod($data){
+			$AY_id = $this->getAcademicYear();
+
+			if($AY_id != false){
+				$condition = 'AY_id = ' .$AY_id;
+
+				$this->db->where($condition);
+				$this->db->update('accreditation_period', $data);
+				return true;
+			}
+			else
+				return false;
+		}
+
+
+		public function getAccreditationPeriod(){
+			$condition = "status = 'Opened'";
+
+			$this->db->select('*');
+			$this->db->from('accreditation_period');
+			$this->db->where($condition);
+			$this->db->order_by('period_id', 'DESC');
+			$this->db->limit(1);
+			$query = $this->db->get();
+
+			if($query->num_rows() ==  1)
+				return $query->result_array()[0];
+			else
+				return false;
 		}
 
 		public function sendNoticeSearch($string){

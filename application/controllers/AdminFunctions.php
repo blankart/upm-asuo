@@ -60,6 +60,8 @@
 
 			else if($action == 'openAccreditationPeriod')
 				$this->openAccreditationPeriod();
+			else if($action == 'editAccreditationPeriod')
+				$this->editAccreditationPeriod();
 			
 			else if ($action == 'sendNoticeSearch')
 				$this->sendNoticeSearch();
@@ -100,6 +102,15 @@
 		}
 
 		private function loadAdminPanel(){
+
+			$this->load->model("AdminModel");
+			$result = $this->AdminModel->getAccreditationPeriod();
+
+			if($result != false)
+				$data['accreditation'] = $result;
+			else
+				$data['accreditation'] = false;
+
 			$this->load->view('header');
 			$this->load->view('admin');
 			$this->load->view("admin/activateorgact.php");
@@ -110,8 +121,8 @@
             $this->load->view("admin/viewallorg.php");
             $this->load->view("admin/viewallstudents.php");
             $this->load->view("admin/changepassword.php");
-              $this->load->view("admin/openaccreditperiod.php");
-              $this->load->view("admin/changeloginnotice.php");
+            $this->load->view("admin/openaccreditperiod.php", $data);
+            $this->load->view("admin/changeloginnotice.php");
 			$this->load->view('footer');
 		}
 
@@ -475,7 +486,38 @@
 				$admin_id = $this->session->userdata['user_id'];				
 				$data['admin_id'] = $admin_id;
 
+				$format = 'Y-m-d H:i:s';
+				$time = strtotime($period['start_date']);
+
+				$data['start_date'] = date($format, $time);
+
+				$time = strtotime($period['end_date']);
+				$data['end_date'] =  date($format, $time);
+				$data['status'] = 'Opened';
+
+				$this->load->model('AdminModel');
+				$result = $this->AdminModel->openAccreditationPeriod($data);
+
+				if($result){
+					$this->session->userdata['open_accreditation'] = true;
+					echo json_encode(true);
+				}
+				else
+					echo json_encode(false);
 				
+				exit();
+			}
+			else
+				show_404();
+		}
+
+		private function editAccreditationPeriod(){
+			$period = $this->input->post('period');
+
+			if($period != NULL){
+
+				$admin_id = $this->session->userdata['user_id'];				
+				$data['admin_id'] = $admin_id;
 
 				$format = 'Y-m-d H:i:s';
 				$time = strtotime($period['start_date']);
@@ -487,8 +529,15 @@
 				$data['status'] = 'Opened';
 
 				$this->load->model('AdminModel');
-				$this->AdminModel->openAccreditationPeriod($data);
-				echo json_encode(true);
+				$result = $this->AdminModel->editAccreditationPeriod($data);
+
+				if($result){
+					$this->session->userdata['open_accreditation'] = true;
+					echo json_encode(true);
+				}
+				else
+					echo json_encode(false);
+				
 				exit();
 			}
 			else

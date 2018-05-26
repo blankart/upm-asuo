@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<?php 
+   
+   $open_accreditation = $this->session->userdata['open_accreditation'];
+
+?>
 <html>
    <head>
       <meta charset="utf-8">
@@ -37,10 +42,12 @@
                      Org Accreditation
                   </div>
                   <div class="card-body" style="padding-top: 0px;">
-                 <br><button type="button" onclick="searchBox('Pending')" class="btn btn-danger admin-button" data-toggle="modal" data-target="#viewaccreditapp">
+                 <br><button type="button" onclick="searchBox('Pending')"class="btn btn-danger admin-button" data-toggle="modal" data-target="#viewaccreditapp"> 
 					<a><i class="fa fa-folder-open fa-2x pull-left"></i>View Accreditation Applications</a></button></br>
                  <br><button type="button" id="openaccredbutton" class="btn btn-danger admin-button" data-toggle="modal" data-target="#openaccreditperiod">
-					<a><i class="fa fa-calendar fa-2x pull-left admin-icon" style='margin-right: 20px;'></i>Open Accreditation Period</a></button></br>
+					<a><i class="fa fa-calendar fa-2x pull-left admin-icon" style='margin-right: 20px;'></i> 
+                 <?php if(!$open_accreditation) { ?>Open <?php }else{ ?> Edit <?php } ?>
+                  Accreditation Period</a></button></br>
                   </div>
                </div>
                <div class="card" style="margin-top: 30px; width: 25rem;">

@@ -105,18 +105,22 @@ INSERT INTO `recipient` (`recipient_id`, `notice_id`, `org_id`) VALUES
 
 -- -------------------------------------------------------------------
 
--- INSERT INTO `accreditationapplication` (`app_id`, `org_id`, `app_status`, `form_A`, `form_B`, `form_C`, `form_D`, `form_E`, `form_F`, `plans`) VALUES
--- (1, 6, 'Pending', 'E0DF1C144280F4E36E638DCF95CED92C.pdf', '6581085DAAFDB45D90322F986D96B670.pdf', 'FEE06AFE1E48B092C726EA711D3ABE73.pdf', '3B7501A8C9CDE3A7B1EA381057BADA10.pdf', '1DB1EA57A537AE0B81576B66E9277161.pdf', 'D2A02B6233821B11D388957DEA0FE989.pdf', 'EFDAEADEA97149177948B2685C2F162F.pdf')
--- ;
--- -------------------------------------------------------------------
-
 
 INSERT INTO `academicyear` (`AY_id`, `year_start`, `year_end`) VALUES
 (1, 2017, 2018)
 ;
 
+
+INSERT INTO `accreditationapplication` (`app_id`, `AY_id`, `org_id`, `app_status`, `form_A`, `form_B`, `form_C`, `form_D`, `form_E`, `form_F`, `plans`) VALUES
+(1, 1, 6, 'Accredited', 'E0DF1C144280F4E36E638DCF95CED92C.pdf', '6581085DAAFDB45D90322F986D96B670.pdf', 'FEE06AFE1E48B092C726EA711D3ABE73.pdf', '3B7501A8C9CDE3A7B1EA381057BADA10.pdf', '1DB1EA57A537AE0B81576B66E9277161.pdf', 'D2A02B6233821B11D388957DEA0FE989.pdf', 'EFDAEADEA97149177948B2685C2F162F.pdf')
+;
+
 INSERT INTO `accreditation` (`accreditation_id`, `AY_id`, `org_id`) VALUES
 (1, 1, 6)
+;
+
+INSERT INTO `accreditation_period` (`period_id`, `AY_id`, `admin_id`, `start_date`, `end_date`, `status`) VALUES
+(1, 1, 1, '2017-04-11 00:00:00', '2017-05-11 00:00:00', 'Closed' )
 ;
 
 -- -------------------------------------------------------------------------
@@ -222,4 +226,5 @@ INSERT INTO `restrictedacronym` (`res_id`, `acronym`) VALUES
 (33, 'viewFormD'),
 (34, 'viewFormE'),
 (35, 'viewFormF'),
-(36, 'OSA');
+(36, 'OSA'),
+(36, 'USC');

@@ -117,8 +117,8 @@ ALTER TABLE `academicyear`
   -- ACCREDITATION PERIOD
   CREATE TABLE `accreditation_period` (
     `period_id` int(11) UNSIGNED NOT NULL,
-    `admin_id` int(11) UNSIGNED NOT NULL,
     `AY_id` int(11) UNSIGNED NOT NULL,
+    `admin_id` int(11) UNSIGNED NOT NULL,
     `start_date` DATETIME NOT NULL,
     `end_date` DATETIME NOT NULL,
     `status` varchar(20) NOT NULL DEFAULT "Closed" 

@@ -2,7 +2,7 @@
 
 <script type="text/javascript">
 	function noFileUpload(){
-		swal('Warning', 'You have not uploaded yet!', 'warning');
+		swal('Warning', 'You have no uploads yet!', 'warning');
 	}
 
     function checkForms()
@@ -25,11 +25,7 @@
                   cache: false,
                   dataType: 'json',
                   data:{source: "org"},
-                  //contentType: false,
-                 // processData: false,
-                  //data: new FormData(this),
                   success : function (data){
-                   //alert(data);
                    if(data){
                         swal({title: "Success!", text: "You have successfully submitted your Application!", type: "success"},
                         function(){ 
@@ -39,7 +35,6 @@
                    }   
                   },
                   error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                     //alert("Status: " + textStatus + " | Error: " + errorThrown); 
                      swal("Error!", "There in an error in your Submission", "error");
                   }   
             });
@@ -87,11 +82,7 @@
                   cache: false,
                   dataType: 'json',
                   data:{source: "org"},
-                  //contentType: false,
-                 // processData: false,
-                  //data: new FormData(this),
                   success : function (data){
-                   //alert(data);
                    if(data){
                         swal({title: "Success!", text: "You have successfully submitted your Application!", type: "success"},
                         function(){ 
@@ -101,7 +92,6 @@
                    }   
                   },
                   error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                     //alert("Status: " + textStatus + " | Error: " + errorThrown); 
                      swal("Error!", "There in an error in your Submission", "error");
                   }   
             });
