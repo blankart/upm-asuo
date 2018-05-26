@@ -260,7 +260,7 @@
 			if($AY_id != false){
 				$period['AY_id'] = $AY_id;
 				$this->db->insert('accreditation_period', $period);
-				$this->resetAllOrgStatusToPending();
+				$this->resetForAccreditation();			
 				return true;
 			}
 			else
@@ -287,12 +287,51 @@
 			}
 		}
 
+		//OPEN ACCREDITATION functions
+
+		private function resetForAccreditation(){	
+			$this->resetAllOrgStatusToPending();
+			$this->resetAllOrgMembers();
+			$this->removeAllOrgApps();
+		}
+
 		private function resetAllOrgStatusToPending(){
 			$changes = array(
 				'org_status' => 'Pending'
 			);
 			$this->db->update('organizationaccount', $changes);
 		}
+
+		private function resetAllOrgMembers(){
+
+			$year_start = $this->getAcademicYearStart();
+			$year_end = $year_start+1;
+			$reason = "Reset for AY ".$year_start. "-" .$year_end."";
+
+			$condition = "isRemoved = 0";
+
+			$changes = array(
+				'isRemoved' => 1,
+				'removal_reason' => $reason
+			);
+
+			$this->db->where($condition);
+			$this->db->update('orgmember', $changes);			
+		}
+
+		private function removeAllOrgApps(){
+
+			$condition = "status = 'Pending'";
+
+			$changes = array(
+				'status' => 'Removed by System'
+			);
+
+			$this->db->where($condition);
+			$this->db->update('orgapplication', $changes);			
+		}
+
+		//end of OPEN ACCREDITATION functions
 
 		public function getAcademicYear(){
 
@@ -306,6 +345,21 @@
 				return $query->result_array()[0]['AY_id'];
 			else
 				return false;
+		}
+
+		public function getAcademicYearStart(){
+
+			$this->db->select('*');
+			$this->db->from('academicyear');
+			$this->db->order_by('AY_id', 'DESC');
+			$this->db->limit(1);
+			$query = $this->db->get();			
+
+			if($query->num_rows() == 1)
+				return $query->result_array()[0]['year_start'];
+			else
+				return false;
+
 		}
 
 		public function editAccreditationPeriod($data){
