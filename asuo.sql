@@ -61,7 +61,7 @@ ALTER TABLE `admin`
   `org_id` int(11) UNSIGNED NOT NULL,
   `org_email` varchar(50) NOT NULL,
   `password` varchar(60) NOT NULL,
-  `org_status` varchar(50) NOT NULL DEFAULT 'Unaccredited',
+  `org_status` varchar(50) NOT NULL DEFAULT 'Pending',
   `isVerified` tinyint(1)NOT NULL DEFAULT 0,
   `isActivated` tinyint(1) NOT NULL DEFAULT 0,
   `archived` tinyint(1) NOT NULL DEFAULT 0

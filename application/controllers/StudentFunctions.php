@@ -158,6 +158,9 @@
 			if($data != NULL){
 				$student_id = $this->session->userdata['user_id'];
 
+				$profile['first_name'] = $data['first_name'];
+				$profile['middle_name'] = $data['middle_name'];
+				$profile['last_name'] = $data['last_name'];
 				$profile['course'] = $data['course'];
 				$profile['year_level'] = $data['year_level'];
 				$profile['sex'] = $data['sex'];

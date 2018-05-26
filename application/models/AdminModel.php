@@ -231,7 +231,7 @@
 			$condition = "org_id = " .$id. " AND org_id = " .$id;
 
 			$changes = array(
-				'org_status' => 'Rejected'
+				'org_status' => 'Unaccredited'
 			);
 
 			$this->db->where($condition);
@@ -260,6 +260,7 @@
 			if($AY_id != false){
 				$period['AY_id'] = $AY_id;
 				$this->db->insert('accreditation_period', $period);
+				$this->resetAllOrgStatusToPending();
 				return true;
 			}
 			else
@@ -284,6 +285,13 @@
 				$this->db->insert('academicyear', $year);
 				return $this->db->insert_id();
 			}
+		}
+
+		private function resetAllOrgStatusToPending(){
+			$changes = array(
+				'org_status' => 'Pending'
+			);
+			$this->db->update('organizationaccount', $changes);
 		}
 
 		public function getAcademicYear(){

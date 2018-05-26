@@ -192,7 +192,21 @@
                <div class="form-group">
                   <label class="col-lg control-label">Name</label>
                   <div class="col-lg">
-                     <input class="form-control" type="text" value = "<?php echo $first_name.' '.$middle_name.' '.$last_name; ?>" required>
+                     <input class="form-control" type="text" maxlength="30" name="data[first_name]" value = "<?php echo $first_name; ?>" required>
+                </div>
+               </div>
+
+                <div class="form-group">
+                  <label class="col-lg control-label">Middle Name</label>
+                  <div class="col-lg">
+                     <input class="form-control" type="text" maxlength="30" name="data[middle_name]" value = "<?php echo $middle_name; ?>" required>
+                </div>
+               </div>
+
+                <div class="form-group">
+                  <label class="col-lg control-label">Last Name</label>
+                  <div class="col-lg">
+                     <input class="form-control" type="text" maxlength="30" name="data[last_name]" value = "<?php echo $last_name; ?>" required>
                 </div>
                </div>
 
