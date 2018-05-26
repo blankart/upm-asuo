@@ -317,8 +317,10 @@
 
 				if( $today > $start && $today < $end )
 					$open_accreditation = true;
-				else
+				else{
 					$open_accreditation = false;
+					$this->SystemModel->closeAccreditation();
+				}
 			}else
 				$open_accreditation= false;
 

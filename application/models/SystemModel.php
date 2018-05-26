@@ -18,6 +18,23 @@
 				return false;
 		}
 
+		public function closeAccreditation(){
+			$period = $this->getAccreditationPeriod();
+
+			if($period != false){
+				$period_id = $period['period_id'];
+
+				$condition = "period_id = " .$period_id;
+
+				$changes = array(
+					'status' => 'Closed'
+				);
+
+				$this->db->where($condition);
+				$this->db->update('accreditation_period', $changes);
+			}
+		}
+
 		public function getLoginNotice(){
 			$condition = 'ad.admin_id = ln.admin_id';
 			$this->db->select('ln.*, ad.admin_name');
