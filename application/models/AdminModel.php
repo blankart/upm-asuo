@@ -177,7 +177,8 @@
 		}
 
 		public function getAccreditationDocuments($org_id){
-			$condition = "aa.org_id = " .$org_id. " AND aa.org_id = op.org_id";
+			$AY_id = $this->getAcademicYear();
+			$condition = "aa.org_id = " .$org_id. " AND aa.org_id = op.org_id AND AY_id = " .$AY_id;
 
 			$this->db->select('aa.*, op.*');
 			$this->db->from('accreditationapplication aa, organizationprofile op');
@@ -216,7 +217,8 @@
 			$this->db->update('organizationaccount', $changes);
 
 			//Accredited
-
+			$AY_id = $this->getAcademicYear();
+			$condition = "org_id = " .$id. " AND AY_id = " .$AY_id;
 			$changes = array(
 				'app_status' => 'Accredited'
 			);
@@ -236,6 +238,8 @@
 			$this->db->update('organizationaccount', $changes);
 
 			//reject
+			$AY_id = $this->getAcademicYear();
+			$condition = "org_id = " .$id. " AND AY_id = " .$AY_id;
 			$changes = array(
 				'app_status' => 'Unaccredited'
 			);

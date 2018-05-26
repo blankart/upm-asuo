@@ -109,14 +109,6 @@
 						$this->viewFormE("preview");
 					}
 			}
-			else if($action == 'viewFormF'){
-					if(!isset($_SERVER['HTTP_REFERER'])){
-						show_404();
-					}
-					else{
-						$this->viewFormE("preview");
-					}
-			}
 			else{
 				$account_type = $this->session->userdata['account_type'];
 
@@ -384,8 +376,10 @@
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
+			$this->load->model('OrgModel');
 			$id = $this->session->userdata['user_id'];
-			$file_name = md5('formB'.$id);
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$file_name = md5('formB'.$id.'_'.$AY_id);
 
 			$config['upload_path'] = './assets/org/accreditation/form_b';
 			$config['allowed_types'] = 'pdf';
@@ -402,7 +396,6 @@
                 exit();
             }
             else {                
-                $this->load->model('OrgModel');
 				$this->OrgModel->uploadFormB($id, $file_name);  
 				$data = array('msg' => $this->upload->data());  
 				echo json_encode($data);
@@ -414,8 +407,10 @@
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
+			$this->load->model('OrgModel');
 			$id = $this->session->userdata['user_id'];
-			$file_name = md5('formF'.$id);
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$file_name = md5('formF'.$id.'_'.$AY_id);
 
 			$config['upload_path'] = './assets/org/accreditation/form_f';
 			$config['allowed_types'] = 'pdf';
@@ -446,8 +441,10 @@
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
+			$this->load->model('OrgModel');
 			$id = $this->session->userdata['user_id'];
-			$file_name = md5('formG'.$id);
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$file_name = md5('formG'.$id.'_'.$AY_id);
 
 			$config['upload_path'] = './assets/org/accreditation/form_g';
 			$config['allowed_types'] = 'pdf';
@@ -464,7 +461,6 @@
                 exit();
             }
             else {                
-                $this->load->model('OrgModel');
 				$this->OrgModel->uploadFormG($id, $file_name);  
 				$data = array('msg' => $this->upload->data());  
 				echo json_encode($data);
@@ -477,8 +473,10 @@
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
+			$this->load->model('OrgModel');
 			$id = $this->session->userdata['user_id'];
-			$file_name = md5('plans'.$id);
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$file_name = md5('plans'.$id.'_'.$AY_id);
 
 			$config['upload_path'] = './assets/org/accreditation/plans';
 			$config['allowed_types'] = 'pdf';
@@ -738,7 +736,9 @@
 			$temp = $this->OrgModel->insertFormAdetails($form_details,$org_id);
 			//INSERT INTO DB
 			$id = $this->session->userdata['user_id'];
-			$file_name = md5('formA'.$id);
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$file_name = md5('formA'.$id.'_'.$AY_id);
+
 			$this->OrgModel->uploadFormA($id, $file_name);
 			$this->viewFormA("save");
 			//var_dump($temp);
@@ -1049,7 +1049,8 @@
 			$pdf->writeHTML($html, true, 0, true, 0);
 
 			$id = $this->session->userdata['user_id'];
-			$file_name = md5('formA'.$id);
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$file_name = md5('formA'.$id.'_'.$AY_id);
          	//$filelocation = "C:\\xampp\\htdocs\\ASUO\\assets\\org\\accreditation\\form_D";//windows
         	//$fileNL = $filelocation."\\".$file_name;//Windows
 
@@ -1217,7 +1218,8 @@
 
 			//$pdf->Output('formc.pdf', 'I');
 			$id = $this->session->userdata['user_id'];
-			$file_name = md5('formC'.$id);
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$file_name = md5('formC'.$id.'_'.$AY_id);
          	$filelocation = "C:\\xampp\\htdocs\\ASUO\\assets\\org\\accreditation\\form_C";//windows
         	$fileNL = $filelocation."\\".$file_name;//Windows
 
@@ -1327,7 +1329,8 @@
 			}
 			
 			$id = $this->session->userdata['user_id'];
-			$file_name = md5('formD'.$id);
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$file_name = md5('formD'.$id.'_'.$AY_id);
          	//$filelocation = "C:\\xampp\\htdocs\\ASUO\\assets\\org\\accreditation\\form_D";//windows
         	//$fileNL = $filelocation."\\".$file_name;//Windows
 
@@ -1445,7 +1448,8 @@
 			
 			//var_dump($samplehtml);
 			$id = $this->session->userdata['user_id'];
-			$file_name = md5('formE'.$id);
+			$AY_id = $this->OrgModel->getAcademicYear();
+			$file_name = md5('formE'.$id.'_'.$AY_id);
          	//$filelocation = "C:\\xampp\\htdocs\\ASUO\\assets\\org\\accreditation\\form_D";//windows
         	//$fileNL = $filelocation."\\".$file_name;//Windows
 
@@ -1469,84 +1473,5 @@
        			}
        		}		
 		}
-
-		private function viewFormF(){
-			if(!$this->session->userdata['open_accreditation'])
-				redirect(base_url().'login');
-			
-				$pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-
-			// set document information
-			$pdf->SetCreator(PDF_CREATOR);
-			$pdf->SetAuthor('');
-			$pdf->SetTitle('Form F');
-			$pdf->SetSubject('');
-			$pdf->SetKeywords('');
-
-			// set default header data
-			$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE."\t \t \t \t \t \t  Form F: Financial Report", PDF_HEADER_STRING);
-
-			// set header and footer fonts
-			$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-			$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
-
-			// set default monospaced fonts
-			$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-
-			// set margins
-			$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-			$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-			$pdf->SetFooterMargin(PDF_MARGIN_FOOTER);	
-
-			// set auto page breaks
-			$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
-			// set image scale factor
-			$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
-
-			// set font
-			$pdf->SetFont('Helvetica', '', 12);
-
-			$pdf->addPage();
-			$year = date("Y");
-			$text='
-				<b><p align="center">Financial Statement</p></b><br>
-				<p align="center">AY '.$year.' - '.($year+1).'</p>
-				<br>
-				<b>Starting Cash Balance:</b> 
-				<br>
-				<b>Add:</b>
-				<br>
-				<br>
-				<b>Details</b> &nbsp; <b>Amount</b>
-				<br>
-
-				<b>Total Amount Available for Disbursement…………………..………. </b> &nbsp;&nbsp;
-				<br>
-
-				<b>Less:</b><br>
-				<b>Disbursement Details</b> &nbsp; <b>Amount</b>
-				<br>
-
-				<b>Cash balance as of:</b> &nbsp;&nbsp;&nbsp; <b>Php</b>
-
-				<p align="center"><B>Finance Officer:</B><br>
-
-				</p>
-
-				<br>
-				<br>
-				<b>Audited by:</b> &nbsp;&nbsp;&nbsp; <b>Attested by:</b><br><br>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Adviser:</b>
-
-
-			';
-
-			$pdf->writeHTML($text, true, 0, true, 0);
-			$pdf->Output('example_003.pdf', 'I');
-			//$pdf->Output('example_003.pdf', 'I');
-		}
-
-
 	}
 ?>

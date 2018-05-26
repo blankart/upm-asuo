@@ -83,8 +83,9 @@
 
 		public function getOrgDetailsForm($org_id)
 		{
+			$AY_id = $this->getAcademicYear();
 
-			$condition = "org_id = ".$org_id;
+			$condition = "org_id = ".$org_id. " AND AY_id = " .$AY_id;
 			$this->db->select("app_id");
 			$this->db->from("accreditationapplication");
 			$this->db->where($condition);
@@ -96,7 +97,7 @@
 			}
 			else
 			{
-				$condition = "aa.org_id = ".$org_id." AND aa.app_id = fa.app_id";
+				$condition = "aa.org_id = ".$org_id." AND aa.app_id = fa.app_id AND aa.AY_id = " .$AY_id;
 				$this->db->select("fa.*");
 				$this->db->from("accreditationapplication aa,form_a_details fa");
 				$this->db->where($condition);
@@ -385,7 +386,8 @@
 
 		public function getDBformA($org_id)
 		{
-			$condition = "aa.org_id = ".$org_id." AND aa.app_id = fa.app_id";
+			$AY_id = $this->getAcademicYear();
+			$condition = "aa.org_id = ".$org_id." AND aa.app_id = fa.app_id AND aa.AY_id = " .$AY_id;
 			$this->db->select("fa.*");
 			$this->db->from("form_a_details fa, accreditationapplication aa");
 			$this->db->where($condition);
@@ -425,9 +427,9 @@
 		{
 			//checker
 			//return $data;
-
+			$AY_id = $this->getAcademicYear();
 			//check if form_a_details has value
-			$condition = "fa.app_id = aa.app_id AND aa.org_id = ".$org_id." AND aa.app_id = ".$data['app_id'];
+			$condition = "fa.app_id = aa.app_id AND aa.org_id = ".$org_id." AND aa.app_id = ".$data['app_id']. " AND aa.AY_id = " .$AY_id;
 			$this->db->select("fa.*,aa.*");
 			$this->db->from("accreditationapplication aa,form_a_details fa");
 			$this->db->where($condition);
@@ -457,7 +459,7 @@
 
 		public function initAccred($org_id, $AY_id)
 		{
-			$condition = "org_id = ".$org_id;
+			$condition = "org_id = ".$org_id. " AND AY_id = " .$AY_id;
 			$this->db->select("*");
 			$this->db->from("accreditationapplication");
 			$this->db->where($condition);
@@ -486,14 +488,15 @@
 		public function input_formA_details($org_id)
 		{
 				//get app_id from accreditationapplication
-				$condition = "org_id = ".$org_id;
+				$AY_id = $this->getAcademicYear();
+				$condition = "org_id = ".$org_id. " AND AY_id = " .$AY_id;
 				$this->db->select("app_id");
 				$this->db->from("accreditationapplication");
 				$this->db->where($condition);
 				$aaApp_id = $this->db->get();			
 
 				//check if form_a_details is empty for checking of history application
-				$condition = "aa.org_id = ".$org_id." AND fa.app_id = ".$aaApp_id->result_array()[0]['app_id'];
+				$condition = "aa.org_id = ".$org_id." AND fa.app_id = ".$aaApp_id->result_array()[0]['app_id']. " AND aa.AY_id = " .$AY_id;
 				$this->db->select("fa.*");
 				$this->db->from("accreditationapplication aa,form_a_details fa");
 				$this->db->where($condition);
@@ -528,7 +531,8 @@
 		}
 
 		public function uploadFormA($id, $file_name){
-			$condition = 'org_id = ' .$id;
+			$AY_id = $this->getAcademicYear();
+			$condition = 'org_id = ' .$id. " AND AY_id = " .$AY_id;
 
 			$changes = array(
 				'form_A' => $file_name.'.pdf'
@@ -538,7 +542,8 @@
 			$this->db->update("accreditationapplication", $changes);
 		}
 		public function uploadFormB($id, $file_name){
-			$condition = 'org_id = ' .$id;
+			$AY_id = $this->getAcademicYear();
+			$condition = 'org_id = ' .$id. " AND AY_id = " .$AY_id;
 
 			$changes = array(
 				'form_B' => $file_name.'.pdf'
@@ -548,7 +553,8 @@
 			$this->db->update("accreditationapplication", $changes);
 		}
 		public function uploadFormC($id, $file_name){
-			$condition = 'org_id = ' .$id;
+			$AY_id = $this->getAcademicYear();
+			$condition = 'org_id = ' .$id. " AND AY_id = " .$AY_id;
 
 			$changes = array(
 				'form_C' => $file_name.'.pdf'
@@ -558,7 +564,8 @@
 			$this->db->update("accreditationapplication", $changes);
 		}
 		public function uploadFormD($id, $file_name){
-			$condition = 'org_id = ' .$id;
+			$AY_id = $this->getAcademicYear();
+			$condition = 'org_id = ' .$id. " AND AY_id = " .$AY_id;
 
 			$changes = array(
 				'form_D' => $file_name.'.pdf'
@@ -568,7 +575,8 @@
 			$this->db->update("accreditationapplication", $changes);
 		}
 		public function uploadFormE($id, $file_name){
-			$condition = 'org_id = ' .$id;
+			$AY_id = $this->getAcademicYear();
+			$condition = 'org_id = ' .$id. " AND AY_id = " .$AY_id;
 
 			$changes = array(
 				'form_E' => $file_name.'.pdf'
@@ -579,7 +587,8 @@
 		}
 
 		public function uploadFormF($id, $file_name){
-			$condition = 'org_id = ' .$id;
+			$AY_id = $this->getAcademicYear();
+			$condition = 'org_id = ' .$id. " AND AY_id = " .$AY_id;
 
 			$changes = array(
 				'form_F' => $file_name.'.pdf'
@@ -590,7 +599,8 @@
 		}
 
 		public function uploadFormG($id, $file_name){
-			$condition = 'org_id = ' .$id;
+			$AY_id = $this->getAcademicYear();
+			$condition = 'org_id = ' .$id. " AND AY_id = " .$AY_id;
 
 			$changes = array(
 				'form_G' => $file_name.'.pdf'
@@ -601,7 +611,8 @@
 		}
 
 		public function uploadPlans($id, $file_name){
-			$condition = 'org_id = ' .$id;
+			$AY_id = $this->getAcademicYear();
+			$condition = 'org_id = ' .$id. " AND AY_id = " .$AY_id;
 
 			$changes = array(
 				'plans' => $file_name.'.pdf'
@@ -612,8 +623,8 @@
 		}
 
 		public function getForms($org_id){
-
-			$condition = "op.org_id = aa.org_id AND aa.org_id =". $org_id;
+			$AY_id = $this->getAcademicYear();
+			$condition = "op.org_id = aa.org_id AND aa.org_id =". $org_id. " AND aa.AY_id = " .$AY_id;
 
 			$this->db->select('aa.*, op.constitution');
 			$this->db->from('accreditationapplication aa, organizationprofile op');
@@ -628,10 +639,11 @@
 
 		public function submitApplication($org_id)
 		{
-			$condition = 'org_id = ' .$org_id;
+			$AY_id = $this->getAcademicYear();
+			$condition = 'org_id = ' .$org_id. ' AND AY_id = ' .$AY_id;
 
 			$changes = array(
-				'app_status' => 'Pending'
+				'app_status' => 'Submitted'
 			);
 
 			$this->db->where($condition);
