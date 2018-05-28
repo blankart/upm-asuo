@@ -3,6 +3,12 @@
 <head>
 
   <script>
+
+    var submitted = false;
+    var forApproval = false;
+    var approved = false;
+    var rejected = false;
+
     function sendNoticeAccred(orgid){
         if ($('#sendNoticeTitle').val().length > 0 && $('#sendNoticeMessage').val().length > 0)
         {
@@ -73,56 +79,112 @@
         _("orgMatches").style.display = "block";
       }
 
-      function searchBox(string){
+      function enable(filter){
+
+        submitted = false;
+        forApproval = false;
+        approved = false;
+        rejected = false;
+
+        if(filter == 'Submitted')
+          submitted = true;
+
+        if(filter == 'For Approval')
+          forApproval = true;
+
+        if(filter == 'Accredited')
+          approved = true;
+
+        if(filter == 'Unaccredited')
+          rejected = true;
+
+        searchBox();
+      }
+
+
+      function searchBox(){
           var search = $("#orgID").val();
+
+          var filter = 'None';
+
+          if( submitted )
+            filter = 'Submitted';
+
+          if( forApproval )
+          filter = 'For Approval';
+
+          if( approved )
+            filter = 'Accredited';
+
+          if( rejected )
+            filter = 'Unaccredited';
+
+   
+
           $.ajax({
             type:"post",
             url:"<?php echo base_url(); ?>admin/searchAccredApp",
             cache: false,
-            data:{query: search, source: 'admin'},
+            data:{query: search, filter: filter},
             dataType: 'json',
             async: false,
             success:function(result){
-              var output = "<div class='container animated fadeIn' id='searchValidate'>" +
+               //    alert(submitted + ' ' + forApproval + ' ' + approved + ' ' + rejected);
+          
+                if(filter == "None"){
+                var output = "<div class='container animated fadeIn' id='searchValidate'>" +
                            "<table class='table table-striped custab'>"+
                            "<thead>"+
                            "<tr>"+
-                           "<th>Organization ID<\/th>"+
+                           "<th>Organization Name<\/th>"+
+                           "<th>Application Status<\/th>"+
+                           "<th class='text-center'>Action<\/th>"+
+                           "<\/tr>"+
+                           "<\/thead>";
+                  output+="<div id='unaccreditedTab'>";
+                }
+                else{
+                  var output = "<div class='container animated fadeIn' id='searchValidate'>" +
+                           "<table class='table table-striped custab'>"+
+                           "<thead>"+
+                           "<tr>"+
                            "<th>Organization Name<\/th>"+
                            "<th class='text-center'>Action<\/th>"+
                            "<\/tr>"+
                            "<\/thead>";
-               output+="<div id='unaccreditedTab'>";
+                  output+="<div id='unaccreditedTab'>";
+
+                }
+
               for (var key in result) {
                
                 if (result.hasOwnProperty(key)) {
-                 if (result[key]['app_status'] == string)
+                 if (result[key]['app_status'] == filter)
                  {
                   output+="<tr>"+
-                          "<td>"+result[key]['org_id']+"<\/td>"+
                           "<td>"+result[key]['org_name']+"<\/td>"+
                           //actions
                           "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewDocuments("+result[key]['org_id']+")' style='margin-left: 10px;'>View Documents<\/button>";
-                          if (result[key]['app_status'] == "Accredited"){
+                          if (filter == "Accredited"){
                            output+="<button onclick='reject("+result[key]['org_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Reject<\/button>";
                           }
-                          else if (result[key]['app_status'] == "Unaccredited"){
+                          else if (filter== "Unaccredited"){
                            ;
                           }
-                          else if (result[key]['app_status'] == "Submitted"){
+                          else if (filter == "Submitted"){
                            output+="<button onclick='sendNoticeButtonApp(\""+result[key]['org_name']+"\","+result[key]['org_id']+")' class='btn btn-info btn-xs' style='margin-left: 10px;'>Send Notice<\/button>"+
                            "<button onclick='addToForApproval("+result[key]['org_id']+")' class='btn btn-info btn-xs' style='margin-left: 10px;'>Add to 'For Approval'<\/button>";
                           }
-                          else if (result[key]['app_status'] == "For Approval"){
+                          else if (filter == "For Approval"){
                             output+="<button onclick='accredit("+result[key]['org_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Accredit<\/button>"+
                             "<button onclick='reject("+result[key]['org_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Reject<\/button>";
                           }
                           output+="<\/td><\/tr>";
                  }
-                 else if (string == ''){
+                 else if (filter == 'None'){
                    output+="<tr>"+
-                          "<td>"+result[key]['org_id']+"<\/td>"+
                           "<td>"+result[key]['org_name']+"<\/td>"+
+                          "<td>"+result[key]['app_status']+"<\/td>"+
                           //actions
                           "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewDocuments("+result[key]['org_id']+")' style='margin-left: 10px;'>View Documents<\/button>" + 
                           "<\/td>" +
@@ -196,7 +258,7 @@
                 dataType: 'json',
                 async: false
               });
-              searchBox('');
+              searchBox();
             }
 
           });
@@ -233,7 +295,7 @@
                 dataType: 'json',
                 async: false
               });
-              searchBox('');
+              searchBox();
             }
 
           });
@@ -270,7 +332,7 @@
                 dataType: 'json',
                 async: false
               });
-              searchBox('');
+              searchBox();
             }
 
           });
@@ -418,15 +480,15 @@
                         <div class="mat-input-outer">
                           <input autocomplete="off" class="form-control" id="orgID" type="username"> <label class="">Enter Organization Name</label>
                           <div class="border"></div>
-                        </div><button class="btn btn-danger btn-block" onclick="searchBox('')" style="margin-top: 10px;">Search</button>
+                        </div><button class="btn btn-danger btn-block" onclick="searchBox()" style="margin-top: 10px;">Search</button>
                       </div>
                     </form>
                   </div>
                   <div class="inbox-body">
-                    <button class="btn btn-info" onclick="searchBox('Submitted')" type="button">Submitted Applications</button>
-                    <button class="btn btn-info" onclick="searchBox('For Approval')" type="button">For Approval</button> 
-                    <button class="btn btn-success" onclick="searchBox('Accredited')" type="button">Approved</button>  
-                    <button class="btn btn-danger" onclick="searchBox('Unaccredited')" type="button">Rejected</button>
+                    <button class="btn btn-info" onclick="enable('Submitted')" type="button">Submitted Applications</button>
+                    <button class="btn btn-info" onclick="enable('For Approval')" type="button">For Approval</button> 
+                    <button class="btn btn-success" onclick="enable('Accredited')" type="button">Approved</button>  
+                    <button class="btn btn-danger" onclick="enable('Unaccredited')" type="button">Rejected</button>
                     <div class="mail-option"></div>
                     <div class="loadingscreen">
           <div class="row">

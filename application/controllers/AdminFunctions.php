@@ -104,7 +104,7 @@
 		}
 
 		private function loadAdminPanel(){
-
+			$this->refreshAccreditationSession();
 			$this->load->model("AdminModel");
 			$result = $this->AdminModel->getAccreditationPeriod();
 
@@ -434,12 +434,12 @@
 
 		private function searchAccredApp(){
 			$query =  $this->input->post('query');
-			$source = $this->input->post('source');
+			$filter = $this->input->post('filter');
 
-			if($source == 'admin'){
+			if($filter != NULL){
 				$this->load->model('AdminModel');
 				$result = array();
-				$profiles = $this->AdminModel->searchAccredApp(htmlspecialchars($query, ENT_QUOTES));	
+				$profiles = $this->AdminModel->searchAccredApp(htmlspecialchars($query, ENT_QUOTES), $filter);	
 
 				foreach ($profiles as $profile)
 					array_push($result, $profile);
@@ -529,34 +529,64 @@
 		private function editAccreditationPeriod(){
 			$period = $this->input->post('period');
 
+			$this->refreshAccreditationSession();
 			if($period != NULL){
 
-				$admin_id = $this->session->userdata['user_id'];				
-				$data['admin_id'] = $admin_id;
+				if($this->session->userdata['open_accreditation']){
 
-				$format = 'Y-m-d H:i:s';
-				$time = strtotime($period['start_date']);
+					$admin_id = $this->session->userdata['user_id'];				
+					$data['admin_id'] = $admin_id;
 
-				$data['start_date'] = date($format, $time);
+					$format = 'Y-m-d H:i:s';
+					$time = strtotime($period['start_date']);
 
-				$time = strtotime($period['end_date']);
-				$data['end_date'] =  date($format, $time);
-				$data['status'] = 'Opened';
+					$data['start_date'] = date($format, $time);
 
-				$this->load->model('AdminModel');
-				$result = $this->AdminModel->editAccreditationPeriod($data);
+					$time = strtotime($period['end_date']);
+					$data['end_date'] =  date($format, $time);
+					$data['status'] = 'Opened';
 
-				if($result){
-					$this->session->userdata['open_accreditation'] = true;
-					echo json_encode(true);
+					$this->load->model('AdminModel');
+					$result = $this->AdminModel->editAccreditationPeriod($data);
+
+					if($result){
+						$this->session->userdata['open_accreditation'] = true;
+						echo json_encode(true);
+					}
+					else
+						echo json_encode(false);
+					
+					exit();
 				}
-				else
-					echo json_encode(false);
-				
-				exit();
+				else{
+					echo json_encode('Too late');
+					exit();
+				}
 			}
 			else
 				show_404();
+		}
+
+		private function refreshAccreditationSession(){
+			$this->load->model('SystemModel');
+			$period = $this->SystemModel->getAccreditationPeriod();
+
+			$format = 'Y-m-d H:i:s';
+
+			if($period != false){
+				$today = date($format);
+				$start = date( $period['start_date'] );
+				$end = date( $period['end_date'] );
+
+				if( $today > $start && $today < $end )
+					$this->session->userdata['open_accreditation'] = true;
+				else{
+					$this->session->userdata['open_accreditation'] = false;
+					$this->SystemModel->closeAccreditation();
+				}
+			}
+			else
+				$this->session->userdata['open_accreditation'] = false;
 		}
 
 		private function sendNoticeSearch(){

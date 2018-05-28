@@ -27,7 +27,7 @@
                   data:{source: "org"},
                   success : function (data){
                    if(data){
-                        swal({title: "Success!", text: "You have successfully submitted your Application!", type: "success"},
+                        swal({title: "Success!", text: "<h4>You have successfully submitted your Application!</h4>", type: "success"},
                         function(){ 
                            location.reload();
                         }

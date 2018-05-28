@@ -300,6 +300,10 @@
                      <input class="form-control" type="text" maxlength="11" name="data[contact_num]" value = "<?php echo $contact_num; ?>" onkeyup="contactNumFormatCheck(this)" required>
                   </div>
                </div>
+
+              <div class='wrapper'> <button type="submit" onclick="validateForm()" style="margin-left: 1em; padding: 10px; background: #cc0000; display: table; color: white; font-family: Lato; border-radius: 5%;" class="btn btn-danger">Save</button> </div>
+              </form>
+
                <form enctype="multipart/form-data" id= 'uploadForm5Form' method="POST">
                 
                  <div class="form-group">
@@ -314,7 +318,7 @@
                      noUploads() 
                   <?php } ?>" > Preview File</button>
                   <button type="submit" style="display: none;" id = 'submitForm5'> </button>
-                  <button type="submit" onclick="validateForm()" style='margin: 10px;' class="btn btn-danger">Save</button>
+              
                   
                 <div class='wrapper'><a  href="<?php echo base_url().'logout'; ?>" style='margin: 10px;'><button type="button" class="btn btn-danger">Log Out</button></a></div>
                </div>
@@ -322,8 +326,7 @@
             </form>
          </div>
          <!-- Modal footer -->
-         
-      </form>
+            
          </div>
 					
  			</div>

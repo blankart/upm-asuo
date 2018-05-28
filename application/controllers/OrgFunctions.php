@@ -203,6 +203,7 @@
 		}
 
 		private function loadOrgProfile(){
+			$this->refreshAccreditationSession();
 			$org_id = $this->session->userdata['user_id'];
 	
 			$this->load->model('OrgModel');
@@ -372,7 +373,7 @@
 		}
 
 		private function uploadFormB(){
-
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -404,6 +405,7 @@
 		}
 
 		private function uploadFormF(){
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -437,7 +439,7 @@
 
 		private function uploadFormG()
 		{
-
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -469,7 +471,8 @@
 		}
 
 		private function uploadPlans()
-		{
+		{	
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -503,6 +506,7 @@
 
 		private function uploadAll()
 		{
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -723,9 +727,34 @@
 
 
 //-------------------------------FORMS FOR ACCREDITATION---------------------------------------
+
+
+		private function refreshAccreditationSession(){
+			$this->load->model('SystemModel');
+			$period = $this->SystemModel->getAccreditationPeriod();
+
+			$format = 'Y-m-d H:i:s';
+
+			if($period != false){
+				$today = date($format);
+				$start = date( $period['start_date'] );
+				$end = date( $period['end_date'] );
+
+				if( $today > $start && $today < $end )
+					$this->session->userdata['open_accreditation'] = true;
+				else{
+					$this->session->userdata['open_accreditation'] = false;
+					$this->SystemModel->closeAccreditation();
+				}
+			}
+			else
+				$this->session->userdata['open_accreditation'] = false;
+		}
+
 		//saving data from form a accreditation
 		private function saveFormA()
 		{
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 			 
@@ -746,6 +775,8 @@
 		}
 
 		private function loadAccreditationHome(){
+
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -772,6 +803,7 @@
 
 		private function loadFormA()
 		{	
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -799,6 +831,7 @@
 		}
 		
 		private function loadFormB(){
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -819,6 +852,7 @@
 			$this->load->view('footer');
 		}
 		private function loadFormC(){
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -841,6 +875,7 @@
 		}
 
 		private function loadFormD(){
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -859,6 +894,7 @@
 		}
 
 		private function loadFormE(){
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -878,6 +914,7 @@
 		}
 
 		private function loadFormF(){
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -900,6 +937,7 @@
 		}
 
 		private function loadFormG(){
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -921,6 +959,7 @@
 		}
 
 		private function loadPlans(){
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -939,6 +978,7 @@
 		}
 
 		function loadSubmitAll(){
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -962,6 +1002,7 @@
 
 		private function viewFormA($type)
 		{
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -1076,6 +1117,7 @@
 		}
 		
 		private function viewFormC($type){
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -1246,6 +1288,7 @@
 		}
 
 		private function viewFormD($type){
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 
@@ -1359,6 +1402,7 @@
 		}
 
 		public function viewFormE($type){
+			$this->refreshAccreditationSession();
 			if(!$this->session->userdata['open_accreditation'])
 				redirect(base_url().'login');
 

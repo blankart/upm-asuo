@@ -191,18 +191,25 @@
 				return false;
 		}
 
-		public function searchAccredApp($string){
+		public function searchAccredApp($string, $filter){
 
-			$AY_id = $this->getAcademicYear();
-			$period =$this->getAccreditationPeriod();
+			$year_start = $this->getAcademicYearStart();
+			$format = 'Y';
+			$year_now = date($format);
 
-			if($period != false){
+			if($year_start == $year_now){
+				$AY_id = $this->getAcademicYear();
 
+				if($filter == 'None'){
 				$condition = "aa.org_id = oa.org_id AND aa.org_id = op.org_id AND aa.app_status <> 'On Progress' AND op.org_name LIKE '%".$string."%' AND AY_id = " .$AY_id. " AND oa.archived = 0";
+				}
+				else{
+					$condition = "aa.org_id = oa.org_id AND aa.org_id = op.org_id AND aa.app_status = '" .$filter. "' AND op.org_name LIKE '%".$string."%' AND AY_id = " .$AY_id. " AND oa.archived = 0";
+				}
 
 				$this->db->select('oa.org_id, op.org_name, oa.org_status, aa.app_status');
 				$this->db->from('organizationprofile op, organizationaccount oa, accreditationapplication aa');
-				$this->db->order_by('op.org_id');
+				$this->db->order_by('op.org_name');
 				$this->db->where ($condition);
 
 				$query = $this->db->get();
@@ -320,6 +327,7 @@
 			$this->resetAllOrgStatusToPending();
 			$this->resetAllOrgMembers();
 			$this->removeAllOrgApps();
+			$this->resetAllStudentsToInactive();
 		}
 
 		private function resetAllOrgStatusToPending(){
@@ -356,6 +364,18 @@
 
 			$this->db->where($condition);
 			$this->db->update('orgapplication', $changes);			
+		}
+
+		private function resetAllStudentsToInactive(){
+
+			$condition = "isActivated = 1";
+
+			$changes = array(
+				'isActivated' => 0
+			);
+
+			$this->db->where($condition);
+			$this->db->update('studentaccount', $changes);	
 		}
 
 		//end of OPEN ACCREDITATION functions

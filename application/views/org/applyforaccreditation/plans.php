@@ -102,7 +102,7 @@
                     <br><br>
                  
                  <div class="myBtn">
-                    <button class="btn btn-danger" id="prevBtn" onclick="showPrev()">Preview</button> 
+                    <button class="btn btn-danger" id="prevBtn" onclick="showPrev()">Upload</button> 
                  </div>
               </div>
             </div>

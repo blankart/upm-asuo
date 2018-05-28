@@ -356,6 +356,13 @@
                             <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="applyToOrg()" disabled>Membership Request Sent</button>
                               <?php } ?>
 
+
+                <?php if($open_accreditation && $profile['org_status'] == 'For Approval') {?>
+                <button class="btn btn-danger btn-block" style="margin-top: 10px;" type="button" disabled>
+                  <a><i class="fa fa-folder-open fa-2x" style='float: left;' ></i>Application Awaiting Approval</a></button>
+
+                  <?php }?>
+
                         </div>
                     </div>
                 </div>

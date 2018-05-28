@@ -176,7 +176,8 @@ ALTER TABLE `accreditationapplication`
   CREATE TABLE `accreditation` (
     `accreditation_id` int(11) UNSIGNED NOT NULL,
     `AY_id` int(11) UNSIGNED NOT NULL,
-    `org_id` int(11) UNSIGNED NOT NULL
+    `org_id` int(11) UNSIGNED NOT NULL,
+    `archived` tinyint(1) NOT NULL DEFAULT 1
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
   ALTER TABLE `accreditation`

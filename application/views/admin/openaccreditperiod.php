@@ -63,18 +63,30 @@
        dataType: 'json',
        async: false,
        success:function(result){
-        if(result){
+        if(result!= false){
 
-          if(reset)
-            var message = "You have changed the accreditation period.";
-          else
-            var message = "You have set the accreditation period.";
+          if(result != 'Too late'){
 
-          swal({title: "Period Set!!", text: message, type: "success"},
-            function(){ 
-              location.reload();
-            }
-          ); 
+            if(reset)
+              var message = "You have changed the accreditation period.";
+            else
+              var message = "You have set the accreditation period.";
+
+            swal({title: "Period Set!!", text: message, type: "success"},
+              function(){ 
+                location.reload();
+              }
+            );
+          }
+          else{
+             var message = "The accreditation period ended before you could change it.";
+
+              swal({title: "Too late!", text: message, type: "warning"},
+                function(){ 
+                  location.reload();
+                }
+              );
+          }
         }
         else if (result == false)
           swal("Failed!", "You have already set an accreditation period for the upcoming academic year!", "warning");
@@ -115,7 +127,12 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h4 class="modal-title"><i class="fa fa-calendar fa-2x pull-left admin-icon" style='margin-right: 20px;'></i>Open Accreditation Period</h4>
+                <h4 class="modal-title"><i class="fa fa-calendar fa-2x pull-left admin-icon" style='margin-right: 20px;'></i>  <?php if(!$open_accreditation){ ?> 
+                  Open 
+                <?php }else{ ?> 
+                  Edit
+                <?php } ?>
+                Accreditation Period</h4>
             </div>
             <!-- Modal body -->
             <div class="modal-body">

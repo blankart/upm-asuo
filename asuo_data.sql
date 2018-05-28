@@ -115,8 +115,8 @@ INSERT INTO `accreditationapplication` (`app_id`, `AY_id`, `org_id`, `app_status
 (1, 1, 6, 'Accredited', 'E0DF1C144280F4E36E638DCF95CED92C.pdf', '6581085DAAFDB45D90322F986D96B670.pdf', 'FEE06AFE1E48B092C726EA711D3ABE73.pdf', '3B7501A8C9CDE3A7B1EA381057BADA10.pdf', '1DB1EA57A537AE0B81576B66E9277161.pdf', 'D2A02B6233821B11D388957DEA0FE989.pdf', 'EFDAEADEA97149177948B2685C2F162F.pdf')
 ;
 
-INSERT INTO `accreditation` (`accreditation_id`, `AY_id`, `org_id`) VALUES
-(1, 1, 6)
+INSERT INTO `accreditation` (`accreditation_id`, `AY_id`, `org_id`, `archived`) VALUES
+(1, 1, 6, 0)
 ;
 
 INSERT INTO `accreditation_period` (`period_id`, `AY_id`, `admin_id`, `start_date`, `end_date`, `status`) VALUES
