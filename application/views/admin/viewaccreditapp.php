@@ -107,12 +107,15 @@
                            output+="<button onclick='reject("+result[key]['org_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Reject<\/button>";
                           }
                           else if (result[key]['app_status'] == "Unaccredited"){
-                           output+="<button onclick='accredit("+result[key]['org_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Accredit<\/button>";
+                           ;
                           }
-                          else if (result[key]['app_status'] == "Pending"){
-                           output+="<button onclick='accredit("+result[key]['org_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Accredit<\/button>"+
-                           "<button onclick='sendNoticeButtonApp(\""+result[key]['org_name']+"\","+result[key]['org_id']+")' class='btn btn-info btn-xs' style='margin-left: 10px;'>Send Notice<\/button>"+
-                           "<button onclick='reject("+result[key]['org_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Reject<\/button>";
+                          else if (result[key]['app_status'] == "Submitted"){
+                           output+="<button onclick='sendNoticeButtonApp(\""+result[key]['org_name']+"\","+result[key]['org_id']+")' class='btn btn-info btn-xs' style='margin-left: 10px;'>Send Notice<\/button>"+
+                           "<button onclick='addToForApproval("+result[key]['org_id']+")' class='btn btn-info btn-xs' style='margin-left: 10px;'>Add to 'For Approval'<\/button>";
+                          }
+                          else if (result[key]['app_status'] == "For Approval"){
+                            output+="<button onclick='accredit("+result[key]['org_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Accredit<\/button>"+
+                            "<button onclick='reject("+result[key]['org_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Reject<\/button>";
                           }
                           output+="<\/td><\/tr>";
                  }
@@ -122,8 +125,7 @@
                           "<td>"+result[key]['org_name']+"<\/td>"+
                           //actions
                           "<td class='text-center'><button class='btn btn-info btn-xs' onclick='viewDocuments("+result[key]['org_id']+")' style='margin-left: 10px;'>View Documents<\/button>" + 
-                          "<button onclick='accredit("+result[key]['org_id']+")' class='btn btn-success btn-xs' style='margin-left: 10px;'>Accredit<\/button>" +
-                          "<button onclick='reject("+result[key]['org_id']+")' class='btn btn-danger btn-xs' style='margin-left: 10px;'>Reject<\/button><\/td>" +
+                          "<\/td>" +
                           "<\/tr>";
                  }
                 }
@@ -185,6 +187,43 @@
             async: false,
             success:function(result){
               swal("Accredited!", "This organization has been accredited.", "success");
+              var search = $("#orgID").val();
+              $.ajax({
+                type:"post",
+                url:"<?php echo base_url(); ?>admin/accreditOrg",
+                cache: false,
+                data:{query: search},
+                dataType: 'json',
+                async: false
+              });
+              searchBox('');
+            }
+
+          });
+        });
+      }
+
+      function addToForApproval(myID){
+        swal({
+          html: true,
+          title: "<h4>Confirm Action<\/h4>",
+          text: "Do you want to move this application to 'For Approval'?",
+          type: "warning",
+          showCancelButton: true,
+          confirmButtonClass: "btn-info",
+          confirmButtonText: "Move",
+          closeOnConfirm: false
+        },
+        function(){
+          $.ajax({
+            type:"post",
+            url:"<?php echo base_url(); ?>admin/moveToForApproval",
+            cache: false,
+            data:{id: myID},
+            dataType: 'json',
+            async: false,
+            success:function(result){
+              swal("Moved!", "This application has been moved to 'For Approval'!", "success");
               var search = $("#orgID").val();
               $.ajax({
                 type:"post",
@@ -384,7 +423,10 @@
                     </form>
                   </div>
                   <div class="inbox-body">
-                    <button class="btn btn-info" onclick="searchBox('Pending')" type="button">Pending Applications</button> <button class="btn btn-success" onclick="searchBox('Accredited')" type="button">Approved</button> <button class="btn btn-danger" onclick="searchBox('Unaccredited')" type="button">Rejected</button>
+                    <button class="btn btn-info" onclick="searchBox('Submitted')" type="button">Submitted Applications</button>
+                    <button class="btn btn-info" onclick="searchBox('For Approval')" type="button">For Approval</button> 
+                    <button class="btn btn-success" onclick="searchBox('Accredited')" type="button">Approved</button>  
+                    <button class="btn btn-danger" onclick="searchBox('Unaccredited')" type="button">Rejected</button>
                     <div class="mail-option"></div>
                     <div class="loadingscreen">
           <div class="row">

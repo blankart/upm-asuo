@@ -52,6 +52,8 @@
 				$this->viewDocuments();
 			else if($action == 'searchAccredApp')
 				$this->searchAccredApp();
+			else if($action == 'moveToForApproval')
+				$this->moveToForApproval();
 			else if($action == 'accreditOrg')
 				$this->accreditOrg();
 			else if($action == 'rejectOrg')
@@ -448,6 +450,19 @@
 			}
 			else 
 				show_404();			
+		}
+
+		private function moveToForApproval(){
+			$id = $this->input->post('id');
+
+			if($id != NULL){
+				$this->load->model('AdminModel');
+				$this->AdminModel->moveToForApproval($id);
+				echo json_encode('true');
+				exit();
+			}
+			else
+				show_404();
 		}
 
 		private function accreditOrg(){

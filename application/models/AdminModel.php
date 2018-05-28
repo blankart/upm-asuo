@@ -194,16 +194,43 @@
 		public function searchAccredApp($string){
 
 			$AY_id = $this->getAcademicYear();
+			$period =$this->getAccreditationPeriod();
 
-			$condition = "aa.org_id = oa.org_id AND aa.org_id = op.org_id AND aa.app_status <> 'On Progress' AND op.org_name LIKE '%".$string."%' AND AY_id = " .$AY_id. " AND oa.archived = 0";
+			if($period != false){
 
-			$this->db->select('oa.org_id, op.org_name, oa.org_status, aa.app_status');
-			$this->db->from('organizationprofile op, organizationaccount oa, accreditationapplication aa');
-			$this->db->order_by('op.org_id');
-			$this->db->where ($condition);
+				$condition = "aa.org_id = oa.org_id AND aa.org_id = op.org_id AND aa.app_status <> 'On Progress' AND op.org_name LIKE '%".$string."%' AND AY_id = " .$AY_id. " AND oa.archived = 0";
 
-			$query = $this->db->get();
-			return  $query->result_array(); 
+				$this->db->select('oa.org_id, op.org_name, oa.org_status, aa.app_status');
+				$this->db->from('organizationprofile op, organizationaccount oa, accreditationapplication aa');
+				$this->db->order_by('op.org_id');
+				$this->db->where ($condition);
+
+				$query = $this->db->get();
+				return  $query->result_array(); 
+			}
+			else
+				return array();
+		}
+
+		public function moveToForApproval($id){
+			$condition = "org_id = " .$id. " AND org_id = " .$id;
+
+			$changes = array(
+				'org_status' => 'For Approval'
+			);
+
+			$this->db->where($condition);
+			$this->db->update('organizationaccount', $changes);
+
+			//Accredited
+			$AY_id = $this->getAcademicYear();
+			$condition = "org_id = " .$id. " AND AY_id = " .$AY_id;
+			$changes = array(
+				'app_status' => 'For Approval'
+			);
+
+			$this->db->where($condition);
+			$this->db->update('accreditationapplication', $changes);
 		}
 
 		public function accreditOrg($id){
