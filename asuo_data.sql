@@ -28,9 +28,9 @@ INSERT INTO `admin` (`admin_id`, `username`, `password`, `admin_name`, `admin_em
 
 INSERT INTO `organizationaccount` (`org_id`, `org_email`, `password`, `org_status`, `isVerified`, `isActivated`, `archived`) VALUES
 (1, 'aisec@gmail.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 1,  1),
-(2, 'upmchorale@yahoo.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Accredited', 1, 1,  0),
+(2, 'upmchorale@yahoo.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 1,  0),
 (3, 'gabriela@gmail.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 1,  0),
-(4, 'morg@yahoo.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Accredited', 1, 1,  0),
+(4, 'morg@yahoo.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 1,  0),
 (5, 'upbeau@gmail.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 0,  1),
 (6, 'upsocomsci@yahoo.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Accredited', 1, 1, 0),
 (7, 'orcomsoc@gmail.com', '$2y$10$QxbWa5UHQjgTq1UAjgmVjOVY.pHstNSIxK31IyNXJvg1sTnbTLSQ.', 'Unaccredited', 1, 0, 0),

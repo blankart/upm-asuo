@@ -2,3 +2,4 @@ RewriteEngine On
 RewriteCond $1 !^(index\.php|img|assets|css|scss|bootstrap|js|robots\.txt)
 RewriteRule ^(.*)$ index.php/$1 [L]
 
+Options -Indexes
