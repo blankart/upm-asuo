@@ -35,6 +35,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/stud.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/vuesax/dist/vuesax.css" rel="stylesheet">
         <style type="text/css">
             body {
             	background-image: url(<?php echo base_url();?>img/BG.jpg);
@@ -152,10 +153,12 @@
         <script src="<?php echo base_url();?>js/real-time-search.js"></script>
         <script src="<?php echo base_url();?>js/sweetalert.js"></script>
         <script src="<?php echo base_url();?>js/sweetalert.min.js"></script>
-	        <script src="<?php echo base_url();?>js/registerOrg.js"></script>
-	        <script src="<?php echo base_url();?>js/popper.min.js"></script>
-	        <script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
-	        <script>
+        <script src="<?php echo base_url();?>js/registerOrg.js"></script>
+        <script src="<?php echo base_url();?>js/popper.min.js"></script>
+        <script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vuesax/dist/vuesax.umd.js"></script>
+	    s<script>
 	        	$(document).on({
     			ajaxStart: function(){
         $('.loadingscreen').show();

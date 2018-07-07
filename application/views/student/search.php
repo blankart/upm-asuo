@@ -2,6 +2,19 @@
 <html>
 <head>
 	<title></title>
+</head>
+<body>
+	<div id="search">
+		<button class="close" type="button">x</button> <input type='text' autocomplete='off' class='searchOrgPage' max='50' min='1' onkeyup="liveSearchOrgPage()" placeholder="type organization name here">
+		<div id='searchResult'>
+			<section class='pb-5' id='searchPanel'>
+				<div class='container'>
+					<div id='orgSearchResult' class='row' style='height: 350px; overflow-y: scroll;'>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
 	<script>
 	       function liveSearchOrgPage(){
 	           if ($(".searchOrgPage").val().length > 0){
@@ -53,22 +66,5 @@
 	           }
 	       }
 	</script>
-</head>
-<body>
-	<div id="search">
-
-		<button class="close" type="button">x</button> <input type='text' autocomplete='off' class='searchOrgPage' max='50' min='1' onkeyup="liveSearchOrgPage()" placeholder="type organization name here">
-		<div id='searchResult'>
-			<section class='pb-5' id='searchPanel'>
-
-				<div class='container'>
-				
-					<div id='orgSearchResult' class='row' style='height: 350px; overflow-y: scroll;'>
-						
-					</div>
-				</div>
-			</section>
-		</div>
-	</div>
 </body>
 </html>
