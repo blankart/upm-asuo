@@ -76,10 +76,7 @@
 }
         </style>
     </head>
-
     <body>
-    	
-
         <nav class="navbar fixed-top navbar-expand-xl navbar-dark" id='nav-bar'>
         	<img src="<?php echo base_url();?>img/UP Logo.png" width="35px" class="img-fluid">
             <a class="navbar-brand" href="<?php echo base_url();?>login">
@@ -98,9 +95,9 @@
 				echo "<div id='loggedInAs'>
 				logged in as: <a>".$email."</a>
 				</div>
-				<div id='searchButton'>
-				<a href='#search'><i class='fas fa-search'></i>Search for Organizations</a>
-				</div>
+                <div style='margin-right: 100px !important'>
+                <input class='form-control search-org-input' style='width: 350px;'placeholder='Search for Organization' />
+                </div>
 				<li class='nav-item'>
 				<a class='nav-link' href='".base_url()."student/".$username."'><img style='margin-right: 2px; border-radius: 50%;' width='25' src='".base_url().'assets/student/profile_pic/'.$profile_pic.'?'.rand(1, 1000)."'> ".$first_name."</a>
 		  		</li>
@@ -158,7 +155,8 @@
         <script src="<?php echo base_url();?>js/bootstrap.min.js"></script>
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vuesax/dist/vuesax.umd.js"></script>
-	    s<script>
+        <script src="<?php echo base_url();?>js/bootstrap3-typeahead.js"></script>
+	    <script>
 	        	$(document).on({
     			ajaxStart: function(){
         $('.loadingscreen').show();

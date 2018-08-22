@@ -199,7 +199,9 @@
 								<div id="announcements" style="display:none;">
 								<?php foreach($orgposts as $orgpost){ 
                                                       ?>
-								<div class="stream-post">
+								<div class="stream-post" style="border-style: solid; border-radius: 10px; border-color:<?php
+									echo ($orgpost['privacy'] == 'Officers') ? 'yellow' : (($orgpost['privacy'] == 'Members') ? 'red' : 'blue'); 
+								?>;">
 									<div class="sp-author">
 										<a class="sp-author-avatar" href="<?php echo base_url().'org/'.str_replace(' ', '', $orgpost['acronym']); ?>"><img alt="" src="<?php echo base_url().'assets/org/logo/'.$orgpost['org_logo'].'?'.rand(1, 100); ?>"></a>
 										<h6 class="sp-author-name"><a href="#"><?php echo $orgpost['acronym']; ?></a></h6>

@@ -1,297 +1,335 @@
 .hovereffect {
-width:100%;
-height:100%;
-float:left;
-overflow:hidden;
-position:relative;
-text-align:center;
-cursor:default;
+  width: 100%;
+  height: 100%;
+  float: left;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  cursor: default;
 }
 
 body {
-    padding: 40px 0px;   
+  padding: 40px 0px;
 }
 
 #search {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    
-    -webkit-transition: all 0.5s ease-in-out;
-	-moz-transition: all 0.5s ease-in-out;
-	-o-transition: all 0.5s ease-in-out;
-	-ms-transition: all 0.5s ease-in-out;
-	transition: all 0.5s ease-in-out;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
 
-    -webkit-transform: translate(0px, -100%) scale(0, 0);
-	-moz-transform: translate(0px, -100%) scale(0, 0);
-	-o-transform: translate(0px, -100%) scale(0, 0);
-	-ms-transform: translate(0px, -100%) scale(0, 0);
-	transform: translate(0px, -100%) scale(0, 0);
-    
-    opacity: 0;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+
+  -webkit-transform: translate(0px, -100%) scale(0, 0);
+  -moz-transform: translate(0px, -100%) scale(0, 0);
+  -o-transform: translate(0px, -100%) scale(0, 0);
+  -ms-transform: translate(0px, -100%) scale(0, 0);
+  transform: translate(0px, -100%) scale(0, 0);
+
+  opacity: 0;
 }
 
 #search.open {
-    -webkit-transform: translate(0px, 0px) scale(1, 1);
-    -moz-transform: translate(0px, 0px) scale(1, 1);
-	-o-transform: translate(0px, 0px) scale(1, 1);
-	-ms-transform: translate(0px, 0px) scale(1, 1);
-	transform: translate(0px, 0px) scale(1, 1); 
-    opacity: 1;
+  -webkit-transform: translate(0px, 0px) scale(1, 1);
+  -moz-transform: translate(0px, 0px) scale(1, 1);
+  -o-transform: translate(0px, 0px) scale(1, 1);
+  -ms-transform: translate(0px, 0px) scale(1, 1);
+  transform: translate(0px, 0px) scale(1, 1);
+  opacity: 1;
 }
 
-#searchResult{
-    position: absolute;
-    top: 100%;
-    width: 100%;
-    -webkit-transition: all .1s ease-in;
-    -moz-transition: all .1s ease-in;
-    -o-transition: all .1s ease-in;
-    -ms-transition: all .1s ease-in;
-    transition: all .1s ease-in;
+#searchResult {
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  -webkit-transition: all 0.1s ease-in;
+  -moz-transition: all 0.1s ease-in;
+  -o-transition: all 0.1s ease-in;
+  -ms-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
 }
 
 #search .searchOrgPage {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    color: rgb(255, 255, 255);
-    background: rgba(0, 0, 0, 0);
-    font-size: 60px;
-    font-weight: 300;
-    text-align: center;
-    border: 0px;
-    margin: 0px auto;
-    margin-top: -51px;
-    padding-left: 30px;
-    padding-right: 30px;
-    outline: none;
-    -webkit-transition: all .1s ease-in;
-    -moz-transition: all .1s ease-in;
-    -o-transition: all .1s ease-in;
-    -ms-transition: all .1s ease-in;
-    transition: all .1s ease-in;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  color: rgb(255, 255, 255);
+  background: rgba(0, 0, 0, 0);
+  font-size: 60px;
+  font-weight: 300;
+  text-align: center;
+  border: 0px;
+  margin: 0px auto;
+  margin-top: -51px;
+  padding-left: 30px;
+  padding-right: 30px;
+  outline: none;
+  -webkit-transition: all 0.1s ease-in;
+  -moz-transition: all 0.1s ease-in;
+  -o-transition: all 0.1s ease-in;
+  -ms-transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
 }
 
-#search .moveUp{
-    top: 15%;
+#search .moveUp {
+  top: 15%;
 }
 
-#search .moveUp2{
-    top: 30%;
+#search .moveUp2 {
+  top: 30%;
 }
 
 #search .close {
-    position: absolute;
-    top: 20%;
-    right: 10%;
-    color: #fff;
-	background-color: #f44242;
-	border-color: #357ebd;
-	opacity: 1;
-	padding: 10px 17px;
-	font-size: 27px;
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  color: #fff;
+  background-color: #f44242;
+  border-color: #357ebd;
+  opacity: 1;
+  padding: 10px 17px;
+  font-size: 27px;
 }
 
 .hovereffect .overlay {
-width:100%;
-height:100%;
-position:absolute;
-overflow:hidden;
-top:0;
-left:0;
-opacity:0;
-background-color:rgba(0,0,0,0.5);
--webkit-transition:all .4s ease-in-out;
-transition:all .4s ease-in-out
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .hovereffect img {
-display:block;
-position:relative;
-top:0;
-bottom:0;
-right:0;
-left: 0;
--webkit-transition:all .4s linear;
-transition:all .4s linear;
+  display: block;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  -webkit-transition: all 0.4s linear;
+  transition: all 0.4s linear;
 }
 
 .hovereffect h2 {
-text-transform:uppercase;
-color:#fff;
-text-align:center;
-position:relative;
-font-size:17px;
-background:rgba(0,0,0,0.6);
--webkit-transform:translatey(-100px);
--ms-transform:translatey(-100px);
-transform:translatey(-100px);
--webkit-transition:all .2s ease-in-out;
-transition:all .2s ease-in-out;
-padding:10px;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  position: relative;
+  font-size: 17px;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-transform: translatey(-100px);
+  -ms-transform: translatey(-100px);
+  transform: translatey(-100px);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  padding: 10px;
 }
 
 .hovereffect a.info {
-text-decoration:none;
-display:inline-block;
-text-transform:uppercase;
-color:#fff;
-border:1px solid #fff;
-background-color:transparent;
-opacity:0;
-filter:alpha(opacity=0);
--webkit-transition:all .2s ease-in-out;
-transition:all .2s ease-in-out;
-margin:10px 0 0;
-padding:7px 14px;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid #fff;
+  background-color: transparent;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  margin: 10px 0 0;
+  padding: 7px 14px;
 }
 
 .hovereffect:hover img {
--ms-transform:scale(1.2);
--webkit-transform:scale(1.2);
-transform:scale(1.2);
+  -ms-transform: scale(1.2);
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .hovereffect:hover .overlay {
-opacity:1;
-filter:alpha(opacity=100);
+  opacity: 1;
+  filter: alpha(opacity=100);
 }
 
-.hovereffect:hover h2,.hovereffect:hover a.info {
-opacity:1;
--ms-transform:translatey(0);
--webkit-transform:translatey(0);
-transform:translatey(0);
+.hovereffect:hover h2,
+.hovereffect:hover a.info {
+  opacity: 1;
+  -ms-transform: translatey(0);
+  -webkit-transform: translatey(0);
+  transform: translatey(0);
 }
 
 .hovereffect:hover a.info {
--webkit-transition-delay:.2s;
-transition-delay:.2s;
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
 }
 
-#studentProfile .card-header{
-    background-color: rgb(123, 17, 19);
-    text-align: center;
+#studentProfile .card-header {
+  background-color: rgb(123, 17, 19);
+  text-align: center;
 }
 
 .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.profileicon{
-    border-radius: 50%;
-    border-style: solid;
-    border-width: medium;
-    border-color: white;
-    box-shadow: 0 0 40px rgba(0,0,0,.2);
-    align-items: center;
-    width: 150px;
+.profileicon {
+  border-radius: 50%;
+  border-style: solid;
+  border-width: medium;
+  border-color: white;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  align-items: center;
+  width: 150px;
 }
 
 /* FontAwesome for working BootSnippet :> */
 
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 #searchPanel {
-    background: #eee !important;
+  background: #eee !important;
 }
 
 .btn-primary:hover,
 .btn-primary:focus {
-    background-color: #108d6f;
-    border-color: #108d6f;
-    box-shadow: none;
-    outline: none;
+  background-color: #108d6f;
+  border-color: #108d6f;
+  box-shadow: none;
+  outline: none;
 }
 
 .btn-primary {
-    color: #fff;
-    background-color: #007b5e;
-    border-color: #007b5e;
+  color: #fff;
+  background-color: #007b5e;
+  border-color: #007b5e;
 }
 
 section {
-    padding: 60px 0;
+  padding: 60px 0;
 }
 
 section .section-title {
-    text-align: center;
-    color: #007b5e;
-    margin-bottom: 50px;
-    text-transform: uppercase;
+  text-align: center;
+  color: #007b5e;
+  margin-bottom: 50px;
+  text-transform: uppercase;
 }
 
 #searchPanel .card {
-    border: none;
-    background: #ffffff;
+  border: none;
+  background: #ffffff;
 }
 
-
-
 .frontside {
-    position: relative;
-    -webkit-transform: rotateY(0deg);
-    -ms-transform: rotateY(0deg);
-    z-index: 2;
-    margin-bottom: 30px;
+  position: relative;
+  -webkit-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  z-index: 2;
+  margin-bottom: 30px;
 }
 
 .backside {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: white;
-    -webkit-transform: rotateY(-180deg);
-    -moz-transform: rotateY(-180deg);
-    -o-transform: rotateY(-180deg);
-    -ms-transform: rotateY(-180deg);
-    transform: rotateY(-180deg);
-    -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
-    -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
-    box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: white;
+  -webkit-transform: rotateY(-180deg);
+  -moz-transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
+  -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+  -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+  box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
 }
 
 .frontside,
 .backside {
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    -ms-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transition: 1s;
-    -webkit-transform-style: preserve-3d;
-    -moz-transition: 1s;
-    -moz-transform-style: preserve-3d;
-    -o-transition: 1s;
-    -o-transform-style: preserve-3d;
-    -ms-transition: 1s;
-    -ms-transform-style: preserve-3d;
-    transition: 1s;
-    transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: 1s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transition: 1s;
+  -moz-transform-style: preserve-3d;
+  -o-transition: 1s;
+  -o-transform-style: preserve-3d;
+  -ms-transition: 1s;
+  -ms-transform-style: preserve-3d;
+  transition: 1s;
+  transform-style: preserve-3d;
 }
 
 .frontside .card,
 .backside .card {
-    min-height: 312px;
+  min-height: 312px;
 }
 
 .backside .card a {
-    font-size: 18px;
-    color: #007b5e !important;
+  font-size: 18px;
+  color: #007b5e !important;
 }
 
 .frontside .card .card-title,
 .backside .card .card-title {
-    color: #007b5e !important;
+  color: #007b5e !important;
 }
 
 .frontside .card .card-body img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+#custom-search-input {
+  margin: 0;
+  margin-top: 10px;
+  padding: 0;
+}
+
+#custom-search-input .search-query {
+  padding-right: 3px;
+  padding-right: 4px \9;
+  padding-left: 3px;
+  padding-left: 4px \9;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+#custom-search-input button {
+  border: 0;
+  background: none;
+  /** belows styles are working good */
+  padding: 2px 5px;
+  margin-top: 2px;
+  position: relative;
+  left: -28px;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: #d9230f;
+}
+
+.search-query:focus + button {
+  z-index: 3;
 }
