@@ -553,6 +553,7 @@
 
 		private function rejectMembership(){
 
+			$reason = $this->input->post('reason');
 			$student_id = $this->input->post('student_id');
 			$account_type = $this->session->userdata['account_type'];
 
@@ -565,7 +566,7 @@
 
 				$org_name = $this->OrgModel->getOrgName($org_id);
                 $up_mail = $this->OrgModel->getStudentUPMail($student_id);
-                $this->sendNotification('Organization Membership Rejected', $org_name, $up_mail, 'None');
+                $this->sendNotification('Organization Membership Rejected', $org_name, $up_mail, $reason);
 
 
 				echo json_encode(true);
@@ -651,8 +652,6 @@
 
 			if($type == 'Membership Removal'){
                 $reason = $other_info;
-
-                $reason = $other_info;
                 $message = '<html><body>';
                 $message .= '<p> Notification from ASUO:</p>';
                 $message .= '<p>Your membership from '. $org_name.' has been removed.</p>';
@@ -674,7 +673,7 @@
              }
 
             if($type == 'Organization Membership Approved'){
-                 $message = '<html><body>';
+                $message = '<html><body>';
                 $message .= '<p> Notification from ASUO:</p>';
                 $message .= '<p>Your organization membership application in '. $org_name.' has been approved.</p>';
                 $message .= '<p>For more details, please contact ' .$org_name. '.</p>';
@@ -683,9 +682,11 @@
              }
 
              if($type == 'Organization Membership Rejected'){
-                 $message = '<html><body>';
+				$reason = $other_info;
+                $message = '<html><body>';
                 $message .= '<p> Notification from ASUO:</p>';
-                $message .= '<p>Your organization membership application in '. $org_name.' has been rejected.</p>';
+				$message .= '<p>Your organization membership application in '. $org_name.' has been rejected.</p>';
+				$message .= "<p>The reason indicated was '".$reason."'.</p>";
                 $message .= '<p>For more details, please contact ' .$org_name. '.</p>';
                 $message .= '<p>ASUO Administrator</p>';
                 $message .= '</body></html>';

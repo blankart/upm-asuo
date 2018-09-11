@@ -171,28 +171,35 @@
 
                   swal({
                     title: "Reject "+ name+ "?",
-                    type: "warning",
+                    text: "Write reason:",
+                    type: "input",
                     showCancelButton: true,
                     confirmButtonText: "Reject",
-                    closeOnConfirm: false
+                    closeOnConfirm: false,
+                    inputPlaceholder : "Sample reason here."
                   },
-                  function(){
-
+                  function(reason){
                     $.ajax({
                       type: "post",
                       url: "<?php echo base_url();?>org/rejectMembership",
-                      data: {student_id: id},
+                      data: {
+                              student_id: id, 
+                              reason: reason
+                            },
                       dataType: "JSON",
                       async: false,
                       cache: false,
                       success: function(result){
-
+                        console.log("success");
                         if(result){
                           swal({title: "Rejected!", text: "You rejected" +name+ "'s application.", type: "error"},
                              function(){ 
                                  location.reload();
                              });
                         }
+                      },
+                      error: function(){
+                        swal("Error"); //ERROR MESSAGE
                       }
                     });
                     }
