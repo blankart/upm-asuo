@@ -47,6 +47,7 @@
   border-radius: 20px;
 	background-color: #eee;
 	padding: 4.25rem .25rem;
+  padding-top: 100px;
   padding-bottom: 30px;
   margin-bottom: 0px;
 }
@@ -108,7 +109,7 @@
 
 .inputfile-1 + label {
     color: #f1e5e6;
-    background-color: #860204;
+    background-color: #ad423f;
     border-radius: 20px;
 }
 
@@ -126,7 +127,7 @@
 }
 
 input[type=button]{
-    background-color: #860204;
+    background-color: #ad423f;
     border-radius: 20px;
     border: none;
     color: white;
@@ -212,3 +213,4 @@ input[type=button]{
   margin-bottom: 0px;
   padding-bottom: 0px;
 }
+

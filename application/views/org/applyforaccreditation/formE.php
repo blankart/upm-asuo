@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Form E: Members' Profile</title>
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/sidenav.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/home.css">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>css/upload.css">
 
         <script>
@@ -34,46 +34,59 @@
         </script>
 	</head>
 
-	<body>
-   		<div class="animated fadeIn" id="panel">
-            <div class="col-4">
-            <!-- insert sidenav -->
-                <div class="sidenav">
-                    <?php if($org_accred_status == "old"){ ?>
-                    <ul class="menu">
-                        <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
-                        <li class="active"><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formF">Activity Report</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formG">Financial Report</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/plans">Plans</a></li>
-                    </ul>
+    <body>
+     <div id="panel" class='animated fadeIn'>
+        <div class="container">
+            <div class="row">
+                <!-- menu -->
+                <div class="col-4">
+                    <div class="card" id="ProfileDetails">
+                        <?php if($org_accred_status == "old"){ ?>
+                        <div class="card-body">
+                            <button class="btn btn-secondary btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/applyforaccreditation';"><i style='float: left;'></i>Home</button>
+                            <button class="btn btn-secondary btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/formA';"><i style='float: left;'></i>Accreditation Application</button> 
+                            <button class="btn btn-secondary btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/formB';"><i style='float: left;'></i>Adviser's Consent</button>
+                            <button class="btn btn-secondary btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/formC';"><i style='float: left;'></i>Organization Profile</button>
+                            <button class="btn btn-secondary btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/formD';"><i style='float: left;'></i>Officers' Profile</button>
+                            <button class="btn btn-secondary btn-block active" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/formE';"><i style='float: left;'></i>Members' Profile</button>
+                            <button class="btn btn-secondary btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/formF';"><i style='float: left;'></i>Activity Report</button>
+                            <button class="btn btn-secondary btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/formG';"><i style='float: left;'></i>Financial Report</button>
+                            <button class="btn btn-secondary btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/plans';"><i style='float: left;'></i>Plans</button> 
+                            <button class="btn btn-warning btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/submitAll';"><i style='float: left;'></i>Checklist</button> 
+                        </div>
+                        <?php } else{ ?>
+                        <div class="card-body">
+                            <button class="btn btn-secondary btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/applyforaccreditation';"><i style='float: left;'></i>Home</button>
+                            <button class="btn btn-secondary btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/formA';"><i style='float: left;'></i>Accreditation Application</button> 
+                            <button class="btn btn-secondary btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/formB';"><i style='float: left;'></i>Adviser's Consent</button>
+                            <button class="btn btn-secondary btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/formC';"><i style='float: left;'></i>Organization Profile</button>
+                            <button class="btn btn-secondary btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/formD';"><i style='float: left;'></i>Officers' Profile</button>
+                            <button class="btn btn-secondary btn-block active" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/formE';"><i style='float: left;'></i>Members' Profile</button> 
+                            <button class="btn btn-secondary btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/plans';"><i style='float: left;'></i>Plans</button> 
+                            <button class="btn btn-warning btn-block" style="margin-top: 10px;" type="button" data-toggle="modal" onclick="location.href = '<?php echo base_url(); ?>org/submitAll';"><i style='float: left;'></i>Checklist</button>
+                        </div>
+                        <?php } ?>
 
-                    <?php } else{ ?>
-                    <ul class="menu">
-                        <li><a href="<?php echo base_url(); ?>org/applyforaccreditation">Home</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formA">Accreditation Application</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formB">Consent of Adviser</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formC">Organization Profile</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/formD">Officers' Profile</a></li>
-                        <li class="active"><a href="<?php echo base_url(); ?>org/formE">Members' Profile</a></li>
-                        <li><a href="<?php echo base_url(); ?>org/plans">Plans</a></li>
-                    </ul>
-                    <?php } ?>
-                <button class="submitAll" onclick="location.href = '<?php echo base_url(); ?>org/submitAll';">Submit All</button>
+                    </div>
+                </div>
+            
+            <!-- Page Content -->
+               <div class="col-8">
+                    <div class="card" style="box-shadow: 0 0 40px rgba(0,0,0,.2); height: 500px;">
+                        <div class='card-header home-header'>
+                           <h4 id="pd">Members' Profile</h4> 
+                        </div>
+
+                        <div class="card-body" style='overflow-y: scroll;'>
+                            <object data="<?php echo base_url(); ?>org/viewFormE" type="pdf" width="100%" height="400">
+                                <iframe src="<?php echo base_url(); ?>org/viewFormE" style="border: none;" width="100%" height="400">This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo base_url(); ?>org/formEpdf">Download PDF</a>
+                                </iframe>
+                            </object>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <!-- Page Content -->
-			<div class="main">
-			<h1>Form E: Members' Profile</h1>
-                <object data="<?php echo base_url(); ?>org/viewFormE" type="pdf" width="100%" height="400">
-                    <iframe src="<?php echo base_url(); ?>org/viewFormE" style="border: none;" width="100%" height="400">This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo base_url(); ?>org/formEpdf">Download PDF</a>
-                    </iframe>
-                </object>
-			</div>
-		</div>
-	</body>
+        </div>
+    </div>
+    </body>
 </html>

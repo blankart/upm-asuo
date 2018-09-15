@@ -1,26 +1,35 @@
 /** TABLES **/
 table {
-    margin-left: 10%;
-    margin-right: 10%;
     border-collapse: collapse;
-    width: 75%;
+    width: 100%;
 }
 
 th, td {
     padding: 4px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
+tr:nth-child(even){background-color: #d9d9d9;}
 
 th {
-    background-color: #860204;
+    background-color: #ad423f;
     color: white;
 }
 
 /** BLOCKQUOTE**/
 blockquote {
   background: #eee;
-  border-left: 10px solid #b25355;
+  border-left: 10px solid #ad423f;
   margin: 1.5em 50px;
   padding: 0.5em 10px;
+}
+
+.home-header{
+  color: #fff;
+  background-color: #ad423f;
+  border-color: #ad423f;
+  text-align: center;
+}
+
+.left-align {
+  float: right;
 }

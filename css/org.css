@@ -373,3 +373,17 @@ h3{
     box-shadow: 0 0 40px rgba(0,0,0,.2); 
     align-items: center;
 }
+
+/* Style the active class, and buttons on mouse-over */
+.active, .btn:hover {
+    background-color: #d9534f;
+    color: white;
+    border-color: #d9534f;
+}
+
+.btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active,
+.show > .btn-secondary.dropdown-toggle {
+  color: #fff;
+  background-color: #ad423f;
+  border-color: #ad423f;
+}

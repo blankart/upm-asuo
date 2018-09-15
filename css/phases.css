@@ -1,27 +1,23 @@
 /** progress bar **/
 progress::-moz-progress-bar {
     border-radius: 20px;
-    background: #860204; 
+    background: #ffc107; 
 }
-progress::-webkit-progress-value { background: #860204; border-radius: 20px; }
-progress { color: #860204; border-radius: 20px; }
+progress::-webkit-progress-value { background: #ffc107; border-radius: 20px; }
+progress { color: #ffc107; border-radius: 20px; }
 
-.progressBar{
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 80%;
+.progressBar{;
+    width: 100%;
     border: none;
 }
 
 /**FORM**/
 form#multiphase{
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 80%;
+    width: 100%;
     background-color: #eee;
     padding: 20px;
     border-radius: 20px;
-    text-align: right;
+    text-align: left;
 }
 
 form#multiphase > #phase2, #phase3, #phase4, #phase5, #phase6, #show_all_data{
@@ -29,13 +25,11 @@ form#multiphase > #phase2, #phase3, #phase4, #phase5, #phase6, #show_all_data{
 }
 
 form#multiphase2{
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 80%;
+    width: 100%;
     background-color: #eee;
     padding: 20px;
     border-radius: 20px;
-    text-align: right;
+    text-align: left;
 }
 
 form#multiphase2 > #cphase2, #cphase3, #show_dataPrev{
@@ -44,7 +38,7 @@ form#multiphase2 > #cphase2, #cphase3, #show_dataPrev{
 
 
 input[type=date]{
-    width: 90%;
+    width: 100%;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -52,7 +46,7 @@ input[type=date]{
 }
 
 input[type=text]{
-    width: 98%;
+    width: 100%;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -60,94 +54,15 @@ input[type=text]{
     margin-bottom: 5px;
 }
 
-input#years{
-    width: 20%;
+input#contactMail {
+    width: 100%;
 }
 
-input#orgName,#adviserPos, #contactPos{
-    width: 45%;
+input#years {
+    width: 10%;
 }
 
-input#category{
-    width: 90%;
-}
-
-input#adviser{
-    width: 84%;
-}
-
-input#adviserUnit{
-    width: 22.2%;
-}
-
-input#contactPerson{
-    width: 85%;
-}
-
-input#contactMail{
-    width: 25.75%;
-}
-
-input#contactAddress{
-    width: 91.25%;
-}
-
-input#contactPhone, #contactMobile, #contactOthers{
-    width: 17.8%;
-}
-
-input#acronym{
-    width: 24%;
-}
-
-input#address{
-    width: 84.5%;
-}
-
-input#email, #website{
-    width: 26.5%;
-}
-
-input#established{
-    width: 7.2%;
-}
-
-input#when{
-    width: 5%;
-}
-
-input#numMembers{
-    width: 75%;
-}
-
-input#name{
-    width: 73.5%;
-}
-
-input#pos{
-    width: 35%;
-}
-
-input#course{
-    width: 23.25%;
-}
-
-input#add{
-    width: 71.7%;
-}
-
-input#phone, #mail{
-    width: 33.15%;
-}
-
-input#more{
-    width: 60%;
-}
-
-input#yearLvl{
-    width: 25%;
-}
-
-input#Course{
-    width: 41.5%;
+textarea {
+    width: 100%;
+    resize: none;
 }
