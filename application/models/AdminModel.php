@@ -325,9 +325,9 @@
 
 		private function resetForAccreditation(){	
 			$this->resetAllOrgStatusToPending();
-			$this->resetAllOrgMembers();
+			//$this->resetAllOrgMembers();
 			$this->removeAllOrgApps();
-			$this->resetAllStudentsToInactive();
+			//$this->resetAllStudentsToInactive();
 		}
 
 		private function resetAllOrgStatusToPending(){
