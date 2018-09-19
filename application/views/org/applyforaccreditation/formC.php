@@ -17,16 +17,17 @@
    function submitFormC(){
    	$.ajax({
               type: "post",
-           		url :"<?php echo base_url(); ?>org/uploadFormC", 
+           		url :"<?php echo base_url(); ?>org/viewFormC", 
                 async: false,
                 cache: false,
                 contentType: false,
                 processData: false,
                 //data: new FormData(this),
                   		success : function (/*data*/){
-                      		swal({title: "Success!", text: "You have successfully uploaded your file!", type: "success"},
+                      		swal({title: "Success!", text: "Form now ready for review!", type: "success"},
                         		function(){ 
-                           			location.reload();
+                              location.href = "<?php echo base_url(); ?>org/viewFormC";
+                              //location.reload();
                         		}
                      		);
                   		},
@@ -48,6 +49,7 @@
    }
    window.onload=incSEC;
 </script>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -143,7 +145,7 @@
                               <br><br>
 
 					                    <button class="btn btn-danger" type="button" onclick="backc2()">Back</button>
-					                    <button class="btn btn-danger" type="button" onclick="processcPhase3()">Continue</button>
+					                    <button class="btn btn-danger" type="button" onclick="submitFormC()">Save</button>
 				                  </div>
 			                  </form>
                       </div>

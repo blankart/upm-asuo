@@ -10,7 +10,7 @@
                 window.open("applyforaccreditation/formD.pdf"); //change location
             }
             function submitFormD(){
-    $.ajax({
+            $.ajax({
                 type: "post",
                 url :"<?php echo base_url(); ?>org/uploadFormD", 
                 async: false,

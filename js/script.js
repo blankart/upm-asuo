@@ -123,18 +123,25 @@ function back6(){
 function submitForm(){
 	_("multiphase").method = "post";
 	_("multiphase").submit();
+
+	//open new tab to view form
+	swal({title: "Success!", text: "Form now ready for review!", type: "success"},
+        function(){ 
+          location.reload();
+        }
+    );
 	
 }
 
 /**form C**/
 function processcPhase1(){
-	_("progressBar").value = 33;
+	_("progressBar").value = 50;
 	_("cphase1").style.display = "none";
 	_("cphase2").style.display = "block";
 }
 
 function processcPhase2(){
-	_("progressBar").value = 66;
+	_("progressBar").value = 100;
 	_("cphase2").style.display = "none";
 	_("cphase3").style.display = "block";
 }
@@ -145,20 +152,14 @@ function backc1(){
 	_("progressBar").value = 0;
 }
 
-function processcPhase3(){
-	_("progressBar").value = 100;
-	_("multiphase2").style.display = "none";
-	_("show_dataPrev").style.display = "block";
-}
-
 function backc2(){
 	_("cphase2").style.display = "block";
 	_("cphase3").style.display = "none";
-	_("progressBar").value = 33;
+	_("progressBar").value = 50;
 }
 
 function backc3(){
 	_("cphase3").style.display = "block";
 	_("show_dataPrev").style.display = "none";
-	_("progressBar").value = 66;
+	_("progressBar").value = 100;
 }

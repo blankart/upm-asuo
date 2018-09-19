@@ -147,6 +147,7 @@
 
 								<div id="phase5">
 								Contact Person:><br>
+								Contact Person:<br>
 									<input type="text" id="contactPerson" onkeyup="incomplete2()" name="data[contact_person]" value="<?php echo $contact_person ?>" required>
 								Position in Organization:<br>
 									<input type="text" id="contactPos" onkeyup="incomplete2()" name="data[contact_position]" value="<?php echo $contact_position ?>" required>
