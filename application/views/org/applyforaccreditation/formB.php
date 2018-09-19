@@ -15,15 +15,15 @@
                   processData: false,
                   data: new FormData(this),
                   success : function (data){
-                      swal({title: "Success!", text: "You have successfully uploaded your file!", type: "success"},
+                      swal({title: "Success!", text: "Form has been uploaded! You can preview your forms on the Checklist tab on your menu.", type: "success"},
                         function(){ 
-                           location.reload();
+                           window.location.href = "<?php echo base_url(); ?>org/formC";
                         }
                      );
                   },
                   error: function(XMLHttpRequest, textStatus, errorThrown) { 
                      //alert("Status: " + textStatus + " | Error: " + errorThrown); 
-                     swal("Error!", "Your file may be too large or not of valid type! (PDF only)", "error");
+                     swal("Error!", "You have not uploaded a file, file may be too large, or not of valid type! (PDF only)", "error");
                   }   
             });
           });
@@ -107,7 +107,8 @@
                               <br><br><br><br><br><br><br>
                 
                               <div class="myBtn">
-                                <button class="btn btn-danger" id="prevBtn" onclick="location.href = '<?php echo base_url(); ?>org/formB';">Preview</button> 
+                                <!-- change form location for preview -->
+                                <!--button class="btn btn-danger" id="prevBtn" onclick="location.href = '<?php echo base_url(); ?>org/formBpdf';"formtarget="_blank">Preview</button--> 
                                 <button class="btn btn-danger" id="prevBtn" onclick="document.getElementById('submitFormB').click();">Upload</button> 
 
                               </div>

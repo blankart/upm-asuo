@@ -146,7 +146,6 @@
 								</div>
 
 								<div id="phase5">
-								Contact Person:><br>
 								Contact Person:<br>
 									<input type="text" id="contactPerson" onkeyup="incomplete2()" name="data[contact_person]" value="<?php echo $contact_person ?>" required>
 								Position in Organization:<br>
@@ -176,6 +175,7 @@
 									<button class="btn btn-danger" type="button" onclick="back5()">Back</button>
 									<button class="btn btn-danger" type="button" onclick="submitForm()">Save</button>
 								</div>
+
 							<input type="hidden" name="data[app_id]" value="<?php echo $app_id;?>">
 							</form>
 						</div>

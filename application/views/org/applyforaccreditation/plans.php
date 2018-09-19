@@ -21,9 +21,9 @@
                   processData: false,
                   data: new FormData(this),
                   success : function (data){
-                      swal({title: "Success!", text: "You have successfully uploaded your file!", type: "success"},
+                      swal({title: "Success!", text: "Form has been uploaded! You can preview your forms on the Checklist tab on your menu.", type: "success"},
                         function(){ 
-                           location.reload();
+                           window.location.href = "<?php echo base_url(); ?>org/submitAll";
                         }
                      );
                   },

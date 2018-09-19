@@ -20,7 +20,7 @@ form#multiphase{
     text-align: left;
 }
 
-form#multiphase > #phase2, #phase3, #phase4, #phase5, #phase6, #show_all_data{
+form#multiphase > #phase2, #phase3, #phase4, #phase5, #phase6, #preview_file{
     display: none;
 }
 
@@ -32,7 +32,7 @@ form#multiphase2{
     text-align: left;
 }
 
-form#multiphase2 > #cphase2, #cphase3, #show_dataPrev{
+form#multiphase2 > #cphase2, #cphase3, #preview_fileC{
     display: none;
 }
 

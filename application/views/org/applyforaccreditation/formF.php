@@ -23,9 +23,9 @@
                   processData: false,
                   data: new FormData(this),
                   success : function (data){
-                      swal({title: "Success!", text: "You have successfully uploaded your file!", type: "success"},
+                      swal({title: "Success!", text: "Form has been uploaded! You can preview your forms on the Checklist tab on your menu.", type: "success"},
                         function(){ 
-                           location.reload();
+                           window.location.href = "<?php echo base_url(); ?>org/formG";
                         }
                      );
                   },
@@ -91,7 +91,6 @@
                               <br><br><br><br><br><br><br>
                 
                               <div class="myBtn">
-                                <button class="btn btn-danger" id="prevBtn" onclick="location.href = '<?php echo base_url(); ?>org/formF';">Preview</button> 
                                 <button class="btn btn-danger" id="prevBtn" onclick="document.getElementById('submitFormF').click();">Upload</button> 
 
                               </div>

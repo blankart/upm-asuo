@@ -24,10 +24,9 @@
                 processData: false,
                 //data: new FormData(this),
                   		success : function (/*data*/){
-                      		swal({title: "Success!", text: "Form now ready for review!", type: "success"},
+                      		swal({title: "Success!", text: "Form has been uploaded! You can preview your forms on the Checklist tab on your menu.", type: "success"},
                         		function(){ 
-                              location.href = "<?php echo base_url(); ?>org/viewFormC";
-                              //location.reload();
+                              window.location.href = "<?php echo base_url(); ?>org/formD";
                         		}
                      		);
                   		},
@@ -147,6 +146,7 @@
 					                    <button class="btn btn-danger" type="button" onclick="backc2()">Back</button>
 					                    <button class="btn btn-danger" type="button" onclick="submitFormC()">Save</button>
 				                  </div>
+
 			                  </form>
                       </div>
                     </div>

@@ -104,7 +104,7 @@ function back4(){
 function processPhase6(){
 	_("progressBar").value = 100;
 	_("phase6").style.display = "none";
-	_("show_all_data").style.display = "block";
+	_("preview_file").style.display = "block";
 
 }
 
@@ -114,20 +114,20 @@ function back5(){
 	_("progressBar").value = 80;
 }
 
+
 function back6(){
 	_("phase6").style.display = "block";
-	_("show_all_data").style.display = "none";
+	_("preview_file").style.display = "none";
 	_("progressBar").value = 83.35;
 }
 
 function submitForm(){
 	_("multiphase").method = "post";
-	_("multiphase").submit();
 
 	//open new tab to view form
-	swal({title: "Success!", text: "Form now ready for review!", type: "success"},
+	swal({title: "Success!", text: "Form has been uploaded! You can preview your forms on the Checklist tab on your menu.", type: "success"},
         function(){ 
-          location.reload();
+          _("multiphase").submit();
         }
     );
 	
@@ -161,5 +161,17 @@ function backc2(){
 function backc3(){
 	_("cphase3").style.display = "block";
 	_("show_dataPrev").style.display = "none";
+	_("progressBar").value = 100;
+}
+
+function processcPhase3(){
+	_("progressBar").value = 100;
+	_("cphase3").style.display = "none";
+	_("preview_fileC").style.display = "block";
+}
+
+function backc3(){
+	_("preview_fileC").style.display = "block";
+	_("cphase3").style.display = "none";
 	_("progressBar").value = 100;
 }

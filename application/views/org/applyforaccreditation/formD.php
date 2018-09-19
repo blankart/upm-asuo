@@ -19,9 +19,9 @@
                 processData: false,
                 //data: new FormData(this),
                         success : function (/*data*/){
-                            swal({title: "Success!", text: "You have successfully uploaded your file!", type: "success"},
+                            swal({title: "Success!", text: "Form has been uploaded! You can preview your forms on the Checklist tab on your menu.", type: "success"},
                                 function(){ 
-                                    location.reload();
+                                     window.location.href = "<?php echo base_url(); ?>org/formE";
                                 }
                             );
                         },
@@ -80,9 +80,10 @@
 
                         <div class="card-body" style='overflow-y: scroll;'>
                             <object data="<?php echo base_url(); ?>org/viewFormD" type="pdf" width="100%" height="400">
-                                <iframe src="<?php echo base_url(); ?>org/viewFormD" style="border: none;" width="100%" height="400">This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo base_url(); ?>org/formDpdf">Download PDF</a>
+                                <iframe src="<?php echo base_url(); ?>org/viewFormD" style="border: none;" width="0%" height="0">This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo base_url(); ?>org/formDpdf" target="_blank">Download PDF</a>
                                 </iframe>
                             </object>
+                            <a href="<?php echo base_url(); ?>org/formDpdf" target="_blank">Preview Form D before uploading</a><br><br>
                         </div>
                     </div>
                 </div>
