@@ -320,7 +320,7 @@ const autocomplete = (function() {
     };
     
     const handleInputEvents = (e, settings) => {
-        if (e.target.value.length < 3) {
+        if (e.target.value.length < 1) {
             return settings.resultsContainer.classList.add('hide-list');
         }
         
