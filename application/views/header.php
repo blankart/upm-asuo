@@ -100,7 +100,7 @@
   padding: 1px;
   border: 1px solid transparent;
   box-shadow: 0 0 0 #ddd;
-  transition: all 0.1s ease-out;
+  transition: all 300ms ease-out;
   color: #999;
   font-size: 18px;
   width: 20em;
@@ -118,6 +118,10 @@
   clear: both;
 }
 
+.autocomplete {
+    position: relative;
+}
+
 .search-org-list {
   position: absolute;
   list-style-type: none;
@@ -125,7 +129,7 @@
   width: 350px;
   margin-top: 4px;
   box-shadow: 0 0 10px #ddd;
-  transition: all .1 ease-out;
+  transition: all .1s ease-out;
   transform: scale(1) translateY(0);
   transform-origin: center center;
 }
