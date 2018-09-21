@@ -97,7 +97,7 @@
 
         .search-org-input {
   font-family: 'Roboto';
-  padding: 1px;
+  padding: 5px;
   border: 1px solid transparent;
   box-shadow: 0 0 0 #ddd;
   transition: all 300ms ease-out;
