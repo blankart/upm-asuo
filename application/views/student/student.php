@@ -200,7 +200,7 @@
 								<?php foreach($orgposts as $orgpost){ 
                                                       ?>
 								<div class="stream-post" style="border-style: solid; border-radius: 10px; border-color:<?php
-									echo ($orgpost['privacy'] == 'Officers') ? 'yellow' : (($orgpost['privacy'] == 'Members') ? 'red' : 'blue'); 
+									echo ($orgpost['privacy'] == 'Officers') ? 'green' : (($orgpost['privacy'] == 'Members') ? '#ad423f' : 'gray'); 
 								?>;">
 									<div class="sp-author">
 										<a class="sp-author-avatar" href="<?php echo base_url().'org/'.str_replace(' ', '', $orgpost['acronym']); ?>"><img alt="" src="<?php echo base_url().'assets/org/logo/'.$orgpost['org_logo'].'?'.rand(1, 100); ?>"></a>
@@ -208,7 +208,9 @@
 									</div>
 									<div class="sp-content">
 										<div class="sp-info">
-											<h6><?php echo $orgpost['title']; ?></h6><?php echo date("g:i:s a |  F j, Y", strtotime($orgpost['date_posted'])) ?>
+											<h6><?php echo $orgpost['title']; ?></h6><a style='background-color: <?php
+									echo ($orgpost['privacy'] == 'Officers') ? 'green' : (($orgpost['privacy'] == 'Members') ? '#ad423f' : 'gray'); 
+								?>; border-radius: 3px; color: white; padding: 5px;'><?php echo $orgpost['privacy']; ?></a> - <?php echo date("g:i:s a |  F j, Y", strtotime($orgpost['date_posted'])) ?> 
 										</div>
 										<p class="sp-paragraph mb-0"><?php echo $orgpost['content']; ?></p>
 									</div>
