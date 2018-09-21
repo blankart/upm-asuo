@@ -399,8 +399,8 @@
 
 		private function loginStudent($credentials){	
 
-			$condition = "(up_mail = '" . $credentials['username']. "' OR username = '" . $credentials['username']. "') AND ".
-			"(up_mail = '" . $credentials['username']. "' OR username = '" . $credentials['username']. "')";
+			$condition = "(up_mail = '" . $credentials['username']."') AND ".
+			"(up_mail = '" . $credentials['username']. "')";
 
 			$this->db->select('student_id, password, isVerified, isActivated, archived');
 			$this->db->from('studentaccount');
