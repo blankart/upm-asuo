@@ -83,7 +83,7 @@
 
                         <div class="card-body" style='overflow-y: scroll;'>
                             <object data="<?php echo base_url(); ?>org/viewFormE" type="pdf" width="100%" height="400">
-                                <iframe src="<?php echo base_url(); ?>org/viewFormE" style="border: none;" width="100%" height="400">This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo base_url(); ?>org/formEpdf">Download PDF</a>
+                                <iframe src="<?php echo base_url(); ?>org/viewFormE" style="border: none;" width="0%" height="0">This browser does not support PDFs. Please download the PDF to view it: <a href="<?php echo base_url(); ?>org/formEpdf">Download PDF</a>
                                 </iframe>
                             </object>
                             <a href="<?php echo base_url(); ?>org/formEpdf" target="_blank">Preview Form E before uploading</a><br><br>
@@ -93,5 +93,6 @@
             </div>
         </div>
     </div>
+
     </body>
 </html>
